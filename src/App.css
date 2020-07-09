@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 .box {
   display: -ms-grid;
   display: grid;
@@ -87,8 +87,8 @@
   padding: 0 1vmin;
   position: relative;
   margin: 0.5vmin auto;
-  -webkit-filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.55));
-          filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.55));
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55));
+          filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55));
 }
 
 /* remove after adding links to items */
@@ -103,6 +103,7 @@
   -webkit-filter: invert(1);
           filter: invert(1);
   cursor: pointer;
+  margin-bottom: 50px;
 }
 
 footer {
@@ -123,12 +124,12 @@ footer p {
   font-family: "Quicksand", sans-serif;
 }
 
-#navbarText p {
+#navbarText a {
   font-family: "Open Sans Condensed", sans-serif;
 }
 
 .product p {
-  font-family: "Lato", sans-serif;
+  /* font-family: "Lato", sans-serif; */
 }
 
 footer ul li p {
@@ -194,7 +195,7 @@ navbar .navbarThree img {
   width: 5vh;
 }
 
-#navbarText p {
+#navbarText a {
   font-size: calc(9vmin);
   text-decoration: none;
   -webkit-transition: font-size none;
@@ -236,7 +237,7 @@ navbar p {
             align-items: center;
     justify-items: center;
   }
-  #navbarText p {
+  #navbarText a {
     font-size: 11vmin;
   }
   .centeredContainer {
@@ -335,7 +336,7 @@ navbar p {
     width: auto;
     margin: auto;
   }
-  #navbarText p {
+  #navbarText a {
     font-size: 11vmin;
   }
   .stickyFooter {
@@ -637,3 +638,142 @@ navbar img:hover {
   background-color: #3e8e41;
 }
 /*# sourceMappingURL=main.css.map */
+
+
+
+
+
+
+
+
+
+
+/* product page */
+
+.box2 {
+  display: grid;
+  grid-template-columns: 0.33fr 0.33fr 0.33fr;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 15vh;
+  padding-top: 100px;
+}
+.box3{
+  grid-template-columns: 150px 150px 150px;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  padding-top: 50px;
+}
+.box2 img {
+  width: calc(300px * 1.5);
+  margin: 0 auto;
+  height: calc(348.5px * 1.5);
+}
+
+
+
+.centeredContainer2 {
+  width: calc(0.33fr * 3);
+  margin: 0 auto;
+}
+
+.centeredContainer2 .product {
+  cursor: pointer;
+}
+
+/* used in non mobile centering too */
+/* centers children horizontally and vertically. used in the header/navbar */
+/* call it footer/headerparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
+
+/* // RENAME THIS TO HORVERCENTERINGPARENT */
+.centeringParent2 {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.centeringImages {
+  /* // s 2* img  */
+  width: 200px;
+  margin: 0 auto;
+};
+.centeringImages img {
+  width: 100px;
+}
+
+
+.productText img {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+.productText p {
+  text-align: center;
+  line-height: 1.6;
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+}
+
+.productSizingEtc p ,
+.productSizingEtc span {
+  font-family: "Lato", sans-serif;
+  font-size: 46px;  
+  line-height: 2;
+  text-align: center;
+}
+.productSizingEtc span {
+  padding: 0 20px;
+  font-size: 50px;
+}
+.bagBtn{
+  color: black;
+  background: #bfbfbf;
+  padding: 0 10px;
+  margin-bottom: 30px;
+}
+
+.buyBtn{
+  color: white;
+  background: black;
+  padding: 0 10px;
+}
+.shippingNSIZE {
+  font-size: 20px !important;
+  font-weight: lighter !important;
+
+}
+
+.right {
+  text-align: right;
+}
+
+
+
+#bagBtn {
+  height: 60px; border:none; 
+  width:320px;
+  margin: 0 auto;
+  font-size: 30px;  color: black;
+  background: #cecece;
+  font-family: "Lato", sans-serif;
+  font-size: 46px;  
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#buyBtn {
+  height: 60px; border:none; 
+  width:320px;
+  margin: 0 auto;
+  font-size: 30px; 
+  color: white;
+  background: black;
+  font-family: "Lato", sans-serif;
+  font-size: 46px;  
+  text-align: center;
+}

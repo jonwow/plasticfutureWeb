@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 let currency = '€';
+
 const Product = props => (
     // {/* product code be pf_ */}
+    // pfe cto ir cio
+    // images need a key value
     // link = /item/designName_productCode
     // debug viska ir su chrome console (i notes)
     // colors[4] > stringSpalva xszs x m l
@@ -23,7 +26,7 @@ const Product = props => (
             <img src={`${process.env.PUBLIC_URL}/images/` + props.product.season + `/designs/` + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`} />
 
 {/* make a proper formatting solution */}
-            <p>{props.product.price}.00{currency}</p>
+            <p style={props.product.style}>{props.product.price}.00{currency}</p>
         </div>
 
     </Link>
@@ -50,17 +53,20 @@ export default class ProductList extends Component {
 
             })
     }
-    // pfe cto ir cio
-
+    
     productList() {
         // for every product
         return this.state.products.map(curProduct => {
+            let curStyle = `color = "red"`;
+            // if (curProduct.color[0] == "white")
             // for every color of the product
             // if(curProduct.color.length >1) { perdaryt sita eilute kad tiems produktams, kurie yra
             return curProduct.color.map(curColor => {
                 // gives 'props.color' and 'props.product' to the Product const
-                return <Product color={curColor} product={curProduct}  />;
+                return <Product color={curColor} product={curProduct} style={curStyle} />;
             })
+
+            
         })
     }
 
@@ -69,7 +75,6 @@ export default class ProductList extends Component {
         return (
             <div className="centeredContainer" id="topElement">
                 <div className="box">
-                    {this.productList()}
                     {this.productList()}
                 </div>
             </div>

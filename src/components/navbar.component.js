@@ -16,8 +16,8 @@ export default class Navbar extends Component {
                   className="clickable"
                 ></img>
                 <div className="dropdown-content">
-                  <a><b>T-SHIRTS</b></a>
-                  <a><b>TOTE BAGS</b></a>
+                  <a>T-SHIRTS</a>
+                  <a>TOTE BAGS</a>
                   <a>YOUR ACCOUNT</a>
                   <a>COLLECTIONS</a>
                   <a>CONTACTS</a>
@@ -26,17 +26,16 @@ export default class Navbar extends Component {
             </div>
           </div>
         </div>
-        
-        {/* <Link to="/"> */}
-                <div className="navbarTwo">
-            <div className="centeringParent" id="navbarText">
-              <p className="clickable">PLASTIC FUTURE</p>
-            </div>
+
+        <div className="navbarTwo">
+          <div className="centeringParent" id="navbarText">
+            <Link to="/">PLASTIC FUTURE
+             </Link>
           </div>
-             {/* </Link> */}
+        </div>
         <div className="navbarThree">
           <div className="centeringParent">
-            <img src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}alt="cartPhoto" className="clickable"></img>
+            <img src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`} alt="cartPhoto" className="clickable"></img>
           </div>
         </div>
       </navbar>
