@@ -1,0 +1,639 @@
+/* made with scss. if you want to see the full project bones, visit https://github.com/jonwow/ */
+/* comments need review & then this file needs to be reorganised into multiple css and into scss again */
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+.box {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 370px 370px 370px 370px;
+      grid-template-columns: 370px 370px 370px 370px;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  margin-bottom: 15vh;
+}
+
+.box img {
+  width: 300px;
+  margin: 0 auto;
+  height: 348.5px;
+}
+
+.box img::-moz-selection {
+  background: rgba(255, 0, 0, 0);
+}
+
+.box img::selection {
+  background: rgba(255, 0, 0, 0);
+}
+
+/* makes the footer stay at the bottom of the page even if the page has no content. position-fixed for footer is not desired for the footer */
+.container {
+  /* full viewpoint - navbar height - stickyfooter height */
+  height: calc(100vh - 12vh );
+  /* min-height: 80vh; */
+  overflow: auto;
+}
+
+/* centers the cssgrid "box" that contains all the products.
+ * 370px = one box in css grid. CHANGE IT TO A VARIABLE LATER.
+ * multiplied by 5 because there are 5 boxes in one row by default. */
+.centeredContainer {
+  width: calc(370px * 4);
+  margin: 0 auto;
+}
+
+.centeredContainer .product {
+  cursor: pointer;
+}
+
+/* used in non mobile centering too */
+/* centers children horizontally and vertically. used in the navbar/navbar */
+/* call it footer/navbarparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
+.centeringParent {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.horizFixedCenteringParent {
+  position: fixed;
+  left: 50%;
+  bottom: 6.045vh;
+  z-index: 999;
+}
+
+.product {
+  padding: 2vh 0;
+}
+
+.product p {
+  text-align: center;
+  color: black;
+  font-size: 30px;
+  height: -webkit-fit-content;
+  height: fit-content;
+  height: -moz-fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+  padding: 0 1vmin;
+  position: relative;
+  margin: 0.5vmin auto;
+  -webkit-filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.55));
+          filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.55));
+}
+
+/* remove after adding links to items */
+.clickable {
+  cursor: pointer;
+}
+
+#goToTopButton {
+  margin: 0 auto;
+  width: 65px;
+  height: 55px;
+  -webkit-filter: invert(1);
+          filter: invert(1);
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 7vh;
+}
+
+
+*:link{
+  text-decoration: none;
+}
+
+footer p {
+  line-height: 2;
+}
+
+* {
+  font-family: "Quicksand", sans-serif;
+}
+
+#navbarText p {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+.product p {
+  font-family: "Lato", sans-serif;
+}
+
+footer ul li p {
+  font-family: "Raleway", serif;
+}
+
+navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: sticky;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: rgba(250, 250, 250, 0.755);
+}
+
+navbar > div > div > p {
+  width: inherit;
+  -ms-flex-preferred-size: inherit;
+      flex-basis: inherit;
+}
+
+navbar img {
+  width: 10vh;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+navbar .navbarOne,
+navbar .navbarTwo,
+navbar .navbarThree {
+  width: 33vw;
+  height: 12vh;
+}
+
+navbar .navbarOne {
+  -ms-flex-preferred-size: 15%;
+      flex-basis: 15%;
+}
+
+navbar .navbarOne img {
+  width: 5vh;
+}
+
+navbar .navbarTwo {
+  -ms-flex-preferred-size: 70%;
+      flex-basis: 70%;
+}
+
+navbar .navbarThree {
+  -ms-flex-preferred-size: 15%;
+      flex-basis: 15%;
+}
+
+navbar .navbarThree img {
+  width: 5vh;
+}
+
+#navbarText p {
+  font-size: calc(9vmin);
+  text-decoration: none;
+  -webkit-transition: font-size none;
+  transition: font-size none;
+  color: black;
+}
+
+/* without this, the 'parent' div gets too large and the text ('a') isn't centered. */
+navbar .navbarTwo .centeringParent {
+  margin: 0;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+}
+
+#navbarText {
+  margin: 0;
+}
+
+navbar p {
+  text-decoration: none;
+  line-height: 0.8;
+}
+
+@media only screen and (max-width: 319px) and (min-width: 0px) {
+  footer {
+    margin-bottom: 1vh;
+  }
+  .box {
+    margin-top: 0;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+  }
+  #navbarText p {
+    font-size: 11vmin;
+  }
+  .centeredContainer {
+    width: auto;
+    margin: auto;
+  }
+  .stickyFooter {
+    /*  removed important as of may 15 to test mobile footers */
+    position: relative;
+  }
+  .box img {
+    width: 25vh;
+    max-width: calc(100vh - 70vmin);
+    margin: 0 auto !important;
+    height: 30vh;
+    max-width: 49vw;
+  }
+  .box .product,
+  .box a {
+    margin: 0 auto;
+  }
+  .box img {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: block;
+    -webkit-margin-before: 1em;
+            margin-block-start: 1em;
+    -webkit-margin-after: 1em;
+            margin-block-end: 1em;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+            margin-inline-end: 0px;
+  }
+  .product p {
+    height: auto;
+    font-size: 1.1em;
+    max-height: calc(100vh - 95vmin);
+    /* bugs on 768 p zoomed in screens */
+    /* max-width: calc(100vh - 95vmin); */
+    font-size: 3vh;
+  }
+}
+
+@media only screen and (max-width: 679px) and (min-width: 320px) {
+  .product img:hover {
+    -webkit-transition: 0.3s linear;
+    transition: 0.3s linear;
+    -webkit-filter: none !important;
+            filter: none !important;
+  }
+  navbar .navbarTwo .parent p:hover {
+    -webkit-transition: 0s;
+    transition: 0s;
+    -webkit-filter: none !important;
+            filter: none !important;
+  }
+  navbar img {
+    -webkit-transition: none;
+    transition: none;
+  }
+  navbar img:hover {
+    -webkit-transition: 0s !important;
+    transition: 0s !important;
+    width: 5vh !important;
+    -webkit-filter: none !important;
+            filter: none !important;
+  }
+  footer {
+    padding-top: 5vh;
+    margin-bottom: 1vh;
+  }
+  footer p {
+    font-size: 1.8vmax;
+  }
+  #goToTopIcon {
+    bottom: 10px;
+    width: 65px;
+    height: 55px;
+    right: calc(50vw - 65px);
+  }
+  .box {
+    margin: 0;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+  }
+  .centeredContainer {
+    width: auto;
+    margin: auto;
+  }
+  #navbarText p {
+    font-size: 11vmin;
+  }
+  .stickyFooter {
+    /*  removed important as of may 15 to test mobile footers */
+    display: none;
+  }
+  .box img {
+    /* CHANGE THIS to a percentage or vw/vh. */
+    width: 42vmin;
+    max-width: calc(100vh - 70vmin);
+    margin: 0 auto !important;
+    height: 38vh;
+    max-height: 52vmin;
+  }
+  .box .product,
+  .box a {
+    margin: 0 auto;
+  }
+  .box img {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: block;
+    -webkit-margin-before: 1em;
+            margin-block-start: 1em;
+    -webkit-margin-after: 1em;
+            margin-block-end: 1em;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+            margin-inline-end: 0px;
+  }
+  .product p {
+    height: auto;
+    font-size: 1.1em;
+    max-height: calc(100vh - 95vmin);
+
+    /* bugs on 768p zoomed in */
+    /* max-width: calc(100vh - 95vmin); */
+    font-size: 3vh;
+  }
+}
+
+/* probably removable*/
+/* VERY WIDE PHONES. UI LOOKS LIKE PC */
+@media only screen and (min-width: 680px) and (max-width: 1120px) {
+  .box {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 335px 335px;
+        grid-template-columns: 335px 335px;
+    -ms-grid-rows: auto;
+        grid-template-rows:  auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+  }
+  .centeredContainer {
+    width: calc(335px * 2);
+    margin: 0 auto;
+  }
+}
+
+/* TABLETS */
+@media only screen and (min-width: 1121px) and (max-width: 1500px) {
+  .box {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 340px 340px 340px;
+        grid-template-columns: 340px 340px 340px;
+    -ms-grid-rows: 420px;
+        grid-template-rows:  420px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+  }
+  .centeredContainer {
+    width: calc(340px * 3);
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 330px) and (max-width: 1120px) and (min-height: 300px) and (max-height: 500px) {
+  .box {
+    margin: 0;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    -ms-grid-rows: auto;
+        grid-template-rows: auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+  }
+  .centeredContainer {
+    width: auto;
+    margin: auto;
+  }
+  .stickyFooter {
+    /*  removed important as of may 15 to test mobile footers */
+    position: relative;
+  }
+  .box img {
+    /* CHANGE THIS to a percentage or vw/vh. */
+    width: 42vmin;
+    max-width: calc(100vh - 70vmin);
+    margin: 0 auto !important;
+    height: 38vh;
+    max-height: 52vmin;
+  }
+  .box .product,
+  .box a {
+    margin: 0 auto;
+  }
+  .box img {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: block;
+    -webkit-margin-before: 1em;
+            margin-block-start: 1em;
+    -webkit-margin-after: 1em;
+            margin-block-end: 1em;
+    -webkit-margin-start: 0px;
+            margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+            margin-inline-end: 0px;
+  }
+  .product p {
+    height: auto;
+    font-size: 1.1em;
+    max-height: calc(100vh - 95vmin);
+
+    /* bugs on 768 zoomed in,  */
+    /* max-width: calc(100vh - 95vmin); */
+    font-size: 3vh;
+  }
+}
+
+.container {
+  scrollbar-color: #7f7f7f white;
+  /* thumb and track color*/
+  scrollbar-width: thin;
+  
+}
+
+.container ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.container ::-webkit-scrollbar {
+  width: 1vmin;
+  background-color: #f5f5f5;
+}
+.container ::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+img::-moz-selection,
+navbar p::-moz-selection {
+  background: rgba(0, 0, 0, 0);
+}
+
+img::selection,
+navbar p::selection {
+  background: rgba(0, 0, 0, 0);
+}
+
+.stickyFooter {
+  margin-top: 2vh;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-top: 2vh;
+  z-index: 2;
+  border-top: 0.25vmin rgba(29, 29, 29, 0.37) solid;
+}
+
+.stickyFooter ul {
+  /* if 'display: flex' is put into 'footer', it WON'T work (unless i put 'display: inherit' here) */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0;
+  /* hides all things that exceed the 'footer ul' element */
+  overflow: hidden;
+}
+
+.stickyFooter ul li {
+  position: relative;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  list-style: none;
+  text-align: center;
+  -ms-flex-preferred-size: 33.3333%;
+      flex-basis: 33.3333%;
+  height: calc(4.65vh + 0.75vmin);
+  -webkit-transition: background 190ms, color 0.7s;
+  transition: background 190ms, color 0.7s;
+  -webkit-transition: 190ms background linear;
+}
+
+.stickyFooter ul li:hover {
+  color: black;
+  background: rgba(245, 245, 245, 0.85);
+}
+
+.stickyFooter ul li p {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  font-size: 2vmin;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
+  /* without this, the color won't change on hover as the hover is only applicable to 'li' */
+  color: inherit;
+}
+
+.product img:hover {
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+  -webkit-filter: drop-shadow(2px 1px 4px #000033);
+          filter: drop-shadow(2px 1px 4px #000033);
+}
+
+navbar .navbarTwo .parent p:hover {
+  -webkit-transition: 1s;
+  transition: 1s;
+  /* change the color to black and ditch the invert  */
+  -webkit-filter: drop-shadow(5px 1px 4px rgba(255, 255, 255, 0.815));
+          filter: drop-shadow(5px 1px 4px rgba(255, 255, 255, 0.815));
+}
+
+navbar img {
+  -webkit-transition: none;
+  transition: none;
+}
+
+navbar img:hover {
+  -webkit-transition: 0.1s linear;
+  transition: 0.1s linear;
+  -webkit-filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
+          filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
+  width: 5.5vh;
+}
+
+#goToTopIcon {
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 8.6vh;
+  left: 5vmin;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-family: "Raleway", serif !important;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+/*# sourceMappingURL=main.css.map */
