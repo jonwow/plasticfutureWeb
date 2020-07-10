@@ -3,12 +3,12 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 .box {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 370px 370px 370px 370px;
       grid-template-columns: 370px 370px 370px 370px;
+      /* rows auto visur */
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   -webkit-box-align: center;
@@ -716,12 +716,10 @@ navbar img:hover {
   text-align: center;
   line-height: 1.6;
   font-size: 30px;
-  font-family: "Lato", sans-serif;
 }
 
 .productSizingEtc p ,
 .productSizingEtc span {
-  font-family: "Lato", sans-serif;
   font-size: 46px;  
   line-height: 2;
   text-align: center;
@@ -760,7 +758,6 @@ navbar img:hover {
   margin: 0 auto;
   font-size: 30px;  color: black;
   background: #cecece;
-  font-family: "Lato", sans-serif;
   font-size: 46px;  
   text-align: center;
   margin-bottom: 10px;
@@ -773,7 +770,6 @@ navbar img:hover {
   font-size: 30px; 
   color: white;
   background: black;
-  font-family: "Lato", sans-serif;
   font-size: 46px;  
   text-align: center;
 }

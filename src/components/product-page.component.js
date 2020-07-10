@@ -30,10 +30,12 @@ export default class ProductPage extends Component {
 
       
   }
-  bigProblems(color){
-    
-    console.log(color);
+
+  print(){
+    console.log(this.state.color);
   }
+
+
 
   render() {
     return (
@@ -60,16 +62,13 @@ export default class ProductPage extends Component {
             {/* after clicking it, make the image src _big.png */}
             {/* when switching colors, make the link switch too */}
             {/* give this a key instead of this kind of source */}
-          <img src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color+ `_small.png`} onClick={this.bigProblems(this.state.color)}/>
+          <img src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color+ `_small.png`} />
               <div class="box3">
                   <div>
                       <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{height: "30px", width: "40px"}}/>
                   </div>
                   {/* some styles need to go to css and this needs horiz+vertic centering */}
-                  <div  style={{border: "3px solid black", width: "40px", height: "40px"}}>
-                    <div  className="centeringParent"style={{background: this.state.color, padding: "0px", width: "40px", height: "40px"}}>
-                  
-                  </div>
+                  <div onClick={this.print(this.state.color)}  style={{background: this.state.color,border: "3px solid black", width: "40px", height: "40px"}}>
                   </div>
 
                   <div>
@@ -79,7 +78,9 @@ export default class ProductPage extends Component {
               </div>
           </div>
           <div class="productSizingEtc">
-              <p style={{fontSize: "60px"}}>{this.state.price}.00€</p>
+            {/* make a css class here */}
+              <p style={{filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55))", fontSize: "60px", fontFamily: "Quicksand, serif"}}>
+                {this.state.price}.00€</p>
               <div>
                 <span>XS</span>
                 <span>S</span>
