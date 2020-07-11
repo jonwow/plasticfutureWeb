@@ -3,6 +3,8 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
+
+/* remove grid rows because its auto in all media queries */
 .box {
   display: -ms-grid;
   display: grid;
@@ -17,6 +19,18 @@
   justify-items: center;
   margin-bottom: 15vh;
 }
+
+
+.box2 {
+  display: grid;
+  grid-template-columns: 0.33fr 0.33fr 0.33fr;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 15vh;
+  padding-top: 100px;
+}
+
 
 .box img {
   width: 300px;
@@ -237,6 +251,7 @@ navbar p {
             align-items: center;
     justify-items: center;
   }
+
   #navbarText a {
     font-size: 11vmin;
   }
@@ -319,6 +334,15 @@ navbar p {
     height: 55px;
     right: calc(50vw - 65px);
   }
+
+  .box2 {
+    grid-template-columns: 1fr;
+  }
+
+  .box2 .productText {
+    order: 3;
+  }
+
   .box {
     margin: 0;
     display: -ms-grid;
@@ -650,15 +674,6 @@ navbar img:hover {
 
 /* product page */
 
-.box2 {
-  display: grid;
-  grid-template-columns: 0.33fr 0.33fr 0.33fr;
-  grid-template-rows: auto;
-  align-items: center;
-  justify-items: center;
-  margin-bottom: 15vh;
-  padding-top: 100px;
-}
 .box3{
   grid-template-columns: 150px 150px 150px;
   display: grid;

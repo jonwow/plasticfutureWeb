@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 let currency = '€';
-
 const Product = props => (
     // {/* product code be pf_ */}
     // pfe cto ir cio
@@ -18,7 +17,7 @@ const Product = props => (
     // website vulnerability n security checklist
     // pf investing part - shows a detailed graph thats updated every second of the stocks you are following
     // <Link to={"/products/" + props.product.name + '-' + props.product.productCode} color={props.color}>
-    <Link to={"/products/" + props.product._id+"/"+props.color}>
+    <Link to={"/products/" + props.product._id+"/"+props.color} >
         {/* failu pavadinimuose spalvos turi but mazos. */}
         {console.log(props.product.color.length)}
 
@@ -57,9 +56,10 @@ export default class ProductList extends Component {
     productList() {
         // for every product
         return this.state.products.map(curProduct => {
-            let curStyle = `color = "red"`;
+            var curStyle = "filter: `greyscale(1)`;"
             // if (curProduct.color[0] == "white")
             // for every color of the product
+            // if status = unavailable unreleased - greyscale 
             // if(curProduct.color.length >1) { perdaryt sita eilute kad tiems produktams, kurie yra
             return curProduct.color.map(curColor => {
                 // gives 'props.color' and 'props.product' to the Product const
