@@ -28,10 +28,10 @@ export default class ProductPage extends Component {
         console.log(error);
       })
 
-      
+
   }
 
-  print(){
+  print() {
     console.log(this.state.color);
   }
 
@@ -39,74 +39,76 @@ export default class ProductPage extends Component {
 
   render() {
     return (
-      <div class="centeredContainer2">
-      <div class="box2">
+      <div class="">
+        <div class="box2">
           <div class="productText">
             {/* make a foreach of description array. when entering into databse, make it possible to select the amount of lines  */}
             {/* height of ~400-600 and overflow scroll */}
-            <p>{this.state.description.substr(0,11)}</p>
-              <p>{this.state.description.substr(13)}</p>
-              <p>{this.state.season}</p>           
+            {/* long text bugs this. better of making a single p with a scroll overflow */}
+            <p>{this.state.description.substr(0, 11)}</p>
+            <p>{this.state.description.substr(13)}</p>
+            <p>{this.state.season}</p>
 
-              {/* <p>{100% organic cotton}
-              </p>
-              <p>Simple but elegant.</p>
-              <p>Default plasticfuture logo t shirt.</p> */}
 
-              <div class="centeringImages">
-                  <img src={`${process.env.PUBLIC_URL}/images/icons/certification_sustainable_small.png`} alt=""/>
-                  <img src={`${process.env.PUBLIC_URL}/images/icons/CHARITY_CERTIFICATION.png`} alt=""/>
-              </div>
+            <div class="centeringImages">
+              <img src={`${process.env.PUBLIC_URL}/images/icons/certification_sustainable_small.png`} alt="" />
+              <img src={`${process.env.PUBLIC_URL}/images/icons/CHARITY_CERTIFICATION.png`} alt="" />
+            </div>
           </div>
-          <div>
+          <div class="">
             {/* after clicking it, make the image src _big.png */}
             {/* when switching colors, make the link switch too */}
             {/* give this a key instead of this kind of source */}
-          <img src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color+ `_small.png`} />
-              <div class="box3">
-                  <div>
-                      <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{height: "30px", width: "40px"}}/>
-                  </div>
-                  {/* some styles need to go to css and this needs horiz+vertic centering */}
-                  <div onClick={this.print(this.state.color)}  style={{background: this.state.color,border: "3px solid black", width: "40px", height: "40px"}}>
-                  </div>
+            <div style={{width: "calc(300px * 1.2", margin: "0 auto"}}>
+            <img  style={{width: "calc(300px * 1.2", height: "calc(348.5px * 1.2"}} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
-                  <div>
-                  <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{height: "30px", width: "40px"}}/>
-
-                  </div>
+            </div>
+            {/* perhpas remove box3 altogether andj ust make a css class */}
+            <div class="box3" style={{width: "150px", margin: "0 auto"}}>
+              <div id="arrowLeft">
+                {/* hide arrows in mobile view */}
+                <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
               </div>
+              {/* some styles need to go to css and this needs horiz+vertic centering */}
+              <div onClick={this.print(this.state.color)} style={{ background: this.state.color, border: "3px solid black", width: "40px", height: "40px" }}>
+              </div>
+
+              <div id="arrowRight">
+                <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{ height: "30px", width: "40px" }} />
+
+              </div>
+            </div>
           </div>
           <div class="productSizingEtc">
             {/* make a css class here */}
-              <p style={{filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55))", fontSize: "60px", fontFamily: "Quicksand, serif"}}>
-                {this.state.price}.00€</p>
-              <div>
-                <span>XS</span>
-                <span>S</span>
-                <span>M</span>
-                <span>L</span>
-                <span>XL</span>
-              </div>
+            <p style={{ filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55))", fontSize: "60px", fontFamily: "Quicksand, serif" }}>
+              {this.state.price}.00€</p>
+            <div>
+              <span>XS</span>
+              <span>S</span>
+              <span>M</span>
+              <span>L</span>
+              <span>XL</span>
+            </div>
 
-              {/* make this into css */}
-              <div style={{textAlign: "center", margin: "12px 0"}}>
+            {/* make this into css */}
+            <div style={{ textAlign: "center", margin: "12px 0" }}>
 
               <button id="bagBtn">ADD TO BAG</button>
-              </div>
+            </div>
 
 
-              <div style={{textAlign: "center"}}>
+            <div style={{ textAlign: "center" }}>
 
               <button id="buyBtn">BUY NOW</button>
-              </div>
+            </div>
 
 
 
 
-              <p  class="shippingNSIZE">SHIPPING INFORMATION · SIZE GUIDE</p>
+            <p class="shippingNSIZE">SHIPPING INFORMATION · SIZE GUIDE</p>
           </div>
-      </div>
+        </div>
       </div>
     )
   }

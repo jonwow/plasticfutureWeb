@@ -5,6 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
 
 /* remove grid rows because its auto in all media queries */
+/* MEDIA QUERIES SHOULD BE THE LAST IN THE FILE */
 .box {
   display: -ms-grid;
   display: grid;
@@ -31,6 +32,14 @@
   padding-top: 100px;
 }
 
+.box3{
+  grid-template-columns: 150px 150px 150px;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-items: center;
+  padding-top: 50px;
+}
 
 .box img {
   width: 300px;
@@ -337,10 +346,43 @@ navbar p {
 
   .box2 {
     grid-template-columns: 1fr;
+    padding-top: 10px;
+    margin-bottom: 3vh;
   }
 
+  footer{
+    border-top: 1px solid black;
+    padding-top: 2vh;
+  }
+
+
+
+  
+  /* these 2 can be merged somehow im almost certain */
   .box2 .productText {
     order: 3;
+    padding-top: 15px;
+    font-size: 36px;
+  }
+  .box2 .productText p {
+    font-size: 36px;
+  }
+  /*  */
+  /*  */
+
+
+
+
+
+
+  #arrowRight,
+  #arrowLeft {
+    display: none;
+  }
+
+  .box3 {
+  grid-template-columns: 150px;
+
   }
 
   .box {
@@ -674,14 +716,6 @@ navbar img:hover {
 
 /* product page */
 
-.box3{
-  grid-template-columns: 150px 150px 150px;
-  display: grid;
-  grid-template-rows: auto;
-  align-items: center;
-  justify-items: center;
-  padding-top: 50px;
-}
 .box2 img {
   width: calc(300px * 1.5);
   margin: 0 auto;
