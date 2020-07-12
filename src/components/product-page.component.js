@@ -39,7 +39,6 @@ export default class ProductPage extends Component {
 
   render() {
     return (
-      <div class="">
         <div class="box2">
           <div class="productText">
             {/* make a foreach of description array. when entering into databse, make it possible to select the amount of lines  */}
@@ -64,7 +63,7 @@ export default class ProductPage extends Component {
 
             </div>
             {/* perhpas remove box3 altogether andj ust make a css class */}
-            <div class="box3" style={{width: "150px", margin: "0 auto"}}>
+            <div class="box3">
               <div id="arrowLeft">
                 {/* hide arrows in mobile view */}
                 <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
@@ -88,7 +87,7 @@ export default class ProductPage extends Component {
               <span>S</span>
               <span>M</span>
               <span>L</span>
-              <span>XL</span>
+              <span style={{border: "1px solid black"}}>XL</span>
             </div>
 
             {/* make this into css */}
@@ -109,7 +108,6 @@ export default class ProductPage extends Component {
             <p class="shippingNSIZE">SHIPPING INFORMATION · SIZE GUIDE</p>
           </div>
         </div>
-      </div>
     )
   }
 }
