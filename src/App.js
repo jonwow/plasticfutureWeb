@@ -21,8 +21,6 @@ function App() {
 
       <Navbar />
       <div class="container">
-        {/* make a container for main content + footer in it and put a scrollbar there instead of a full page one  */}
-
         <Route path="/" exact component={ProductList} />
         <Route path="/products/:id/:color/" exact component={ProductPage} />
         <StickyFooter />
