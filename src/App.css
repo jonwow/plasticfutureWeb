@@ -6,6 +6,18 @@
 
 /* remove grid rows because its auto in all media queries */
 /* MEDIA QUERIES SHOULD BE THE LAST IN THE FILE */
+
+.bigProduct {
+  width: 22.5rem; max-width: 100%; max-height: 400px; height: 27rem;
+}
+
+.bigProductContainer{
+  width: 22.5rem; 
+  max-width: 100%;
+   max-height: 100%;
+   margin: 0 auto;
+}
+
 .box {
   display: -ms-grid;
   display: grid;
@@ -23,16 +35,15 @@
 
 .box2 {
   display: grid;
-  grid-template-columns: 0.33fr 0.33fr 0.33fr;
+  grid-template-columns: 33.33333% 33.33333% 33.33333%;
   grid-template-rows: auto;
   align-items: center;
   justify-items: center;
   margin-bottom: 15vh;
-  padding-top: 100px;
 }
 
 .box3 {
-  grid-template-columns: 150px 150px 150px;
+  grid-template-columns: 33.33333% 33.33333% 33.33333%;
   display: grid;
   grid-template-rows: auto;
   align-items: center;
@@ -303,148 +314,8 @@ navbar p {
   }
 }
 
-@media only screen and (max-width: 679px) and (min-width: 320px) {
-  .product img:hover {
-    -webkit-transition: 0.3s linear;
-    transition: 0.3s linear;
-    -webkit-filter: none !important;
-    filter: none !important;
-  }
-
-  navbar .navbarTwo .parent p:hover {
-    -webkit-transition: 0s;
-    transition: 0s;
-    -webkit-filter: none !important;
-    filter: none !important;
-  }
-
-  navbar img {
-    -webkit-transition: none;
-    transition: none;
-  }
-
-  navbar img:hover {
-    -webkit-transition: 0s !important;
-    transition: 0s !important;
-    width: 5vh !important;
-    -webkit-filter: none !important;
-    filter: none !important;
-  }
-
-  footer {
-    padding-top: 5vh;
-    margin-bottom: 1vh;
-  }
-
-  footer p {
-    font-size: 1.8vmax;
-  }
-
-  #goToTopIcon {
-    bottom: 10px;
-    width: 65px;
-    height: 55px;
-    right: calc(50vw - 65px);
-  }
-
-  .box2 {
-    grid-template-columns: 1fr;
-    padding-top: 10px;
-    margin-bottom: 3vh;
-  }
-
-  footer {
-    border-top: 1px solid black;
-    padding-top: 2vh;
-  }
-
-  .box2 .productText {
-    order: 3;
-    padding-top: 15px;
-  }
-
-  .box2 .productText p {
-    font-size: 36px;
-  }
-
-  #arrowRight,
-  #arrowLeft {
-    display: none;
-  }
-
-  .box3 {
-    grid-template-columns: 150px;
-    width: 150px;
-    margin: 0 auto;
-  }
-
-  .box {
-    margin: 0;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    -ms-grid-rows: auto;
-    grid-template-rows: auto;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-items: center;
-  }
-
-  .centeredContainer {
-    width: auto;
-    margin: auto;
-  }
-
-  #navbarText a {
-    font-size: 11vmin;
-  }
-
-  .stickyFooter {
-    /*  removed important as of may 15 to test mobile footers */
-    display: none;
-  }
 
 
-  .box img {
-    /* CHANGE THIS to a percentage or vw/vh. */
-    width: 42vmin;
-    max-width: calc(100vh - 70vmin);
-    margin: 0 auto !important;
-    height: 38vh;
-    max-height: 52vmin;
-  }
-
-  .box .product,
-  .box a {
-    margin: 0 auto;
-  }
-
-  .box img {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: block;
-    -webkit-margin-before: 1em;
-    margin-block-start: 1em;
-    -webkit-margin-after: 1em;
-    margin-block-end: 1em;
-    -webkit-margin-start: 0px;
-    margin-inline-start: 0px;
-    -webkit-margin-end: 0px;
-    margin-inline-end: 0px;
-  }
-
-  .product p {
-    height: auto;
-    font-size: 1.1em;
-    max-height: calc(100vh - 95vmin);
-
-    /* bugs on 768p zoomed in */
-    /* max-width: calc(100vh - 95vmin); */
-    font-size: 3vh;
-  }
-}
 
 /* probably removable*/
 /* VERY WIDE PHONES. UI LOOKS LIKE PC */
@@ -718,10 +589,10 @@ navbar img:hover {
 /* product page */
 
 .box2 img {
-  width: calc(300px * 1.5);
+  /* width: 84vmin; */
   margin: 0 auto;
-  height: calc(348.5px * 1.5);
-}
+  /* height: calc(348.5px * 1.5); */
+} 
 
 .centeredContainer2 {
   width: calc(0.33fr * 3);
@@ -764,7 +635,7 @@ navbar img:hover {
   text-align: center;
 }
 .productSizingEtc span {
-  margin: 0 20px;
+  margin: 0 10px;
   padding: 0 5px;
   font-size: 50px;
 }
@@ -812,4 +683,220 @@ navbar img:hover {
   background: black;
   font-size: 46px;
   text-align: center;
+}
+
+/* tablet vertical display. min-width 500px makes phones NOT applicable to this query */
+@media only screen and (max-width: 1100px) and (min-height: 800px) and (min-width: 500px) {
+  .box2 {
+    /* for some reason '1fr' extends the page to the right, so i am using 100% */
+    grid-template-columns: 100%;
+    padding-top: 10px;
+    margin-bottom: 3vh;
+  }
+
+  footer {
+    border-top: 1px solid black;
+    padding-top: 2vh;
+  }
+
+  .box2 .productText {
+    order: 3;
+    padding-top: 30px;
+  }
+
+  .box2 .productText p {
+    font-size: 8vmin;
+  }
+
+  #arrowRight,
+  #arrowLeft {
+    display: none;
+  }
+
+  .box3 {
+    grid-template-columns: 150px;
+    width: 150px;
+    margin: 0 auto;
+    padding-top: 25px;
+  }
+
+  .productSizingEtc p {
+    line-height: 1.4;
+  }
+
+
+
+  .product p {
+    height: auto;
+    font-size: 1.1em;
+    max-height: calc(100vh - 95vmin);
+
+    /* bugs on 768p zoomed in */
+    /* max-width: calc(100vh - 95vmin); */
+    font-size: 3vh;
+  }
+
+
+  .bigProduct {
+    width: 25.008rem;
+    height: 30rem;
+    max-height: 500px;
+  }
+
+  /* used mainly for centering */
+  .bigProductContainer {
+    width: 25.008rem;
+    margin: 0 auto;
+  }
+
+}
+/* TYPICAL PHONES. min height makes widescreen mode NOT applicable to thsi rule */
+@media only screen and (max-width: 679px) and (min-width: 320px) and (min-height: 400px) {
+  .product img:hover {
+    -webkit-transition: 0.3s linear;
+    transition: 0.3s linear;
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+
+  navbar .navbarTwo .parent p:hover {
+    -webkit-transition: 0s;
+    transition: 0s;
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+
+  navbar img {
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  navbar img:hover {
+    -webkit-transition: 0s !important;
+    transition: 0s !important;
+    width: 5vh !important;
+    -webkit-filter: none !important;
+    filter: none !important;
+  }
+
+  footer {
+    padding-top: 5vh;
+    margin-bottom: 1vh;
+  }
+
+  footer p {
+    font-size: 1.8vmax;
+  }
+
+  #goToTopIcon {
+    bottom: 10px;
+    width: 65px;
+    height: 55px;
+    right: calc(50vw - 65px);
+  }
+  .box {
+    margin: 0;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .centeredContainer {
+    width: auto;
+    margin: auto;
+  }
+
+  #navbarText a {
+    font-size: 11vmin;
+  }
+
+  .stickyFooter {
+    /*  removed important as of may 15 to test mobile footers */
+    display: none;
+  }
+
+
+  .box img {
+    /* CHANGE THIS to a percentage or vw/vh. */
+    width: 42vmin;
+    max-width: calc(100vh - 70vmin);
+    margin: 0 auto !important;
+    height: 38vh;
+    max-height: 52vmin;
+  }
+
+  .box .product,
+  .box a {
+    margin: 0 auto;
+  }
+
+  .box img {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    -webkit-margin-before: 1em;
+    margin-block-start: 1em;
+    -webkit-margin-after: 1em;
+    margin-block-end: 1em;
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-inline-end: 0px;
+  }
+
+  .box2 {
+    /* for some reason '1fr' extends the page to the right, so i am using 100% */
+    grid-template-columns: 100%;
+    padding-top: 10px;
+    margin-bottom: 3vh;
+  }
+
+  footer {
+    border-top: 1px solid black;
+    padding-top: 2vh;
+  }
+
+  .box2 .productText {
+    order: 3;
+    padding-top: 30px;
+  }
+
+  .box2 .productText p {
+    font-size: 8vmin;
+  }
+
+  #arrowRight,
+  #arrowLeft {
+    display: none;
+  }
+
+  .box3 {
+    grid-template-columns: 150px;
+    width: 150px;
+    margin: 0 auto;
+    padding-top: 25px;
+  }
+
+  .productSizingEtc p {
+    line-height: 1.4;
+  }
+
+
+
+  .product p {
+    height: auto;
+    font-size: 1.1em;
+    max-height: calc(100vh - 95vmin);
+
+    /* bugs on 768p zoomed in */
+    /* max-width: calc(100vh - 95vmin); */
+    font-size: 3vh;
+  }
 }
