@@ -7,8 +7,41 @@
 /* remove grid rows because its auto in all media queries */
 /* MEDIA QUERIES SHOULD BE THE LAST IN THE FILE */
 
+button {
+  cursor: pointer;
+}
+
+.productText
+{
+  max-width: 100%;
+}
+
+
+
+.testBox {
+  
+  border: 1px solid black;
+
+  width: 10rem;
+  height: 10rem;
+
+  max-width: 14vw;
+  max-height: 33vmin;
+
+  /* margin:0 15px; */
+}
+
+
+#photosGrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  text-align:center;
+  margin: 2rem auto;
+}
+
 .bigProduct {
-  width: 22.5rem; max-width: 100%; max-height: 400px; height: 27rem;
+  width: 22.5rem; max-width: 100%; max-height: 87vh; height: 27rem;
 }
 
 .bigProductContainer{
@@ -33,12 +66,14 @@
   margin-bottom: 15vh;
 }
 
+/* box2 = grid for the product page */
 .box2 {
   display: grid;
   grid-template-columns: 33.33333% 33.33333% 33.33333%;
   grid-template-rows: auto;
   align-items: center;
   justify-items: center;
+  padding-top: 3vh;
   margin-bottom: 15vh;
 }
 
@@ -451,10 +486,7 @@ navbar p {
 }
 
 img::-moz-selection,
-navbar p::-moz-selection {
-  background: rgba(0, 0, 0, 0);
-}
-
+navbar p::-moz-selection,
 img::selection,
 navbar p::selection {
   background: rgba(0, 0, 0, 0);
@@ -608,14 +640,6 @@ navbar img:hover {
 /* call it footer/headerparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
 
 
-.centeringImages {
-  /* width =  2 * img width  */
-  width: 200px;
-  margin: 0 auto;
-}
-.centeringImages img {
-  width: 100px;
-}
 
 .productText img {
   width: 100px;
@@ -625,7 +649,7 @@ navbar img:hover {
 .productText p {
   text-align: center;
   line-height: 1.6;
-  font-size: 30px;
+  font-size: 1.5rem;
 }
 
 .productSizingEtc p,
@@ -638,36 +662,24 @@ navbar img:hover {
   margin: 0 10px;
   padding: 0 5px;
   font-size: 50px;
-}
-.bagBtn {
-  color: black;
-  background: #bfbfbf;
-  padding: 0 10px;
-  margin-bottom: 30px;
-}
-
-.buyBtn {
-  color: white;
-  background: black;
-  padding: 0 10px;
-}
-.shippingNSIZE {
-  font-size: 20px !important;
-  font-weight: lighter !important;
-}
-
+} 
 .right {
   text-align: right;
 }
 
 #bagBtn {
-  height: 60px;
-  border: none;
-  width: 320px;
+  padding: 0 10px;
   margin: 0 auto;
+  
+  border: 1px solid black;
+  border-radius: 15px;
+  /* margin-right: 35px; */
+  height: 60px;
+  
+  width: 320px;
   font-size: 30px;
   color: black;
-  background: #cecece;
+  background: aliceblue;
   font-size: 46px;
   text-align: center;
   margin-bottom: 10px;
@@ -675,12 +687,14 @@ navbar img:hover {
 
 #buyBtn {
   height: 60px;
-  border: none;
-  width: 320px;
+  border: 1px solid rgba(0, 0, 0, 0.238);
+  border-radius: 15px;
+  width: 95%;
+  max-width: 100%;
   margin: 0 auto;
   font-size: 30px;
-  color: white;
-  background: black;
+  color: black;
+  background: whitesmoke;
   font-size: 46px;
   text-align: center;
 }
@@ -701,12 +715,7 @@ navbar img:hover {
 
   .box2 .productText {
     order: 3;
-    padding-top: 30px;
-  }
-
-  .box2 .productText p {
-    font-size: 8vmin;
-  }
+    }
 
   #arrowRight,
   #arrowLeft {
@@ -865,12 +874,8 @@ navbar img:hover {
 
   .box2 .productText {
     order: 3;
-    padding-top: 30px;
   }
 
-  .box2 .productText p {
-    font-size: 8vmin;
-  }
 
   #arrowRight,
   #arrowLeft {
@@ -900,3 +905,4 @@ navbar img:hover {
     font-size: 3vh;
   }
 }
+
