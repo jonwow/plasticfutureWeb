@@ -36,11 +36,9 @@ connection.once('open', () => {
 
 // ?
 const productsRouter = require("./routes/products");
-const usersRouter = require("./routes/users");
 
 // ?
 app.use('/products', productsRouter);
-app.use('/users', usersRouter);
 
 
 // ?

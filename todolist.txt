@@ -1,0 +1,182 @@
+BEFORE LAUNCH:
+    GENERAL:
+    change span to li for sizes
+    https://reactrouter.com/web/guides/scroll-restoration
+    https://stackoverflow.com/questions/33188994/scroll-to-the-top-of-the-page-after-render-in-react-js
+    https://github.com/facebook/react/issues/14784
+    https://stackoverflow.com/questions/40987309/react-display-loading-screen-while-dom-is-rendering/40989121
+    plasticfuture navbar makeover (react dropdown menu guides?) text needs to be a link
+    https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
+    isimt importantus
+    cart page
+    contacts page
+    newsletter page
+    faq page
+    it would bebetter if edge wouldnt work at all. very bugged
+    test all browsers all os in vm
+    database galutine sudetis (ar colors[3].xs) ar colors[3] ir xs[3])
+    product code automatiskai padaryt?
+    style the threelines better (make it usable with hover) and give them adequate links
+    luminor footer
+
+    FINAL:
+    patentu ir licenciju mokesciai bei kokiu mums reikia
+gdpr web stuff
+
+https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
+https://shippingeasy.com/pricing/
+https://www.ups.com/us/en/help-center/technology-support/developer-resource-center.page?
+https://www.ups.com/us/en/services/small-business/Special-Offers-Discounts.page
+https://www.theupsstore.com/small-business-services
+https://www.shipstation.com/blog/handling-your-business/get-all-the-shipping-carrier-discounts-you-can/
+lpastas
+terms and conditions, return policy, 
+https://www.dezutes24.lt/vokai/kurjeriniai-vokai-polietileniniai.html
+https://vokucentras.lt/baltas-silkinis-popierius
+    pick a tshirt from merchyou/printexpress.pl/adler official 
+    IF REACT DOESN'T WORK, reddit question - find a templating engine to include all products and when clicking on them display them without having to manually create html files
+    perziuret kiekviena kodo eilute ir issiaiskint kas neaisku
+    pakeist SEO 'pf offers....'flexbox,cssgrid ir padaryt psd schema kaip kas veikia
+    kaip ikelima padaryt neveziska ir kad susikurtu page
+    ikelt tshirtus su notify when ready butotnais   
+    add full compatibility, probably some tool exists https://github.com/postcss/autoprefixer http://shouldiprefix.com/#animations
+    bug report: we'll send u 10% off if u point out any bugs or troubles
+    add this to useful.txt - check the compability (webkit, -moz-, -o- etc)
+    order plasticfuture.net & pf2020.eu (shortened randomised links w/ traffic analysis)
+    create a database + database encryption, email and db accounts name@pf2020.com
+    do all the seo stuff in html
+    anti sql injections, anti other database hacks
+    shipping ltpastas
+    kokie expenses i taxes nurasomi
+    add a payment system (luminor v paysera) OR use shopify
+    search button
+    TESTINT ANT VISU VMS IR DEVICES animacijas ir etc
+    test bitej ar kur su ipadu 
+    tuscia lapa padaryt nuo kurio visus pages darysiu ir dynamically creatinsiu
+    https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML
+    https://tinypng.com/photoshop
+    Qij3Rgtt+ZTB pf user password or database password
+    sudokumentuot viska kaip kas veikia, skriptai, shorteneriai, media queries prie projekto 
+    jewelry instead of clothes
+    how to copyright the code and the website itself
+    all folders and github repositories
+    check all the legal stuff, taxes, VAT
+    taxes (future workers etc)
+
+    scrolling down adds more items to the page. how to disable on phones and tablets 
+    check all files including cssjshtmltxt on github or delete older versions
+    headertext fontmin pakeist gal nes nera centruota visiskai (su lnijom paziuret)
+    buy products for >40€ - get a free phone case OR raktu pakabuka
+    
+NO HURRY:
+fix dumb zooms and resolutions
+add support to change the colors (and if there are more than 2, add a special button from ps)
+smaller buttons for buying and adding to cart
+    dark mode
+ar backend folderis privatus ir niekas nesugebes niekad atidaryt jo? reddit ask
+add to cart button irgi bet maza
+you may also like... (po produktu)
+gototop (firefox scrolled down to the last product and clicking on it renders a page that is scrolled down)
+reorder this
+
+
+
+
+alga = pareigos + kiek parduota t shirtu & visa tai skaiciuojama is profit-30%(20% imones pletojimui, 20% kas parduoda designu daugiausia)
+pvz profit 1000
+
+eurais apskaita
+
+jei as rupinuos webu, buhalterija, t.y. 2 is  4 profesiju 
+2/4 * (profit-40%) + pardaviau 5 designus is 20 = 
+= 0,5 * 600 + 5/20*(profit*0.2) = 300 + 50 = 350e
+
+jei tu 2 prof ir parduodi 15/20 designs
+0.5 * 700 + 15/20*(profit*0.2) = 300 + 150 = 450e
+
+350 man + 450 tau + 200 imones pletrai = 1000 (aka lygiai tiek kiek profitas)
+
+    perdaryt headeri i ul li ir padaryt ne navbarone o headerchildone
+    change footer ul li p to ul li a (like img a)
+
+
+
+
+pasitart del blueprinto stickyfooter contentu, navbar turinio (ju solo keist nenoriu) 
+filtering prototype - by color, by status, collection, price
+allphotos capability
+kaip automatiskai prisisdeda prek ir del visu folderio photo neskubet gal
+database demo
+"nebutina" turet visu situ feature kaip multi colors multi photos etc launchui, dabar tik ikrut imone gaut produktus ir luminor sutarti turet
+koki teksta icoanms
+fonts productpage
+navbar dropdown content?
+cache problems - be web serverio sunku nustatyt, kur problema
+parodyt ir su demodescription
+ar 3 eilutes produkto suskirsyt pvz 1) sudetis + paGAMINTA 2) slogan (lengva ir unique marketingas) 3? collection where
+lighter blacks
+certificates visiems vienodi ar skirtingi?
+arrows picture sonuose?
+sviesesni juodi tshirtai
+
+design: 
+blueprints for newsletter, collections, contacts, shipping info, size guide, cart, contacts
+
+web:
+mobile product
+
+
+sort gal ne per react o per db itself? pvz automatiskai pagal orderby mazejanciai
+virs produkto minilink
+
+
+virs produkto eilute tshirts/demo tshirt (kaip mini navbaras)
+
+
+ignore node_modules google drive
+allphotos merge iwth productpage (onclick make the picture switch (onclick of an arrow))
+db script kuris kartotus daznai - jei visi sizes = 0, status = unavailable
+
+react preload images
+download react dev tools
+check all pages with the console (both mozilla and chromer)
+
+
+swipe photos mobile view
+how to get https
+kolekcijoms backgrund photo containeriui
+
+
+https://styled-components.com/
+https://scotch.io/starters/react/adding-sass-to-create-react-app-applications
+https://1linelayouts.glitch.me/
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password#Allowing_autocomplete?utm_source=dev-newsletter&utm_medium=email&utm_campaign=july9-2020&utm_pwdautocomphtml
+
+
+
+Hover over a product for 3 seconds - changes the digital pic into a pic from real life.
+
+    Gif/video of a product that is hanging from a tree. Preferably a non-moving angle.perhaps in the rain
+        3d view of a tshirt
+        
+    Make a video for every drop. Not necessarily a youtube one, maybe as a site background.
+        Plant a tree and take a video for every product bought. Calculate the average anti-pollution and good effects a tree provides in its average lifetime.
+        Leave the outdoor lights on all the time (consult someone if this is not dangerous.)
+
+        refer a friend
+
+        work parties (public & non public) - proletariato morale pakelt + brand acknowledgment, ypac jei rapperius pakvieti.
+
+        https://mailchimp.com/pricing/
+
+        
+
+pf party hosting place 
+useless plastic
+
+
+
+
+AW2020:
+birds bg + moving birds virsuj 
+blurred collections bet blurint ant ps 

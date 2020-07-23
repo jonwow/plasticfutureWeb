@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+// import { useEffect } from 'react';
+// useEffect(() => {
+//   window.scrollTo(0, 0)
+// }, [])
 // solve the problem of formatting and currency 
 export default class ProductPage extends Component {
   constructor(props) {
@@ -9,7 +12,11 @@ export default class ProductPage extends Component {
     // color is not an array for some reason. investigation is necessary
     this.state = {
       description: '',
-      users: [], price: '', color: [], season: '', name: ''
+      price: '',
+      color: [],
+      season: '',
+      name: '',
+      info: ''
     }
   }
 
@@ -21,7 +28,8 @@ export default class ProductPage extends Component {
           price: response.data.price,
           color: this.props.match.params.color,
           season: response.data.season,
-          name: response.data.name
+          name: response.data.name,
+          info: response.data.info
         })
       })
       .catch(function (error) {
@@ -39,75 +47,65 @@ export default class ProductPage extends Component {
 
   render() {
     return (
-        <div class="box2">
-          <div class="productText">
-            {/* make a foreach of description array. when entering into databse, make it possible to select the amount of lines  */}
-            {/* height of ~400-600 and overflow scroll */}
-            {/* long text bugs this. better of making a single p with a scroll overflow */}
-            <p>{this.state.description.substr(0, 11)}</p>
-            <p>{this.state.description.substr(13)}</p>
-            <p>{this.state.season}</p>
+      <div class="box2">
+        <div class="productText">
+          {/* make a foreach of description array. when entering into databse, make it possible to select the amount of lines  */}
+          {/* height of ~400-600 and overflow scroll */}
+          {/* long text bugs this. better of making a single p with a scroll overflow */}
+          <p>{this.state.description}</p>
+          <p>{this.state.info}</p>
+
+          <p style={{ marginTop: "3rem", filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.25))", fontSize: "3rem", fontFamily: "Quicksand, serif" }}>              {this.state.price + '.00€'}</p>
 
 
-            <div class="centeringImages">
-              <img src={`${process.env.PUBLIC_URL}/images/icons/certification_sustainable_small.png`} alt="" />
-              <img src={`${process.env.PUBLIC_URL}/images/icons/CHARITY_CERTIFICATION.png`} alt="" />
-            </div>
+          <div style={{ textAlign: "center" }}>
+
+            <button id="buyBtn">PURCHASE</button>
           </div>
-          <div class="">
-            {/* after clicking it, make the image src _big.png */}
-            {/* when switching colors, make the link switch too */}
-            {/* give this a key instead of this kind of source */}
-            <div style={{width: "calc(300px * 1.2", margin: "0 auto"}}>
-            <img  style={{width: "calc(300px * 1.2", height: "calc(348.5px * 1.2"}} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
-
-            </div>
-            {/* perhpas remove box3 altogether andj ust make a css class */}
-            <div class="box3">
-              <div id="arrowLeft">
-                {/* hide arrows in mobile view */}
-                <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
-              </div>
-              {/* some styles need to go to css and this needs horiz+vertic centering */}
-              <div onClick={this.print(this.state.color)} style={{ background: this.state.color, border: "3px solid black", width: "40px", height: "40px" }}>
-              </div>
-
-              <div id="arrowRight">
-                <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{ height: "30px", width: "40px" }} />
-
-              </div>
-            </div>
-          </div>
-          <div class="productSizingEtc">
-            {/* make a css class here */}
-            <p style={{ filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55))", fontSize: "60px", fontFamily: "Quicksand, serif" }}>
-              {this.state.price}.00€</p>
-            <div>
-              <span>XS</span>
-              <span>S</span>
-              <span>M</span>
-              <span>L</span>
-              <span style={{border: "1px solid black"}}>XL</span>
-            </div>
-
-            {/* make this into css */}
-            <div style={{ textAlign: "center", margin: "12px 0" }}>
-
-              <button id="bagBtn">ADD TO BAG</button>
-            </div>
 
 
-            <div style={{ textAlign: "center" }}>
-
-              <button id="buyBtn">BUY NOW</button>
-            </div>
-
-
-
-
-            <p class="shippingNSIZE">SHIPPING INFORMATION · SIZE GUIDE</p>
-          </div>
         </div>
+        {/* after clicking it, make the image src _big.png */}
+        {/* when switching colors, make the link switch too */}
+        {/* give this a key instead of this kind of source */}
+
+        {/* rename to centeringparentformobile pages and make it a class */}
+        {/* think of a better name though */}
+        {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
+
+        {/* rename this class 'bigproductcontainer */}
+        <div class="bigProductContainer">
+          <img class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+
+          {/* perhpas remove box3 altogether andj ust make a css class */}
+          {/** <div class="box3"> 
+            <div id="arrowLeft">
+              {/* hide arrows in mobile view 
+              <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
+            </div>
+            {/* some styles need to go to css and this needs horiz+vertic centering 
+            {/* if >1 color, show it 
+            <div onClick={this.print(this.state.color)} style={{ background: this.state.color, border: "1px solid black", width: "40px", height: "40px" }}>               </div>
+
+            <div id="arrowRight">
+              <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{ height: "30px", width: "40px" }} />
+
+            </div>
+          </div>
+            */}
+        </div>
+        <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
+          <div id="photosGrid">
+            <div class="testBox">          </div>
+
+
+          <div class="testBox">          </div>
+          </div>
+
+
+
+        </div>
+      </div>
     )
   }
 }
