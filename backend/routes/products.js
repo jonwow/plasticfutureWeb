@@ -21,7 +21,7 @@ router.route('/add').post((req, res) => {
   const description = req.body.description;
   const productCode = String(req.body.productCode);
   const status = req.body.status;
-    // (discontinued, will be renewed, unreleased ), 
+  // (discontinued, will be renewed, unreleased ), 
   const orderBy = Number(req.body.orderBy);
   const color = req.body.color;
   /* for each additional color, make an additional row */

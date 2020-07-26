@@ -1,5 +1,6 @@
 BEFORE LAUNCH:
     GENERAL:
+    ar legalu gilda ntshirt png naudot?
     change span to li for sizes
     https://reactrouter.com/web/guides/scroll-restoration
     https://stackoverflow.com/questions/33188994/scroll-to-the-top-of-the-page-after-render-in-react-js
@@ -22,6 +23,8 @@ BEFORE LAUNCH:
     FINAL:
     patentu ir licenciju mokesciai bei kokiu mums reikia
 gdpr web stuff
+
+
 
 https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
 https://shippingeasy.com/pricing/

@@ -58,9 +58,10 @@ export default class ProductPage extends Component {
           <p style={{ marginTop: "3rem", filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.25))", fontSize: "3rem", fontFamily: "Quicksand, serif" }}>              {this.state.price + '.00€'}</p>
 
 
-          <div style={{ textAlign: "center" }}>
+          <div class='buttonContainer' style={{ textAlign: "center" }}>
 
             <button id="buyBtn">PURCHASE</button>
+            {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
           </div>
 
 

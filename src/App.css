@@ -667,22 +667,31 @@ navbar img:hover {
   text-align: right;
 }
 
-#bagBtn {
+#cartBtn {
   padding: 0 10px;
   margin: 0 auto;
   
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 15px;
   /* margin-right: 35px; */
   height: 60px;
   
-  width: 320px;
   font-size: 30px;
   color: black;
-  background: aliceblue;
+  background: black;
   font-size: 46px;
   text-align: center;
   margin-bottom: 10px;
+}
+
+/* implement this soon */
+.buttonContainer{
+  /* display: grid; */
+  /* grid-template-columns: 80% 20%; */
+}
+
+.cartBtnImg {
+  filter: invert(1);
 }
 
 #buyBtn {
