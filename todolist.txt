@@ -1,5 +1,11 @@
 BEFORE LAUNCH:
     GENERAL:
+    sone bus photo2 ir photo3.
+
+
+
+
+
     ar legalu gilda ntshirt png naudot?
     change span to li for sizes
     https://reactrouter.com/web/guides/scroll-restoration
@@ -72,6 +78,8 @@ https://vokucentras.lt/baltas-silkinis-popierius
     buy products for >40€ - get a free phone case OR raktu pakabuka
     
 NO HURRY:
+sono nuotraukos siek tiek per dideles (sukuria horizontal slider)
+kaip padaryt image slide kad veiktu ir su didele nuotrauka ir su mazesnem
 fix dumb zooms and resolutions
 add support to change the colors (and if there are more than 2, add a special button from ps)
 smaller buttons for buying and adding to cart
@@ -173,7 +181,7 @@ Hover over a product for 3 seconds - changes the digital pic into a pic from rea
         https://mailchimp.com/pricing/
 
         
-
+automatic income insertion + a web to insert expenses/special income into mongodb. make it possible to export to excel and view monthly/weekly/yearly reports of data. possibly push date too and after a big excel file with all the data is exported - filter it by date until date X. must have all data possible (order id, name, card id, date of payment etc)
 pf party hosting place 
 useless plastic
 
