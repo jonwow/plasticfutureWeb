@@ -16,7 +16,8 @@ export default class ProductPage extends Component {
       color: [],
       season: '',
       name: '',
-      info: ''
+      info: '',
+      loading: true
     }
   }
 
@@ -29,8 +30,15 @@ export default class ProductPage extends Component {
           color: this.props.match.params.color,
           season: response.data.season,
           name: response.data.name,
-          info: response.data.info
+          info: response.data.info,
         })
+
+        setTimeout(() => {
+          this.setState({
+            loading: false
+
+          })
+        }, 333);
       })
       .catch(function (error) {
         console.log(error);
@@ -40,72 +48,84 @@ export default class ProductPage extends Component {
   }
 
   print() {
-    console.log(this.state.color);
+    document.getElementsByClassName('loadingImg').cssText = 'filter: invert(1)'
   }
 
 
 
   render() {
     return (
-      <div class="box2">
-        <div class="productText">
-          {/* make a foreach of description array. when entering into databse, make it possible to select the amount of lines  */}
-          {/* height of ~400-600 and overflow scroll */}
-          {/* long text bugs this. better of making a single p with a scroll overflow */}
-          <p>{this.state.description}</p>
-          <p>{this.state.info}</p>
+      <div>
+        {this.state.loading ?
 
-          <p style={{ marginTop: "3rem", filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.25))", fontSize: "3rem", fontFamily: "Quicksand, serif" }}>              {this.state.price + '.00€'}</p>
+            <p style={{textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px'}}>
+              PLASTIC FUTURE
+            </p>
+          :
+          <div class="box2">
+            {this.print()}
+            <div class="productText">
+              {/* make a foreach of description array. when entering into databse, make it possible to select the amount of lines  */}
+              {/* height of ~400-600 and overflow scroll */}
+              {/* long text bugs this. better of making a single p with a scroll overflow */}
+              <p>{this.state.description}</p>
+              <p>{this.state.info}</p>
+
+              <p style={{ marginTop: "3rem", filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.25))", fontSize: "3rem", fontFamily: "Quicksand, serif" }}>              {this.state.price + '.00€'}</p>
 
 
-          <div class='buttonContainer' style={{ textAlign: "center" }}>
+              <div class='buttonContainer' style={{ textAlign: "center" }}>
 
-            <button id="buyBtn">PURCHASE</button>
-            {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
-          </div>
+                <button id="buyBtn">PURCHASE</button>
+                {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
+              </div>
 
 
-        </div>
-        {/* after clicking it, make the image src _big.png */}
-        {/* when switching colors, make the link switch too */}
-        {/* give this a key instead of this kind of source */}
+            </div>
+            {/* after clicking it, make the image src _big.png */}
+            {/* when switching colors, make the link switch too */}
+            {/* give this a key instead of this kind of source */}
 
-        {/* rename to centeringparentformobile pages and make it a class */}
-        {/* think of a better name though */}
-        {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
+            {/* rename to centeringparentformobile pages and make it a class */}
+            {/* think of a better name though */}
+            {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
 
-        {/* rename this class 'bigproductcontainer */}
-        <div class="bigProductContainer">
-          <img class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+            {/* rename this class 'bigproductcontainer */}
+            <div class="bigProductContainer">
+              <img class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
-          {/* perhpas remove box3 altogether andj ust make a css class */}
-          {/** <div class="box3"> 
+              {/* perhpas remove box3 altogether andj ust make a css class */}
+              {/** <div class="box3"> 
             <div id="arrowLeft">
-              {/* hide arrows in mobile view 
+            {/* hide arrows in mobile view 
               <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
+              </div>
+              {/* some styles need to go to css and this needs horiz+vertic centering 
+                {/* if >1 color, show it 
+                  <div onClick={this.print(this.state.color)} style={{ background: this.state.color, border: "1px solid black", width: "40px", height: "40px" }}>               </div>
+                  
+                  <div id="arrowRight">
+                  <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{ height: "30px", width: "40px" }} />
+                  
+                  </div>
+                  </div>
+                */}
             </div>
-            {/* some styles need to go to css and this needs horiz+vertic centering 
-            {/* if >1 color, show it 
-            <div onClick={this.print(this.state.color)} style={{ background: this.state.color, border: "1px solid black", width: "40px", height: "40px" }}>               </div>
+            <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
+              <div id="photosGrid">
+                <div class="testBox">          </div>
 
-            <div id="arrowRight">
-              <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{ height: "30px", width: "40px" }} />
+
+                <div class="testBox">          </div>
+              </div>
+
+
 
             </div>
-          </div>
-            */}
-        </div>
-        <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
-          <div id="photosGrid">
-            <div class="testBox">          </div>
 
-
-          <div class="testBox">          </div>
           </div>
 
-
-
-        </div>
+        }
       </div>
     )
   }

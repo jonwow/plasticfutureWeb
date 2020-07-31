@@ -1,5 +1,9 @@
 BEFORE LAUNCH:
     GENERAL:
+    check all comments
+    slogans ikelt i db
+    gal galim apassint products masyva i product page nes god damn kodel as turiu duakrt requestint
+    paspaudi ant t shirto - 1 sekunde tau viskas pajuodeja ir atsiranda baltas tekstas 'design pavadinimas, metai, designeris ir kita info'. jei per sekunde neuzsikrauna - buna ilgiau, jei uzsikrauna - fade out  i normalu vaizdas
     sone bus photo2 ir photo3.
 
 

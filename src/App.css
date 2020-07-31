@@ -7,6 +7,13 @@
 /* remove grid rows because its auto in all media queries */
 /* MEDIA QUERIES SHOULD BE THE LAST IN THE FILE */
 
+
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
 button {
   cursor: pointer;
 }
@@ -16,7 +23,18 @@ button {
   max-width: 100%;
 }
 
+.asdd {
+  font-size: 100px;
+  transition: 1s;
+}
 
+.loadingImgParent {
+  margin: 0 auto;
+  margin-top: 66px;
+  text-align: center;
+  width: 600px;
+
+}
 
 .testBox {
   
@@ -28,7 +46,7 @@ button {
   max-width: 100%;
   max-height: 33vmin;
 
-  /* margin:0 15px; */
+  margin:0 15px;
 }
 
 
@@ -479,11 +497,6 @@ navbar p {
   background-color: #000000;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
-}
 
 img::-moz-selection,
 navbar p::-moz-selection,
