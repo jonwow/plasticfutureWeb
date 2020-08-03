@@ -1,11 +1,7 @@
 /* made with scss. if you want to see the full project bones, visit https://github.com/jonwow/ */
-/* comments need review & then this file needs to be reorganised into multiple css and into scss again */
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
-
-/* remove grid rows because its auto in all media queries */
-/* MEDIA QUERIES SHOULD BE THE LAST IN THE FILE */
 
 
 * {
@@ -37,15 +33,11 @@ button {
 }
 
 .testBox {
-  
   border: 1px solid black;
-
   width: 10rem;
   height: 10rem;
-
   max-width: 100%;
   max-height: 33vmin;
-
   margin:0 15px;
 }
 
@@ -53,7 +45,6 @@ button {
 #photosGrid {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: auto;
   text-align:center;
   margin: 2rem auto;
 }
@@ -74,10 +65,8 @@ button {
   display: grid;
   -ms-grid-columns: 370px 370px 370px 370px;
   grid-template-columns: 370px 370px 370px 370px;
-  /* rows auto visur */
-  -ms-grid-rows: auto;
-  grid-template-rows: auto;
   -webkit-box-align: center;
+  grid-template-rows: auto;
   -ms-flex-align: center;
   align-items: center;
   justify-items: center;
@@ -88,7 +77,6 @@ button {
 .box2 {
   display: grid;
   grid-template-columns: 33.33333% 33.33333% 33.33333%;
-  grid-template-rows: auto;
   align-items: center;
   justify-items: center;
   padding-top: 3vh;
@@ -98,7 +86,6 @@ button {
 .box3 {
   grid-template-columns: 33.33333% 33.33333% 33.33333%;
   display: grid;
-  grid-template-rows: auto;
   align-items: center;
   justify-items: center;
   padding-top: 50px;
@@ -308,8 +295,6 @@ navbar p {
     display: grid;
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
-    -ms-grid-rows: auto;
-    grid-template-rows: auto;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -326,7 +311,6 @@ navbar p {
   }
 
   .stickyFooter {
-    /*  removed important as of may 15 to test mobile footers */
     position: relative;
   }
 
@@ -361,8 +345,6 @@ navbar p {
     height: auto;
     font-size: 1.1em;
     max-height: calc(100vh - 95vmin);
-    /* bugs on 768 p zoomed in screens */
-    /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
 }
@@ -378,8 +360,6 @@ navbar p {
     display: grid;
     -ms-grid-columns: 335px 335px;
     grid-template-columns: 335px 335px;
-    -ms-grid-rows: auto;
-    grid-template-rows: auto;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -399,8 +379,6 @@ navbar p {
     display: grid;
     -ms-grid-columns: 340px 340px 340px;
     grid-template-columns: 340px 340px 340px;
-    -ms-grid-rows: 420px;
-    grid-template-rows: 420px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -420,8 +398,6 @@ navbar p {
     display: grid;
     -ms-grid-columns: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    -ms-grid-rows: auto;
-    grid-template-rows: auto;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -434,7 +410,6 @@ navbar p {
   }
 
   .stickyFooter {
-    /*  removed important as of may 15 to test mobile footers */
     position: relative;
   }
 
@@ -831,8 +806,6 @@ navbar img:hover {
     display: grid;
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
-    -ms-grid-rows: auto;
-    grid-template-rows: auto;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;

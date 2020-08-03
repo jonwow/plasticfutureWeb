@@ -6,6 +6,7 @@
 .pnp.js
 backend/node_modules
 /backend/node_modules
+
 # testing
 /coverage
 
@@ -13,6 +14,7 @@ backend/node_modules
 /build
 README.md
 readme.md
+
 # misc
 .DS_Store
 .env.local

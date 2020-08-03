@@ -1,8 +1,9 @@
-UNIMPORTANT:
+not important:
 #052020/1 - small window zoomed in a lot: text in the header 'plastic future' gets lowered. probably because of the translationXY and font-size 11vmin
 #060120/2 - 1111x9999 & 700x9200 resolution header. fixable by creating additional media queries and changing heights to vmin
 #??????/1 - when the scrollbar appears the page changes dimensions/moves, perhaps it doesn't affect the three lines (nicce header doesn't bug, perhaps compare the code)
 #060820/1 - fonts load too slow.
+
 
 
 GENERAL BUGS:

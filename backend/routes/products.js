@@ -8,7 +8,6 @@ router.route('/').get((req, res) => {
 });
 
 
-// to be implemented soon. 
 router.route('/add').post((req, res) => {
   const type = req.body.type;
   const name = req.body.name;
@@ -20,8 +19,8 @@ router.route('/add').post((req, res) => {
   const designers = req.body.designers;
   const description = req.body.description;
   const productCode = String(req.body.productCode);
-  const status = req.body.status;
   // (discontinued, will be renewed, unreleased ), 
+  const status = req.body.status;
   const orderBy = Number(req.body.orderBy);
   const color = req.body.color;
   /* for each additional color, make an additional row */

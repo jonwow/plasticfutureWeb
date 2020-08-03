@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { useEffect } from 'react';
-// useEffect(() => {
-//   window.scrollTo(0, 0)
-// }, [])
+
 // solve the problem of formatting and currency 
+
 export default class ProductPage extends Component {
   constructor(props) {
     super(props);
 
-    // color is not an array for some reason. investigation is necessary
     this.state = {
       description: '',
       price: '',
@@ -17,7 +14,8 @@ export default class ProductPage extends Component {
       season: '',
       name: '',
       info: '',
-      loading: true
+      loading: true,
+      productCode: ''
     }
   }
 
@@ -31,14 +29,9 @@ export default class ProductPage extends Component {
           season: response.data.season,
           name: response.data.name,
           info: response.data.info,
+          loading: false
         })
 
-        setTimeout(() => {
-          this.setState({
-            loading: false
-
-          })
-        }, 333);
       })
       .catch(function (error) {
         console.log(error);
@@ -47,27 +40,20 @@ export default class ProductPage extends Component {
 
   }
 
-  print() {
-    document.getElementsByClassName('loadingImg').cssText = 'filter: invert(1)'
-  }
-
 
 
   render() {
     return (
       <div>
         {this.state.loading ?
-
-            <p style={{textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px'}}>
-              PLASTIC FUTURE
-            </p>
+          <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
           :
           <div class="box2">
-            {this.print()}
             <div class="productText">
-              {/* make a foreach of description array. when entering into databse, make it possible to select the amount of lines  */}
+              
               {/* height of ~400-600 and overflow scroll */}
               {/* long text bugs this. better of making a single p with a scroll overflow */}
+              {/* max 3 lines of text so the design looks good */}
               <p>{this.state.description}</p>
               <p>{this.state.info}</p>
 
