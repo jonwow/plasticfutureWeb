@@ -1,14 +1,15 @@
+ignas:
+ar legalu gilda ntshirt png naudot?
+suzinot ar reikia kokiu licensiju naudot bank systemu logo (pvz paypal visa paysera)
+footer blueprint design (pridet visa mastercard paypal etc support) kad labiau legit atrodytuem bei powered by luminor
+
+
 BEFORE LAUNCH:
     GENERAL:
     slogans ikelt i db
     gal galim apassint products masyva i product page nes god damn kodel as turiu duakrt requestint
     paspaudi ant t shirto - 1 sekunde tau viskas pajuodeja ir atsiranda baltas tekstas 'design pavadinimas, metai, designeris ir kita info'. jei per sekunde neuzsikrauna - buna ilgiau, jei uzsikrauna - fade out  i normalu vaizdas
     sone bus photo2 ir photo3.
-
-
-
-
-
     ar legalu gilda ntshirt png naudot?
     change span to li for sizes
     https://reactrouter.com/web/guides/scroll-restoration
@@ -24,10 +25,8 @@ BEFORE LAUNCH:
     faq page
     it would bebetter if edge wouldnt work at all. very bugged
     test all browsers all os in vm
-    database galutine sudetis (ar colors[3].xs) ar colors[3] ir xs[3])
     product code automatiskai padaryt?
     style the threelines better (make it usable with hover) and give them adequate links
-    luminor footer
 
     FINAL:
     patentu ir licenciju mokesciai bei kokiu mums reikia

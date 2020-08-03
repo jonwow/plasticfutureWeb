@@ -50,7 +50,6 @@ router.route('/add').post((req, res) => {
 }); 
 
 
-
 // ROUTE THAT DISPLAYS PRODUCTS
 router.route('/:id').get((req, res) => {
   Product.findById(req.params.id)
@@ -58,27 +57,5 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-/* security reasons. delete it through mongodb site instead.
-router.route('/:id').delete((req, res) => {
-  Product.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Product deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
-}); */
-
-/* security reasons. update it through mongodb site instead.
-router.route('/update/:id').post((req, res) => {
-  Exercise.findById(req.params.id)
-    .then(exercise => {
-      exercise.username = req.body.username;
-      exercise.description = req.body.description;
-      exercise.duration = Number(req.body.duration);
-      exercise.date = Date.parse(req.body.date);
-
-      exercise.save()
-        .then(() => res.json('Exercise updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-}); */
 
 module.exports = router;
