@@ -49,16 +49,28 @@ export default class ProductPage extends Component {
           <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
           :
           <div class="box2">
-            <div class="productText">
-              
+            <div class="productDescription">
+
               {/* height of ~400-600 and overflow scroll */}
               {/* long text bugs this. better of making a single p with a scroll overflow */}
               {/* max 3 lines of text so the design looks good */}
-              <p>{this.state.description}</p>
-              <p>{this.state.info}</p>
+              <div class="productDescriptionText">
+                <p>{this.state.description}</p>
+                <p>{this.state.info}</p>
+              </div>
 
-              <p style={{ marginTop: "3rem", filter: "drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.25))", fontSize: "3rem", fontFamily: "Quicksand, serif" }}>              {this.state.price + '.00€'}</p>
+              <p class="productPrice">
+                {this.state.price + '.00€'}
+                </p>
 
+              <ul class="productSizing">
+                <li>XS</li>
+                <li>S</li>
+                <li>M</li>
+                <li>L</li>
+                <li>XL</li>
+                <li>(i)</li>
+              </ul>
 
               <div class='buttonContainer' style={{ textAlign: "center" }}>
 

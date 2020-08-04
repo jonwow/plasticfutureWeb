@@ -10,18 +10,46 @@
   scroll-behavior: smooth;
 }
 
+.productPrice {
+  margin-top: 4vh;
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.25));
+  font-size: 3rem;
+  font-family: "Quicksand";
+}
+
+.productSizing {
+  text-align: center;
+  max-width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+}
+
+.productSizing li
+{
+  list-style: none;
+  display: inline;
+  
+  margin: 0 1rem;
+  font-size: 1.5rem;
+
+}
+
+
 button {
   cursor: pointer;
 }
 
-.productText
+.productDescription
 {
   max-width: 100%;
+  margin-top: 4vh;
 }
 
-.asdd {
-  font-size: 100px;
-  transition: 1s;
+.productDescriptionText p {
+  line-height: 2;
+  font-size: 1.5rem;
+  filter: blur(0.45px);
 }
 
 .loadingImgParent {
@@ -629,28 +657,15 @@ navbar img:hover {
 
 
 
-.productText img {
+.productDescription img {
   width: 100px;
   height: 100px;
   margin: 0 auto;
 }
-.productText p {
+.productDescription p {
   text-align: center;
-  line-height: 1.6;
-  font-size: 1.5rem;
 }
 
-.productSizingEtc p,
-.productSizingEtc span {
-  font-size: 46px;
-  line-height: 2;
-  text-align: center;
-}
-.productSizingEtc span {
-  margin: 0 10px;
-  padding: 0 5px;
-  font-size: 50px;
-} 
 .right {
   text-align: right;
 }
@@ -686,9 +701,9 @@ navbar img:hover {
   height: 60px;
   border: 1px solid rgba(0, 0, 0, 0.238);
   border-radius: 15px;
-  width: 95%;
   max-width: 100%;
   margin: 0 auto;
+  padding: 0 2rem;
   font-size: 30px;
   color: black;
   background: whitesmoke;
@@ -710,7 +725,7 @@ navbar img:hover {
     padding-top: 2vh;
   }
 
-  .box2 .productText {
+  .box2 .productDescription {
     order: 3;
     }
 
@@ -725,11 +740,6 @@ navbar img:hover {
     margin: 0 auto;
     padding-top: 25px;
   }
-
-  .productSizingEtc p {
-    line-height: 1.4;
-  }
-
 
 
   .product p {
@@ -867,7 +877,7 @@ navbar img:hover {
     padding-top: 2vh;
   }
 
-  .box2 .productText {
+  .box2 .productDescription {
     order: 3;
   }
 
@@ -884,10 +894,6 @@ navbar img:hover {
     padding-top: 25px;
   }
 
-  .productSizingEtc p {
-    line-height: 1.4;
-  }
-
 
 
   .product p {
@@ -901,3 +907,8 @@ navbar img:hover {
   }
 }
 
+@media only screen and (max-width: 1140px) {
+  .productSizing li {
+    margin: 0 1.5vw;
+  }
+}
