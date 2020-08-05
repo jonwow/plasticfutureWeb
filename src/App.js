@@ -6,9 +6,8 @@ import Footer from './components/footer.component';
 import Navbar from './components/navbar.component';
 import StickyFooter from './components/stickyFooter.component';
 import Head from './components/head.component';
-
+import {About} from './components/product-page.component'
 // components-route paths
-import ProductPage from "./components/product-page.component";
 import ProductList from "./components/product-list.component";
 
 function App() {
@@ -18,7 +17,11 @@ function App() {
       <Navbar />
       <div class="container">
         <Route path="/" exact component={ProductList} />
-        <Route path="/products/:id/:color/" exact component={ProductPage} />
+        <Route path="/products/:id/:color/"  exact component={About} />
+        {/* <Route path="/products/:id/:color/"
+          render={(props) => (
+            <ProductPage {...props} isAuthed={true} />)}
+        /> */}
         <StickyFooter />
         <Footer />
       </div>

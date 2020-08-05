@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 // solve the problem of formatting and currency 
+export const About = (props) => {
+  // 
+  if (props.location.product)
+  console.log('cache exists');
+else
+  console.log('no cache');
 
+  return (
+    <div>{props.location.descriptionProps}123</div>
+  )
+}
 export default class ProductPage extends Component {
   constructor(props) {
     super(props);
 
+
     this.state = {
-      description: '',
+      // description: props.descriptionProps.desc,
       price: '',
       color: [],
       season: '',
@@ -20,10 +31,12 @@ export default class ProductPage extends Component {
   }
 
   componentDidMount() {
+
+  
     axios.get('http://localhost:5000/products/' + this.props.match.params.id)
       .then(response => {
         this.setState({
-          description: response.data.description,
+          // description: response.data.description,
           price: response.data.price,
           color: this.props.match.params.color,
           season: response.data.season,
@@ -44,6 +57,7 @@ export default class ProductPage extends Component {
 
   render() {
     return (
+
       <div>
         {this.state.loading ?
           <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
@@ -61,7 +75,7 @@ export default class ProductPage extends Component {
 
               <p class="productPrice">
                 {this.state.price + '.00€'}
-                </p>
+              </p>
 
               <ul class="productSizing">
                 <li>XS</li>
