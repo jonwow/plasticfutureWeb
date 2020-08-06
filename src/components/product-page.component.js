@@ -4,19 +4,19 @@ import axios from 'axios';
 // solve the problem of formatting and currency 
 export const About = (props) => {
   // 
-  if (props.location.product)
-  console.log('cache exists');
-else
-  console.log('no cache');
+
 
   return (
-    <div>{props.location.descriptionProps}123</div>
+    props.location.product ?
+      <p>cache exists</p> :
+      <p>no cache is present</p>
   )
 }
+
+
 export default class ProductPage extends Component {
   constructor(props) {
     super(props);
-
 
     this.state = {
       // description: props.descriptionProps.desc,
@@ -31,26 +31,41 @@ export default class ProductPage extends Component {
   }
 
   componentDidMount() {
+    if (this.props.location.product) {
+      console.log('cache exists, no `axios.get()` is necessary')
 
-  
-    axios.get('http://localhost:5000/products/' + this.props.match.params.id)
-      .then(response => {
-        this.setState({
-          // description: response.data.description,
-          price: response.data.price,
-          color: this.props.match.params.color,
-          season: response.data.season,
-          name: response.data.name,
-          info: response.data.info,
-          loading: false
+      this.setState({
+        description: this.props.location.product.description,
+        price: this.props.location.product.price,
+        // without the 'match.params' the color would be undecided if the product has >1 color
+        color: this.props.match.params.color,
+        season: this.props.location.product.season,
+        name: this.props.location.product.name,
+        info: this.props.location.product.info,
+        loading: false
+      })
+    }
+    else {
+      console.log('no cache is present, therefore we get data from the server');
+
+      axios.get('http://localhost:5000/products/' + this.props.match.params.id)
+        .then(response => {
+          this.setState({
+            // description: response.data.description,
+            price: response.data.price,
+            color: this.props.match.params.color,
+            season: response.data.season,
+            name: response.data.name,
+            info: response.data.info,
+            loading: false
+          })
+
+        })
+        .catch(function (error) {
+          console.log(error);
         })
 
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-
-
+    }
   }
 
 
