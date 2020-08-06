@@ -31,6 +31,7 @@ export default class Navbar extends Component {
           <div className="centeringParent" id="navbarText">
             <Link to="/">PLASTIC FUTURE
              </Link>
+             
           </div>
         </div>
         <div className="navbarThree">

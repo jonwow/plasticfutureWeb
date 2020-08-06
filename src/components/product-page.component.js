@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 // solve the problem of formatting and currency 
-export const About = (props) => {
-  // 
-
-
-  return (
-    props.location.product ?
-      <p>cache exists</p> :
-      <p>no cache is present</p>
-  )
-}
 
 
 export default class ProductPage extends Component {
@@ -140,10 +130,16 @@ export default class ProductPage extends Component {
             </div>
             <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
               <div id="photosGrid">
-                <div class="testBox">          </div>
+                <div class="additionalPhotoBox">
+                  <img style={{ width: '100%', height: '100%', padding: '0%' }} class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+
+                </div>
 
 
-                <div class="testBox">          </div>
+                <div class="additionalPhotoBox">
+                  <img style={{ width: '100%', height: '100%', padding: '0%' }} class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+
+                </div>
               </div>
 
 

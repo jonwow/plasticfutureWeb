@@ -60,10 +60,10 @@ button {
 
 }
 
-.testBox {
-  border: 1px solid black;
-  width: 10rem;
-  height: 10rem;
+.additionalPhotoBox {
+  cursor: pointer;
+  width: calc(12rem * 0.833333);
+  height: 12rem;
   max-width: 100%;
   max-height: 33vmin;
   margin:0 15px;
@@ -637,9 +637,7 @@ navbar img:hover {
 /* product page */
 
 .box2 img {
-  /* width: 84vmin; */
   margin: 0 auto;
-  /* height: calc(348.5px * 1.5); */
 } 
 
 .centeredContainer2 {
