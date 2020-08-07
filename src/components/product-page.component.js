@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { useLayoutEffect } from "react";
+import { useLocation } from "react-router-dom";
 // solve the problem of formatting and currency 
 
 
@@ -21,6 +22,7 @@ export default class ProductPage extends Component {
   }
 
   componentDidMount() {
+
     if (this.props.location.product) {
       console.log('cache exists, no `axios.get()` is necessary')
 

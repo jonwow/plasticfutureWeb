@@ -6,11 +6,11 @@ footer blueprint design (pridet visa mastercard paypal etc support) kad labiau l
 slogans
 
 BEFORE LAUNCH:
-    GENERAL:
-    https://reactrouter.com/web/guides/scroll-restoration
-    https://stackoverflow.com/questions/33188994/scroll-to-the-top-of-the-page-after-render-in-react-js
-    https://github.com/facebook/react/issues/14784
-    https://stackoverflow.com/questions/40987309/react-display-loading-screen-while-dom-is-rendering/40989121
+    GENERAL:~
+
+    works only after f5 or on console trigger
+    ~700x800 window mozilla scrolled down bugs, chrome edge doesnt. ask stackoverflow n reddit
+
     plasticfuture navbar makeover (react dropdown menu guides?) text needs to be a link
     https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
     cart page

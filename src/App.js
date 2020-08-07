@@ -10,9 +10,12 @@ import ProductPage from './components/product-page.component'
 // components-route paths
 import ProductList from "./components/product-list.component";
 
+import ScrollToTop from "./scroll-to-top.js";
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
+
       <Head />
       <Navbar />
       <div class="container">
@@ -22,6 +25,7 @@ function App() {
         <StickyFooter />
         <Footer />
       </div>
+
     </Router>
   );
 }
