@@ -1,18 +1,18 @@
+git pull pries darba, weekly backup i drive
+
+
 ignas:
 footer blueprint design (pridet visa mastercard paypal etc support) kad labiau legit atrodytuem bei powered by luminor
-
+slogans
 
 BEFORE LAUNCH:
     GENERAL:
-    
-    sone bus photo2 ir photo3.
     https://reactrouter.com/web/guides/scroll-restoration
     https://stackoverflow.com/questions/33188994/scroll-to-the-top-of-the-page-after-render-in-react-js
     https://github.com/facebook/react/issues/14784
     https://stackoverflow.com/questions/40987309/react-display-loading-screen-while-dom-is-rendering/40989121
     plasticfuture navbar makeover (react dropdown menu guides?) text needs to be a link
     https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
-    isimt importantus
     cart page
     contacts page
     newsletter page

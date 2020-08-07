@@ -35,11 +35,9 @@ export default class ProductList extends Component {
 
 
     componentDidMount() {
-        console.log(this.state.xd);
         axios.get("http://localhost:5000/products/")
         .then(response => {
-            this.setState({ products: response.data, loading: false, xd:'123' })
-        console.log(this.state.xd);
+            this.setState({ products: response.data, loading: false})
 
                 console.log(this.state.products)
             })

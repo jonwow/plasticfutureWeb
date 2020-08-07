@@ -18,10 +18,7 @@ function App() {
       <div class="container">
         <Route path="/" exact component={ProductList} />
         <Route path="/products/:id/:color/"  exact component={ProductPage} />
-        {/* <Route path="/products/:id/:color/"
-          render={(props) => (
-            <ProductPage {...props} isAuthed={true} />)}
-        /> */}
+
         <StickyFooter />
         <Footer />
       </div>
