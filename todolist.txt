@@ -4,43 +4,44 @@ git pull pries darba, weekly backup i drive
 ignas:
 footer blueprint design (pridet visa mastercard paypal etc support) kad labiau legit atrodytuem bei powered by luminor
 slogans
+extra product photos
+https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
+https://shippingeasy.com/pricing/
+https://www.ups.com/us/en/help-center/technology-support/developer-resource-center.page?
+https://www.ups.com/us/en/services/small-business/Special-Offers-Discounts.page
+https://www.theupsstore.com/small-business-services
+https://www.shipstation.com/blog/handling-your-business/get-all-the-shipping-carrier-discounts-you-can/
+lpastas
+terms and conditions, return policy, 
+
+
 
 BEFORE LAUNCH:
-    GENERAL:~
-
-    works only after f5 or on console trigger
-    ~700x800 window mozilla scrolled down bugs, chrome edge doesnt. ask stackoverflow n reddit
+    GENERAL:
+    1040x880 window MFD scrolled down bugs, chrome edge opera firefox doesnt.
 
     plasticfuture navbar makeover (react dropdown menu guides?) text needs to be a link
-    https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
     cart page
     contacts page
     newsletter page
     faq page
-    it would bebetter if edge wouldnt work at all. very bugged
     test all browsers all os in vm
     product code automatiskai padaryt?
-    style the threelines better (make it usable with hover) and give them adequate links
+    clicking on a photo in productpage must replace the image with a big version
+
 
     FINAL:
+    https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
     patentu ir licenciju mokesciai bei kokiu mums reikia
     perziuret komentarus
     gdpr web stuff
 
 
 
-    https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
-    https://shippingeasy.com/pricing/
-    https://www.ups.com/us/en/help-center/technology-support/developer-resource-center.page?
-    https://www.ups.com/us/en/services/small-business/Special-Offers-Discounts.page
-    https://www.theupsstore.com/small-business-services
-    https://www.shipstation.com/blog/handling-your-business/get-all-the-shipping-carrier-discounts-you-can/
-    lpastas
-    terms and conditions, return policy, 
+   
     https://www.dezutes24.lt/vokai/kurjeriniai-vokai-polietileniniai.html
     https://vokucentras.lt/baltas-silkinis-popierius
     pick a tshirt from merchyou/printexpress.pl/adler official 
-    IF REACT DOESN'T WORK, reddit question - find a templating engine to include all products and when clicking on them display them without having to manually create html files
     perziuret kiekviena kodo eilute ir issiaiskint kas neaisku
     pakeist SEO 'pf offers....'flexbox,cssgrid ir padaryt psd schema kaip kas veikia
     kaip ikelima padaryt neveziska ir kad susikurtu page
@@ -52,7 +53,6 @@ BEFORE LAUNCH:
     create a database + database encryption, email and db accounts name@pf2020.com
     do all the seo stuff in html
     anti sql injections, anti other database hacks
-    shipping ltpastas
     kokie expenses i taxes nurasomi
     add a payment system (luminor v paysera) OR use shopify
     search button
@@ -75,6 +75,7 @@ BEFORE LAUNCH:
     buy products for >40€ - get a free phone case OR raktu pakabuka
     
 NO HURRY:
+remove the scrolltotop animation
 css comments need review & then css file needs to be reorganised into multiple css and into scss again 
 make a cache for the product list so that there is no reason to request for data twice
 full mongodb documentation especially about performance

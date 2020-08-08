@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { useLayoutEffect } from "react";
-import { useLocation } from "react-router-dom";
 // solve the problem of formatting and currency 
 
 
@@ -10,7 +8,7 @@ export default class ProductPage extends Component {
     super(props);
 
     this.state = {
-      // description: props.descriptionProps.desc,
+      description: '',
       price: '',
       color: [],
       season: '',
@@ -43,7 +41,7 @@ export default class ProductPage extends Component {
       axios.get('http://localhost:5000/products/' + this.props.match.params.id)
         .then(response => {
           this.setState({
-            // description: response.data.description,
+            description: response.data.description,
             price: response.data.price,
             color: this.props.match.params.color,
             season: response.data.season,
@@ -111,7 +109,7 @@ export default class ProductPage extends Component {
 
             {/* rename this class 'bigproductcontainer */}
             <div class="bigProductContainer">
-              <img class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+              <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
               {/* perhpas remove box3 altogether andj ust make a css class */}
               {/** <div class="box3"> 
@@ -133,13 +131,13 @@ export default class ProductPage extends Component {
             <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
               <div id="photosGrid">
                 <div class="additionalPhotoBox">
-                  <img style={{ width: '100%', height: '100%', padding: '0%' }} class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                  <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
                 </div>
 
 
                 <div class="additionalPhotoBox">
-                  <img style={{ width: '100%', height: '100%', padding: '0%' }} class="bigProduct" src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                  <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
                 </div>
               </div>

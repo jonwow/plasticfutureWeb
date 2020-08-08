@@ -4,7 +4,7 @@ not important:
 #??????/1 - when the scrollbar appears the page changes dimensions/moves, perhaps it doesn't affect the three lines (nicce header doesn't bug, perhaps compare the code)
 #060820/1 - fonts load too slow.
 #080820/1 - zooming in and scrolling down and clicking on a product does nto work properly with scrolltotop
-
+#080920/1 - zooming in in productpage looks choppy. not a bug but is definitely caused by changing rem size (html font-size)
 
 GENERAL BUGS:
 
