@@ -62,57 +62,64 @@ export default class ProductPage extends Component {
 
   render() {
     return (
+      <div style={{margin: "0 auto"}}>
 
-      <div>
-        {this.state.loading ?
-          <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
-          :
-          <div class="box2">
-            <div class="productDescription">
+        {/* <div class="fullScreenProductPhoto">
+        <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
-              {/* height of ~400-600 and overflow scroll */}
-              {/* long text bugs this. better of making a single p with a scroll overflow */}
-              {/* max 3 lines of text so the design looks good */}
-              <div class="productDescriptionText">
-                <p>{this.state.description}</p>
-                <p>{this.state.info}</p>
+        </div> */}
+
+
+        <div>
+          {this.state.loading ?
+            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
+            :
+            <div class="box2">
+              <div class="productDescription">
+
+                {/* height of ~400-600 and overflow scroll */}
+                {/* long text bugs this. better of making a single p with a scroll overflow */}
+                {/* max 3 lines of text so the design looks good */}
+                <div class="productDescriptionText">
+                  <p>{this.state.description}</p>
+                  <p>{this.state.info}</p>
+                </div>
+
+                <p class="productPrice">
+                  {this.state.price + '.00€'}
+                </p>
+
+                <ul class="productSizing">
+                  <li>XS</li>
+                  <li>S</li>
+                  <li>M</li>
+                  <li>L</li>
+                  <li>XL</li>
+                  <li>(i)</li>
+                </ul>
+
+                <div class='buttonContainer' style={{ textAlign: "center" }}>
+
+                  <button id="buyBtn">PURCHASE</button>
+                  {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
+                </div>
+
+
               </div>
+              {/* after clicking it, make the image src _big.png */}
+              {/* when switching colors, make the link switch too */}
+              {/* give this a key instead of this kind of source */}
 
-              <p class="productPrice">
-                {this.state.price + '.00€'}
-              </p>
+              {/* rename to centeringparentformobile pages and make it a class */}
+              {/* think of a better name though */}
+              {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
 
-              <ul class="productSizing">
-                <li>XS</li>
-                <li>S</li>
-                <li>M</li>
-                <li>L</li>
-                <li>XL</li>
-                <li>(i)</li>
-              </ul>
+              {/* rename this class 'bigproductcontainer */}
+              <div class="bigProductContainer">
+                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
-              <div class='buttonContainer' style={{ textAlign: "center" }}>
-
-                <button id="buyBtn">PURCHASE</button>
-                {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
-              </div>
-
-
-            </div>
-            {/* after clicking it, make the image src _big.png */}
-            {/* when switching colors, make the link switch too */}
-            {/* give this a key instead of this kind of source */}
-
-            {/* rename to centeringparentformobile pages and make it a class */}
-            {/* think of a better name though */}
-            {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
-
-            {/* rename this class 'bigproductcontainer */}
-            <div class="bigProductContainer">
-              <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
-
-              {/* perhpas remove box3 altogether andj ust make a css class */}
-              {/** <div class="box3"> 
+                {/* perhpas remove box3 altogether andj ust make a css class */}
+                {/** <div class="box3"> 
             <div id="arrowLeft">
             {/* hide arrows in mobile view 
               <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
@@ -127,29 +134,33 @@ export default class ProductPage extends Component {
                   </div>
                   </div>
                 */}
-            </div>
-            <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
-              <div id="photosGrid">
-                <div class="additionalPhotoBox">
-                  <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+              </div>
+              <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
+                <div id="photosGrid">
+                  <div class="additionalPhotoBox">
+                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
+                  </div>
+
+
+                  <div class="additionalPhotoBox">
+                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+
+                  </div>
                 </div>
 
 
-                <div class="additionalPhotoBox">
-                  <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
-                </div>
               </div>
 
-
-
             </div>
 
-          </div>
+          }
+        </div>
 
-        }
       </div>
+
+
     )
   }
 }

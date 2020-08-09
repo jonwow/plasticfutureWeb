@@ -5,6 +5,7 @@ not important:
 #060820/1 - fonts load too slow.
 #080820/1 - zooming in and scrolling down and clicking on a product does nto work properly with scrolltotop
 #080920/1 - zooming in in productpage looks choppy. not a bug but is definitely caused by changing rem size (html font-size)
+#080920/1 - 1040x880 window MFD scrolled down window bugs if you click on a product, chrome edge opera firefox dont.
 
 GENERAL BUGS:
 

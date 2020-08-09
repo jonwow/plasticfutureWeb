@@ -10,12 +10,25 @@
   scroll-behavior: smooth;
 }
 
+.fullScreenProductPhoto {
+  background: red;
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  position: absolute;
+
+}
+
+
+
 .productPrice {
   margin-top: 4vh;
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.25));
   font-size: 3rem;
   font-family: "Quicksand";
 }
+
+
 
 .productSizing {
   text-align: center;
@@ -693,7 +706,6 @@ navbar img:hover {
 }
 
 #buyBtn {
-  height: 60px;
   border: 1px solid rgba(0, 0, 0, 0.238);
   border-radius: 15px;
   max-width: 100%;

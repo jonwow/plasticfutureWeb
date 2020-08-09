@@ -66,6 +66,7 @@ export default class ProductList extends Component {
                 <div className="box">
                     {
                         this.state.loading ?
+                            
                             <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '370px' }}></p>
                             :
                             this.productList()
