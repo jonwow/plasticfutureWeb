@@ -11,10 +11,8 @@ export default class Footer extends Component {
           <img src={process.env.PUBLIC_URL + '/images/icons/career_resized.png'} />
         </div>
 
-        {/* luminor width >= 60px, no effects */}
         <div>
           <p>MB „PLASTIC FUTURE" © 2020, all rights reserved.</p>
-
         </div>
 
 
