@@ -2,7 +2,8 @@ git pull pries darba, weekly backup i drive
 
 
 ignas:
-new blueprints: collections, newsletter (new font), faq, cart, contacts, footer (pridet visa mastercard paypal etc support) kad labiau legit atrodytuem bei powered by luminor
+new blueprints: collections, newsletter (new font), faq, cart, contacts
+ig twitter icons
 slogans
 extra product photos
 https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
@@ -17,9 +18,8 @@ terms and conditions, return policy
 
 BEFORE LAUNCH:
     GENERAL:
-    plasticfuture navbar makeover (react dropdown menu guides?) text needs to be a link
+    https://www.youtube.com/watch?v=IF6k0uZuypA
     cart,faq,newsletter, contacts page
-    test all browsers all os in vm
     product code automatiskai padaryt?
     clicking on additional photos switches the big photo with it 
 
@@ -67,6 +67,7 @@ BEFORE LAUNCH:
     headertext fontmin pakeist gal nes nera centruota visiskai (su lnijom paziuret)
     buy products for >40€ - get a free phone case OR raktu pakabuka
     4k support (html font size needs to be increased)
+    test all browsers all os in vm
 
 NO HURRY:
     clicking on a photo in productpage must replace the image with a big version
