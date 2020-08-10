@@ -969,15 +969,12 @@ navbar img:hover {
 
 @media only screen and (max-width: 935px) {
   footer div:nth-child(odd) img {
-    transition: 1s;
     padding: 0 0.3rem;
   }
 }
 
 @media only screen and (max-width: 480px) {
   footer div:nth-child(odd) img {
-    transition: 1s;
-    padding: 0 0.3rem;
     width: 1.8rem;
   }
 
@@ -990,13 +987,8 @@ navbar img:hover {
 
 @media only screen and (max-width: 380px) {
   footer div:nth-child(odd) img {
-    transition: 1s;
-    padding: 0 0.3rem;
     width: 1.5rem;
   }
 
 
-  footer div:nth-child(2) p {
-    font-size: 1rem;
-  }
 }
