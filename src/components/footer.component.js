@@ -18,7 +18,7 @@ export default class Footer extends Component {
 
 
         <div>
-          <img src={process.env.PUBLIC_URL + '/images/icons/slaveryICON_internetDL.png'} />
+          <img src={process.env.PUBLIC_URL + '/images/icons/instagramIcon.png'} />
           <img src={process.env.PUBLIC_URL + '/images/icons/tacICON_demo.png'} />
           <img src={process.env.PUBLIC_URL + '/images/icons/careerICON.png'} />
         </div>
