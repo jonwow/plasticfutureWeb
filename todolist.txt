@@ -70,6 +70,7 @@ BEFORE LAUNCH:
     test all browsers all os in vm
 
 NO HURRY:
+contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version
 remove the scrolltotop animation
 css comments need review & then css file needs to be reorganised into multiple css and into scss again 

@@ -10,6 +10,21 @@
   scroll-behavior: smooth;
 }
 
+footer {
+  border-top: 0.5px solid rgb(175, 175, 175);
+  display: grid;
+  grid-template-columns: 33.33333333% 33.33333333% 33.33333333%;
+}
+
+
+/* applies to left and right footer parts */
+footer div:nth-child(odd) img {
+  width: 2.2rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+
 .fullScreenProductPhoto {
   background: red;
   width: 100%;
@@ -728,7 +743,6 @@ navbar img:hover {
   }
 
   footer {
-    border-top: 1px solid black;
     padding-top: 2vh;
   }
 
@@ -877,7 +891,6 @@ navbar img:hover {
   }
 
   footer {
-    border-top: 1px solid black;
     padding-top: 2vh;
   }
 
