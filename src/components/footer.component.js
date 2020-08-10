@@ -6,25 +6,25 @@ export default class Footer extends Component {
     return (
       <footer>
         <div>
-          <img src={process.env.PUBLIC_URL + '/images/icons/slaveryICON_internetDL.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/tacICON_demo.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/careerICON.png'} />
+          <img src={process.env.PUBLIC_URL + '/images/icons/slavery_resized.png'} />
+          <img src={process.env.PUBLIC_URL + '/images/icons/tac2_resized.png'} />
+          <img src={process.env.PUBLIC_URL + '/images/icons/career_resized.png'} />
+        </div>
+
+        {/* luminor width >= 60px, no effects */}
+        <div>
+          <p>MB „PLASTIC FUTURE" © 2020, all rights reserved.</p>
+
         </div>
 
 
         <div>
-
+          <img src={process.env.PUBLIC_URL + '/images/icons/instagram_icon.png'} />
+          <img src={process.env.PUBLIC_URL + '/images/icons/twitter_icon.png'} />
+          <img src={process.env.PUBLIC_URL + '/images/icons/youtube_icon.png'} />
         </div>
 
 
-        <div>
-          <img src={process.env.PUBLIC_URL + '/images/icons/instagramIcon.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/tacICON_demo.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/careerICON.png'} />
-        </div>
-
-
-        <p>MB „PLASTIC FUTURE" © 2020, all rights reserved.</p>
       </footer>
     );
 

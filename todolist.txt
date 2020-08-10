@@ -2,8 +2,8 @@ git pull pries darba, weekly backup i drive
 
 
 ignas:
-new blueprints: collections, newsletter (new font), faq, cart, contacts
-ig twitter icons
+resize all icons properly
+new blueprints: collections, newsletter (new font), faq, cart, contacts, mobile blueprint footericons ir ipad
 slogans
 extra product photos
 https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
