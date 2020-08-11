@@ -12,24 +12,14 @@
 
 footer {
   padding-top: 2.25rem;
-  border-top: 0.5px solid rgba(175, 175, 175, 0.596);
-  display: grid;
-  grid-template-columns: 25% 50% 25%;
 }
 
 
 /* applies to left and right footer parts */
-footer div:nth-child(odd) img {
+footer .imageContainer img {
   width: 2.2rem;
   padding: 0 1.3rem;
   margin-top: 0.5rem;
-}
-
-/* twitter and instagram logos need adjustments, demo fix */
-footer div:nth-child(3) img:nth-child(2) {
-}
-
-footer div:nth-child(3) img:nth-child(3) {
 }
 
 
@@ -964,31 +954,4 @@ navbar img:hover {
   html {
     font-size: 8px;
   }
-}
-
-
-@media only screen and (max-width: 935px) {
-  footer div:nth-child(odd) img {
-    padding: 0 0.3rem;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  footer div:nth-child(odd) img {
-    width: 1.8rem;
-  }
-
-  footer div:nth-child(2) p {
-    font-size: 1rem;
-  }
-}
-
-
-
-@media only screen and (max-width: 380px) {
-  footer div:nth-child(odd) img {
-    width: 1.5rem;
-  }
-
-
 }
