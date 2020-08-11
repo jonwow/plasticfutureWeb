@@ -19,8 +19,6 @@ export default class Footer extends Component {
           <img src={process.env.PUBLIC_URL + '/images/icons/tac2_resized.png'} />
           <img src={process.env.PUBLIC_URL + '/images/icons/career_resized.png'} />
         </div>
-
-
       </footer>
     );
 
