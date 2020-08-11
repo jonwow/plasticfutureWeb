@@ -1,4 +1,5 @@
-git pull pries darba, weekly backup i drive
+visada teisinga branch isijungt!
+weekly backup i drive
 
 
 ignas:
@@ -18,6 +19,9 @@ terms and conditions, return policy
 
 BEFORE LAUNCH:
     GENERAL:
+    issiaiskint su branches ir padaryt ignui design man code ir kad i master automatiskai nesilietu?
+    viena eilute iconu footery
+    classes instead of nth child etc
     footer mobile sutvarkyt eilutem
     https://www.youtube.com/watch?v=IF6k0uZuypA
     cart,faq,newsletter, contacts page
