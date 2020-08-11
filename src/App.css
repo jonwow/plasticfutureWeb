@@ -788,7 +788,6 @@ navbar img:hover {
 }
 /* TYPICAL PHONES. min height makes widescreen mode NOT applicable to thsi rule */
 @media only screen and (max-width: 679px) and (min-width: 320px) and (min-height: 400px) {
-
   /* CHANGES THE 'REM' INITIAL SIZE FOR ALL ELEMENTS.  */
   /* 'REM' UNITS ARE USED IN FONT AND IMAGE SIZING */
   html {
@@ -943,12 +942,10 @@ navbar img:hover {
   }
 }
 
-/* iphone 4 5 5s se all look imperfect with the 10px, so i set it to 8 here */
+/* iphone 4 5 5s se WIDESCREEN all look imperfect with the 10px, so i set it to 8 here */
 @media only screen and  (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
   /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
-  footer .imageContainer {
-    margin: 0 2em;
-  }
+
 
   * {
     transition: 0.3s;
@@ -960,3 +957,15 @@ navbar img:hover {
 }
 
 /* test code */
+
+
+
+@media only screen and (max-width: 420px)
+{
+  footer .imageContainer {
+    width: 60%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 33.3333333% 33.3333333% 33.3333333%;
+  }
+}
