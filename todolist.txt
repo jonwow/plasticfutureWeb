@@ -2,37 +2,6 @@
 weekly backup i drive
 
 
-ignas:
-resize all icons properly
-new blueprints: collections, newsletter (new font), faq, cart, contacts
-slogans
-extra product photos
-https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
-https://shippingeasy.com/pricing/
-https://www.ups.com/us/en/help-center/technology-support/developer-resource-center.page?
-https://www.ups.com/us/en/services/small-business/Special-Offers-Discounts.page
-https://www.theupsstore.com/small-business-services
-https://www.shipstation.com/blog/handling-your-business/get-all-the-shipping-carrier-discounts-you-can/
-lpastas
-terms and conditions, return policy
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 http://shouldiprefix.com/#animations
     bug report: we'll send u 10% off if u point out any bugs or troubles
     add this to useful.txt - check the compability (webkit, -moz-, -o- etc)
