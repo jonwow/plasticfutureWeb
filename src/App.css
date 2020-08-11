@@ -946,6 +946,9 @@ navbar img:hover {
 /* iphone 4 5 5s se all look imperfect with the 10px, so i set it to 8 here */
 @media only screen and  (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
   /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
+  footer .imageContainer {
+    margin: 0 2em;
+  }
 
   * {
     transition: 0.3s;
