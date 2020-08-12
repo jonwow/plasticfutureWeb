@@ -3,17 +3,124 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
 
-
 * {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
 }
 
+/* dropdown menu tutorial */
+:root {
+  --bg: #242526;
+  --bg-accent: #484a4d;
+  --text-color: #dadce1;
+  --nav-size: 60px;
+  --border: 1px solid #474a4d;
+  --border-radius: 8px;
+  --speed: 500ms;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.navbar {
+  height: var(--nav-size);
+  background-color: var(--bg);
+  padding: 0 1rem;
+  border-bottom: var(--border);
+}
+
+
+.navbar-nav {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+
+  /* children start from the right side */
+  justify-content: flex-start;
+}
+
+
+.nav-item {
+  width: calc(var(--nav-size) * 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.icon-button {
+  --button-size:calc(var(--nav-size) * 0.5);
+  width: var(--button-size);
+  height: var(--button-size);
+  background-color: #484a4d;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+}
+
+.icon-button:hover {
+  filter: brightness(1.2);
+}
+
+.icon-button svg{
+  fill: var(--text-color) ;
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 58px;
+  width: 300px;
+  margin-left: ;
+  left: 0;
+  background-color: var(--bg);
+  border: var(--border);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center ;
+  border-radius: var(--border-radius);
+  transition: background var(--speed);
+  padding: 0.5rem ;
+}
+
+.menu-item:hover {
+  background-color: #525357;
+}
+
+.icon-right {
+/* works wondmers with flexbox */
+  margin-left: auto;
+}
+
+
+
+
+
+
+
 footer {
   padding-top: 2.25rem;
 }
-
 
 /* applies to left and right footer parts */
 footer .imageContainer img {
@@ -22,17 +129,13 @@ footer .imageContainer img {
   margin-top: 0.5rem;
 }
 
-
 .fullScreenProductPhoto {
   background: red;
   width: 100%;
   height: 100vh;
   z-index: 999;
   position: absolute;
-
 }
-
-
 
 .productPrice {
   margin-top: 4vh;
@@ -41,33 +144,26 @@ footer .imageContainer img {
   font-family: "Quicksand";
 }
 
-
-
 .productSizing {
   text-align: center;
   max-width: 100%;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-
 }
 
-.productSizing li
-{
+.productSizing li {
   list-style: none;
   display: inline;
-  
+
   margin: 0 1rem;
   font-size: 1.5rem;
-
 }
-
 
 button {
   cursor: pointer;
 }
 
-.productDescription
-{
+.productDescription {
   max-width: 100%;
   margin-top: 4vh;
 }
@@ -82,7 +178,6 @@ button {
   margin-top: 66px;
   text-align: center;
   width: 600px;
-
 }
 
 .additionalPhotoBox {
@@ -92,23 +187,25 @@ button {
   max-height: 100%;
 }
 
-
 #photosGrid {
   display: grid;
   grid-template-columns: 50% 50%;
-  text-align:center;
+  text-align: center;
   margin: 2rem auto;
 }
 
 .bigProduct {
-  width: 22.5rem; max-width: 100%; max-height: 87vh; height: 27rem;
+  width: 22.5rem;
+  max-width: 100%;
+  max-height: 87vh;
+  height: 27rem;
 }
 
-.bigProductContainer{
-  width: 22.5rem; 
+.bigProductContainer {
+  width: 22.5rem;
   max-width: 100%;
-   max-height: 100%;
-   margin: 0 auto;
+  max-height: 100%;
+  margin: 0 auto;
 }
 
 .box {
@@ -401,9 +498,6 @@ navbar p {
   }
 }
 
-
-
-
 /* probably removable*/
 /* VERY WIDE PHONES. UI LOOKS LIKE PC */
 @media only screen and (min-width: 680px) and (max-width: 1120px) {
@@ -524,7 +618,6 @@ navbar p {
   background-color: #000000;
 }
 
-
 img::-moz-selection,
 navbar p::-moz-selection,
 img::selection,
@@ -619,41 +712,8 @@ navbar img:hover {
   transition: 1s;
 }
 
-.dropdown {
-  position: relative;
-}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 8.6vh;
-  left: 5vmin;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  font-family: "Raleway", serif;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
 
 /* used for scss. perhaps useless otherwise?  */
 /*# sourceMappingURL=main.css.map */
@@ -662,7 +722,7 @@ navbar img:hover {
 
 .box2 img {
   margin: 0 auto;
-} 
+}
 
 .centeredContainer2 {
   width: calc(0.33fr * 3);
@@ -676,8 +736,6 @@ navbar img:hover {
 /* used in non mobile centering too */
 /* centers children horizontally and vertically. used in the header/navbar */
 /* call it footer/headerparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
-
-
 
 .productDescription img {
   width: 100px;
@@ -695,12 +753,12 @@ navbar img:hover {
 #cartBtn {
   padding: 0 10px;
   margin: 0 auto;
-  
+
   border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 15px;
   /* margin-right: 35px; */
   height: 60px;
-  
+
   font-size: 30px;
   color: black;
   background: black;
@@ -710,7 +768,7 @@ navbar img:hover {
 }
 
 /* implement this soon */
-.buttonContainer{
+.buttonContainer {
   /* display: grid; */
   /* grid-template-columns: 80% 20%; */
 }
@@ -747,7 +805,7 @@ navbar img:hover {
 
   .box2 .productDescription {
     order: 3;
-    }
+  }
 
   #arrowRight,
   #arrowLeft {
@@ -761,7 +819,6 @@ navbar img:hover {
     padding-top: 25px;
   }
 
-
   .product p {
     height: auto;
     font-size: 1.1em;
@@ -771,7 +828,6 @@ navbar img:hover {
     /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
-
 
   .bigProduct {
     width: 25.008rem;
@@ -784,7 +840,6 @@ navbar img:hover {
     width: 25.008rem;
     margin: 0 auto;
   }
-
 }
 /* TYPICAL PHONES. min height makes widescreen mode NOT applicable to thsi rule */
 @media only screen and (max-width: 679px) and (min-width: 320px) and (min-height: 400px) {
@@ -794,18 +849,17 @@ navbar img:hover {
     font-size: 14px;
   }
 
-
   .product img:hover {
     -webkit-transition: 0.3s linear;
     transition: 0.3s linear;
     -webkit-filter: none;
-    filter: none ;
+    filter: none;
   }
 
   navbar .navbarTwo .parent p:hover {
     -webkit-transition: 0s;
     transition: 0s;
-    -webkit-filter: none ;
+    -webkit-filter: none;
     filter: none;
   }
 
@@ -816,10 +870,10 @@ navbar img:hover {
 
   navbar img:hover {
     -webkit-transition: 0s;
-    transition: 0s ;
+    transition: 0s;
     width: 5vh;
     -webkit-filter: none;
-    filter: none ;
+    filter: none;
   }
 
   footer {
@@ -862,7 +916,6 @@ navbar img:hover {
     display: none;
   }
 
-
   .box img {
     /* CHANGE THIS to a percentage or vw/vh. */
     width: 42vmin;
@@ -896,7 +949,6 @@ navbar img:hover {
     order: 3;
   }
 
-
   #arrowRight,
   #arrowLeft {
     display: none;
@@ -908,8 +960,6 @@ navbar img:hover {
     margin: 0 auto;
     padding-top: 25px;
   }
-
-
 
   .product p {
     height: auto;
@@ -930,11 +980,9 @@ navbar img:hover {
 
 /* mobile widescreen */
 @media only screen and (max-height: 600px) and (min-width: 500px) {
-
-
   /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
   * {
-    transition:0.3s;
+    transition: 0.3s;
   }
 
   html {
@@ -943,9 +991,8 @@ navbar img:hover {
 }
 
 /* iphone 4 5 5s se WIDESCREEN all look imperfect with the 10px, so i set it to 8 here */
-@media only screen and  (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
+@media only screen and (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
   /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
-
 
   * {
     transition: 0.3s;
@@ -958,10 +1005,7 @@ navbar img:hover {
 
 /* test code */
 
-
-
-@media only screen and (max-width: 420px)
-{
+@media only screen and (max-width: 420px) {
   footer .imageContainer {
     width: 60%;
     margin: 0 auto;
