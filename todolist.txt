@@ -56,6 +56,7 @@ BEFORE LAUNCH:
     test all browsers all os in vm
 
 NO HURRY:
+padaryt react menu kad pagal state renderintu o ne tiesiog BET KAD PASPAUDUS LINKA DINGTU NULEISTAS MENU
 contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version
 remove the scrolltotop animation

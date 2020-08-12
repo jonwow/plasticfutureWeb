@@ -11,7 +11,7 @@ export default class Footer extends Component {
         </div>
 
 
-        <div class="imageContainer">
+        <div className="imageContainer">
           <img src={process.env.PUBLIC_URL + '/images/icons/instagram_icon.png'} />
           <img src={process.env.PUBLIC_URL + '/images/icons/twitter_icon.png'} />
           <img src={process.env.PUBLIC_URL + '/images/icons/youtube_icon.png'} />
