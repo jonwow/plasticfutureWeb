@@ -1,10 +1,70 @@
-import React, { useState, Component } from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, Component, useEffect, useRef } from "react";
+import { Link } from 'react-router-dom'
+
+
+// parent dropdown menu > children li items with this function
+function useComponentVisible(initialIsVisible) {
+  const [isComponentVisible, setIsComponentVisible] = useState(
+    initialIsVisible
+  );
+  const ref = useRef(null);
+
+  const handleHideDropdown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      setIsComponentVisible(false);
+    }
+  };
+
+  const handleClickOutside = event => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setIsComponentVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleHideDropdown, true);
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("keydown", handleHideDropdown, true);
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  });
+
+  return { ref, isComponentVisible, setIsComponentVisible };
+}
+
+
+
+const Bzzz = () => {
+  const {
+    ref,
+    isComponentVisible,
+    setIsComponentVisible
+  } = useComponentVisible(true);
+  return (
+    <div ref={ref}>
+      {isComponentVisible && (
+
+        <span style={{ border: "1px solid black" }}>Going into Hiding</span>
+
+      )}
+      {!isComponentVisible && (
+        <p onClick={() => setIsComponentVisible(true)}>
+          Component hidden: Click me show component again
+        </p>
+      )}
+    </div>
+  );
+};
+
+
 
 
 export default class Navbar extends Component {
   render() {
     return (
+      <div>
+      <Bzzz></Bzzz>
       <nav>
         <div className="navbarOne">
           <div className="centeringParent">
@@ -26,7 +86,7 @@ export default class Navbar extends Component {
             <img src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`} alt="cartPhoto" className="clickable"></img>
           </div>
         </div>
-      </nav>
+      </nav></div>
     );
 
   }

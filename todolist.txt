@@ -2,14 +2,10 @@
 weekly backup i drive
 
 
-
 BEFORE LAUNCH:
     GENERAL:
-https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover  onclick give display none 
-    gal navbar ne kaip atskira componenta o app js viduj kad galetu matyt kada state keicias, pvz containerio state keicias - threelines uzsidaro
-    react navbar ir elementai onclick togglina css class 'display hidden' ar hidden
-
-
+    pure html menu ir https://stackoverflow.com/questions/35915495/how-to-close-drop-down-by-clicking-anywhere-on-page
+    mobile dropdown
     cart,faq,newsletter, contacts page
     product code automatiskai padaryt?
     clicking on additional photos switches the big photo with it 
@@ -62,6 +58,9 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover 
 NO HURRY:
 padaryt react menu kad pagal state renderintu o ne tiesiog BET KAD PASPAUDUS LINKA DINGTU NULEISTAS MENU
 menu kad su mousehover atsidarytu
+padaryt kad menu uzsidaro kai kitam puslapy atsirandi (laikinai veiktu jei su a href visur perdirectint o ne su routes)
+https://codesandbox.io/s/989y0758np?file=/src/index.js:60-93
+
 
 contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version
