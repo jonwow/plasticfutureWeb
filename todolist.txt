@@ -5,13 +5,17 @@ weekly backup i drive
 
 BEFORE LAUNCH:
     GENERAL:
-    https://www.youtube.com/watch?v=IF6k0uZuypA
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown_hover  onclick give display none 
+    gal navbar ne kaip atskira componenta o app js viduj kad galetu matyt kada state keicias, pvz containerio state keicias - threelines uzsidaro
+    react navbar ir elementai onclick togglina css class 'display hidden' ar hidden
+
+
     cart,faq,newsletter, contacts page
     product code automatiskai padaryt?
     clicking on additional photos switches the big photo with it 
 
     FINAL:
-    https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
+    https://www.hostinger.com/tutorials/ssh-t1utorial-how-does-ssh-work
     perziuret komentarus
     gdpr web stuff
 
@@ -57,6 +61,8 @@ BEFORE LAUNCH:
 
 NO HURRY:
 padaryt react menu kad pagal state renderintu o ne tiesiog BET KAD PASPAUDUS LINKA DINGTU NULEISTAS MENU
+menu kad su mousehover atsidarytu
+
 contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version
 remove the scrolltotop animation

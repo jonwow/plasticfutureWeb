@@ -12,12 +12,30 @@ export default class Footer extends Component {
 
 
         <div className="imageContainer">
-          <img src={process.env.PUBLIC_URL + '/images/icons/instagram_icon.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/twitter_icon.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/youtube_icon.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/slavery_resized.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/tac2_resized.png'} />
-          <img src={process.env.PUBLIC_URL + '/images/icons/career_resized.png'} />
+          <a href="https://instagram.com" target="_blank">
+            <img src={process.env.PUBLIC_URL + '/images/icons/instagram_icon.png'} />
+          </a>
+
+          <a href="https://twitter.com" target="_blank">
+            <img src={process.env.PUBLIC_URL + '/images/icons/twitter_icon.png'} />
+          </a>
+
+          <a href="https://youtube.com" target="_blank">
+            <img src={process.env.PUBLIC_URL + '/images/icons/youtube_icon.png'} />
+          </a>
+
+          <a href="https://www.antislavery.org/" target="_blank">
+            <img src={process.env.PUBLIC_URL + '/images/icons/slavery_resized.png'} />
+          </a>
+
+          <a href="/tac">
+            <img src={process.env.PUBLIC_URL + '/images/icons/tac2_resized.png'} />
+          </a>
+
+          <a href="/career" >
+            <img src={process.env.PUBLIC_URL + '/images/icons/career_resized.png'} />
+          </a>
+
         </div>
       </footer>
     );

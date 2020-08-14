@@ -9,6 +9,16 @@
   scroll-behavior: smooth;
 }
 
+.menu-item {
+  background: whitesmoke;
+  padding: 2rem;
+}
+
+.menu-item a {
+  color: black;
+  text-decoration: none;
+}
+
 .dropdown {
   position: absolute;
   top: 58px;
@@ -21,6 +31,10 @@
   z-index: 111;
 }
 
+
+.menu-item   {
+  list-style: none;
+}
 
 
 
@@ -161,7 +175,7 @@ button {
 
 /* makes the footer stay at the bottom of the page even if the page has no content. position-fixed for footer is not desired for the footer */
 .container {
-  /* full viewpoint - navbar height - stickyfooter height */
+  /* full viewpoint - nav height - stickyfooter height */
   height: calc(100vh - 12vh);
   overflow: auto;
 }
@@ -179,7 +193,7 @@ button {
 }
 
 /* used in non mobile centering too */
-/* centers children horizontally and vertically. used in the navbar/navbar */
+/* centers children horizontally and vertically. used in the navbar/nav */
 /* call it footer/navbarparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
 .centeringParent {
   position: relative;
@@ -258,7 +272,7 @@ footer ul li p {
   font-family: "Raleway", serif;
 }
 
-navbar {
+nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -274,46 +288,43 @@ navbar {
   background: rgba(250, 250, 250, 0.755);
 }
 
-navbar > div > div > p {
+nav > div > div > p {
   width: inherit;
   -ms-flex-preferred-size: inherit;
   flex-basis: inherit;
 }
 
-navbar img {
+nav img {
   width: 10vh;
   display: block;
   margin: 0 auto;
   text-align: center;
 }
 
-navbar .navbarOne,
-navbar .navbarTwo,
-navbar .navbarThree {
+nav .navbarOne,
+nav .navbarTwo,
+nav .navbarThree {
   width: 33vw;
   height: 12vh;
 }
 
-navbar .navbarOne {
+nav .navbarOne {
   -ms-flex-preferred-size: 15%;
   flex-basis: 15%;
 }
 
-navbar .navbarOne img {
-  width: 5vh;
-}
-
-navbar .navbarTwo {
+nav .navbarTwo {
   -ms-flex-preferred-size: 70%;
   flex-basis: 70%;
 }
 
-navbar .navbarThree {
+nav .navbarThree {
   -ms-flex-preferred-size: 15%;
   flex-basis: 15%;
 }
-
-navbar .navbarThree img {
+nav .navbarOne img,
+nav .navbarThree img,
+.icon-button {
   width: 5vh;
 }
 
@@ -326,7 +337,7 @@ navbar .navbarThree img {
 }
 
 /* without this, the 'parent' div gets too large and the text ('a') isn't centered. */
-navbar .navbarTwo .centeringParent {
+nav .navbarTwo .centeringParent {
   margin: 0;
   width: fit-content;
   width: -moz-fit-content;
@@ -337,7 +348,7 @@ navbar .navbarTwo .centeringParent {
   margin: 0;
 }
 
-navbar p {
+nav p {
   text-decoration: none;
   line-height: 0.8;
 }
@@ -528,9 +539,9 @@ navbar p {
 }
 
 img::-moz-selection,
-navbar p::-moz-selection,
+nav p::-moz-selection,
 img::selection,
-navbar p::selection {
+nav p::selection {
   background: rgba(0, 0, 0, 0);
 }
 
@@ -595,7 +606,7 @@ navbar p::selection {
   filter: drop-shadow(2px 1px 4px #000033);
 }
 
-navbar .navbarTwo .parent p:hover {
+nav .navbarTwo .parent p:hover {
   -webkit-transition: 1s;
   transition: 1s;
   /* change the color to black and ditch the invert  */
@@ -603,12 +614,12 @@ navbar .navbarTwo .parent p:hover {
   filter: drop-shadow(5px 1px 4px rgba(255, 255, 255, 0.815));
 }
 
-navbar img {
+nav img {
   -webkit-transition: none;
   transition: none;
 }
 
-navbar img:hover {
+nav img:hover {
   -webkit-transition: 0.1s linear;
   transition: 0.1s linear;
   -webkit-filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
@@ -643,7 +654,7 @@ navbar img:hover {
 }
 
 /* used in non mobile centering too */
-/* centers children horizontally and vertically. used in the header/navbar */
+/* centers children horizontally and vertically. used in the header/nav */
 /* call it footer/headerparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
 
 .productDescription img {
@@ -765,19 +776,19 @@ navbar img:hover {
     filter: none;
   }
 
-  navbar .navbarTwo .parent p:hover {
+  nav .navbarTwo .parent p:hover {
     -webkit-transition: 0s;
     transition: 0s;
     -webkit-filter: none;
     filter: none;
   }
 
-  navbar img {
+  nav img {
     -webkit-transition: none;
     transition: none;
   }
 
-  navbar img:hover {
+  nav img:hover {
     -webkit-transition: 0s;
     transition: 0s;
     width: 5vh;
