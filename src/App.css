@@ -3,17 +3,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
 
-
 * {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
 }
 
+.menu-item li {
+  background: whitesmoke;
+  padding: 2rem;
+}
+
+.menu-item li:hover {
+  transition: 0.1s;
+  background: rgb(219, 219, 219);
+}
+
+.menu-item  {
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown {
+  position: absolute;
+  top: 70px;
+  width: 20rem;
+  left: 0;
+  background-color: var(--bg);
+  border: var(--border);
+  padding: 1rem;
+  overflow: hidden;
+  z-index: 111;
+}
+
+
+.menu-item   {
+  list-style: none;
+}
+
+
+
+
+
+
 footer {
   padding-top: 2.25rem;
 }
-
 
 /* applies to left and right footer parts */
 footer .imageContainer img {
@@ -22,17 +57,13 @@ footer .imageContainer img {
   margin-top: 0.5rem;
 }
 
-
 .fullScreenProductPhoto {
   background: red;
   width: 100%;
   height: 100vh;
   z-index: 999;
   position: absolute;
-
 }
-
-
 
 .productPrice {
   margin-top: 4vh;
@@ -41,33 +72,26 @@ footer .imageContainer img {
   font-family: "Quicksand";
 }
 
-
-
 .productSizing {
   text-align: center;
   max-width: 100%;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-
 }
 
-.productSizing li
-{
+.productSizing li {
   list-style: none;
   display: inline;
-  
+
   margin: 0 1rem;
   font-size: 1.5rem;
-
 }
-
 
 button {
   cursor: pointer;
 }
 
-.productDescription
-{
+.productDescription {
   max-width: 100%;
   margin-top: 4vh;
 }
@@ -82,7 +106,6 @@ button {
   margin-top: 66px;
   text-align: center;
   width: 600px;
-
 }
 
 .additionalPhotoBox {
@@ -92,23 +115,25 @@ button {
   max-height: 100%;
 }
 
-
 #photosGrid {
   display: grid;
   grid-template-columns: 50% 50%;
-  text-align:center;
+  text-align: center;
   margin: 2rem auto;
 }
 
 .bigProduct {
-  width: 22.5rem; max-width: 100%; max-height: 87vh; height: 27rem;
+  width: 22.5rem;
+  max-width: 100%;
+  max-height: 87vh;
+  height: 27rem;
 }
 
-.bigProductContainer{
-  width: 22.5rem; 
+.bigProductContainer {
+  width: 22.5rem;
   max-width: 100%;
-   max-height: 100%;
-   margin: 0 auto;
+  max-height: 100%;
+  margin: 0 auto;
 }
 
 .box {
@@ -155,7 +180,7 @@ button {
 
 /* makes the footer stay at the bottom of the page even if the page has no content. position-fixed for footer is not desired for the footer */
 .container {
-  /* full viewpoint - navbar height - stickyfooter height */
+  /* full viewpoint - nav height - stickyfooter height */
   height: calc(100vh - 12vh);
   overflow: auto;
 }
@@ -173,7 +198,7 @@ button {
 }
 
 /* used in non mobile centering too */
-/* centers children horizontally and vertically. used in the navbar/navbar */
+/* centers children horizontally and vertically. used in the navbar/nav */
 /* call it footer/navbarparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
 .centeringParent {
   position: relative;
@@ -252,7 +277,7 @@ footer ul li p {
   font-family: "Raleway", serif;
 }
 
-navbar {
+nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -268,46 +293,43 @@ navbar {
   background: rgba(250, 250, 250, 0.755);
 }
 
-navbar > div > div > p {
+nav > div > div > p {
   width: inherit;
   -ms-flex-preferred-size: inherit;
   flex-basis: inherit;
 }
 
-navbar img {
+nav img {
   width: 10vh;
   display: block;
   margin: 0 auto;
   text-align: center;
 }
 
-navbar .navbarOne,
-navbar .navbarTwo,
-navbar .navbarThree {
+nav .navbarOne,
+nav .navbarTwo,
+nav .navbarThree {
   width: 33vw;
   height: 12vh;
 }
 
-navbar .navbarOne {
+nav .navbarOne {
   -ms-flex-preferred-size: 15%;
   flex-basis: 15%;
 }
 
-navbar .navbarOne img {
-  width: 5vh;
-}
-
-navbar .navbarTwo {
+nav .navbarTwo {
   -ms-flex-preferred-size: 70%;
   flex-basis: 70%;
 }
 
-navbar .navbarThree {
+nav .navbarThree {
   -ms-flex-preferred-size: 15%;
   flex-basis: 15%;
 }
-
-navbar .navbarThree img {
+nav .navbarOne img,
+nav .navbarThree img,
+.icon-button {
   width: 5vh;
 }
 
@@ -320,7 +342,7 @@ navbar .navbarThree img {
 }
 
 /* without this, the 'parent' div gets too large and the text ('a') isn't centered. */
-navbar .navbarTwo .centeringParent {
+nav .navbarTwo .centeringParent {
   margin: 0;
   width: fit-content;
   width: -moz-fit-content;
@@ -331,7 +353,7 @@ navbar .navbarTwo .centeringParent {
   margin: 0;
 }
 
-navbar p {
+nav p {
   text-decoration: none;
   line-height: 0.8;
 }
@@ -400,9 +422,6 @@ navbar p {
     font-size: 3vh;
   }
 }
-
-
-
 
 /* probably removable*/
 /* VERY WIDE PHONES. UI LOOKS LIKE PC */
@@ -524,11 +543,10 @@ navbar p {
   background-color: #000000;
 }
 
-
 img::-moz-selection,
-navbar p::-moz-selection,
+nav p::-moz-selection,
 img::selection,
-navbar p::selection {
+nav p::selection {
   background: rgba(0, 0, 0, 0);
 }
 
@@ -593,7 +611,7 @@ navbar p::selection {
   filter: drop-shadow(2px 1px 4px #000033);
 }
 
-navbar .navbarTwo .parent p:hover {
+nav .navbarTwo .parent p:hover {
   -webkit-transition: 1s;
   transition: 1s;
   /* change the color to black and ditch the invert  */
@@ -601,17 +619,16 @@ navbar .navbarTwo .parent p:hover {
   filter: drop-shadow(5px 1px 4px rgba(255, 255, 255, 0.815));
 }
 
-navbar img {
+nav img {
   -webkit-transition: none;
   transition: none;
 }
 
-navbar img:hover {
+nav img:hover {
   -webkit-transition: 0.1s linear;
   transition: 0.1s linear;
   -webkit-filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
   filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
-  width: 5.5vh;
 }
 
 #goToTopIcon {
@@ -619,41 +636,8 @@ navbar img:hover {
   transition: 1s;
 }
 
-.dropdown {
-  position: relative;
-}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 8.6vh;
-  left: 5vmin;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  font-family: "Raleway", serif;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
 
 /* used for scss. perhaps useless otherwise?  */
 /*# sourceMappingURL=main.css.map */
@@ -662,7 +646,7 @@ navbar img:hover {
 
 .box2 img {
   margin: 0 auto;
-} 
+}
 
 .centeredContainer2 {
   width: calc(0.33fr * 3);
@@ -674,10 +658,8 @@ navbar img:hover {
 }
 
 /* used in non mobile centering too */
-/* centers children horizontally and vertically. used in the header/navbar */
+/* centers children horizontally and vertically. used in the header/nav */
 /* call it footer/headerparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
-
-
 
 .productDescription img {
   width: 100px;
@@ -695,12 +677,12 @@ navbar img:hover {
 #cartBtn {
   padding: 0 10px;
   margin: 0 auto;
-  
+
   border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 15px;
   /* margin-right: 35px; */
   height: 60px;
-  
+
   font-size: 30px;
   color: black;
   background: black;
@@ -710,7 +692,7 @@ navbar img:hover {
 }
 
 /* implement this soon */
-.buttonContainer{
+.buttonContainer {
   /* display: grid; */
   /* grid-template-columns: 80% 20%; */
 }
@@ -747,7 +729,7 @@ navbar img:hover {
 
   .box2 .productDescription {
     order: 3;
-    }
+  }
 
   #arrowRight,
   #arrowLeft {
@@ -761,7 +743,6 @@ navbar img:hover {
     padding-top: 25px;
   }
 
-
   .product p {
     height: auto;
     font-size: 1.1em;
@@ -771,7 +752,6 @@ navbar img:hover {
     /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
-
 
   .bigProduct {
     width: 25.008rem;
@@ -784,43 +764,40 @@ navbar img:hover {
     width: 25.008rem;
     margin: 0 auto;
   }
-
 }
 /* TYPICAL PHONES. min height makes widescreen mode NOT applicable to thsi rule */
 @media only screen and (max-width: 679px) and (min-width: 320px) and (min-height: 400px) {
-
   /* CHANGES THE 'REM' INITIAL SIZE FOR ALL ELEMENTS.  */
   /* 'REM' UNITS ARE USED IN FONT AND IMAGE SIZING */
   html {
     font-size: 14px;
   }
 
-
   .product img:hover {
     -webkit-transition: 0.3s linear;
     transition: 0.3s linear;
     -webkit-filter: none;
-    filter: none ;
-  }
-
-  navbar .navbarTwo .parent p:hover {
-    -webkit-transition: 0s;
-    transition: 0s;
-    -webkit-filter: none ;
     filter: none;
   }
 
-  navbar img {
+  nav .navbarTwo .parent p:hover {
+    -webkit-transition: 0s;
+    transition: 0s;
+    -webkit-filter: none;
+    filter: none;
+  }
+
+  nav img {
     -webkit-transition: none;
     transition: none;
   }
 
-  navbar img:hover {
+  nav img:hover {
     -webkit-transition: 0s;
-    transition: 0s ;
+    transition: 0s;
     width: 5vh;
     -webkit-filter: none;
-    filter: none ;
+    filter: none;
   }
 
   footer {
@@ -863,7 +840,6 @@ navbar img:hover {
     display: none;
   }
 
-
   .box img {
     /* CHANGE THIS to a percentage or vw/vh. */
     width: 42vmin;
@@ -897,7 +873,6 @@ navbar img:hover {
     order: 3;
   }
 
-
   #arrowRight,
   #arrowLeft {
     display: none;
@@ -909,8 +884,6 @@ navbar img:hover {
     margin: 0 auto;
     padding-top: 25px;
   }
-
-
 
   .product p {
     height: auto;
@@ -931,11 +904,9 @@ navbar img:hover {
 
 /* mobile widescreen */
 @media only screen and (max-height: 600px) and (min-width: 500px) {
-
-
   /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
   * {
-    transition:0.3s;
+    transition: 0.3s;
   }
 
   html {
@@ -943,12 +914,9 @@ navbar img:hover {
   }
 }
 
-/* iphone 4 5 5s se all look imperfect with the 10px, so i set it to 8 here */
-@media only screen and  (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
+/* iphone 4 5 5s se WIDESCREEN all look imperfect with the 10px, so i set it to 8 here */
+@media only screen and (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
   /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
-  footer .imageContainer {
-    margin: 0 2em;
-  }
 
   * {
     transition: 0.3s;
@@ -956,5 +924,16 @@ navbar img:hover {
 
   html {
     font-size: 8px;
+  }
+}
+
+/* test code */
+
+@media only screen and (max-width: 420px) {
+  footer .imageContainer {
+    width: 60%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 33.3333333% 33.3333333% 33.3333333%;
   }
 }

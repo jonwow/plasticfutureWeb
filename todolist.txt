@@ -1,34 +1,17 @@
-visada teisinga branch isijungt!
+﻿visada teisinga branch isijungt!
 weekly backup i drive
-
-
-ignas:
-resize all icons properly
-new blueprints: collections, newsletter (new font), faq, cart, contacts
-slogans
-extra product photos
-https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
-https://shippingeasy.com/pricing/
-https://www.ups.com/us/en/help-center/technology-support/developer-resource-center.page?
-https://www.ups.com/us/en/services/small-business/Special-Offers-Discounts.page
-https://www.theupsstore.com/small-business-services
-https://www.shipstation.com/blog/handling-your-business/get-all-the-shipping-carrier-discounts-you-can/
-lpastas
-terms and conditions, return policy
 
 
 BEFORE LAUNCH:
     GENERAL:
-    https://www.youtube.com/watch?v=JTE2Fn_sCZs
-    issiaiskint su branches ir padaryt ignui design man code ir kad i master automatiskai nesilietu?
-    https://www.youtube.com/watch?v=IF6k0uZuypA
+    pure html menu ir https://stackoverflow.com/questions/35915495/how-to-close-drop-down-by-clicking-anywhere-on-page
+    mobile dropdown
     cart,faq,newsletter, contacts page
     product code automatiskai padaryt?
     clicking on additional photos switches the big photo with it 
 
     FINAL:
-    https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
-    patentu ir licenciju mokesciai bei kokiu mums reikia
+    https://www.hostinger.com/tutorials/ssh-t1utorial-how-does-ssh-work
     perziuret komentarus
     gdpr web stuff
 
@@ -73,6 +56,12 @@ BEFORE LAUNCH:
     test all browsers all os in vm
 
 NO HURRY:
+padaryt react menu kad pagal state renderintu o ne tiesiog BET KAD PASPAUDUS LINKA DINGTU NULEISTAS MENU
+menu kad su mousehover atsidarytu
+padaryt kad menu uzsidaro kai kitam puslapy atsirandi (laikinai veiktu jei su a href visur perdirectint o ne su routes)
+https://codesandbox.io/s/989y0758np?file=/src/index.js:60-93
+
+
 contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version
 remove the scrolltotop animation

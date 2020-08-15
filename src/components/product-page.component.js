@@ -20,7 +20,7 @@ export default class ProductPage extends Component {
   }
 
   componentDidMount() {
-
+    console.log(123)
     if (this.props.location.product) {
       console.log('cache exists, no `axios.get()` is necessary')
 
