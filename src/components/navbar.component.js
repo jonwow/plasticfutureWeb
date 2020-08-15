@@ -41,6 +41,7 @@ const Bzzz = () => {
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
+        // if i want to make it a more complex dropdown menu, most likely i will need to use some function binds and props for other components
         <div onClick={() => setIsComponentVisible(false)}>
           <NavItem>
             <DropdownMenu />
