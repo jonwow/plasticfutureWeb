@@ -1,8 +1,7 @@
 import React, { useState, Component, useEffect, useRef } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-
-// parent dropdown menu > children li items with this function
+// parent dropdown menu with this function and > children li items with the open function
 function useComponentVisible(initialIsVisible) {
   const [isComponentVisible, setIsComponentVisible] = useState(
     initialIsVisible
@@ -15,7 +14,7 @@ function useComponentVisible(initialIsVisible) {
     }
   };
 
-  const handleClickOutside = event => {
+  const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
       setIsComponentVisible(false);
     }
@@ -33,68 +32,60 @@ function useComponentVisible(initialIsVisible) {
   return { ref, isComponentVisible, setIsComponentVisible };
 }
 
-
-
 const Bzzz = () => {
   const {
     ref,
     isComponentVisible,
-    setIsComponentVisible
-  } = useComponentVisible(true);
+    setIsComponentVisible,
+  } = useComponentVisible(false);
   return (
-    <div ref={ref}>
+    <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
-
-        <span style={{ border: "1px solid black" }}>Going into Hiding</span>
-
+        <div onClick={() => setIsComponentVisible(false)}>
+          <NavItem>
+            <DropdownMenu />
+          </NavItem>
+        </div>
       )}
       {!isComponentVisible && (
-        <p onClick={() => setIsComponentVisible(true)}>
-          Component hidden: Click me show component again
-        </p>
+        <div onClick={() => setIsComponentVisible(true)}>
+          <NavItem></NavItem>
+        </div>
       )}
     </div>
   );
 };
 
-
-
-
 export default class Navbar extends Component {
   render() {
     return (
       <div>
-      <Bzzz></Bzzz>
-      <nav>
-        <div className="navbarOne">
-          <div className="centeringParent">
-            <NavItem>
-              <DropdownMenu />
-            </NavItem>
+        <nav>
+          <div className="navbarOne">
+            <div className="centeringParent">
+              <Bzzz></Bzzz>
+            </div>
           </div>
-        </div>
 
-        <div className="navbarTwo">
-          <div className="centeringParent" id="navbarText">
-            <Link to="/">PLASTIC FUTURE
-             </Link>
-
+          <div className="navbarTwo">
+            <div className="centeringParent" id="navbarText">
+              <Link to="/">PLASTIC FUTURE</Link>
+            </div>
           </div>
-        </div>
-        <div className="navbarThree">
-          <div className="centeringParent">
-            <img src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`} alt="cartPhoto" className="clickable"></img>
+          <div className="navbarThree">
+            <div className="centeringParent">
+              <img
+                src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}
+                alt="cartPhoto"
+                className="clickable"
+              ></img>
+            </div>
           </div>
-        </div>
-      </nav></div>
+        </nav>
+      </div>
     );
-
   }
 }
-
-
-
-
 
 function NavItem(props) {
   // call the useState function (hook)
@@ -103,62 +94,58 @@ function NavItem(props) {
   // false because the dropdown is not 'clicked' by default
   const [open, setOpen] = useState(false);
   return (
-    <div>
+    <div style={{ width: "5vh", margin: "0 auto" }}>
+      <img
+        src={`${process.env.PUBLIC_URL}/images/navbar/threeLines.png`}
+        className="icon-button clickable"
+        onClick={() => {
+          setOpen(!open);
+        }}
+      />
 
-      <img src={`${process.env.PUBLIC_URL}/images/navbar/threeLines.png`} className="icon-button clickable" onClick={() => {
-        setOpen(!open)
-      }} />
-
-      {open && props.children}
+      {props.children}
     </div>
-
   );
 }
-
 
 // need more dropdown levels? 11:40 https://www.youtube.com/watch?v=IF6k0uZuypA
 function DropdownMenu() {
   function DropdownItem(props) {
     return props.children;
-
   }
-
 
   return (
     // change to state rendering instead of a href asap
     <ul className="dropdown">
-      <DropdownItem >
+      <DropdownItem>
         <Link to="/tshirts" class="menu-item">
-          <li>TSHIRTS</li>
+          <li className="asd">TSHIRTS</li>
         </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <a class="menu-item" href="/toteBags">
-
+        <Link to="/totebags" class="menu-item">
           <li>TOTE BAGS</li>
-
-        </a>
+        </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <a class="menu-item" href="/yourAccount">
+        <Link to="/youraccount" class="menu-item">
           <li>YOUR ACCOUNT</li>
-        </a>
+        </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <a class="menu-item" href="/collections/">
+        <Link to="/collections" class="menu-item">
           <li>COLLECTIONS</li>
-        </a>
+        </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <a class="menu-item" href="/contacts">
+        <Link to="/contacts" class="menu-item">
           <li>CONTACTS</li>
-        </a>
+        </Link>
       </DropdownItem>
-
     </ul>
   );
 }
