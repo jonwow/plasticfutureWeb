@@ -68,9 +68,9 @@ export default class Navbar extends Component {
       <nav>
         <div className="navbarOne">
           <div className="centeringParent">
-              <NavItem>
-                <DropdownMenu />
-              </NavItem>
+            <NavItem>
+              <DropdownMenu />
+            </NavItem>
           </div>
         </div>
 
@@ -103,13 +103,15 @@ function NavItem(props) {
   // false because the dropdown is not 'clicked' by default
   const [open, setOpen] = useState(false);
   return (
-      <div>
+    <div>
 
-      <img src={`${process.env.PUBLIC_URL}/images/navbar/threeLines.png`} className="icon-button clickable" onClick={() => setOpen(!open)}/> 
-      
+      <img src={`${process.env.PUBLIC_URL}/images/navbar/threeLines.png`} className="icon-button clickable" onClick={() => {
+        setOpen(!open)
+      }} />
+
       {open && props.children}
-      </div>
-      
+    </div>
+
   );
 }
 
@@ -117,8 +119,8 @@ function NavItem(props) {
 // need more dropdown levels? 11:40 https://www.youtube.com/watch?v=IF6k0uZuypA
 function DropdownMenu() {
   function DropdownItem(props) {
-    return <li className="menu-item" >{props.children}</li>;
-    
+    return props.children;
+
   }
 
 
@@ -126,23 +128,35 @@ function DropdownMenu() {
     // change to state rendering instead of a href asap
     <ul className="dropdown">
       <DropdownItem >
-      <a href="/tshirts"> TSHIRTS</a>
+        <Link to="/tshirts" class="menu-item">
+          <li>TSHIRTS</li>
+        </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <a href="/toteBags">TOTE BAGS</a>
+        <a class="menu-item" href="/toteBags">
+
+          <li>TOTE BAGS</li>
+
+        </a>
       </DropdownItem>
 
       <DropdownItem>
-        <a href="/yourAccount">YOUR ACCOUNT</a>
+        <a class="menu-item" href="/yourAccount">
+          <li>YOUR ACCOUNT</li>
+        </a>
       </DropdownItem>
 
       <DropdownItem>
-        <a href="/collections/">COLLECTIONS</a>
+        <a class="menu-item" href="/collections/">
+          <li>COLLECTIONS</li>
+        </a>
       </DropdownItem>
 
       <DropdownItem>
-        <a href="/contacts">CONTACTS</a>
+        <a class="menu-item" href="/contacts">
+          <li>CONTACTS</li>
+        </a>
       </DropdownItem>
 
     </ul>
