@@ -4,8 +4,10 @@ weekly backup i drive
 
 BEFORE LAUNCH:
     GENERAL:
-    pure html menu ir https://stackoverflow.com/questions/35915495/how-to-close-drop-down-by-clicking-anywhere-on-page
-    mobile dropdown
+    footer links
+    pf twitter
+    tab names
+    tshirt and totebags route functionality
     cart,faq,newsletter, contacts page
     product code automatiskai padaryt?
     clicking on additional photos switches the big photo with it 

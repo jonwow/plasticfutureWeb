@@ -27,7 +27,7 @@ const Product = props => (
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
-
+        console.log(props)
 
 
         this.state = { products: [], loading: true };
@@ -36,8 +36,8 @@ export default class ProductList extends Component {
 
     componentDidMount() {
         axios.get("http://localhost:5000/products/")
-        .then(response => {
-            this.setState({ products: response.data, loading: false})
+            .then(response => {
+                this.setState({ products: response.data, loading: false })
 
                 console.log(this.state.products)
             })
@@ -47,13 +47,21 @@ export default class ProductList extends Component {
             })
     }
 
-    productList() {
+    productList(productType) {
         // for every product
         return this.state.products.map(curProduct => {
-            return curProduct.color.map(curColor => {
-                // gives 'props.color' and 'props.product' to the Product const
-                return <Product color={curColor} product={curProduct} />;
-            })
+            if (curProduct.type == productType) {
+                return curProduct.color.map(curColor => {
+                    // gives 'props.color' and 'props.product' to the Product const
+                    return <Product color={curColor} product={curProduct} />;
+                })
+            }
+            else if (productType == undefined) {
+                return curProduct.color.map(curColor => {
+                    // gives 'props.color' and 'props.product' to the Product const
+                    return <Product color={curColor} product={curProduct} />;
+                })
+            }
 
 
         })
@@ -61,15 +69,20 @@ export default class ProductList extends Component {
 
 
     render() {
+        const { productType } = this.props;
+        console.log(productType)
+
+
+
         return (
             <div className="centeredContainer" id="topElement">
                 <div className="box">
                     {
                         this.state.loading ?
-                            
+
                             <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '370px' }}></p>
                             :
-                            this.productList()
+                            this.productList(productType)
                     }
                 </div>
             </div>

@@ -17,25 +17,34 @@ function App() {
       <ScrollToTop />
 
       <Head />
-     
+
       <Navbarx />
       <div className="container">
-        <Route path="/" exact component={ProductList} />
+        <Route path="/" exact component={ProductList} greeting="head" />
         <Route path="/products/:id/:color/" exact component={ProductPage} />
-        <Route path="/tshirts">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd</Route>
-        <Route path="/toteBags">bbbbbbbbbbbbbbbbbbbbbddaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb</Route>
-        <Route path="/yourAccount">zzzzzzzzzzzzcczzzzzzdddddddddddddaaaaaaaaaaaaaaaadddddddddzzzzzzzzzzzzzzzzzzzzzz</Route>
-        <Route path="/collections">acccccccccccccccccccdddssssssddddddddddddddddcccccccccccccccc</Route>
-        <Route path="/contacts">gsgsgsgsgsfdgergwrgdddddddddddddwrgwrtqweq</Route>
-        
-        
+        <Route
+          path="/products/tshirts"
+          render={(props) => <ProductList productType="t-shirt" {...props} />}
+        />
+
+        <Route path="/toteBags">
+          bbbbbbbbbbbbbbbbbbbbbddaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb
+        </Route>
+        <Route path="/yourAccount">
+          zzzzzzzzzzzzcczzzzzzdddddddddddddaaaaaaaaaaaaaaaadddddddddzzzzzzzzzzzzzzzzzzzzzz
+        </Route>
+        <Route path="/collections">
+          acccccccccccccccccccdddssssssddddddddddddddddcccccccccccccccc
+        </Route>
+        <Route path="/contacts">
+          gsgsgsgsgsfdgergwrgdddddddddddddwrgwrtqweq
+        </Route>
+
         <StickyFooter />
         <Footer />
       </div>
     </Router>
   );
 }
-
-
 
 export default App;

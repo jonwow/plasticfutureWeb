@@ -1,7 +1,8 @@
 import React, { useState, Component, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-// parent dropdown menu with this function and > children li items with the open function
+
+// make this usable for footer. probably just change the inside of bzzz return
 function useComponentVisible(initialIsVisible) {
   const [isComponentVisible, setIsComponentVisible] = useState(
     initialIsVisible
@@ -20,14 +21,8 @@ function useComponentVisible(initialIsVisible) {
     }
   };
 
-  useEffect(() => {
     document.addEventListener("keydown", handleHideDropdown, true);
     document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("keydown", handleHideDropdown, true);
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  });
 
   return { ref, isComponentVisible, setIsComponentVisible };
 }
@@ -41,7 +36,6 @@ const Bzzz = () => {
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
-        // if i want to make it a more complex dropdown menu, most likely i will need to use some function binds and props for other components
         <div onClick={() => setIsComponentVisible(false)}>
           <NavItem>
             <DropdownMenu />
@@ -119,7 +113,7 @@ function DropdownMenu() {
     // change to state rendering instead of a href asap
     <ul className="dropdown">
       <DropdownItem>
-        <Link to="/tshirts" class="menu-item">
+        <Link to="/products/tshirts" class="menu-item">
           <li className="asd">TSHIRTS</li>
         </Link>
       </DropdownItem>
