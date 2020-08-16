@@ -2,30 +2,6 @@
 weekly backup i drive
 
 
-BEFORE LAUNCH:
-    GENERAL:
-    pure html menu ir https://stackoverflow.com/questions/35915495/how-to-close-drop-down-by-clicking-anywhere-on-page
-    mobile dropdown
-    cart,faq,newsletter, contacts page
-    product code automatiskai padaryt?
-    clicking on additional photos switches the big photo with it 
-
-    FINAL:
-    https://www.hostinger.com/tutorials/ssh-t1utorial-how-does-ssh-work
-    perziuret komentarus
-    gdpr web stuff
-
-
-
-   
-    https://www.dezutes24.lt/vokai/kurjeriniai-vokai-polietileniniai.html
-    https://vokucentras.lt/baltas-silkinis-popierius
-    pick a tshirt from merchyou/printexpress.pl/adler official 
-    perziuret kiekviena kodo eilute ir issiaiskint kas neaisku
-    pakeist SEO 'pf offers....'flexbox,cssgrid ir padaryt psd schema kaip kas veikia
-    kaip ikelima padaryt neveziska ir kad susikurtu page
-    ikelt tshirtus su notify when ready butotnais   
-    add full compatibility, probably some tool exists https://github.com/postcss/autoprefixer http://shouldiprefix.com/#animations
     bug report: we'll send u 10% off if u point out any bugs or troubles
     add this to useful.txt - check the compability (webkit, -moz-, -o- etc)
     order plasticfuture.net & pf2020.eu (shortened randomised links w/ traffic analysis)
