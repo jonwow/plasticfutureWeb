@@ -2,38 +2,6 @@
 weekly backup i drive
 
 
-ignas:
-resize all icons properly
-new blueprints: collections, newsletter (new font), faq, cart, contacts, your account page, 
-slogans
-extra product photos i folderius idet
-https://www.reddit.com/r/smallbusiness/comments/9toq90/what_low_hanging_fruit_might_businesses_run_by/
-https://shippingeasy.com/pricing/
-https://www.ups.com/us/en/help-center/technology-support/developer-resource-center.page?
-https://www.ups.com/us/en/services/small-business/Special-Offers-Discounts.page
-https://www.theupsstore.com/small-business-services
-https://www.shipstation.com/blog/handling-your-business/get-all-the-shipping-carrier-discounts-you-can/
-lpastas
-terms and conditions, return policy
-
-
-
-caash carti
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-http://shouldiprefix.com/#animations
     bug report: we'll send u 10% off if u point out any bugs or troubles
     add this to useful.txt - check the compability (webkit, -moz-, -o- etc)
     order plasticfuture.net & pf2020.eu (shortened randomised links w/ traffic analysis)
@@ -64,6 +32,12 @@ http://shouldiprefix.com/#animations
     test all browsers all os in vm
 
 NO HURRY:
+padaryt react menu kad pagal state renderintu o ne tiesiog BET KAD PASPAUDUS LINKA DINGTU NULEISTAS MENU
+menu kad su mousehover atsidarytu
+padaryt kad menu uzsidaro kai kitam puslapy atsirandi (laikinai veiktu jei su a href visur perdirectint o ne su routes)
+https://codesandbox.io/s/989y0758np?file=/src/index.js:60-93
+
+
 contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version
 remove the scrolltotop animation
