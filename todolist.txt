@@ -1,7 +1,35 @@
 ﻿visada teisinga branch isijungt!
-weekly backup i drive
+backup files every 1st day of each month
 
 
+    GENERAL:
+    reorganise folders (plasticidol/tshirts/bloodenemy/..png)
+    footer links
+    pf twitter
+    add totebags to the web
+    add current page name to the product list top
+    tab names
+    tshirt and totebags route functionality
+    cart,faq,newsletter, contacts page
+    product code automatiskai padaryt?
+    clicking on additional photos switches the big photo with it 
+
+    FINAL:
+    https://www.hostinger.com/tutorials/ssh-t1utorial-how-does-ssh-work
+    perziuret komentarus
+    gdpr web stuff
+
+
+
+   
+    https://www.dezutes24.lt/vokai/kurjeriniai-vokai-polietileniniai.html
+    https://vokucentras.lt/baltas-silkinis-popierius
+    pick a tshirt from merchyou/printexpress.pl/adler official 
+    perziuret kiekviena kodo eilute ir issiaiskint kas neaisku
+    pakeist SEO 'pf offers....'flexbox,cssgrid ir padaryt psd schema kaip kas veikia
+    kaip ikelima padaryt neveziska ir kad susikurtu page
+    ikelt tshirtus su notify when ready butotnais   
+    add full compatibility, probably some tool exists https://github.com/postcss/autoprefixer http://shouldiprefix.com/#animations
     bug report: we'll send u 10% off if u point out any bugs or troubles
     add this to useful.txt - check the compability (webkit, -moz-, -o- etc)
     order plasticfuture.net & pf2020.eu (shortened randomised links w/ traffic analysis)
@@ -32,11 +60,8 @@ weekly backup i drive
     test all browsers all os in vm
 
 NO HURRY:
-padaryt react menu kad pagal state renderintu o ne tiesiog BET KAD PASPAUDUS LINKA DINGTU NULEISTAS MENU
-menu kad su mousehover atsidarytu
-padaryt kad menu uzsidaro kai kitam puslapy atsirandi (laikinai veiktu jei su a href visur perdirectint o ne su routes)
-https://codesandbox.io/s/989y0758np?file=/src/index.js:60-93
-
+no additional get requests for switching productlist components
+advanced dropdown menu
 
 contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version

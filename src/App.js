@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // components
 import Footer from "./components/footer.component";
-import Navbarx from "./components/navbar.component";
+import Navbar from "./components/navbar.component";
 import StickyFooter from "./components/stickyFooter.component";
 import Head from "./components/head.component";
 import ProductPage from "./components/product-page.component";
@@ -17,25 +17,33 @@ function App() {
       <ScrollToTop />
 
       <Head />
-     
-      <Navbarx />
+
+      <Navbar />
       <div className="container">
-        <Route path="/" exact component={ProductList} />
+        <Route path="/" exact component={ProductList}/>
+        <Route path="/products" exact component={ProductList} />
         <Route path="/products/:id/:color/" exact component={ProductPage} />
-        <Route path="/tshirts">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd</Route>
-        <Route path="/toteBags">bbbbbbbbbbbbbbbbbbbbbddaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb</Route>
-        <Route path="/yourAccount">zzzzzzzzzzzzcczzzzzzdddddddddddddaaaaaaaaaaaaaaaadddddddddzzzzzzzzzzzzzzzzzzzzzz</Route>
-        <Route path="/collections">acccccccccccccccccccdddssssssddddddddddddddddcccccccccccccccc</Route>
-        <Route path="/contacts">gsgsgsgsgsfdgergwrgdddddddddddddwrgwrtqweq</Route>
-        
-        
+        <Route path="/products/:productType" exact component={ProductList} />
+
+        <Route path="/toteBags">
+          bbbbbbbbbbbbbbbbbbbbbddaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb
+        </Route>
+        <Route path="/yourAccount">
+          zzzzzzzzzzzzcczzzzzzdddddddddddddaaaaaaaaaaaaaaaadddddddddzzzzzzzzzzzzzzzzzzzzzz
+        </Route>
+        <Route path="/collections">
+          acccccccccccccccccccdddssssssddddddddddddddddcccccccccccccccc
+        </Route>
+        <Route path="/contacts">
+          gsgsgsgsgsfdgergwrgdddddddddddddwrgwrtqweq
+        </Route>
+
         <StickyFooter />
         <Footer />
+        
       </div>
     </Router>
   );
 }
-
-
 
 export default App;

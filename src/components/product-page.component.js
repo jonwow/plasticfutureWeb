@@ -32,6 +32,7 @@ export default class ProductPage extends Component {
         season: this.props.location.product.season,
         name: this.props.location.product.name,
         info: this.props.location.product.info,
+        type: this.props.location.product.type,
         loading: false
       })
     }
@@ -116,7 +117,7 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div class="bigProductContainer">
-                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.type + 's/'+ this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div class="box3"> 

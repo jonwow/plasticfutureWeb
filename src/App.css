@@ -26,8 +26,8 @@
 
 .dropdown {
   position: absolute;
-  top: 70px;
-  width: 20rem;
+  top: 4.5rem;
+  width: 18rem;
   left: 0;
   background-color: var(--bg);
   border: var(--border);
@@ -657,10 +657,6 @@ nav img:hover {
   cursor: pointer;
 }
 
-/* used in non mobile centering too */
-/* centers children horizontally and vertically. used in the header/nav */
-/* call it footer/headerparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
-
 .productDescription img {
   width: 100px;
   height: 100px;
@@ -771,6 +767,18 @@ nav img:hover {
   /* 'REM' UNITS ARE USED IN FONT AND IMAGE SIZING */
   html {
     font-size: 14px;
+  }
+
+  .dropdown {
+    width: 100vw;
+    left: 0;
+    padding: 0;
+    top: 8vh;
+  }
+
+  .dropdown .menu-item li {
+    padding: 1.25rem;
+    
   }
 
   .product img:hover {

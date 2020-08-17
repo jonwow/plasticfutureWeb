@@ -13,7 +13,7 @@ export default class Footer extends Component {
 
 
         <div className="imageContainer">
-          <a href="https://instagram.com" target="_blank">
+          <a href="https://instagram.com/_plasticfuture" target="_blank">
             <img src={process.env.PUBLIC_URL + '/images/icons/instagram_icon.png'} />
           </a>
 

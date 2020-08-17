@@ -1,11 +1,11 @@
 import React, { useState, Component, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-// parent dropdown menu with this function and > children li items with the open function
-function useComponentVisible(initialIsVisible) {
-  const [isComponentVisible, setIsComponentVisible] = useState(
-    initialIsVisible
-  );
+
+// make this usable for footer. probably just change the inside of bzzz return
+function useComponentVisible() {
+  // true/false in useState parentheses = whether the dropdown menu is opened or close on page load
+  const [isComponentVisible, setIsComponentVisible] = useState(false);
   const ref = useRef(null);
 
   const handleHideDropdown = (event: KeyboardEvent) => {
@@ -20,24 +20,21 @@ function useComponentVisible(initialIsVisible) {
     }
   };
 
-  useEffect(() => {
     document.addEventListener("keydown", handleHideDropdown, true);
     document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("keydown", handleHideDropdown, true);
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  });
 
   return { ref, isComponentVisible, setIsComponentVisible };
 }
 
 const Bzzz = () => {
   const {
+    // gives this const the ref from the useComponentVisible function
     ref,
     isComponentVisible,
     setIsComponentVisible,
-  } = useComponentVisible(false);
+  } = useComponentVisible();
+
+
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
@@ -118,13 +115,20 @@ function DropdownMenu() {
     // change to state rendering instead of a href asap
     <ul className="dropdown">
       <DropdownItem>
-        <Link to="/tshirts" class="menu-item">
+        <Link to="/products/" class="menu-item">
+          <li className="asd">ALL PRODUCTS</li>
+        </Link>
+      </DropdownItem>
+
+
+      <DropdownItem>
+        <Link to="/products/t-shirt" class="menu-item">
           <li className="asd">TSHIRTS</li>
         </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <Link to="/totebags" class="menu-item">
+        <Link to="/products/tote" class="menu-item">
           <li>TOTE BAGS</li>
         </Link>
       </DropdownItem>
