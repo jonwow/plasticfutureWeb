@@ -10,7 +10,7 @@ const Product = props => (
     }} >
 
         <div className="product">
-            <img src={`${process.env.PUBLIC_URL}/images/` + props.product.season + `/designs/` + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`} />
+            <img src={`${process.env.PUBLIC_URL}/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`} />
 
             {/* make a proper formatting solution */}
             {props.product.price.toString().includes('.') ?
@@ -48,8 +48,10 @@ export default class ProductList extends Component {
     }
 
     productList(productType) {
+        console.log(productType)
         // for every product
         return this.state.products.map(curProduct => {
+            console.log(curProduct.type)
             if (curProduct.type == productType) {
                 return curProduct.color.map(curColor => {
                     // gives 'props.color' and 'props.product' to the Product const
@@ -69,10 +71,7 @@ export default class ProductList extends Component {
 
 
     render() {
-        const { productType } = this.props;
-        console.log(productType)
-
-
+        const productType = this.props.match.params.productType;
 
         return (
             <div className="centeredContainer" id="topElement">

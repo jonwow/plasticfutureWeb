@@ -1,11 +1,13 @@
 ﻿visada teisinga branch isijungt!
-weekly backup i drive
+backup files every 1st day of each month
 
 
-BEFORE LAUNCH:
     GENERAL:
+    reorganise folders (plasticidol/tshirts/bloodenemy/..png)
     footer links
     pf twitter
+    add totebags to the web
+    add current page name to the product list top
     tab names
     tshirt and totebags route functionality
     cart,faq,newsletter, contacts page
@@ -58,11 +60,8 @@ BEFORE LAUNCH:
     test all browsers all os in vm
 
 NO HURRY:
-padaryt react menu kad pagal state renderintu o ne tiesiog BET KAD PASPAUDUS LINKA DINGTU NULEISTAS MENU
-menu kad su mousehover atsidarytu
-padaryt kad menu uzsidaro kai kitam puslapy atsirandi (laikinai veiktu jei su a href visur perdirectint o ne su routes)
-https://codesandbox.io/s/989y0758np?file=/src/index.js:60-93
-
+no additional get requests for switching productlist components
+advanced dropdown menu
 
 contact all logo owners regarding usage of their logos
     clicking on a photo in productpage must replace the image with a big version

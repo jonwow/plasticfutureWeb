@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // components
 import Footer from "./components/footer.component";
-import Navbarx from "./components/navbar.component";
+import Navbar from "./components/navbar.component";
 import StickyFooter from "./components/stickyFooter.component";
 import Head from "./components/head.component";
 import ProductPage from "./components/product-page.component";
@@ -18,14 +18,12 @@ function App() {
 
       <Head />
 
-      <Navbarx />
+      <Navbar />
       <div className="container">
-        <Route path="/" exact component={ProductList} greeting="head" />
+        <Route path="/" exact component={ProductList}/>
+        <Route path="/products" exact component={ProductList} />
         <Route path="/products/:id/:color/" exact component={ProductPage} />
-        <Route
-          path="/products/tshirts"
-          render={(props) => <ProductList productType="t-shirt" {...props} />}
-        />
+        <Route path="/products/:productType" exact component={ProductList} />
 
         <Route path="/toteBags">
           bbbbbbbbbbbbbbbbbbbbbddaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb
@@ -42,6 +40,7 @@ function App() {
 
         <StickyFooter />
         <Footer />
+        
       </div>
     </Router>
   );
