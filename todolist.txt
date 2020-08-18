@@ -3,6 +3,8 @@ backup files every 1st day of each month
 
 
     GENERAL:
+    array yra tai tiesog sugalvot kaip returnint (sorting, product-list)
+    https://www.youtube.com/watch?v=3qnrouysbG8
     https://reactjs.org/docs/hooks-effect.html
     mb ikurimo nuostatia ir steigimo sutartis
     sugalvot final db structure ir perdaryt 
