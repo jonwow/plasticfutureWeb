@@ -3,7 +3,6 @@ backup files every 1st day of each month
 
 
     GENERAL:
-    unavailable product page idet (stilius)
     https://reactjs.org/docs/hooks-effect.html
     mb ikurimo nuostatia ir steigimo sutartis
     sugalvot final db structure ir perdaryt 

@@ -71,15 +71,14 @@ export default class ProductPage extends Component {
   render() {
     document.title = this.state.name
     return (
-      <div style={{ margin: "0 auto"}}>
+      <div style={{ margin: "0 auto" }}>
 
         {/* <div class="fullScreenProductPhoto">
         <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
         </div> */}
 
-
-        <div>
+        <div style={!this.state.available ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
             <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
             :
@@ -95,10 +94,15 @@ export default class ProductPage extends Component {
                 </div>
 
                 <p class="productPrice">
-                  {this.state.price + '.00€'}
+                  {this.state.available ?
+                    this.state.price + '.00€'
+                    :
+                    'UNAVAILABLE'
+
+                  }
                 </p>
 
-                <ul class="productSizing">
+                {this.state.available && <ul class="productSizing">
                   <li>XS</li>
                   <li>S</li>
                   <li>M</li>
@@ -106,13 +110,14 @@ export default class ProductPage extends Component {
                   <li>XL</li>
                   <li>(i)</li>
                 </ul>
+                }
 
-                <div class='buttonContainer' style={{ textAlign: "center" }}>
+                {this.state.available && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn">PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
-
+                } 
 
               </div>
               {/* after clicking it, make the image src _big.png */}
