@@ -708,6 +708,7 @@ nav img:hover {
   background: whitesmoke;
   font-size: 3rem;
   text-align: center;
+  filter: invert(1);
 }
 
 /* tablet vertical display. min-width 500px makes phones NOT applicable to this query */

@@ -15,12 +15,13 @@ export default class ProductPage extends Component {
       name: '',
       info: '',
       loading: true,
-      productCode: ''
+      productCode: '',
+      public: true,
+      available: true
     }
   }
 
   componentDidMount() {
-    console.log(123)
     if (this.props.location.product) {
       console.log('cache exists, no `axios.get()` is necessary')
 
@@ -33,6 +34,8 @@ export default class ProductPage extends Component {
         name: this.props.location.product.name,
         info: this.props.location.product.info,
         type: this.props.location.product.type,
+        public: this.props.location.product.public,
+        available: this.props.location.product.available,
         loading: false
       })
     }
@@ -48,6 +51,9 @@ export default class ProductPage extends Component {
             season: response.data.season,
             name: response.data.name,
             info: response.data.info,
+            public: response.data.public,
+            available: response.data.available,
+            type: response.data.type,
             loading: false
           })
 
@@ -57,21 +63,22 @@ export default class ProductPage extends Component {
         })
 
     }
+
   }
 
 
 
   render() {
+    document.title = this.state.name
     return (
-      <div style={{margin: "0 auto"}}>
+      <div style={{ margin: "0 auto" }}>
 
         {/* <div class="fullScreenProductPhoto">
         <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
         </div> */}
 
-
-        <div>
+        <div style={!this.state.available ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
             <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
             :
@@ -87,10 +94,15 @@ export default class ProductPage extends Component {
                 </div>
 
                 <p class="productPrice">
-                  {this.state.price + '.00€'}
+                  {this.state.available ?
+                    this.state.price + '.00€'
+                    :
+                    'UNAVAILABLE'
+
+                  }
                 </p>
 
-                <ul class="productSizing">
+                {this.state.available && <ul class="productSizing">
                   <li>XS</li>
                   <li>S</li>
                   <li>M</li>
@@ -98,13 +110,14 @@ export default class ProductPage extends Component {
                   <li>XL</li>
                   <li>(i)</li>
                 </ul>
+                }
 
-                <div class='buttonContainer' style={{ textAlign: "center" }}>
+                {this.state.available && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn">PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
-
+                } 
 
               </div>
               {/* after clicking it, make the image src _big.png */}
@@ -117,7 +130,7 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div class="bigProductContainer">
-                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.type + 's/'+ this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div class="box3"> 
@@ -139,13 +152,13 @@ export default class ProductPage extends Component {
               <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
                 <div id="photosGrid">
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
                   </div>
 
 
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
                   </div>
                 </div>

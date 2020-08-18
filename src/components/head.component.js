@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 
 
 export default () => (
+  document.title = 'P L A S T I C F U T U R E',
   <Helmet>
     <meta charset="UTF-8"></meta>
     <meta
@@ -15,7 +16,6 @@ export default () => (
       content="PLASTIC FUTURE OFFERS PREMIUM QUALITY CLOTHING WITH FUTURISTIC IDEAS"
     ></meta>
 
-    <title>P L A S T I C F U T U R E </title>
 
     <link
       rel=" apple-touch-icon"

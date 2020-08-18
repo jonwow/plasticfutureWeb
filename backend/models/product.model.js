@@ -21,6 +21,7 @@ const productSchema = new Schema({
     orderBy: { type: Number, required: true, },
     color: { type: Array, required: true, },
     sizes: { type: Object, required: true, },
+    public: {type: Boolean, required: true,}
 },
     {
         timestamps: true,
