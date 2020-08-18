@@ -4,7 +4,7 @@ backup files every 1st day of each month
 
     GENERAL:
     https://reactjs.org/docs/hooks-effect.html
-    mb ikurimo nuostatia ir steigimo sutartis
+    mb ikurimo nuostatai ir steigimo sutartis
     sugalvot final db structure ir perdaryt 
     add totebags to the web
     product code automatiskai padaryt?
