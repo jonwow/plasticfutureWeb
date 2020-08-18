@@ -42,6 +42,7 @@ router.route('/add').post((req, res) => {
     orderBy,
     color,
     sizes,
+    public,
   });
 
   newProduct.save()

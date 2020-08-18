@@ -3,15 +3,14 @@ backup files every 1st day of each month
 
 
     GENERAL:
-    reorganise folders (plasticidol/tshirts/bloodenemy/..png)
-    footer links
-    pf twitter
+    unavailable product page idet (stilius)
+    https://reactjs.org/docs/hooks-effect.html
+    mb ikurimo nuostatia ir steigimo sutartis
+    sugalvot final db structure ir perdaryt 
     add totebags to the web
-    add current page name to the product list top
-    tab names
-    tshirt and totebags route functionality
-    cart,faq,newsletter, contacts page
     product code automatiskai padaryt?
+
+    cart,faq,newsletter, contacts page
     clicking on additional photos switches the big photo with it 
 
     FINAL:
@@ -60,6 +59,15 @@ backup files every 1st day of each month
     test all browsers all os in vm
 
 NO HURRY:
+butinai situs 2 perziuret ir po ju visa js koda pagerint
+https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif
+https://dev.to/sophia_wyl/understanding-arrays-in-javascript-56g0
+
+
+    tab names . at least pf has to be in the head, maybe oncomponentmount or something
+
+reactjs breadcrumbs
+404 if page/product doesnt exsit
 no additional get requests for switching productlist components
 advanced dropdown menu
 
