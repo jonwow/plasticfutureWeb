@@ -3,14 +3,16 @@ backup files every 1st day of each month
 
 
     GENERAL:
-    array yra tai tiesog sugalvot kaip returnint (sorting, product-list)
+    array yra tai tiesog sugalvot kaip returnint (sorting, product-list). galbut productlistas turi child element ir ji kvieciu su array reiksmem?
+    pradzioj gal du produclistus ty viena iprasta o kita vien tik unavailable itemams kaip sorting alternative
     https://www.youtube.com/watch?v=3qnrouysbG8
     https://reactjs.org/docs/hooks-effect.html
     mb ikurimo nuostatia ir steigimo sutartis
+    totebags and slogans
     sugalvot final db structure ir perdaryt 
     add totebags to the web
     product code automatiskai padaryt?
-
+ignui paruost tac, careers laikinai isimt ir collections
     cart,faq,newsletter, contacts page
     clicking on additional photos switches the big photo with it 
 

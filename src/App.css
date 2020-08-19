@@ -604,6 +604,10 @@ nav p::selection {
   color: inherit;
 }
 
+.additionalPhotoBox img {
+  height: 13rem;
+
+}
 .product img:hover {
   -webkit-transition: 0.3s linear;
   transition: 0.3s linear;

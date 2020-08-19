@@ -32,6 +32,7 @@ const Product = props => (
 
 )
 
+
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
@@ -49,7 +50,7 @@ export default class ProductList extends Component {
             .then(response => {
                 this.setState({ products: response.data, loading: false })
 
-                console.log(this.state.products)
+                console.log('sup')
             })
             .catch((error) => {
                 console.log(error);
@@ -59,24 +60,22 @@ export default class ProductList extends Component {
 
     productList(productType) {
         // for every product
-        var array = ''
+        var array = []
         var masyvas = []
         console.log(this.state.products)
         var i = 0
         this.state.products.map(curProduct => {
-            var currentStyle = {};
-
             if (curProduct.public) {
-                // if NOT in stock or ready to be sold
-                if (!curProduct.available)
-                    currentStyle = { filter: "grayscale(1) blur(1px)" }
-
                 // example: plasticfuture.net/products/jeans will only display jeans type products
                 // if no productType is provided, it will display all products
                 if (curProduct.type == productType || productType == undefined)
                     curProduct.color.map(curColor => {
                         // gives 'props.color' and 'props.product' to the Product const
-                        array += i
+
+                        if (!array.includes(i)) {
+                            console.log(i + 'is not in the array');
+                            array.push(i)
+                        }
                         console.log(curProduct.name)
                         console.log(' vis dar kepu')
                     })
@@ -92,12 +91,42 @@ export default class ProductList extends Component {
         // add colors to this and then start implementing the sorting
         for (var x = 0; x < array.length; x++)
             masyvas.push(this.state.products[array[x]])
+        console.log(masyvas);
+
+        // make this sorting stuff a function
+        // 1 - all undefined need to go to the end (perhaps a new array and then make a new one from 2 old arrays)
+        var unavailableProducts = [],
+            availableProducts = []
+
+        for (i in masyvas)
+            !masyvas[i].available ?
+                unavailableProducts.push(masyvas[i])
+                :
+                availableProducts.push(masyvas[i])
+        
 
 
-        return masyvas.forEach(element => {
-            return 22 
-        });
 
+        console.log((unavailableProducts));
+        console.log((availableProducts));
+        var masyvas = availableProducts.concat(unavailableProducts)
+        // 2- sorting
+
+
+
+        console.log(this.state.products)
+        return masyvas.map(curProduct => {
+            // if NOT in stock or ready to be sold
+            if (!curProduct.available)
+                currentStyle = { filter: "grayscale(1) blur(1px)" }
+            else
+                var currentStyle = {};
+
+            return curProduct.color.map(curColor => {
+                return <Product product={curProduct} color={curColor} style={currentStyle} />
+            })
+
+        })
     }
 
 
@@ -106,14 +135,14 @@ export default class ProductList extends Component {
 
         return (
 
-            <div className="centeredContainer" id="topElement">
+            <div className="centeredContainer" id="topElement" >
                 {productType && <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}> {productType}
 
                     {/* if the product type is jeans, dont add the 's' at the end */}
                     {productType[productType.length - 1] != 's' && 's'}
 
                 </p>}
-                <div className="box">
+                < div className="box" >
                     {
                         this.state.loading ?
 
@@ -121,8 +150,8 @@ export default class ProductList extends Component {
                             :
                             this.productList(productType)
                     }
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 }
