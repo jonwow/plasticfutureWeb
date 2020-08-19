@@ -49,6 +49,9 @@
 footer {
   padding-top: 2.25rem;
 }
+footer p {
+  font-size: 1rem;
+}
 
 /* applies to left and right footer parts */
 footer .imageContainer img {
@@ -592,6 +595,7 @@ nav p::selection {
   background: rgba(245, 245, 245, 0.85);
 }
 
+
 .stickyFooter ul li p {
   position: relative;
   top: 50%;
@@ -679,7 +683,7 @@ nav img:hover {
   margin: 0 auto;
 
   border: 1px solid rgba(0, 0, 0, 0.164);
-  border-radius: 15px;
+  border-radius: 4px;
   /* margin-right: 35px; */
   height: 60px;
 
@@ -703,7 +707,7 @@ nav img:hover {
 
 #buyBtn {
   border: 1px solid rgba(0, 0, 0, 0.238);
-  border-radius: 15px;
+  border-radius: 4px;
   max-width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
@@ -816,10 +820,6 @@ nav img:hover {
   footer {
     padding-top: 5vh;
     margin-bottom: 1vh;
-  }
-
-  footer p {
-    font-size: 1.8vmax;
   }
 
   #goToTopIcon {

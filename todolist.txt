@@ -3,13 +3,17 @@ backup files every 1st day of each month
 
 
     GENERAL:
-    array yra tai tiesog sugalvot kaip returnint (sorting, product-list). galbut productlistas turi child element ir ji kvieciu su array reiksmem?
+    decide db structure, make new db, upload totes and do slogans. available turi but ARRAY kiekvienai spalvai
+    unavailable tikrint ir pagal foreach color > foreach size.( !available || foreachcolor>foreachsize... JEI BENT VIENAS SIZE TURI KAZKO)
     pradzioj gal du produclistus ty viena iprasta o kita vien tik unavailable itemams kaip sorting alternative
     https://www.youtube.com/watch?v=3qnrouysbG8
     https://reactjs.org/docs/hooks-effect.html
     mb ikurimo nuostatia ir steigimo sutartis
+    pfyoutube
     totebags and slogans
+    attach footer to the bottom
     sugalvot final db structure ir perdaryt 
+    dropdown menu needs to be attached to the navbar
     add totebags to the web
     product code automatiskai padaryt?
 ignui paruost tac, careers laikinai isimt ir collections

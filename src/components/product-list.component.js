@@ -39,30 +39,29 @@ export default class ProductList extends Component {
         console.log(props)
 
 
-        this.state = { products: [], loading: true };
+        this.state = { products: [], loading: true, first: true };
     }
 
 
     componentDidMount() {
-        document.title = 'P L A S T I C F U T U R E'
+        document.title = 'P L A S T I C F U T U R E '
 
-        axios.get("http://localhost:5000/products/")
-            .then(response => {
-                this.setState({ products: response.data, loading: false })
+        if (this.state.first)
+            axios.get("http://localhost:5000/products/")
+                .then(response => {
+                    this.setState({ products: response.data, loading: false, first: false })
 
-                console.log('sup')
-            })
-            .catch((error) => {
-                console.log(error);
+                })
+                .catch((error) => {
+                    console.log(error);
 
-            })
+                })
     }
 
     productList(productType) {
         // for every product
         var array = []
         var masyvas = []
-        console.log(this.state.products)
         var i = 0
         this.state.products.map(curProduct => {
             if (curProduct.public) {
@@ -103,7 +102,7 @@ export default class ProductList extends Component {
                 unavailableProducts.push(masyvas[i])
                 :
                 availableProducts.push(masyvas[i])
-        
+
 
 
 
@@ -132,21 +131,21 @@ export default class ProductList extends Component {
 
     render() {
         const productType = this.props.match.params.productType;
-
         return (
 
             <div className="centeredContainer" id="topElement" >
-                {productType && <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}> {productType}
-
-                    {/* if the product type is jeans, dont add the 's' at the end */}
-                    {productType[productType.length - 1] != 's' && 's'}
-
-                </p>}
+                {productType ?
+                    <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}> {productType}
+                        {/* if the product type is jeans, dont add the 's' at the end */}
+                        {productType[productType.length - 1] != 's' && 's'}
+                    </p>
+                    :
+                    <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>all products </p>}
                 < div className="box" >
                     {
                         this.state.loading ?
 
-                            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '100vh' }}></p>
+                            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0' }}></p>
                             :
                             this.productList(productType)
                     }
