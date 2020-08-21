@@ -12,7 +12,7 @@ router.route('/add').post((req, res) => {
   const type = req.body.type;
   const name = req.body.name;
   const season = req.body.season;
-  const colors = req.body.colors;  
+  const color = req.body.color;  
   const primeCost = req.body.primeCost;  
   const price = req.body.price;
   const orderBy = req.body.orderBy;
@@ -32,7 +32,7 @@ router.route('/add').post((req, res) => {
     type,
     name,
     season,
-    colors,
+    color,
     primeCost,
     price,
     orderBy,

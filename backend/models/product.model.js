@@ -8,7 +8,7 @@ const productSchema = new Schema({
     type: { type: String, required: true },
     name: { type: String, required: true },
     season: { type: String, required: true },
-    colors: { type: Array, required: true },
+    color: { type: Array, required: true },
     primeCost: { type: Array, required: true },
     price: { type: Array, required: true },
     orderBy: { type: Array, required: true },

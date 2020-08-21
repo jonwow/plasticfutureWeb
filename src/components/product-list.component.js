@@ -6,7 +6,7 @@ let currency = '€';
 const Product = props => (
 
     <Link to={{
-        pathname: "/products/" + props.product._id + "/" + props.color,
+        pathname: "/products/" + props.product._id + "/" + props.color + "/"+ props.index,
         product: props.product,
         style: props.style
     }} >
@@ -18,9 +18,9 @@ const Product = props => (
             {/* make a proper formatting solution */}
             {props.product.available ?
                 props.product.price.toString().includes('.') ?
-                    <p >{props.product.price}</p>
+                    <p >{props.product.price[props.index]}</p>
                     :
-                    <p  >{props.product.price}.00{currency}</p>
+                    <p  >{props.product.price[props.index]}.00{currency}</p>
 
                 :
                 <p >unavailable</p>
@@ -64,15 +64,17 @@ export default class ProductList extends Component {
         var masyvas = []
         var i = 0
         this.state.products.map(curProduct => {
-            if (curProduct.public) {
+            // cia foreach turi but o ne tik [0]
+            if (curProduct.public[0]) {
                 // example: plasticfuture.net/products/jeans will only display jeans type products
                 // if no productType is provided, it will display all products
                 if (curProduct.type == productType || productType == undefined)
                     curProduct.color.map(curColor => {
                         // gives 'props.color' and 'props.product' to the Product const
-
+                        
                         if (!array.includes(i)) {
                             console.log(i + 'is not in the array');
+                            // cia pushint ne i array o i objekta arba i papildoma array indeksams
                             array.push(i)
                         }
                         console.log(curProduct.name)
@@ -122,7 +124,7 @@ export default class ProductList extends Component {
                 var currentStyle = {};
 
             return curProduct.color.map(curColor => {
-                return <Product product={curProduct} color={curColor} style={currentStyle} />
+                return <Product product={curProduct} color={curColor} style={currentStyle} index={curProduct.color.indexOf(curColor)} />
             })
 
         })
