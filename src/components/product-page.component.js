@@ -10,12 +10,13 @@ export default class ProductPage extends Component {
     this.state = {
       description: '',
       price: '',
-      curColor:'',
-      allColors:[],
+      curColor: '',
+      allColors: [],
       season: '',
       name: '',
       info: '',
       loading: true,
+      sizes: '',
       productCode: '',
       public: true,
       available: true
@@ -35,6 +36,7 @@ export default class ProductPage extends Component {
         season: this.props.location.product.season,
         name: this.props.location.product.name,
         info: this.props.location.product.info,
+        sizes: this.props.location.product.sizes,
         type: this.props.location.product.type,
         public: this.props.location.product.public,
         available: this.props.location.product.available,
@@ -54,6 +56,7 @@ export default class ProductPage extends Component {
             season: response.data.season,
             name: response.data.name,
             info: response.data.info,
+            sizes: response.data.sizes,
             public: response.data.public,
             available: response.data.available,
             type: response.data.type,
@@ -72,6 +75,7 @@ export default class ProductPage extends Component {
 
 
   render() {
+    console.log(this.state.sizes);
     document.title = this.state.allColors.indexOf(this.state.curColor)
     return (
       <div style={{ margin: "0 auto" }}>
@@ -120,7 +124,7 @@ export default class ProductPage extends Component {
                   <button id="buyBtn">PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
-                } 
+                }
 
               </div>
               {/* after clicking it, make the image src _big.png */}

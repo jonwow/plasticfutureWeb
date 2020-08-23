@@ -3,7 +3,8 @@ backup files every 1st day of each month
 
 
     GENERAL:
-    decide db structure, make new db, upload totes and do slogans. available turi but ARRAY kiekvienai spalvai
+    make the web display available size units and then just whether the size is available or no
+    upload totes and do slogans. available turi but ARRAY kiekvienai spalvai
     unavailable tikrint ir pagal foreach color > foreach size.( !available || foreachcolor>foreachsize... JEI BENT VIENAS SIZE TURI KAZKO)
     pradzioj gal du produclistus ty viena iprasta o kita vien tik unavailable itemams kaip sorting alternative
     https://www.youtube.com/watch?v=3qnrouysbG8
@@ -110,6 +111,15 @@ cart button near purchase button
 website vulnerability n security checklist
 deep understanding of mongoose and other tech that im using
 mongodb query/separate pf page for latest product code (for a new product) and if any product codes are similar for two products
+
+database daily autoamtic tests:
+1) if 4 colors, price and other arrays need to have exactly 4 values
+
+
+
+
+
+
 
 
 alga = pareigos + kiek parduota t shirtu & visa tai skaiciuojama is profit-30%(20% imones pletojimui, 20% kas parduoda designu daugiausia)

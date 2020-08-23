@@ -6,7 +6,7 @@ let currency = '€';
 const Product = props => (
 
     <Link to={{
-        pathname: "/products/" + props.product._id + "/" + props.color + "/"+ props.index,
+        pathname: "/products/" + props.product._id + "/" + props.color ,
         product: props.product,
         style: props.style
     }} >
