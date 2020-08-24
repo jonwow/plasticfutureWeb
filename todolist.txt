@@ -13,6 +13,7 @@ backup files every 1st day of each month
     pradzioj gal du produclistus ty viena iprasta o kita vien tik unavailable itemams kaip sorting alternative
     https://www.youtube.com/watch?v=3qnrouysbG8
     https://reactjs.org/docs/hooks-effect.html
+
     pfyoutube
     totebags and slogans
     dropdown menu needs to be attached to the navbar
