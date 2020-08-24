@@ -106,7 +106,7 @@ export default class ProductList extends Component {
         for (i in masyvas)
             if(masyvas[i].available)
                 unavailableProducts.push(masyvas[i])
-                
+            else    
                 availableProducts.push(masyvas[i])
 
 

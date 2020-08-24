@@ -119,7 +119,7 @@ mongodb query/separate pf page for latest product code (for a new product) and i
 database daily autoamtic tests:
 1) if 4 colors, price and other arrays need to have exactly 4 values
 2) if same product codes
-
+3) if primecost = price
 
 
 
