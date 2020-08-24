@@ -1,0 +1,5 @@
+backup files every 1st day of the month
+renew the prime cost every 6 months (perhaps labor gets cheaper etc)
+
+spalvu pasirinkimas zemiau produkto taip: foreach color > if public[colorNumber] && available[colorNumber]
+general sorting:price. same product same price? sort by orderBy

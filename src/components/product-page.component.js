@@ -10,11 +10,13 @@ export default class ProductPage extends Component {
     this.state = {
       description: '',
       price: '',
-      color: [],
+      curColor: '',
+      allColors: [],
       season: '',
       name: '',
       info: '',
       loading: true,
+      sizes: '',
       productCode: '',
       public: true,
       available: true
@@ -29,10 +31,12 @@ export default class ProductPage extends Component {
         description: this.props.location.product.description,
         price: this.props.location.product.price,
         // without the 'match.params' the color would be undecided if the product has >1 color
-        color: this.props.match.params.color,
+        curColor: this.props.match.params.color,
+        allColors: this.props.location.product.color,
         season: this.props.location.product.season,
         name: this.props.location.product.name,
         info: this.props.location.product.info,
+        sizes: this.props.location.product.sizes,
         type: this.props.location.product.type,
         public: this.props.location.product.public,
         available: this.props.location.product.available,
@@ -47,10 +51,12 @@ export default class ProductPage extends Component {
           this.setState({
             description: response.data.description,
             price: response.data.price,
-            color: this.props.match.params.color,
+            curColor: this.props.match.params.color,
+            allColors: response.data.color,
             season: response.data.season,
             name: response.data.name,
             info: response.data.info,
+            sizes: response.data.sizes,
             public: response.data.public,
             available: response.data.available,
             type: response.data.type,
@@ -69,7 +75,8 @@ export default class ProductPage extends Component {
 
 
   render() {
-    document.title = this.state.name
+    console.log(this.state.sizes);
+    document.title = this.state.name + ' - '+this.state.curColor;
     return (
       <div style={{ margin: "0 auto" }}>
 
@@ -95,7 +102,7 @@ export default class ProductPage extends Component {
 
                 <p class="productPrice">
                   {this.state.available ?
-                    this.state.price + '.00€'
+                    this.state.price[this.state.allColors.indexOf(this.state.curColor)] + '.00€'
                     :
                     'UNAVAILABLE'
 
@@ -117,7 +124,7 @@ export default class ProductPage extends Component {
                   <button id="buyBtn">PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
-                } 
+                }
 
               </div>
               {/* after clicking it, make the image src _big.png */}
@@ -130,7 +137,7 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div class="bigProductContainer">
-                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div class="box3"> 
@@ -152,13 +159,13 @@ export default class ProductPage extends Component {
               <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
                 <div id="photosGrid">
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
 
                   </div>
 
 
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
 
                   </div>
                 </div>

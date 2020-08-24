@@ -3,16 +3,32 @@ backup files every 1st day of each month
 
 
     GENERAL:
-    https://reactjs.org/docs/hooks-effect.html
-    mb ikurimo nuostatai ir steigimo sutartis
-    sugalvot final db structure ir perdaryt 
-    add totebags to the web
-    product code automatiskai padaryt?
+    do arrays and sorting properly
+    kai ignas renamins, upload totes and do slogans
+    fix footer
 
+
+    make the web display available size units and then just whether the size is available or no
+    unavailable tikrint ir pagal foreach color > foreach size.( !available || foreachcolor>foreachsize... JEI BENT VIENAS SIZE TURI KAZKO)
+    pradzioj gal du produclistus ty viena iprasta o kita vien tik unavailable itemams kaip sorting alternative
+    https://www.youtube.com/watch?v=3qnrouysbG8
+    https://reactjs.org/docs/hooks-effect.html
+
+    pfyoutube
+    totebags and slogans
+    dropdown menu needs to be attached to the navbar
+    product code automatiskai padaryt?
+ignui paruost tac, careers laikinai isimt ir collections
     cart,faq,newsletter, contacts page
     clicking on additional photos switches the big photo with it 
+    https://www.restapitutorial.com/lessons/whatisrest.html
+ how to confirm if a person has completed the order javascript https://gate.luminorgroup.com/api/ yra
+ https://www.freecodecamp.org/news/rest-api-tutorial-rest-client-rest-service-and-api-calls-explained-with-code-examples/
+    mb ikurimo nuostatia ir steigimo sutartis
+
 
     FINAL:
+    adresas imonei
     https://www.hostinger.com/tutorials/ssh-t1utorial-how-does-ssh-work
     perziuret komentarus
     gdpr web stuff
@@ -54,16 +70,22 @@ backup files every 1st day of each month
     check all files including cssjshtmltxt on github or delete older versions
     headertext fontmin pakeist gal nes nera centruota visiskai (su lnijom paziuret)
     buy products for >40€ - get a free phone case OR raktu pakabuka
-    4k support (html font size needs to be increased)
     test all browsers all os in vm
+    ar hostas palaikys visas tech kurias naudsoim (nodejs, react,reactrouter,mongoose,etc
+    4k support (html font size needs to be increased)
 
 NO HURRY:
+https://owasp.org/www-project-top-ten/
+
+pakeist emaila i jonas@plasticfuture.com veliau mongodb 
+ how to log adding,editing,deleting items from mongodb by ip address?
 butinai situs 2 perziuret ir po ju visa js koda pagerint
 https://dev.to/lydiahallie/javascript-visualized-event-loop-3dif
 https://dev.to/sophia_wyl/understanding-arrays-in-javascript-56g0
 
 
     tab names . at least pf has to be in the head, maybe oncomponentmount or something
+    attach footer to the bottom
 
 reactjs breadcrumbs
 404 if page/product doesnt exsit
@@ -91,6 +113,18 @@ gototop (firefox scrolled down to the last product and clicking on it renders a 
 reorder this
 allphotos.js
 cart button near purchase button
+website vulnerability n security checklist
+deep understanding of mongoose and other tech that im using
+mongodb query/separate pf page for latest product code (for a new product) and if any product codes are similar for two products
+
+database daily autoamtic tests:
+1) if 4 colors, price and other arrays need to have exactly 4 values
+2) if same product codes
+3) if primecost = price
+
+
+
+
 
 
 alga = pareigos + kiek parduota t shirtu & visa tai skaiciuojama is profit-30%(20% imones pletojimui, 20% kas parduoda designu daugiausia)

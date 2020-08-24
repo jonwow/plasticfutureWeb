@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 let currency = '€';
+
+
 const Product = props => (
 
     <Link to={{
-        pathname: "/products/" + props.product._id + "/" + props.color,
+        pathname: "/products/" + props.product.type  + '/' + props.product.productCode+ '/'  + props.color + '/'+ props.product._id + "/",
         product: props.product,
         style: props.style
     }} >
@@ -18,9 +20,9 @@ const Product = props => (
             {/* make a proper formatting solution */}
             {props.product.available ?
                 props.product.price.toString().includes('.') ?
-                    <p >{props.product.price}</p>
+                    <p >{props.product.price[props.index]}</p>
                     :
-                    <p  >{props.product.price}.00{currency}</p>
+                    <p  >{props.product.price[props.index]}.00{currency}</p>
 
                 :
                 <p >unavailable</p>
@@ -32,66 +34,112 @@ const Product = props => (
 
 )
 
+
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
         console.log(props)
+    
 
-
-        this.state = { products: [], loading: true };
+        this.state = { products: [], loading: true, first: true };
+  
     }
 
 
     componentDidMount() {
-        document.title = 'P L A S T I C F U T U R E'
+        document.title = 'P L A S T I C F U T U R E '
 
-        axios.get("http://localhost:5000/products/")
-            .then(response => {
-                this.setState({ products: response.data, loading: false })
+        if (this.state.first)
+            axios.get("http://localhost:5000/products/")
+                .then(response => {
+                    this.setState({ products: response.data, loading: false, first: false })
 
-                console.log(this.state.products)
-            })
-            .catch((error) => {
-                console.log(error);
+                })
+                .catch((error) => {
+                    console.log(error);
 
-            })
+                })
     }
 
     productList(productType) {
-        var currentStyle = {
-            
-        };
-
+     
         // for every product
-        return this.state.products.map(curProduct => {
-            if (curProduct.public) {
-                // if NOT in stock or ready to be sold
-                if (!curProduct.available) {
-                    currentStyle = {
-                        filter: "grayscale(1) blur(1px)"
-                    }
-                }
-                else {
-                    currentStyle = {
-                    }
-                }
+        var array = []
+        var masyvas = []
+        var i = 0
+        this.state.products.map(curProduct => {
+            // cia foreach turi but o ne tik [0]
+            if (curProduct.public[0]) {
                 // example: plasticfuture.net/products/jeans will only display jeans type products
-                if (curProduct.type == productType) {
-                    return curProduct.color.map(curColor => {
-                        // gives 'props.color' and 'props.product' to the Product const
-                        return <Product style={currentStyle} color={curColor} product={curProduct} />;
-                    })
-                }
                 // if no productType is provided, it will display all products
-                else if (productType == undefined) {
-                    return curProduct.color.map(curColor => {
+                if (curProduct.type == productType || productType == undefined)
+                    curProduct.color.map(curColor => {
                         // gives 'props.color' and 'props.product' to the Product const
-                        return <Product style={currentStyle} color={curColor} product={curProduct} />;
+                        
+                        if (!array.includes(i)) {
+                            console.log(i + 'is not in the array');
+                            // cia pushint ne i array o i objekta arba i papildoma array indeksams
+                            array.push(i)
+                        }
+                        console.log(curProduct.name)
+                        console.log(' vis dar kepu')
                     })
-                }
-
             }
+            console.log(array + '\n----------------------------\n')
 
+            i++
+            console.log('i yra ' + i)
+
+
+        })
+
+        // add colors to this and then start implementing the sorting
+        for (var x = 0; x < array.length; x++)
+            masyvas.push(this.state.products[array[x]])
+        console.log(masyvas);
+
+        // make this sorting stuff a function
+        // 1 - all undefined need to go to the end (perhaps a new array and then make a new one from 2 old arrays)
+        var unavailableProducts = [],
+            availableProducts = []
+
+        for (i in masyvas)
+            if(masyvas[i].available)
+                unavailableProducts.push(masyvas[i])
+            else    
+                availableProducts.push(masyvas[i])
+
+
+
+
+        console.log((unavailableProducts));
+        console.log((availableProducts));
+        var masyvas = availableProducts.concat(unavailableProducts)
+        // 2- sorting
+        console.log(masyvas)
+        for(var i = 0; i < masyvas.length; i++)
+        {
+            for (var j = 1; j < masyvas.length; j++)
+            {
+                if (masyvas[i] > masyvas[j])
+                    {
+                       [masyvas[i], masyvas[j]] = [masyvas[j], masyvas[i]]
+                    }
+            }
+        }
+
+
+        console.log(this.state.products)
+        return masyvas.map(curProduct => {
+            // if NOT in stock or ready to be sold
+            if (!curProduct.available)
+                currentStyle = { filter: "grayscale(1) blur(1px)" }
+            else
+                var currentStyle = {};
+
+            return curProduct.color.map(curColor => {
+                return <Product product={curProduct} color={curColor} style={currentStyle} index={curProduct.color.indexOf(curColor)} />
+            })
 
         })
     }
@@ -99,26 +147,26 @@ export default class ProductList extends Component {
 
     render() {
         const productType = this.props.match.params.productType;
-
         return (
 
-            <div className="centeredContainer" id="topElement">
-                {productType && <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}> {productType}
-
-                    {/* if the product type is jeans, dont add the 's' at the end */}
-                    {productType[productType.length - 1] != 's' && 's'}
-
-                </p>}
-                <div className="box">
+            <div className="centeredContainer" id="topElement" >
+                {productType ?
+                    <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}> {productType}
+                        {/* if the product type is jeans, dont add the 's' at the end */}
+                        {productType[productType.length - 1] != 's' && 's'}
+                    </p>
+                    :
+                    <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>all products </p>}
+                < div className="box" >
                     {
                         this.state.loading ?
 
-                            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '370px' }}></p>
+                            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0' }}></p>
                             :
                             this.productList(productType)
                     }
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 }

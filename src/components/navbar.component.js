@@ -133,11 +133,11 @@ function DropdownMenu() {
         </Link>
       </DropdownItem>
 
-      <DropdownItem>
+      {/* <DropdownItem>
         <Link to="/youraccount" class="menu-item">
           <li>YOUR ACCOUNT</li>
         </Link>
-      </DropdownItem>
+      </DropdownItem> */}
 
       <DropdownItem>
         <Link to="/collections" class="menu-item">
