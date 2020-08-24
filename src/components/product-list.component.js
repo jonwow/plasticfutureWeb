@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 let currency = '€';
+
+
 const Product = props => (
 
     <Link to={{
-        pathname: "/products/" + props.product._id + "/" + props.color ,
+        pathname: "/products/" + props.product.type  + '/' + props.product.productCode+ '/'  + props.color + '/'+ props.product._id + "/",
         product: props.product,
         style: props.style
     }} >
@@ -37,9 +39,10 @@ export default class ProductList extends Component {
     constructor(props) {
         super(props);
         console.log(props)
-
+    
 
         this.state = { products: [], loading: true, first: true };
+  
     }
 
 
@@ -59,6 +62,7 @@ export default class ProductList extends Component {
     }
 
     productList(productType) {
+     
         // for every product
         var array = []
         var masyvas = []
@@ -100,9 +104,9 @@ export default class ProductList extends Component {
             availableProducts = []
 
         for (i in masyvas)
-            !masyvas[i].available ?
+            if(masyvas[i].available)
                 unavailableProducts.push(masyvas[i])
-                :
+                
                 availableProducts.push(masyvas[i])
 
 
@@ -112,7 +116,17 @@ export default class ProductList extends Component {
         console.log((availableProducts));
         var masyvas = availableProducts.concat(unavailableProducts)
         // 2- sorting
-
+        console.log(masyvas)
+        for(var i = 0; i < masyvas.length; i++)
+        {
+            for (var j = 1; j < masyvas.length; j++)
+            {
+                if (masyvas[i] > masyvas[j])
+                    {
+                       [masyvas[i], masyvas[j]] = [masyvas[j], masyvas[i]]
+                    }
+            }
+        }
 
 
         console.log(this.state.products)

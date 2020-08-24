@@ -3,24 +3,27 @@ backup files every 1st day of each month
 
 
     GENERAL:
+    do arrays and sorting properly
+    kai ignas renamins, upload totes and do slogans
+    fix footer
+
+
     make the web display available size units and then just whether the size is available or no
-    upload totes and do slogans. available turi but ARRAY kiekvienai spalvai
     unavailable tikrint ir pagal foreach color > foreach size.( !available || foreachcolor>foreachsize... JEI BENT VIENAS SIZE TURI KAZKO)
     pradzioj gal du produclistus ty viena iprasta o kita vien tik unavailable itemams kaip sorting alternative
     https://www.youtube.com/watch?v=3qnrouysbG8
     https://reactjs.org/docs/hooks-effect.html
-    mb ikurimo nuostatia ir steigimo sutartis
     pfyoutube
     totebags and slogans
-    attach footer to the bottom
-    sugalvot final db structure ir perdaryt 
     dropdown menu needs to be attached to the navbar
-    add totebags to the web
     product code automatiskai padaryt?
 ignui paruost tac, careers laikinai isimt ir collections
     cart,faq,newsletter, contacts page
     clicking on additional photos switches the big photo with it 
+    https://www.restapitutorial.com/lessons/whatisrest.html
  how to confirm if a person has completed the order javascript https://gate.luminorgroup.com/api/ yra
+ https://www.freecodecamp.org/news/rest-api-tutorial-rest-client-rest-service-and-api-calls-explained-with-code-examples/
+    mb ikurimo nuostatia ir steigimo sutartis
 
 
     FINAL:
@@ -71,7 +74,7 @@ ignui paruost tac, careers laikinai isimt ir collections
     4k support (html font size needs to be increased)
 
 NO HURRY:
-
+https://owasp.org/www-project-top-ten/
 
 pakeist emaila i jonas@plasticfuture.com veliau mongodb 
  how to log adding,editing,deleting items from mongodb by ip address?
@@ -81,6 +84,7 @@ https://dev.to/sophia_wyl/understanding-arrays-in-javascript-56g0
 
 
     tab names . at least pf has to be in the head, maybe oncomponentmount or something
+    attach footer to the bottom
 
 reactjs breadcrumbs
 404 if page/product doesnt exsit
@@ -114,7 +118,7 @@ mongodb query/separate pf page for latest product code (for a new product) and i
 
 database daily autoamtic tests:
 1) if 4 colors, price and other arrays need to have exactly 4 values
-
+2) if same product codes
 
 
 

@@ -22,7 +22,7 @@ function App() {
       <div className="container">
         <Route path="/" exact component={ProductList}/>
         <Route path="/products" exact component={ProductList} />
-        <Route path="/products/:id/:color" exact component={ProductPage} />
+        <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} />
         <Route path="/products/:productType" exact component={ProductList} />
 
         <Route path="/toteBags">

@@ -76,7 +76,7 @@ export default class ProductPage extends Component {
 
   render() {
     console.log(this.state.sizes);
-    document.title = this.state.allColors.indexOf(this.state.curColor)
+    document.title = this.state.name + ' - '+this.state.curColor;
     return (
       <div style={{ margin: "0 auto" }}>
 
