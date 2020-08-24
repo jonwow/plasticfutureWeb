@@ -4,7 +4,7 @@ backup files every 1st day of each month
 
     GENERAL:
     do arrays and sorting properly
-    kai ignas renamins, upload totes and do slogans
+    default sorting - by units sold
     fix footer
 
 
@@ -22,8 +22,9 @@ ignui paruost tac, careers laikinai isimt ir collections
     cart,faq,newsletter, contacts page
     clicking on additional photos switches the big photo with it 
     https://www.restapitutorial.com/lessons/whatisrest.html
- how to confirm if a person has completed the order javascript https://gate.luminorgroup.com/api/ yra
  https://www.freecodecamp.org/news/rest-api-tutorial-rest-client-rest-service-and-api-calls-explained-with-code-examples/
+ how to confirm if a person has completed the order javascript https://gate.luminorgroup.com/api/ yra
+    checkoute tirkint pagal product code ir _id
     mb ikurimo nuostatia ir steigimo sutartis
 
 
@@ -117,10 +118,11 @@ website vulnerability n security checklist
 deep understanding of mongoose and other tech that im using
 mongodb query/separate pf page for latest product code (for a new product) and if any product codes are similar for two products
 
-database daily autoamtic tests:
+database daily autoamtic tests OR CHARTS:
 1) if 4 colors, price and other arrays need to have exactly 4 values
 2) if same product codes
 3) if primecost = price
+
 
 
 
