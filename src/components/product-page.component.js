@@ -42,6 +42,7 @@ export default class ProductPage extends Component {
         available: this.props.location.product.available,
         loading: false
       })
+
     }
     else {
       console.log('no cache is present, therefore we get data from the server');
@@ -75,8 +76,11 @@ export default class ProductPage extends Component {
 
 
   render() {
+    if (!this.state.loading)
+      document.title = this.state.name + ' ' +this.state.type + ' - '+this.state.curColor
+    
+
     console.log(this.state.sizes);
-    document.title = this.state.name + ' - '+this.state.curColor;
     return (
       <div style={{ margin: "0 auto" }}>
 
