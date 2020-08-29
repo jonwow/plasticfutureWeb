@@ -9,7 +9,7 @@ export default class ProductPage extends Component {
 
     this.state = {
       description: '',
-      price: '',
+      price: [],
       curColor: '',
       allColors: [],
       season: '',
@@ -19,8 +19,19 @@ export default class ProductPage extends Component {
       sizes: '',
       productCode: '',
       public: true,
-      available: []
+      available: [],
+      selectedSize: undefined
     }
+  }
+
+  selectTheSize(size) {
+    this.state.selectedSize = size;
+    var x = document.getElementsByClassName('productSizing')[0].children;
+    for (var i = 0; i < x.length; i++)
+      x[i].style.cssText = "background: white"
+    document.getElementById(size).style.cssText = "background: black; color: white; transition: 0.2s"
+
+    console.log(this.state.name+ this.state.productCode+this.state.curColor+this.state.selectedSize+this.state.price[this.state.allColors.indexOf(this.state.curColor)]);
   }
 
   componentDidMount() {
@@ -40,6 +51,7 @@ export default class ProductPage extends Component {
         type: this.props.location.product.type,
         public: this.props.location.product.public,
         available: this.props.location.product.available,
+        productCode: this.props.location.product.productCode,
         loading: false
       })
 
@@ -59,7 +71,8 @@ export default class ProductPage extends Component {
             info: response.data.info,
             sizes: response.data.sizes,
             public: response.data.public,
-            available: response.data.available,
+        productCode: response.data.productCode,
+        available: response.data.available,
             type: response.data.type,
             loading: false
           })
@@ -80,11 +93,11 @@ export default class ProductPage extends Component {
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
 
 
-      let sum = 0;
-      for (let salary of Object.values(this.state.sizes)) {
-        sum += salary[this.state.allColors.indexOf(this.state.curColor)];
-      }
-      console.log(sum);
+    let sum = 0;
+    for (let salary of Object.values(this.state.sizes)) {
+      sum += salary[this.state.allColors.indexOf(this.state.curColor)];
+    }
+    console.log(sum);
 
     return (
       <div style={{ margin: "0 auto" }}>
@@ -110,7 +123,7 @@ export default class ProductPage extends Component {
                 </div>
 
                 <p class="productPrice">
-                  {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && sum  > 0  ?
+                  {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && sum > 0 ?
                     this.state.price[this.state.allColors.indexOf(this.state.curColor)] + '.00€'
                     :
                     'UNAVAILABLE'
@@ -118,17 +131,17 @@ export default class ProductPage extends Component {
                   }
                 </p>
                 {/* if product type = tote, accessory. jewelry etc  = onesize only */}
-                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && sum  > 0  && <ul class="productSizing">
-                  {this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>XS</li>}
-                  {this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>S</li>}
-                  {this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>M</li>}
-                  {this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>L</li>}
-                  {this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>XL</li>}
+                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && sum > 0 && <ul class="productSizing">
+                  {this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XS" onClick={this.selectTheSize.bind(this, 'XS')}>XS</li>}
+                  {this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="S" onClick={this.selectTheSize.bind(this, 'S')}>S</li>}
+                  {this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="M" onClick={this.selectTheSize.bind(this, 'M')}>M</li>}
+                  {this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="L" onClick={this.selectTheSize.bind(this, 'L')}>L</li>}
+                  {this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XL" onClick={this.selectTheSize.bind(this, 'XL')}>XL</li>}
                   <li>(i)</li>
                 </ul>
                 }
 
-                {this.state.available[this.state.allColors.indexOf(this.state.curColor)]&& sum  > 0   && <div class='buttonContainer' style={{ textAlign: "center" }}>
+                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && sum > 0 && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn">PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}

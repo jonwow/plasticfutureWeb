@@ -43,6 +43,11 @@
 
 
 
+.productSizing li::selection {
+  background: rgba(0, 0, 0, 0);
+}
+
+
 
 
 
@@ -86,7 +91,8 @@ footer .imageContainer img {
   list-style: none;
   display: inline;
 
-  margin: 0 1rem;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
   font-size: 1.5rem;
 }
 
@@ -911,7 +917,7 @@ nav img:hover {
 
 @media only screen and (max-width: 1140px) {
   .productSizing li {
-    margin: 0 1.5vw;
+    padding: 0 1.5vw;
   }
 }
 
