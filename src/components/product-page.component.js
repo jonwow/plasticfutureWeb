@@ -79,10 +79,13 @@ export default class ProductPage extends Component {
     if (!this.state.loading)
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
 
-    console.log(this.state.available);
 
+      let sum = 0;
+      for (let salary of Object.values(this.state.sizes)) {
+        sum += salary[this.state.allColors.indexOf(this.state.curColor)];
+      }
+      console.log(sum);
 
-    console.log(this.state.sizes);
     return (
       <div style={{ margin: "0 auto" }}>
 
@@ -107,15 +110,15 @@ export default class ProductPage extends Component {
                 </div>
 
                 <p class="productPrice">
-                  {this.state.available[this.state.allColors.indexOf(this.state.curColor)] ?
+                  {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && sum  > 0  ?
                     this.state.price[this.state.allColors.indexOf(this.state.curColor)] + '.00€'
                     :
                     'UNAVAILABLE'
 
                   }
                 </p>
-                {console.log(this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)]+"asd")}
-                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && <ul class="productSizing">
+                {/* if product type = tote, accessory. jewelry etc  = onesize only */}
+                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && sum  > 0  && <ul class="productSizing">
                   {this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>XS</li>}
                   {this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>S</li>}
                   {this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>M</li>}
@@ -125,7 +128,7 @@ export default class ProductPage extends Component {
                 </ul>
                 }
 
-                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && <div class='buttonContainer' style={{ textAlign: "center" }}>
+                {this.state.available[this.state.allColors.indexOf(this.state.curColor)]&& sum  > 0   && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn">PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}

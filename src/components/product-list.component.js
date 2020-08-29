@@ -8,14 +8,17 @@ const Product = props => (
     <Link to={{
         pathname: "/products/" + props.product.type + '/' + props.product.productCode + '/' + props.color + '/' + props.product._id + "/",
         product: props.product,
-        style: props.style
+        style: props.style,
+        amountOfSizes: props.amountOfSizes
     }}>
 
         <div style={props.style} className="product">
             <img src={`${process.env.PUBLIC_URL}/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`} />
-
             {/* make a proper formatting solution */}
-            {props.product.available[props.index] ?
+
+
+
+            {props.product.available[props.index] && props.amountOfSizes > 0 ?
                 props.product.price.toString().includes('.') ?
                     <p >{props.product.price[props.index]}</p>
                     :
@@ -49,13 +52,12 @@ export default class ProductList extends Component {
             })
     }
 
-    sumOfValues(salaries) {
+    sumOfValues(salaries,index) {
 
         let sum = 0;
         for (let salary of Object.values(salaries)) {
-          sum += salary[1];
+          sum += salary[index];
         }
-        console.log(sum);
         return sum; // 650
       }
 
@@ -80,11 +82,10 @@ export default class ProductList extends Component {
                     if (curProduct.public[index])
                     {
                         console.log(curProduct.name);
-                        if (curProduct.available[index] && this.sumOfValues(curProduct.sizes) > 0)
+                        if (curProduct.available[index] && this.sumOfValues(curProduct.sizes, index) > 0)
                             products.availColorIndex.push(index) && products.available.push(curProduct);
                         else
                             products.unavailColorIndex.push(index) && products.unavailable.push(curProduct);
-
                     }
                 }
         })
@@ -96,9 +97,10 @@ export default class ProductList extends Component {
                 // if the number in the left is bigger than the number in the right. 
                 // price index = the index of that color, e.g. YesLove in black (color #2) product price index has to be 2 as well
                 
-                if (products.available[i].price[products.availColorIndex[i]] > products.available[j].price[products.availColorIndex[j]]) {
+                // if (products.available[i].price[products.availColorIndex[i]] > products.available[j].price[products.availColorIndex[j]]) {
                 // ***** SORT BY UNITS SOLD
-                // if (products.available[i].unitsSold[products.availColorIndex[i]] < products.available[j].unitsSold[products.availColorIndex[j]]) {
+                if (products.available[i].unitsSold[products.availColorIndex[i]] < products.available[j].unitsSold[products.availColorIndex[j]]) {
+                    console.log(products.available[i].name + ' '+products.available[i].unitsSold[products.availColorIndex[i]] )
                     var temp = products.available[j],
                         tempColor = products.availColorIndex[j];
 
@@ -123,13 +125,14 @@ export default class ProductList extends Component {
         let i = -1;
         return products.map(curProduct => {
             i++
+            let amountOfSizes = this.sumOfValues(curProduct.sizes, colorIndexes[i]);
 
-            if (!curProduct.available[colorIndexes[i]])
+            if (!curProduct.available[colorIndexes[i]] || !this.sumOfValues(curProduct.sizes, colorIndexes[i]))
                 currentStyle = { filter: "grayscale(1) blur(1px)" }
             else
                 var currentStyle = {};
 
-            return <Product product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]}></Product>
+            return <Product product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
         })
 
         /*
