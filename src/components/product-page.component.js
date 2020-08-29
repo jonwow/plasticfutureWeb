@@ -19,7 +19,7 @@ export default class ProductPage extends Component {
       sizes: '',
       productCode: '',
       public: true,
-      available: true
+      available: []
     }
   }
 
@@ -77,8 +77,10 @@ export default class ProductPage extends Component {
 
   render() {
     if (!this.state.loading)
-      document.title = this.state.name + ' ' +this.state.type + ' - '+this.state.curColor
-    
+      document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
+
+    console.log(this.state.available);
+
 
     console.log(this.state.sizes);
     return (
@@ -105,25 +107,25 @@ export default class ProductPage extends Component {
                 </div>
 
                 <p class="productPrice">
-                  {this.state.available ?
+                  {this.state.available[this.state.allColors.indexOf(this.state.curColor)] ?
                     this.state.price[this.state.allColors.indexOf(this.state.curColor)] + '.00€'
                     :
                     'UNAVAILABLE'
 
                   }
                 </p>
-
-                {this.state.available && <ul class="productSizing">
-                  <li>XS</li>
-                  <li>S</li>
-                  <li>M</li>
-                  <li>L</li>
-                  <li>XL</li>
+                {console.log(this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] + this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)]+"asd")}
+                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && <ul class="productSizing">
+                  {this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>XS</li>}
+                  {this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>S</li>}
+                  {this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>M</li>}
+                  {this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>L</li>}
+                  {this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li>XL</li>}
                   <li>(i)</li>
                 </ul>
                 }
 
-                {this.state.available && <div class='buttonContainer' style={{ textAlign: "center" }}>
+                {this.state.available[this.state.allColors.indexOf(this.state.curColor)] && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn">PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}

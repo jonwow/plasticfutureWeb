@@ -4,26 +4,24 @@ import axios from 'axios';
 
 let currency = '€';
 
-var availableColorIndexes = [];
-
 const Product = props => (
     <Link to={{
         pathname: "/products/" + props.product.type + '/' + props.product.productCode + '/' + props.color + '/' + props.product._id + "/",
         product: props.product,
         style: props.style
-    }} >
+    }}>
 
         <div style={props.style} className="product">
             <img src={`${process.env.PUBLIC_URL}/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`} />
 
             {/* make a proper formatting solution */}
-            {props.product.available ?
+            {props.product.available[props.index] ?
                 props.product.price.toString().includes('.') ?
                     <p >{props.product.price[props.index]}</p>
                     :
                     <p  >{props.product.price[props.index]}.00{currency}</p>
                 :
-                <p >unavailable</p>
+                <p>unavailable</p>
             }
         </div>
 
@@ -34,8 +32,8 @@ const Product = props => (
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
-        this.state = { products: [], loading: true };
+
+        this.state = { fetchedProducts: [], loading: true };
     }
 
 
@@ -44,112 +42,107 @@ export default class ProductList extends Component {
 
         axios.get("http://localhost:5000/products/")
             .then(response => {
-                this.setState({ products: response.data, loading: false });
+                this.setState({ fetchedProducts: response.data, loading: false });
             })
             .catch((error) => {
                 console.log(error);
-
             })
     }
 
-    /*
-    uzduotis: masyvas kuriam kiekvieno produkto kiekvienos spalvos variacija ir kuriam pirmiausia available produktai
-    
-    ideja a:
-    1) push the products to available&unavailable arrays
-    2) push the color indexes to available&unavailableindex arrays
-    3) concat both arrays to products[] and colorIndexes[]
-	
-    this.state.fetchedProducts= old this.state.products
-    this.state.displayableProducts = 
-    
-    ------
-    jei sortint, tai indexu nepamirst.
-    ar default sortingas pagal unitsSold ar jei kainosvienodos tada pagal unitsSold    
-    */
+    sumOfValues(salaries) {
 
-    filterProducts(productType) {
-        var availableProducts = [],
-            unavailableProducts = [], unavailableColorIndexes = [];
+        let sum = 0;
+        for (let salary of Object.values(salaries)) {
+          sum += salary[1];
+        }
+        console.log(sum);
+        return sum; // 650
+      }
 
+    filterAndSort(productType) {
+        var products = {
+            available: [],
+            availColorIndex: [],
 
+            unavailable: [],
+            unavailColorIndex: [],
+        }
+
+        // *******************************************************************
+        // FILTERING
         // for every product that gets fetched from the database to this.state
-        this.state.products.map(curProduct => {
-            // for each color of that product
-            for (var index = 0; index < curProduct.color.length; index++) {
-                // if the product in that color is public 
-                if (curProduct.public[index])
-                    // if the client is on a specific product type page (tshirt, tote) or all products
-                    if (curProduct.type == productType || productType == undefined)
-                        if (curProduct.available[index])
-{
-
-                           availableColorIndexes.push(index) && availableProducts.push(curProduct);
- console.log(curProduct.name + index)
-}
+        this.state.fetchedProducts.map(curProduct => {
+            // product type has to match the type of the page that the client is on (tshirt, tote) or all products
+            if (curProduct.type == productType || productType == undefined)
+                // for each color of that product
+                for (var index = 0; index < curProduct.color.length; index++) {
+                    // if the product in that color is public 
+                    if (curProduct.public[index])
+                    {
+                        console.log(curProduct.name);
+                        if (curProduct.available[index] && this.sumOfValues(curProduct.sizes) > 0)
+                            products.availColorIndex.push(index) && products.available.push(curProduct);
                         else
-                            unavailableColorIndexes.push(index) && unavailableProducts.push(curProduct);
-            }
+                            products.unavailColorIndex.push(index) && products.unavailable.push(curProduct);
+
+                    }
+                }
         })
 
-        // sort available products before concating 
-        
-        
-        
-        // !!!!!!!!!!!
-        //  price = array. make the index by color index and swap the colroindex values as well
-console.log('before testing')
-console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
-        // 2- sorting
-        
-for (var i = 0; i < availableProducts.length-1; i++)
-{
-for (var j = i+1 ; j < availableProducts.length; j++)
-{
-if (availableProducts[i].price[0] > availableProducts[j].price[0])
-{
-var temp = availableProducts[j];
-var tempColor = availableColorIndexes[j];
+        // *******************************************************************
+        // SORTING
+        for (var i = 0; i < products.available.length; i++)
+            for (var j = i + 1; j < products.available.length; j++)
+                // if the number in the left is bigger than the number in the right. 
+                // price index = the index of that color, e.g. YesLove in black (color #2) product price index has to be 2 as well
+                
+                if (products.available[i].price[products.availColorIndex[i]] > products.available[j].price[products.availColorIndex[j]]) {
+                // ***** SORT BY UNITS SOLD
+                // if (products.available[i].unitsSold[products.availColorIndex[i]] < products.available[j].unitsSold[products.availColorIndex[j]]) {
+                    var temp = products.available[j],
+                        tempColor = products.availColorIndex[j];
 
-availableProducts[j] = availableProducts[i];
-availableColorIndexes[j] = availableColorIndexes[i];
 
-availableProducts[i] = temp;
-availableColorIndexes[i] = tempColor;
-}
-}}
-console.log(availableProducts)
-console.log(availableColorIndexes)
-	
-        // add colors to this and then start implementing the sorting
-        return availableProducts.concat(unavailableProducts);
+                    products.available[j] = products.available[i];
+                    products.availColorIndex[j] = products.availColorIndex[i];
+
+                    products.available[i] = temp;
+                    products.availColorIndex[i] = tempColor;
+                }
+
+        // return sorted + unavailable, nereikia objekto cia ir kitur
+        return products;
     }
 
+
     productList(productType) {
-        var productList = this.filterProducts(productType)
-        console.log(productList)
-        // make this sorting stuff a function
-        // 1 - all undefined need to go to the end (perhaps a new array and then make a new one from 2 old arrays)
+        var filteredObject = this.filterAndSort(productType)
 
-        // for (i in masyvas)
-        //     if (masyvas[i].available)
-        //         unavailableProducts.push(masyvas[i])
-        //     else
-        //         availableProducts.push(masyvas[i])
+        var products = filteredObject.available.concat(filteredObject.unavailable)
+        var colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
+        let i = -1;
+        return products.map(curProduct => {
+            i++
 
+            if (!curProduct.available[colorIndexes[i]])
+                currentStyle = { filter: "grayscale(1) blur(1px)" }
+            else
+                var currentStyle = {};
 
+            return <Product product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]}></Product>
+        })
 
+        /*
+        masyvas.map curproduct > return color.map > i array jei public ir available
+        sortint pagal price
+        tada concatint su same kaip ir step 1 bet tik unavailable
+        
+        why? nereikes colorindexes
 
-        // var masyvas = availableProducts.concat(unavailableProducts)
-        // 2- sorting
-        // for (var i = 0; i < masyvas.length; i++) {
-        //     for (var j = 1; j < masyvas.length; j++) {
-        //         if (masyvas[i] > masyvas[j]) {
-        //             [masyvas[i], masyvas[j]] = [masyvas[j], masyvas[i]]
-        //         }
-        //     }
-        // }
-        // console.log(masyvas)
+        big array > sliced for eveyr color > sorted > added unavailable. 
+        profit - nereikes colorindexes ir 'if price > ' lengviau iskaitomas bus
+        print su color[0] = white arba black pvz
+        */
 
         // return masyvas.map(curProduct => {
         //     // if NOT in stock or ready to be sold
@@ -158,9 +151,8 @@ console.log(availableColorIndexes)
         //     else
         //         var currentStyle = {};
 
-        //     return curProduct.color.map(curColor => {
+
         //         return <Product product={curProduct} color={curColor} style={currentStyle} index={curProduct.color.indexOf(curColor)} />
-        //     })
 
         // })
     }
@@ -168,17 +160,25 @@ console.log(availableColorIndexes)
 
     render() {
         const productType = this.props.match.params.productType;
-        return (
 
+        return (
             <div className="centeredContainer" id="topElement" >
+                {/* heading */}
                 {productType ?
-                    <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}> {productType}
+                    <h2 style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>
+                        {productType}
+
                         {/* if the product type is jeans, dont add the 's' at the end */}
                         {productType[productType.length - 1] != 's' && 's'}
-                    </p>
+                    </h2>
+
                     :
-                    <p style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>all products </p>}
-                < div className="box" >
+
+                    <h2 style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>
+                        all products
+                    </h2>}
+
+                <div className="box">
                     {
                         this.state.loading ?
 

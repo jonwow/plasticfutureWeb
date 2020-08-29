@@ -20,7 +20,7 @@ const productSchema = new Schema({
     info: { type: String, required: true },
     public: { type: Array, required: true },
     available: { type: Array, required: true },
-    description: { type: String, required: true },
+    description: { type: Array, required: true },
 
 },
     {
