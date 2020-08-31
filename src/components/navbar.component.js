@@ -79,32 +79,6 @@ const CartPreview = () => {
   );
 };
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <div>
-        <nav>
-          <div className="navbarOne">
-            <div className="centeringParent">
-              <ThreeLines></ThreeLines>
-            </div>
-          </div>
-
-          <div className="navbarTwo">
-            <div className="centeringParent" id="navbarText">
-              <Link to="/">PLASTIC FUTURE</Link>
-            </div>
-          </div>
-          <div className="navbarThree">
-            <div className="centeringParent">
-              <CartPreview></CartPreview>
-            </div>
-          </div>
-        </nav>
-      </div>
-    );
-  }
-}
 
 
 
@@ -225,3 +199,34 @@ function DropdownCart() {
     </ul>
   );
 }
+
+
+
+
+export default class Navbar extends Component {
+  render() {
+    return (
+      <div>
+        <nav>
+          <div className="navbarOne">
+            <div className="centeringParent">
+              <ThreeLines></ThreeLines>
+            </div>
+          </div>
+
+          <div className="navbarTwo">
+            <div className="centeringParent" id="navbarText">
+              <Link to="/">PLASTIC FUTURE</Link>
+            </div>
+          </div>
+          <div className="navbarThree">
+            <div className="centeringParent">
+              <CartPreview></CartPreview>
+            </div>
+          </div>
+        </nav>
+      </div>
+    );
+  }
+}
+

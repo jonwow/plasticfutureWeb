@@ -1,13 +1,14 @@
 const router = require('express').Router();
-let Product = require('../models/product.model');
+var Product = require('../models/product.model');
 
+// does not use the 'req' but the GET request won't work without it.
 router.route('/').get((req, res) => {
   Product.find()
     .then(products => res.json(products))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-
+// if rows are removed from here, the post request to put items in the database will give an error
 router.route('/add').post((req, res) => {
   const type = req.body.type;
   const name = req.body.name;

@@ -1,9 +1,8 @@
 // productSchema = data that gets into mongodb for each product
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
-
+// if rows are removed from this, POSTING a request to put products in the database will only work for the rows that have remained
 const productSchema = new Schema({
     type: { type: String, required: true },
     name: { type: String, required: true },
@@ -21,13 +20,10 @@ const productSchema = new Schema({
     public: { type: Array, required: true },
     available: { type: Array, required: true },
     description: { type: Array, required: true },
-
 },
     {
         timestamps: true,
     });
-
-
 
 const Product = mongoose.model("Product", productSchema);
 

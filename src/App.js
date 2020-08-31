@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // components
@@ -9,38 +9,36 @@ import Head from "./components/head.component";
 import ProductPage from "./components/product-page.component";
 // components-route paths
 import ProductList from "./components/product-list.component";
-
 import ScrollToTop from "./scroll-to-top.js";
+
 function App() {
   return (
     <Router>
-      <ScrollToTop />
+      <ScrollToTop/>
 
       <Head />
 
       <Navbar />
-      <div className="container">
-        <Route path="/" exact component={ProductList}/>
-        <Route path="/products" exact component={ProductList} />
-        <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} />
-        <Route path="/products/:productType" exact component={ProductList} />
+        <div className="container">
 
-        <Route path="/toteBags">
-          bbbbbbbbbbbbbbbbbbbbbddaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb
+          <Route path="/" exact component={ProductList} />
+          <Route path="/products" exact component={ProductList} />
+          <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} />
+          <Route path="/products/:productType" exact component={ProductList} />
+
+          <Route path="/yourAccount">
+            zzzzzzzzzzzzcczzzzzzdddddddddddddaaaaaaaaaaaaaaaadddddddddzzzzzzzzzzzzzzzzzzzzzz
         </Route>
-        <Route path="/yourAccount">
-          zzzzzzzzzzzzcczzzzzzdddddddddddddaaaaaaaaaaaaaaaadddddddddzzzzzzzzzzzzzzzzzzzzzz
+          <Route path="/collections">
+            acccccccccccccccccccdddssssssddddddddddddddddcccccccccccccccc
         </Route>
-        <Route path="/collections">
-          acccccccccccccccccccdddssssssddddddddddddddddcccccccccccccccc
-        </Route>
-        <Route path="/contacts">
-          gsgsgsgsgsfdgergwrgdddddddddddddwrgwrtqweq
+          <Route path="/contacts">
+            gsgsgsgsgsfdgergwrgdddddddddddddwrgwrtqweq
         </Route>
 
-        <StickyFooter />
-        <Footer />
-        
+          <StickyFooter />
+          <Footer />
+
       </div>
     </Router>
   );

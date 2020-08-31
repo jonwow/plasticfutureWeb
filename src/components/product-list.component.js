@@ -52,13 +52,13 @@ export default class ProductList extends Component {
             })
     }
 
-    sumOfValues(salaries,index) {
-
+    sumOfValues(values, index) {
         let sum = 0;
-        for (let salary of Object.values(salaries)) {
-          sum += salary[index];
-        }
-        return sum; // 650
+
+        for (let value of Object.values(values)) 
+          sum += value[index];
+          
+        return sum; 
       }
 
     filterAndSort(productType) {

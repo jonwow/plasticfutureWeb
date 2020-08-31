@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 // solve the problem of formatting and currency 
 
@@ -20,7 +21,8 @@ export default class ProductPage extends Component {
       public: true,
       allAvailableStatuses: [],
       curAvailable: undefined,
-      selectedSize: undefined
+      selectedSize: undefined,
+      x: this.props.match.params.productType
     }
   }
 
@@ -104,6 +106,9 @@ export default class ProductPage extends Component {
 
     return (
       <div style={{ margin: "0 auto" }}>
+        <Link to={{
+          pathname: "/products/" + this.state.x,
+        }}>{this.state.x}</Link>
 
         {/* <div class="fullScreenProductPhoto">
         <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />

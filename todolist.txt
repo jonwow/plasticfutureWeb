@@ -1,10 +1,17 @@
-﻿visada teisinga branch isijungt!
-backup files every 1st day of each month
+﻿backup files every 1st day of each month
 
 
     GENERAL:
+    react tutorial 1 part every day before pf
+
+    perziuret visus failus 
+    
+
+    https://medium.com/@Zwenza/functional-vs-class-components-in-react-231e3fbd7108
     https://www.youtube.com/watch?v=3qnrouysbG8
-    unavailable products need according size
+
+    gal maincomponent = app.js?
+    cart: maincomponent > product page. productpage buttonas kviecia funkcija, kuri liftina state up. maincomponent  gauna info ir perdudoa info savo vaikui navbar tiesiai i carta (kai cartas paspaustas bent, idealiai tai kai tik ant purchase paspaudziama)
 
 
     cart functionality:
@@ -73,6 +80,14 @@ ignui paruost tac, careers laikinai isimt ir collections
     4k support (html font size needs to be increased)
 
 NO HURRY:
+useLocation, useLayoutEffect
+express tutorial
+cors tutorial
+mongoose tutorial
+
+review backend files
+
+do breadcrumbs (breadcrumbs above produclist/productpage so we can get the state)
 https://reactjs.org/docs/handling-events.html react main concepts
 
 https://owasp.org/www-project-top-ten/
@@ -87,7 +102,7 @@ https://dev.to/sophia_wyl/understanding-arrays-in-javascript-56g0
     tab names . at least pf has to be in the head, maybe oncomponentmount or something
     attach footer to the bottom
 
-reactjs breadcrumbs
+reactjs breadcrumbs (useParams)
 404 if page/product doesnt exsit
 no additional get requests for switching productlist components
 advanced dropdown menu
