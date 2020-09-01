@@ -12,6 +12,7 @@ import ProductList from "./components/product-list.component";
 import ScrollToTop from "./scroll-to-top.js";
 
 function App() {
+
   return (
     <Router>
       <ScrollToTop/>

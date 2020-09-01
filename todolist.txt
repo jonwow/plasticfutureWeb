@@ -4,8 +4,8 @@
     GENERAL:
     react tutorial 1 part every day before pf
 
-    perziuret visus failus 
     
+    padaryt kad kai 1 dydis tera ji automatiskai pasirenka
 
     https://medium.com/@Zwenza/functional-vs-class-components-in-react-231e3fbd7108
     https://www.youtube.com/watch?v=3qnrouysbG8

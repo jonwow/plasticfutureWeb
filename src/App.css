@@ -5,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Quicksand", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -18,7 +19,7 @@
   background: rgb(219, 219, 219);
 }
 
-.menu-item  {
+.menu-item {
   color: black;
   text-decoration: none;
 }
@@ -28,27 +29,14 @@
   top: 4.5rem;
   width: 18rem;
   left: 0;
-  background-color: var(--bg);
-  border: var(--border);
   padding: 1rem;
   overflow: hidden;
-  z-index: 111;
+  z-index: 2;
 }
 
-
-.menu-item   {
+.menu-item {
   list-style: none;
 }
-
-
-
-.productSizing li::selection {
-  background: rgba(0, 0, 0, 0);
-}
-
-
-
-
 
 footer {
   padding-top: 2.25rem;
@@ -183,7 +171,8 @@ button {
 }
 
 .box img::-moz-selection,
-.box img::selection {
+.box img::selection,
+.productSizing li::selection {
   background: rgba(255, 0, 0, 0);
 }
 
@@ -200,10 +189,6 @@ button {
 .centeredContainer {
   width: calc(370px * 4);
   margin: 0 auto;
-}
-
-.centeredContainer .product {
-  cursor: pointer;
 }
 
 /* used in non mobile centering too */
@@ -245,11 +230,6 @@ button {
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55));
 }
 
-/* remove after adding links to items */
-.clickable {
-  cursor: pointer;
-}
-
 footer {
   /* centers pictures too */
   text-align: center;
@@ -264,9 +244,6 @@ footer p {
   line-height: 2;
 }
 
-* {
-  font-family: "Quicksand", sans-serif;
-}
 
 #navbarText a {
   font-family: "Open Sans Condensed", sans-serif;
@@ -422,7 +399,6 @@ nav p {
   }
 }
 
-/* probably removable*/
 /* VERY WIDE PHONES. UI LOOKS LIKE PC */
 @media only screen and (min-width: 680px) and (max-width: 1120px) {
   .box {
@@ -590,7 +566,6 @@ nav p::selection {
   background: rgba(245, 245, 245, 0.85);
 }
 
-
 .stickyFooter ul li p {
   position: relative;
   top: 50%;
@@ -605,7 +580,6 @@ nav p::selection {
 
 .additionalPhotoBox img {
   height: 13rem;
-
 }
 .product img:hover {
   -webkit-transition: 0.3s linear;
@@ -638,9 +612,6 @@ nav img:hover {
   -webkit-transition: 1s;
   transition: 1s;
 }
-
-
-
 
 /* used for scss. perhaps useless otherwise?  */
 /*# sourceMappingURL=main.css.map */
@@ -679,7 +650,6 @@ nav img:hover {
 
   border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 4px;
-  /* margin-right: 35px; */
   height: 60px;
 
   font-size: 30px;
@@ -747,8 +717,6 @@ nav img:hover {
     font-size: 1.1em;
     max-height: calc(100vh - 95vmin);
 
-    /* bugs on 768p zoomed in */
-    /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
 
@@ -781,7 +749,6 @@ nav img:hover {
 
   .dropdown .menu-item li {
     padding: 1.25rem;
-    
   }
 
   .product img:hover {
@@ -897,44 +864,30 @@ nav img:hover {
     font-size: 1.1em;
     max-height: calc(100vh - 95vmin);
 
-    /* bugs on 768p zoomed in */
-    /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
 }
 
 @media only screen and (max-width: 1140px) {
   .productSizing li {
-    padding: 0 0.95vw;
-    margin: 0 1rem;
+    padding: 0.25rem 1rem;
+    margin: 0 0.5rem;
   }
 }
 
 /* mobile widescreen */
 @media only screen and (max-height: 600px) and (min-width: 500px) {
-  /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
-  * {
-    transition: 0.3s;
-  }
-
   html {
-    font-size: 10px;
+    font-size: 1.35vmax;
   }
 }
 
 /* iphone 4 5 5s se WIDESCREEN all look imperfect with the 10px, so i set it to 8 here */
 @media only screen and (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
-  /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
-
-  * {
-    transition: 0.3s;
-  }
-
   html {
     font-size: 8px;
   }
 }
-
 
 @media only screen and (max-width: 420px) {
   footer .imageContainer {
