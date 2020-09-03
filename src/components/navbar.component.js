@@ -84,7 +84,7 @@ const CartPreview = () => {
 
 function NavItem(props) {
   // call the useState function (hook)
-  // open = bool for current state.(whether the dropdown menu is open)
+  // open = whether the dropdown menu is open
   // setOpen = function that 'sets state action'
   // false because the dropdown is not 'clicked' by default
   const [open, setOpen] = useState(false);
@@ -179,14 +179,14 @@ function DropdownCart() {
     <ul className="dropdown">
       <DropdownItem>
         <Link to="/products/" class="menu-item">
-          <li className="asd">ALL PRODUCTS</li>
+          <li>ALL PRODUCTS</li>
         </Link>
       </DropdownItem>
 
 
       <DropdownItem>
         <Link to="/products/t-shirt" class="menu-item">
-          <li className="asd">TSHIRTS</li>
+          <li>TSHIRTS</li>
         </Link>
       </DropdownItem>
 

@@ -72,7 +72,7 @@ export default class ProductList extends Component {
 
         // *******************************************************************
         // FILTERING
-        // for every product that gets fetched from the database to this.state
+        // for every product that gets fetched from the database 
         this.state.fetchedProducts.map(curProduct => {
             // product type has to match the type of the page that the client is on (tshirt, tote) or all products
             if (curProduct.type == productType || productType == undefined)
@@ -81,7 +81,6 @@ export default class ProductList extends Component {
                     // if the product in that color is public 
                     if (curProduct.public[index])
                     {
-                        console.log(curProduct.name);
                         if (curProduct.available[index] && this.sumOfValues(curProduct.sizes, index) > 0)
                             products.availColorIndex.push(index) && products.available.push(curProduct);
                         else
@@ -97,10 +96,11 @@ export default class ProductList extends Component {
                 // if the number in the left is bigger than the number in the right. 
                 // price index = the index of that color, e.g. YesLove in black (color #2) product price index has to be 2 as well
                 
+                // ***** SORT BY PRICE ASCENDING
                 // if (products.available[i].price[products.availColorIndex[i]] > products.available[j].price[products.availColorIndex[j]]) {
+                    
                 // ***** SORT BY UNITS SOLD
                 if (products.available[i].unitsSold[products.availColorIndex[i]] < products.available[j].unitsSold[products.availColorIndex[j]]) {
-                    console.log(products.available[i].name + ' '+products.available[i].unitsSold[products.availColorIndex[i]] )
                     var temp = products.available[j],
                         tempColor = products.availColorIndex[j];
 
@@ -120,9 +120,11 @@ export default class ProductList extends Component {
     productList(productType) {
         var filteredObject = this.filterAndSort(productType)
 
-        var products = filteredObject.available.concat(filteredObject.unavailable)
-        var colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
+        var products = filteredObject.available.concat(filteredObject.unavailable),
+            colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
+            
         let i = -1;
+
         return products.map(curProduct => {
             i++
             let amountOfSizes = this.sumOfValues(curProduct.sizes, colorIndexes[i]);
@@ -134,30 +136,6 @@ export default class ProductList extends Component {
 
             return <Product product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
         })
-
-        /*
-        masyvas.map curproduct > return color.map > i array jei public ir available
-        sortint pagal price
-        tada concatint su same kaip ir step 1 bet tik unavailable
-        
-        why? nereikes colorindexes
-
-        big array > sliced for eveyr color > sorted > added unavailable. 
-        profit - nereikes colorindexes ir 'if price > ' lengviau iskaitomas bus
-        print su color[0] = white arba black pvz
-        */
-
-        // return masyvas.map(curProduct => {
-        //     // if NOT in stock or ready to be sold
-        //     if (!curProduct.available)
-        //         currentStyle = { filter: "grayscale(1) blur(1px)" }
-        //     else
-        //         var currentStyle = {};
-
-
-        //         return <Product product={curProduct} color={curColor} style={currentStyle} index={curProduct.color.indexOf(curColor)} />
-
-        // })
     }
 
 

@@ -1,7 +1,6 @@
 const router = require('express').Router();
 var Product = require('../models/product.model');
 
-// does not use the 'req' but the GET request won't work without it.
 router.route('/').get((req, res) => {
   Product.find()
     .then(products => res.json(products))
@@ -26,7 +25,6 @@ router.route('/add').post((req, res) => {
   const public = req.body.public;
   const available = req.body.available;
   const description = req.body.description;
-  
   
   
   const newProduct = new Product({
