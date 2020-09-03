@@ -17,7 +17,6 @@ const Product = props => (
             {/* make a proper formatting solution */}
 
 
-
             {props.product.available[props.index] && props.amountOfSizes > 0 ?
                 props.product.price.toString().includes('.') ?
                     <p >{props.product.price[props.index]}</p>
