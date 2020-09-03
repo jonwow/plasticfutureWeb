@@ -54,11 +54,11 @@ export default class ProductList extends Component {
     sumOfValues(values, index) {
         let sum = 0;
 
-        for (let value of Object.values(values)) 
-          sum += value[index];
-          
-        return sum; 
-      }
+        for (let value of Object.values(values))
+            sum += value[index];
+
+        return sum;
+    }
 
     filterAndSort(productType) {
         var products = {
@@ -78,8 +78,7 @@ export default class ProductList extends Component {
                 // for each color of that product
                 for (var index = 0; index < curProduct.color.length; index++) {
                     // if the product in that color is public 
-                    if (curProduct.public[index])
-                    {
+                    if (curProduct.public[index]) {
                         if (curProduct.available[index] && this.sumOfValues(curProduct.sizes, index) > 0)
                             products.availColorIndex.push(index) && products.available.push(curProduct);
                         else
@@ -94,10 +93,10 @@ export default class ProductList extends Component {
             for (var j = i + 1; j < products.available.length; j++)
                 // if the number in the left is bigger than the number in the right. 
                 // price index = the index of that color, e.g. YesLove in black (color #2) product price index has to be 2 as well
-                
+
                 // ***** SORT BY PRICE ASCENDING
                 // if (products.available[i].price[products.availColorIndex[i]] > products.available[j].price[products.availColorIndex[j]]) {
-                    
+
                 // ***** SORT BY UNITS SOLD
                 if (products.available[i].unitsSold[products.availColorIndex[i]] < products.available[j].unitsSold[products.availColorIndex[j]]) {
                     var temp = products.available[j],
@@ -121,7 +120,7 @@ export default class ProductList extends Component {
 
         var products = filteredObject.available.concat(filteredObject.unavailable),
             colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
-            
+
         let i = -1;
 
         return products.map(curProduct => {
@@ -142,32 +141,38 @@ export default class ProductList extends Component {
         const productType = this.props.match.params.productType;
 
         return (
-            <div className="centeredContainer" id="topElement" >
-                {/* heading */}
+            <div>
+                {/* breadcrumbs DEMO!!! */}
                 {productType ?
-                    <h2 style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>
+                    // no need for 2 p's, fix later
+                    <p style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
                         {productType}
 
                         {/* if the product type is jeans, dont add the 's' at the end */}
                         {productType[productType.length - 1] != 's' && 's'}
-                    </h2>
+                    </p>
 
                     :
 
-                    <h2 style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>
-                        all products
-                    </h2>}
+                    <p style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
+                        ALL PRODUCTS
+                    </p>
+                }
 
-                <div className="box">
-                    {
-                        this.state.loading ?
+                <div className="centeredContainer" id="topElement" >
 
-                            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0' }}></p>
-                            :
-                            this.productList(productType)
-                    }
+                    <div className="box">
+                        {
+                            this.state.loading ?
+
+                                <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0' }}></p>
+                                :
+                                this.productList(productType)
+                        }
+                    </div >
                 </div >
-            </div >
+            </div>
+
         )
     }
 }

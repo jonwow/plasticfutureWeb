@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -26,6 +26,7 @@ export default class ProductPage extends Component {
       loading: true,
       sizes: undefined,
       productCode: undefined,
+      type: undefined,
       public: undefined,
       allAvailableStatuses: undefined,
       curAvailable: undefined,
@@ -36,7 +37,7 @@ export default class ProductPage extends Component {
   selectTheSize(size) {
     var allSizeElements = document.getElementsByClassName('productSizing')[0].children,
       selectedSize = document.getElementById(size);
-    
+
     this.state.selectedSize = size;
 
     // give white background to all size elements
@@ -76,11 +77,10 @@ export default class ProductPage extends Component {
       );
     }
 
-    
+
     if (!this.state.loading)
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
   }
-
 
   componentDidMount() {
     if (this.props.location.product) {
@@ -137,9 +137,15 @@ export default class ProductPage extends Component {
   render() {
     return (
       <div style={{ margin: "0 auto" }}>
-        <Link to={{
-          pathname: "/products/" + this.state.x,
-        }}>{this.state.x}</Link>
+
+        {/* DEMO */}
+        <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
+          <p to={{
+            pathname: "/products/" + this.state.type,
+          }}><span style={{ fontWeight: '99999999' }}>{this.state.season}</span><span style={{ fontWeight: '1' }} > / {this.state.type}s / {this.state.curColor}</span></p>
+        </div>
+
+
 
         {/* <div class="fullScreenProductPhoto">
         <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />

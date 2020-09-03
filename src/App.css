@@ -170,6 +170,9 @@ button {
   height: 348.5px;
 }
 
+.clickable {
+  cursor: pointer;
+}
 .box img::-moz-selection,
 .box img::selection,
 .productSizing li::selection {
