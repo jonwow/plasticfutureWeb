@@ -3,76 +3,172 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 let currency = '€';
+
 const Product = props => (
     <Link to={{
-        pathname: "/products/" + props.product._id + "/" + props.color,
-        product: props.product
-    }} >
+        pathname: "/products/" + props.product.type + '/' + props.product.productCode + '/' + props.color + '/' + props.product._id + "/",
+        product: props.product,
+        style: props.style,
+        amountOfSizes: props.amountOfSizes
+    }}>
 
-        <div className="product">
-            <img src={`${process.env.PUBLIC_URL}/images/` + props.product.season + `/designs/` + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`} />
-
+        <div style={props.style} className="product">
+            <img src={`${process.env.PUBLIC_URL}/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`} />
             {/* make a proper formatting solution */}
-            {props.product.price.toString().includes('.') ?
-                <p>{props.product.price}</p>
+
+
+
+            {props.product.available[props.index] && props.amountOfSizes > 0 ?
+                props.product.price.toString().includes('.') ?
+                    <p >{props.product.price[props.index]}</p>
+                    :
+                    <p  >{props.product.price[props.index]}.00{currency}</p>
                 :
-                <p >{props.product.price}.00{currency}</p>
+                <p>unavailable</p>
             }
         </div>
 
     </Link >
-
 )
+
 
 export default class ProductList extends Component {
     constructor(props) {
         super(props);
 
-
-
-        this.state = { products: [], loading: true };
+        this.state = { fetchedProducts: [], loading: true };
     }
 
 
     componentDidMount() {
-        axios.get("http://localhost:5000/products/")
-        .then(response => {
-            this.setState({ products: response.data, loading: false})
+        document.title = 'P L A S T I C F U T U R E '
 
-                console.log(this.state.products)
+        axios.get("http://localhost:5000/products/")
+            .then(response => {
+                this.setState({ fetchedProducts: response.data, loading: false });
             })
             .catch((error) => {
                 console.log(error);
-
             })
     }
 
-    productList() {
-        // for every product
-        return this.state.products.map(curProduct => {
-            return curProduct.color.map(curColor => {
-                // gives 'props.color' and 'props.product' to the Product const
-                return <Product color={curColor} product={curProduct} />;
-            })
+    sumOfValues(values, index) {
+        let sum = 0;
+
+        for (let value of Object.values(values)) 
+          sum += value[index];
+          
+        return sum; 
+      }
+
+    filterAndSort(productType) {
+        var products = {
+            available: [],
+            availColorIndex: [],
+
+            unavailable: [],
+            unavailColorIndex: [],
+        }
+
+        // *******************************************************************
+        // FILTERING
+        // for every product that gets fetched from the database 
+        this.state.fetchedProducts.map(curProduct => {
+            // product type has to match the type of the page that the client is on (tshirt, tote) or all products
+            if (curProduct.type == productType || productType == undefined)
+                // for each color of that product
+                for (var index = 0; index < curProduct.color.length; index++) {
+                    // if the product in that color is public 
+                    if (curProduct.public[index])
+                    {
+                        if (curProduct.available[index] && this.sumOfValues(curProduct.sizes, index) > 0)
+                            products.availColorIndex.push(index) && products.available.push(curProduct);
+                        else
+                            products.unavailColorIndex.push(index) && products.unavailable.push(curProduct);
+                    }
+                }
+        })
+
+        // *******************************************************************
+        // SORTING
+        for (var i = 0; i < products.available.length; i++)
+            for (var j = i + 1; j < products.available.length; j++)
+                // if the number in the left is bigger than the number in the right. 
+                // price index = the index of that color, e.g. YesLove in black (color #2) product price index has to be 2 as well
+                
+                // ***** SORT BY PRICE ASCENDING
+                // if (products.available[i].price[products.availColorIndex[i]] > products.available[j].price[products.availColorIndex[j]]) {
+                    
+                // ***** SORT BY UNITS SOLD
+                if (products.available[i].unitsSold[products.availColorIndex[i]] < products.available[j].unitsSold[products.availColorIndex[j]]) {
+                    var temp = products.available[j],
+                        tempColor = products.availColorIndex[j];
 
 
+                    products.available[j] = products.available[i];
+                    products.availColorIndex[j] = products.availColorIndex[i];
+
+                    products.available[i] = temp;
+                    products.availColorIndex[i] = tempColor;
+                }
+
+        // return sorted + unavailable, nereikia objekto cia ir kitur
+        return products;
+    }
+
+
+    productList(productType) {
+        var filteredObject = this.filterAndSort(productType)
+
+        var products = filteredObject.available.concat(filteredObject.unavailable),
+            colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
+            
+        let i = -1;
+
+        return products.map(curProduct => {
+            i++
+            let amountOfSizes = this.sumOfValues(curProduct.sizes, colorIndexes[i]);
+
+            if (!curProduct.available[colorIndexes[i]] || !this.sumOfValues(curProduct.sizes, colorIndexes[i]))
+                currentStyle = { filter: "grayscale(1) blur(1px)" }
+            else
+                var currentStyle = {};
+
+            return <Product product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
         })
     }
 
 
     render() {
+        const productType = this.props.match.params.productType;
+
         return (
-            <div className="centeredContainer" id="topElement">
+            <div className="centeredContainer" id="topElement" >
+                {/* heading */}
+                {productType ?
+                    <h2 style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>
+                        {productType}
+
+                        {/* if the product type is jeans, dont add the 's' at the end */}
+                        {productType[productType.length - 1] != 's' && 's'}
+                    </h2>
+
+                    :
+
+                    <h2 style={{ textAlign: "left", marginLeft: '3rem', fontSize: "4rem" }}>
+                        all products
+                    </h2>}
+
                 <div className="box">
                     {
                         this.state.loading ?
-                            
-                            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '370px' }}></p>
+
+                            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0' }}></p>
                             :
-                            this.productList()
+                            this.productList(productType)
                     }
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 }

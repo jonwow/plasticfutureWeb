@@ -1,4 +1,3 @@
-/* made with scss. if you want to see the full project bones, visit https://github.com/jonwow/ */
 @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
@@ -6,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Quicksand", sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -19,35 +19,30 @@
   background: rgb(219, 219, 219);
 }
 
-.menu-item  {
+.menu-item {
   color: black;
   text-decoration: none;
 }
 
 .dropdown {
   position: absolute;
-  top: 70px;
-  width: 20rem;
+  top: 4.5rem;
+  width: 18rem;
   left: 0;
-  background-color: var(--bg);
-  border: var(--border);
   padding: 1rem;
   overflow: hidden;
-  z-index: 111;
+  z-index: 2;
 }
 
-
-.menu-item   {
+.menu-item {
   list-style: none;
 }
 
-
-
-
-
-
 footer {
   padding-top: 2.25rem;
+}
+footer p {
+  font-size: 1rem;
 }
 
 /* applies to left and right footer parts */
@@ -83,7 +78,9 @@ footer .imageContainer img {
   list-style: none;
   display: inline;
 
-  margin: 0 1rem;
+  padding: 0.25rem 0.8rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
   font-size: 1.5rem;
 }
 
@@ -174,7 +171,8 @@ button {
 }
 
 .box img::-moz-selection,
-.box img::selection {
+.box img::selection,
+.productSizing li::selection {
   background: rgba(255, 0, 0, 0);
 }
 
@@ -191,10 +189,6 @@ button {
 .centeredContainer {
   width: calc(370px * 4);
   margin: 0 auto;
-}
-
-.centeredContainer .product {
-  cursor: pointer;
 }
 
 /* used in non mobile centering too */
@@ -236,21 +230,6 @@ button {
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55));
 }
 
-/* remove after adding links to items */
-.clickable {
-  cursor: pointer;
-}
-
-#goToTopButton {
-  margin: 0 auto;
-  width: 65px;
-  height: 55px;
-  -webkit-filter: invert(1);
-  filter: invert(1);
-  cursor: pointer;
-  margin-bottom: 50px;
-}
-
 footer {
   /* centers pictures too */
   text-align: center;
@@ -265,9 +244,6 @@ footer p {
   line-height: 2;
 }
 
-* {
-  font-family: "Quicksand", sans-serif;
-}
 
 #navbarText a {
   font-family: "Open Sans Condensed", sans-serif;
@@ -423,7 +399,6 @@ nav p {
   }
 }
 
-/* probably removable*/
 /* VERY WIDE PHONES. UI LOOKS LIKE PC */
 @media only screen and (min-width: 680px) and (max-width: 1120px) {
   .box {
@@ -557,7 +532,6 @@ nav p::selection {
   width: 100%;
   margin-top: 2vh;
   z-index: 2;
-  border-top: 0.25vmin rgba(29, 29, 29, 0.37) solid;
 }
 
 .stickyFooter ul {
@@ -604,6 +578,9 @@ nav p::selection {
   color: inherit;
 }
 
+.additionalPhotoBox img {
+  height: 13rem;
+}
 .product img:hover {
   -webkit-transition: 0.3s linear;
   transition: 0.3s linear;
@@ -636,9 +613,6 @@ nav img:hover {
   transition: 1s;
 }
 
-
-
-
 /* used for scss. perhaps useless otherwise?  */
 /*# sourceMappingURL=main.css.map */
 
@@ -656,10 +630,6 @@ nav img:hover {
 .centeredContainer2 .product {
   cursor: pointer;
 }
-
-/* used in non mobile centering too */
-/* centers children horizontally and vertically. used in the header/nav */
-/* call it footer/headerparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
 
 .productDescription img {
   width: 100px;
@@ -679,8 +649,7 @@ nav img:hover {
   margin: 0 auto;
 
   border: 1px solid rgba(0, 0, 0, 0.164);
-  border-radius: 15px;
-  /* margin-right: 35px; */
+  border-radius: 4px;
   height: 60px;
 
   font-size: 30px;
@@ -703,7 +672,7 @@ nav img:hover {
 
 #buyBtn {
   border: 1px solid rgba(0, 0, 0, 0.238);
-  border-radius: 15px;
+  border-radius: 4px;
   max-width: 100%;
   margin: 0 auto;
   padding: 0 2rem;
@@ -748,8 +717,6 @@ nav img:hover {
     font-size: 1.1em;
     max-height: calc(100vh - 95vmin);
 
-    /* bugs on 768p zoomed in */
-    /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
 
@@ -771,6 +738,17 @@ nav img:hover {
   /* 'REM' UNITS ARE USED IN FONT AND IMAGE SIZING */
   html {
     font-size: 14px;
+  }
+
+  .dropdown {
+    width: 100vw;
+    left: 0;
+    padding: 0;
+    top: 8vh;
+  }
+
+  .dropdown .menu-item li {
+    padding: 1.25rem;
   }
 
   .product img:hover {
@@ -803,10 +781,6 @@ nav img:hover {
   footer {
     padding-top: 5vh;
     margin-bottom: 1vh;
-  }
-
-  footer p {
-    font-size: 1.8vmax;
   }
 
   #goToTopIcon {
@@ -890,43 +864,30 @@ nav img:hover {
     font-size: 1.1em;
     max-height: calc(100vh - 95vmin);
 
-    /* bugs on 768p zoomed in */
-    /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
 }
 
 @media only screen and (max-width: 1140px) {
   .productSizing li {
-    margin: 0 1.5vw;
+    padding: 0.25rem 1rem;
+    margin: 0 0.5rem;
   }
 }
 
 /* mobile widescreen */
 @media only screen and (max-height: 600px) and (min-width: 500px) {
-  /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
-  * {
-    transition: 0.3s;
-  }
-
   html {
-    font-size: 10px;
+    font-size: 1.35vmax;
   }
 }
 
 /* iphone 4 5 5s se WIDESCREEN all look imperfect with the 10px, so i set it to 8 here */
 @media only screen and (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
-  /* ONLY BECAUSE ZOOMING IN LOOKS CHOPPED BECAUSE OF THE CHANGING REM SIZE */
-
-  * {
-    transition: 0.3s;
-  }
-
   html {
     font-size: 8px;
   }
 }
-
 
 @media only screen and (max-width: 420px) {
   footer .imageContainer {

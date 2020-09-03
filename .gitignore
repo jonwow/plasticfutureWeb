@@ -12,9 +12,6 @@ backend/node_modules
 
 # production
 /build
-README.md
-readme.md
-
 # misc
 .DS_Store
 .env.local

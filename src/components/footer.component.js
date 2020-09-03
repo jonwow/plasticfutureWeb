@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Footer extends Component {
 
@@ -11,13 +12,12 @@ export default class Footer extends Component {
         </div>
 
 
-
         <div className="imageContainer">
-          <a href="https://instagram.com" target="_blank">
+          <a href="https://instagram.com/_plasticfuture" target="_blank">
             <img src={process.env.PUBLIC_URL + '/images/icons/instagram_icon.png'} />
           </a>
 
-          <a href="https://twitter.com" target="_blank">
+          <a href="https://twitter.com/_plasticfuture" target="_blank">
             <img src={process.env.PUBLIC_URL + '/images/icons/twitter_icon.png'} />
           </a>
 
@@ -29,16 +29,17 @@ export default class Footer extends Component {
             <img src={process.env.PUBLIC_URL + '/images/icons/slavery_resized.png'} />
           </a>
 
-          <a href="/tac">
+          <Link to="/tac">
             <img src={process.env.PUBLIC_URL + '/images/icons/tac2_resized.png'} />
-          </a>
+          </Link>
 
-          <a href="/career" >
+          {/* <Link to="/career">
             <img src={process.env.PUBLIC_URL + '/images/icons/career_resized.png'} />
-          </a>
+          </Link> */}
+
 
         </div>
-      </footer>
+      </footer >
     );
 
   }
