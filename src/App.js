@@ -24,12 +24,16 @@ function App() {
           <Route path="/products" exact component={ProductList} />
           <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} />
           <Route path="/products/:productType" exact component={ProductList} />
+          <Route path="/products/:collection/:productType" exact component={ProductList} />
 
           <Route path="/yourAccount">
           yourAccount
         </Route>
           <Route path="/collections">
-          collections
+          collections: 
+        </Route>
+        <Route path="/collections/:collectionName">
+          page of a certain collection, soon to be implemented!
         </Route>
           <Route path="/contacts">
           contacts

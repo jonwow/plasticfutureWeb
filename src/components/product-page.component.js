@@ -140,9 +140,22 @@ export default class ProductPage extends Component {
 
         {/* DEMO */}
         <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
-          <p to={{
-            pathname: "/products/" + this.state.type,
-          }}><span style={{ fontWeight: '99999999' }}>{this.state.season}</span><span style={{ fontWeight: '1' }} > / {this.state.type}s / {this.state.curColor}</span></p>
+          <span style={{ fontWeight: '500'}}>
+            <Link to={{
+              pathname: "/collections/" + this.state.season,
+            }}>
+              {this.state.season}
+            </Link>
+          </span>
+
+
+          <span style={{ marginLeft: '0.5rem',fontWeight: '1' }} >
+          <Link to={{
+              pathname: "/products/" + this.state.season + '/'+ this.state.type,
+            }}>
+              / {this.state.type}s
+            </Link>
+            </span>
         </div>
 
 

@@ -6,7 +6,7 @@ export default class Footer extends Component {
   render() {
     return (
       <footer>
-
+{/* 600 weight here */}
         <div>
           <p>MB „PLASTIC FUTURE" © 2020, all rights reserved.</p>
         </div>

@@ -60,7 +60,7 @@ export default class ProductList extends Component {
         return sum;
     }
 
-    filterAndSort(productType) {
+    filterAndSort(productType, productCollection) {
         var products = {
             available: [],
             availColorIndex: [],
@@ -68,13 +68,15 @@ export default class ProductList extends Component {
             unavailable: [],
             unavailColorIndex: [],
         }
+        console.log(productCollection);
 
         // *******************************************************************
         // FILTERING
         // for every product that gets fetched from the database 
         this.state.fetchedProducts.map(curProduct => {
             // product type has to match the type of the page that the client is on (tshirt, tote) or all products
-            if (curProduct.type == productType || productType == undefined)
+            if (curProduct.season == productCollection || productCollection == undefined)
+                if (curProduct.type == productType || productType == undefined)
                 // for each color of that product
                 for (var index = 0; index < curProduct.color.length; index++) {
                     // if the product in that color is public 
@@ -115,8 +117,8 @@ export default class ProductList extends Component {
     }
 
 
-    productList(productType) {
-        var filteredObject = this.filterAndSort(productType)
+    productList(productType,productCollection) {
+        var filteredObject = this.filterAndSort(productType, productCollection)
 
         var products = filteredObject.available.concat(filteredObject.unavailable),
             colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
@@ -138,8 +140,9 @@ export default class ProductList extends Component {
 
 
     render() {
-        const productType = this.props.match.params.productType;
-
+        const productType = this.props.match.params.productType,
+              productCollection = this.props.match.params.collection;
+        
         return (
             <div>
                 {/* breadcrumbs DEMO!!! */}
@@ -158,6 +161,7 @@ export default class ProductList extends Component {
                         ALL PRODUCTS
                     </p>
                 }
+        {this.props.match.params.collection  }
 
                 <div className="centeredContainer" id="topElement" >
 
@@ -167,7 +171,7 @@ export default class ProductList extends Component {
 
                                 <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0' }}></p>
                                 :
-                                this.productList(productType)
+                                this.productList(productType, productCollection)
                         }
                     </div >
                 </div >
