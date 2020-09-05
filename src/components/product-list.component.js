@@ -149,10 +149,12 @@ export default class ProductList extends Component {
                 {productType ?
                     // no need for 2 p's, fix later
                     <p style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
+                        {this.props.match.params.collection  } / 
                         {productType}
 
                         {/* if the product type is jeans, dont add the 's' at the end */}
                         {productType[productType.length - 1] != 's' && 's'}
+
                     </p>
 
                     :
@@ -160,8 +162,10 @@ export default class ProductList extends Component {
                     <p style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
                         ALL PRODUCTS
                     </p>
+
+
                 }
-        {this.props.match.params.collection  }
+                    {this.props.isAuthed}
 
                 <div className="centeredContainer" id="topElement" >
 

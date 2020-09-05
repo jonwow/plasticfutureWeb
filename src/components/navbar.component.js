@@ -207,6 +207,8 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
+      <h1>{this.props.prodCode.curColor}</h1>
+      <h1>{this.props.prodCode.productCode}</h1>
         <nav>
           <div className="navbarOne">
             <div className="centeringParent">

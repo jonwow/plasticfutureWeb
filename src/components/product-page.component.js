@@ -13,12 +13,13 @@ import axios from 'axios';
 
 export default class ProductPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       description: undefined,
       price: undefined,
       curColor: undefined,
+      isAuthed: 0,
       allColors: undefined,
       season: undefined,
       name: undefined,
@@ -32,7 +33,12 @@ export default class ProductPage extends Component {
       curAvailable: undefined,
       selectedSize: undefined
     }
+
+
   }
+
+
+
 
   selectTheSize(size) {
     var allSizeElements = document.getElementsByClassName('productSizing')[0].children,
@@ -81,6 +87,7 @@ export default class ProductPage extends Component {
     if (!this.state.loading)
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
   }
+
 
   componentDidMount() {
     if (this.props.location.product) {
@@ -133,8 +140,9 @@ export default class ProductPage extends Component {
     }
   }
 
-  // first lines after the constructor that get executed
   render() {
+    var x = this.state;
+
     return (
       <div style={{ margin: "0 auto" }}>
 
@@ -144,7 +152,7 @@ export default class ProductPage extends Component {
             <Link to={{
               pathname: "/collections/" + this.state.season,
             }}>
-              {this.state.season}
+              {this.state.season} {}
             </Link>
           </span>
 
@@ -157,7 +165,6 @@ export default class ProductPage extends Component {
             </Link>
             </span>
         </div>
-
 
 
         {/* <div class="fullScreenProductPhoto">
@@ -202,7 +209,7 @@ export default class ProductPage extends Component {
 
                 {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
-                  <button id="buyBtn">PURCHASE</button>
+                  <button id="buyBtn" onClick={this.props.handleProdCode(this.state)} >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
                 }
