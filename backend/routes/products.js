@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let Product = require('../models/product.model');
+var Product = require('../models/product.model');
 
 router.route('/').get((req, res) => {
   Product.find()
@@ -7,7 +7,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-
+// if rows are removed from here, the post request to put items in the database will give an error
 router.route('/add').post((req, res) => {
   const type = req.body.type;
   const name = req.body.name;
@@ -25,7 +25,6 @@ router.route('/add').post((req, res) => {
   const public = req.body.public;
   const available = req.body.available;
   const description = req.body.description;
-  
   
   
   const newProduct = new Product({

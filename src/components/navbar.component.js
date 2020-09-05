@@ -2,7 +2,7 @@ import React, { useState, Component, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 
-// make this usable for footer. probably just change the inside of bzzz return
+// make this usable for footer. probably just change the inside of ThreeLines return
 function useComponentVisible() {
   // true/false in useState parentheses = whether the dropdown menu is opened or close on page load
   const [isComponentVisible, setIsComponentVisible] = useState(false);
@@ -20,13 +20,13 @@ function useComponentVisible() {
     }
   };
 
-    document.addEventListener("keydown", handleHideDropdown, true);
-    document.addEventListener("click", handleClickOutside, true);
+  document.addEventListener("keydown", handleHideDropdown, true);
+  document.addEventListener("click", handleClickOutside, true);
 
   return { ref, isComponentVisible, setIsComponentVisible };
 }
 
-const Bzzz = () => {
+const ThreeLines = () => {
   const {
     // gives this const the ref from the useComponentVisible function
     ref,
@@ -53,40 +53,38 @@ const Bzzz = () => {
   );
 };
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <div>
-        <nav>
-          <div className="navbarOne">
-            <div className="centeringParent">
-              <Bzzz></Bzzz>
-            </div>
-          </div>
 
-          <div className="navbarTwo">
-            <div className="centeringParent" id="navbarText">
-              <Link to="/">PLASTIC FUTURE</Link>
-            </div>
-          </div>
-          <div className="navbarThree">
-            <div className="centeringParent">
-              <img
-                src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}
-                alt="cartPhoto"
-                className="clickable"
-              ></img>
-            </div>
-          </div>
-        </nav>
-      </div>
-    );
-  }
-}
+const CartPreview = () => {
+  const {
+    // gives this const the ref from the useComponentVisible function
+    ref,
+    isComponentVisible,
+    setIsComponentVisible,
+  } = useComponentVisible();
+
+
+  return (
+    <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
+      {isComponentVisible && (
+        <div onClick={() => setIsComponentVisible(false)}>
+          <CartItem><DropdownCart></DropdownCart></CartItem>
+        </div>
+      )}
+      {!isComponentVisible && (
+        <div onClick={() => setIsComponentVisible(true)}>
+          <CartItem></CartItem>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+
 
 function NavItem(props) {
   // call the useState function (hook)
-  // open = bool for current state.(whether the dropdown menu is open)
+  // open = whether the dropdown menu is open
   // setOpen = function that 'sets state action'
   // false because the dropdown is not 'clicked' by default
   const [open, setOpen] = useState(false);
@@ -105,6 +103,22 @@ function NavItem(props) {
   );
 }
 
+function CartItem(props) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ width: "5vh", margin: "0 auto" }}>
+      <img
+        src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}
+        className="icon-button clickable"
+        onClick={() => {
+          setOpen(!open);
+        }}
+      />
+
+      {props.children}
+    </div>
+  );
+}
 // need more dropdown levels? 11:40 https://www.youtube.com/watch?v=IF6k0uZuypA
 function DropdownMenu() {
   function DropdownItem(props) {
@@ -153,3 +167,66 @@ function DropdownMenu() {
     </ul>
   );
 }
+
+
+function DropdownCart() {
+  function DropdownItem(props) {
+    return props.children;
+  }
+
+  return (
+    // change to state rendering instead of a href asap
+    <ul className="dropdown">
+      <DropdownItem>
+        <Link to="/products/" class="menu-item">
+          <li>ALL PRODUCTS</li>
+        </Link>
+      </DropdownItem>
+
+
+      <DropdownItem>
+        <Link to="/products/t-shirt" class="menu-item">
+          <li>TSHIRTS</li>
+        </Link>
+      </DropdownItem>
+
+      <DropdownItem>
+        <Link to="/products/tote" class="menu-item">
+          <li>TOTE BAGS</li>
+        </Link>
+      </DropdownItem>
+
+    </ul>
+  );
+}
+
+
+
+
+export default class Navbar extends Component {
+  render() {
+    return (
+      <div>
+        <nav>
+          <div className="navbarOne">
+            <div className="centeringParent">
+              <ThreeLines></ThreeLines>
+            </div>
+          </div>
+
+          <div className="navbarTwo">
+            <div className="centeringParent" id="navbarText">
+              <Link to="/">PLASTIC FUTURE</Link>
+            </div>
+          </div>
+          <div className="navbarThree">
+            <div className="centeringParent">
+              <CartPreview></CartPreview>
+            </div>
+          </div>
+        </nav>
+      </div>
+    );
+  }
+}
+
