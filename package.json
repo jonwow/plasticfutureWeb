@@ -2,6 +2,7 @@
   "name": "demo-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jonwow.github.io/plasticfutureWeb/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -9,6 +10,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "create-react-class": "^15.6.3",
+    "gh-pages": "^3.1.0",
     "react": "^16.13.1",
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
@@ -21,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

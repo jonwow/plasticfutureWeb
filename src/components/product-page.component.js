@@ -141,7 +141,6 @@ export default class ProductPage extends Component {
   }
 
   render() {
-    var x = this.state;
 
     return (
       <div style={{ margin: "0 auto" }}>
@@ -209,7 +208,7 @@ export default class ProductPage extends Component {
 
                 {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
-                  <button id="buyBtn" onClick={this.props.handleProdCode(this.state)} >PURCHASE</button>
+                  <button id="buyBtn" onClick={this.props.handleQuery} >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
                 }
