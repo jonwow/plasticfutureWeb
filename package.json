@@ -20,13 +20,13 @@
     "react-switch": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start && node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run-script build",
-    "deploy": "gh-pages -d build && cd backend && node server.js",
-    "server": "cd backend && node server.js"
+    "deploy": "gh-pages -d build && cd backend && nodemon server.js && node server.js",
+        "dev": "concurrently \"npm server\" "
   },
   "eslintConfig": {
     "extends": "react-app"
