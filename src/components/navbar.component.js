@@ -91,7 +91,7 @@ function NavItem(props) {
   return (
     <div style={{ width: "5vh", margin: "0 auto" }}>
       <img
-        src={`${process.env.PUBLIC_URL}/images/navbar/threeLines.png`}
+        src={require('../../src/images/navbar/threeLines.png')}
         className="icon-button clickable"
         onClick={() => {
           setOpen(!open);
@@ -108,7 +108,7 @@ function CartItem(props) {
   return (
     <div style={{ width: "5vh", margin: "0 auto" }}>
       <img
-        src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}
+        src={require('../../src/images/navbar/cart.png')}
         className="icon-button clickable"
         onClick={() => {
           setOpen(!open);
@@ -178,21 +178,21 @@ function DropdownCart() {
     // change to state rendering instead of a href asap
     <ul className="dropdown">
       <DropdownItem>
-        <Link to="/products/" class="menu-item">
-          <li>ALL PRODUCTS</li>
+        <Link class="menu-item">
+          <li>product</li>
         </Link>
       </DropdownItem>
 
 
-      <DropdownItem>
+      {/* <DropdownItem>
         <Link to="/products/t-shirt" class="menu-item">
           <li>TSHIRTS</li>
         </Link>
-      </DropdownItem>
+      </DropdownItem> */}
 
       <DropdownItem>
-        <Link to="/products/tote" class="menu-item">
-          <li>TOTE BAGS</li>
+        <Link class="menu-item">
+          <li>PRICE:</li>
         </Link>
       </DropdownItem>
 

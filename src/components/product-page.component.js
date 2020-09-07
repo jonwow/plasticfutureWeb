@@ -56,17 +56,19 @@ export default class ProductPage extends Component {
 
   determineStateProperties() {
     var index = 0, lastIndex = undefined, countOfAvailableSizes = 0;
-
+    console.log(this.state);
     // loop that finds the last available size and whether there are more than 1 available size
     // i = size | Object.values(..)[..][..] = how many units are available for that size and color
     for (let i of Object.keys(this.state.sizes)) {
       // console.log(i);
+      console.log(Object.values(this.state.sizes)[index][this.state.allColors.indexOf(this.state.curColor)]);
       if (Object.values(this.state.sizes)[index][this.state.allColors.indexOf(this.state.curColor)] > 0) {
         lastIndex = index;
         countOfAvailableSizes++;
       }
       index++;
     }
+    console.log(countOfAvailableSizes);
 
     // if the product is available and it has at least 1 available size, set state to 'curAvailable: true'
     if (this.state.allAvailableStatuses[this.state.allColors.indexOf(this.state.curColor)] && countOfAvailableSizes > 0) {
@@ -147,7 +149,7 @@ export default class ProductPage extends Component {
 
         {/* DEMO */}
         <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
-          <span style={{ fontWeight: '500'}}>
+          <span style={{ fontWeight: '500' }}>
             <Link to={{
               pathname: "/collections/" + this.state.season,
             }}>
@@ -156,13 +158,13 @@ export default class ProductPage extends Component {
           </span>
 
 
-          <span style={{ marginLeft: '0.5rem',fontWeight: '1' }} >
-          <Link to={{
-              pathname: "/products/" + this.state.season + '/'+ this.state.type,
+          <span style={{ marginLeft: '0.5rem', fontWeight: '1' }} >
+            <Link to={{
+              pathname: "/products/" + this.state.season + '/' + this.state.type,
             }}>
               / {this.state.type}s
             </Link>
-            </span>
+          </span>
         </div>
 
 
@@ -246,13 +248,13 @@ export default class ProductPage extends Component {
               <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
                 <div id="photosGrid">
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`)} />
 
                   </div>
 
 
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`)} />
 
                   </div>
                 </div>

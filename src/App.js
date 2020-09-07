@@ -59,9 +59,9 @@ const SearchableList = ({ }) => {
         <Route path="/" exact component={ProductList} />
         <Route path="/products" exact component={ProductList} />
         {/* <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} /> */}
-        <Route path="/products/:collection/:productType" exact component={ProductList} />
+        <Route exact path="/products/:collection/:productType" exact component={ProductList} />
         <Route
-          path='/products/:productType//'
+          exact path='/products/:productType/'
           render={(props) => (
             <ProductList {...props} isAuthed={1} />
           )}

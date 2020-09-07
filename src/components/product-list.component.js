@@ -134,7 +134,7 @@ export default class ProductList extends Component {
             else
                 var currentStyle = {};
 
-            return <Product product={curProduct} color={curProduct.color[colorIndexes[i]].toUpperCase()} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
+            return <Product product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
         })
     }
 

@@ -14,23 +14,23 @@ export default class Footer extends Component {
 
         <div className="imageContainer">
           <a href="https://instagram.com/_plasticfuture" target="_blank">
-            <img src={process.env.PUBLIC_URL + '/images/icons/instagram.png'} />
+            <img src={require('../../src/images/icons/instagram.png')} />
           </a>
 
           <a href="https://twitter.com/_plasticfuture" target="_blank">
-            <img src={process.env.PUBLIC_URL + '/images/icons/twitter_icon.png'} />
+            <img src={require('../../src/images/icons/twitter_icon.png')} />
           </a>
 
           <a href="https://youtube.com" target="_blank">
-            <img src={process.env.PUBLIC_URL + '/images/icons/youtube.png'} />
+            <img src={require('../../src/images/icons/youtube.png')} />
           </a>
 
           <a href="https://www.antislavery.org/" target="_blank">
-            <img src={process.env.PUBLIC_URL + '/images/icons/slavery.png'} />
+            <img src={require('../../src/images/icons/slavery.png')} />
           </a>
 
           <Link to="/tac">
-            <img src={process.env.PUBLIC_URL + '/images/icons/tnc.png'} />
+            <img src={require('../../src/images/icons/tnc.png')} />
           </Link>
 
           {/* <Link to="/career">
