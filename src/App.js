@@ -57,6 +57,8 @@ const SearchableList = ({ }) => {
           )}
         />
         <Route path="/" exact component={ProductList} />
+        {/* demo for gh pages */}
+        <Route exact path="/plasticfutureWeb" exact component={ProductList} />
         <Route path="/products" exact component={ProductList} />
         {/* <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} /> */}
         <Route exact path="/products/:collection/:productType" exact component={ProductList} />
