@@ -634,7 +634,8 @@ nav img:hover {
 }
 
 .centeredContainer2 {
-  width: calc(0.33fr * 3);
+  /* width: calc(0.33fr * 3); */
+  width: 0.99fr;
   margin: 0 auto;
 }
 

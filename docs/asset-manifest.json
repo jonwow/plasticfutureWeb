@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/plasticfutureWeb/static/css/main.5a822b09.chunk.css",
+    "main.js": "/plasticfutureWeb/static/js/main.cb4515cd.chunk.js",
+    "main.js.map": "/plasticfutureWeb/static/js/main.cb4515cd.chunk.js.map",
+    "runtime-main.js": "/plasticfutureWeb/static/js/runtime-main.35f35edb.js",
+    "runtime-main.js.map": "/plasticfutureWeb/static/js/runtime-main.35f35edb.js.map",
+    "static/js/2.fb3b0d56.chunk.js": "/plasticfutureWeb/static/js/2.fb3b0d56.chunk.js",
+    "static/js/2.fb3b0d56.chunk.js.map": "/plasticfutureWeb/static/js/2.fb3b0d56.chunk.js.map",
+    "index.html": "/plasticfutureWeb/index.html",
+    "precache-manifest.ea56475c0e065d554c383e5c9daebb37.js": "/plasticfutureWeb/precache-manifest.ea56475c0e065d554c383e5c9daebb37.js",
+    "service-worker.js": "/plasticfutureWeb/service-worker.js",
+    "static/css/main.5a822b09.chunk.css.map": "/plasticfutureWeb/static/css/main.5a822b09.chunk.css.map",
+    "static/js/2.fb3b0d56.chunk.js.LICENSE.txt": "/plasticfutureWeb/static/js/2.fb3b0d56.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.35f35edb.js",
+    "static/js/2.fb3b0d56.chunk.js",
+    "static/css/main.5a822b09.chunk.css",
+    "static/js/main.cb4515cd.chunk.js"
+  ]
+}
