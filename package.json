@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run-script build",
-    "deploy": "gh-pages -d build && cd backend && nodemon server.js && node server.js",
+    "deploy": "gh-pages -d build",
         "dev": "concurrently \"npm server\" "
   },
   "eslintConfig": {
