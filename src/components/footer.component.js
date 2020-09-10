@@ -18,7 +18,7 @@ export default class Footer extends Component {
           </a>
 
           <a href="https://twitter.com/_plasticfuture" target="_blank">
-            <img src={require('../../src/images/icons/twitter_icon.png')} />
+            <img src={require('../../src/images/icons/twitter.png')} />
           </a>
 
           <a href="https://youtube.com" target="_blank">
@@ -30,7 +30,7 @@ export default class Footer extends Component {
           </a>
 
           <Link to="/tac">
-            <img src={require('../../src/images/icons/tnc.png')} />
+            <img src={require('../../src/images/icons/tac.png')} />
           </Link>
 
           {/* <Link to="/career">

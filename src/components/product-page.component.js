@@ -226,7 +226,7 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div class="bigProductContainer">
-                <img class="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`)} />
+                <img class="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div class="box3"> 
@@ -248,13 +248,13 @@ export default class ProductPage extends Component {
               <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
                 <div id="photosGrid">
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`)} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
 
                   </div>
 
 
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`)} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
 
                   </div>
                 </div>

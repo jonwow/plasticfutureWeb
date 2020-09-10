@@ -13,7 +13,7 @@ const Product = props => (
     }}>
 
         <div style={props.style} className="product">
-            <img src={require(`../../src/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `_` + props.color + `_small.png`)} />
+            <img src={require(`../../src/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `-` + props.color + `-small.png`)} />
             {/* make a proper formatting solution */}
 
 
