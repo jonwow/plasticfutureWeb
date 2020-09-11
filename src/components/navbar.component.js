@@ -177,24 +177,13 @@ function DropdownCart() {
   return (
     // change to state rendering instead of a href asap
     <ul className="dropdown">
+      
       <DropdownItem>
-        <Link class="menu-item">
-          <li>product</li>
-        </Link>
-      </DropdownItem>
-
-
-      {/* <DropdownItem>
         <Link to="/products/t-shirt" class="menu-item">
           <li>TSHIRTS</li>
         </Link>
-      </DropdownItem> */}
-
-      <DropdownItem>
-        <Link class="menu-item">
-          <li>PRICE:</li>
-        </Link>
       </DropdownItem>
+
 
     </ul>
   );
@@ -207,8 +196,6 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
-      <h1>{this.props.prodCode.curColor}</h1>
-      <h1>{this.props.prodCode.productCode}</h1>
         <nav>
           <div className="navbarOne">
             <div className="centeringParent">
@@ -223,10 +210,21 @@ export default class Navbar extends Component {
           </div>
           <div className="navbarThree">
             <div className="centeringParent">
-              <CartPreview></CartPreview>
+            {this.props.exampleState.product.count > 0 ?
+    <div>
+
+      {this.props.exampleState.product.name}-
+  {this.props.exampleState.product.color}-
+  {this.props.exampleState.product.price}€-
+  {this.props.exampleState.product.count} units
+  </div>
+  :
+  <CartPreview></CartPreview>
+  }
             </div>
           </div>
         </nav>
+
       </div>
     );
   }

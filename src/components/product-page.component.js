@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React,  { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -210,7 +210,7 @@ export default class ProductPage extends Component {
 
                 {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
-                  <button id="buyBtn" onClick={this.props.handleQuery} >PURCHASE</button>
+                  <button id="buyBtn" onClick={() => this.props.handleSet(this.state.name,this.state.curColor, this.state.price[this.state.allColors.indexOf(this.state.curColor)])} >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
                 }

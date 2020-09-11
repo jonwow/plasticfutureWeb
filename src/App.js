@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // components
@@ -31,29 +31,41 @@ import ScrollToTop from "./scroll-to-top.js";
 // };
 
 const SearchableList = ({ }) => {
-  const [list, setQuery] = React.useState(0);
-  const [prodCode, setProdCode] = React.useState([])
-  var oldCode = prodCode;
-  const handleQuery = (event) => {
-    setQuery(list+1)
-  };
-  const handleProdCode = (xd) => {
-    setProdCode(oldCode)
-    console.log(prodCode);
-  };
 
+
+  const [exampleState, setExampleState] = useState(
+    {
+      product: {
+        name: '',
+        color: '',
+        price: '',
+        count: 0
+      }
+    })
+
+  const handleSet = (productName, productColor, productPrice) => {
+    setExampleState({
+      ...exampleState, product: {
+        name: productName,
+        color: productColor,
+        price: productPrice,
+        count: exampleState.product.count + 1
+      },
+    },
+      console.log(exampleState)
+    )
+  }
   return (
     <Router>
       <ScrollToTop />
       <Head />
 
-        <Navbar list={list} prodCode={prodCode}/>
-{list}
+      <Navbar handleSet={handleSet} exampleState={exampleState} />
       <div className="container">
         <Route
           path='/products/:productType/:productCode/:color/:id/'
           render={(props) => (
-            <ProductPage {...props} list={list} handleProdCode={handleProdCode} handleQuery={handleQuery} />
+            <ProductPage handleSet={handleSet} {...props} />
           )}
         />
         <Route path="/" exact component={ProductList} />
