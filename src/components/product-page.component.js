@@ -116,7 +116,8 @@ export default class ProductPage extends Component {
           allAvailableStatuses: this.props.location.product.available,
           curAvailable: false,
           productCode: this.props.location.product.productCode,
-          loading: false
+          loading: false,
+          _id: this.props.location.product._id,
         },
         this.determineStateProperties
       );
@@ -139,7 +140,8 @@ export default class ProductPage extends Component {
             productCode: response.data.productCode,
             allAvailableStatuses: response.data.available,
             type: response.data.type,
-            loading: false
+            loading: false,
+            _id: response.data._id
           },
             this.determineStateProperties
           )
@@ -218,7 +220,7 @@ export default class ProductPage extends Component {
                 {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn" onClick={
-                    this.props.updateFieldChanged(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season,this.state.curColor)
+                    this.props.updateFieldChanged(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season,this.state.curColor,this.state._id)
                   } >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>

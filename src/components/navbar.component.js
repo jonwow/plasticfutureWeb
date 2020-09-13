@@ -180,12 +180,18 @@ function DropdownCart(datas) {
       <DropdownItem >
 
         {Object.keys(datas).map(key =>
-          <Link class="menu-item" value={key}>
+          <Link value={key} class="cart-item" to={{
+            pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+
+          }}>
+
+
             <li>
               {datas[key].name + ' ' + datas[key].count + ' ' + datas[key].size + ' ' + datas[key].price + ' ' + datas[key].productCode + ' | total price: ' + datas[key].price * datas[key].count + '€'}
-              <img class="bigProduct" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` +datas[key].name + `-` + datas[key].color + `-small.png`)} />
+              <img class="bigProduct" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
 
-            </li></Link>)}
+            </li>
+          </Link>)}
 
       </DropdownItem>
 

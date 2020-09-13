@@ -287,7 +287,6 @@ nav > div > div > p {
 }
 
 nav img {
-  width: 10vh;
   display: block;
   margin: 0 auto;
   text-align: center;
@@ -314,8 +313,7 @@ nav .navbarThree {
   -ms-flex-preferred-size: 15%;
   flex-basis: 15%;
 }
-nav .navbarOne img,
-nav .navbarThree img,
+
 .icon-button {
   width: 5vh;
 }
@@ -612,7 +610,7 @@ nav img {
   transition: none;
 }
 
-nav img:hover {
+.icon-button:hover {
   -webkit-transition: 0.1s linear;
   transition: 0.1s linear;
   -webkit-filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
@@ -671,6 +669,14 @@ nav img:hover {
   text-align: center;
   margin-bottom: 10px;
 }
+
+.cart-item  li{
+  background: whitesmoke;
+padding: 2rem;
+list-style: none;
+color: black;
+}
+
 
 /* implement this soon */
 .buttonContainer {
@@ -744,7 +750,7 @@ nav img:hover {
     margin: 0 auto;
   }
 }
-/* TYPICAL PHONES. min height makes widescreen mode NOT applicable to thsi rule */
+/* TYPICAL PHONES. min height makes widescreen mode NOT applicable to this rule */
 @media only screen and (max-width: 679px) and (min-width: 320px) and (min-height: 400px) {
   /* CHANGES THE 'REM' INITIAL SIZE FOR ALL ELEMENTS.  */
   /* 'REM' UNITS ARE USED IN FONT AND IMAGE SIZING */

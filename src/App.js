@@ -19,7 +19,7 @@ const SearchableList = ({ }) => {
 
   const [datas, setDatas] = useState([]);
 
-  const updateFieldChanged = (index, name, size, price,type,season,color) => () => {
+  const updateFieldChanged = (index, name, size, price,type,season,color,_id) => () => {
     if (size == undefined)
       alert('select a size (temporary fix)')
     else {
@@ -43,7 +43,8 @@ const SearchableList = ({ }) => {
           count: 1,
           type: type,
           season: season,
-          color: color
+          color: color,
+          _id:_id
         };
       }
 
