@@ -13,102 +13,68 @@ import ProductList from "./components/product-list.component";
 import ScrollToTop from "./scroll-to-top.js";
 
 
-
-// const SearchableList = ({  }) => {
-//   const [query, setQuery] = React.useState('');
-//   const handleQuery = event => {
-//     setQuery(event.target.value);
-//   };
-
-
-//   return (
-//     <div>
-//       <Search query={query} handleQuery={handleQuery}>
-// parent query is {query}      </Search>
-//       <List query={query}/>
-//     </div>
-//   );
-// };
-
 const SearchableList = ({ }) => {
 
 
-  const [exampleState, setExampleState] = useState(
-    {
-      product: {
-        name: '',
-        color: '',
-        price: '',
-        count: 0
-      }
-    })
 
-  const handleSet = (productName, productColor, productPrice) => {
-    setExampleState({
-      ...exampleState, product: {
-        name: productName,
-        color: productColor,
-        price: productPrice,
-        count: exampleState.product.count + 1
-      },
-    },
-      console.log(exampleState)
-    )
-  }
+  const [datas, setDatas] = useState([]);
 
-  // is it necessary to set a default 'datas' value?
-  const [datas, setDatas] = useState([ 
-  ]);
-  console.log(datas);
-  const updateFieldChanged = (index,name,size,price) => e => {
-
-    console.log('index: ' + index);
-    let newArr = [...datas]; // copying the old datas array
-    // newArr[0].name = index; // replace e.target.value with whatever you want to change it to
-    
-    var unique = true;
+  const updateFieldChanged = (index, name, size, price) => () => {
     if (size == undefined)
       alert('select a size (temporary fix)')
+    else {
+      var unique = true;
+      let newArr = [...datas];
 
-    newArr.forEach(cartItem => {
-      if(cartItem.productCode == index && cartItem.size == size)
-        {console.log('THERE IS ONE!');
-        unique = false;
-        cartItem.count++;
-    }
-    });
-    if (unique && size != undefined)
-    {
-      newArr[newArr.length] = {
-        productCode: index, 
-        name: name, 
-        size: size,
-        price: price,
-        count: 1
-      }; 
-      console.log(123);
-      console.log(newArr);
-    }
+      newArr.forEach(cartItem => {
+        if (cartItem.productCode == index && cartItem.size == size) {
+          console.log('THERE IS ONE!');
+          unique = false;
+          cartItem.count++;
+        }
+      });
 
-    setDatas(newArr); // ??
+      if (unique) {
+        newArr[newArr.length] = {
+          productCode: index,
+          name: name,
+          size: size,
+          price: price,
+          count: 1
+        };
+      }
+
+      setDatas(newArr);
+    }
   }
-/*
- 
 
-    if (unique)
-      newArr.push(index.name)
-      */
+  var sum = 0;
+
   return (
     <Router>
       <ScrollToTop />
       <Head />
+      <Navbar datas={datas} />
 
-      <Navbar handleSet={handleSet} exampleState={exampleState} />
+      {datas.map((data) => {
+        return <input type="text" name="name" value={data.name + ' ' + data.count + ' ' + data.size + ' ' + data.price * data.count + '€'} />
+      })
+      }
+
+      <p>
+        total:
+        {datas.map((data) => {
+        sum += data.price * data.count;
+      })}
+        {sum + '.00€'}
+      </p>
+
+
       <div className="container">
         <Route
           path='/products/:productType/:productCode/:color/:id/'
           render={(props) => (
-            <ProductPage datas={datas} updateFieldChanged={updateFieldChanged} handleSet={handleSet} {...props} />
+            <ProductPage datas={datas} updateFieldChanged={updateFieldChanged} {...props} />
           )}
         />
         <Route path="/" exact component={ProductList} />

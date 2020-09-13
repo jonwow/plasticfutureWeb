@@ -54,20 +54,20 @@ const ThreeLines = () => {
 };
 
 
-const CartPreview = () => {
+const CartPreview = (datas) => {
   const {
     // gives this const the ref from the useComponentVisible function
     ref,
     isComponentVisible,
     setIsComponentVisible,
   } = useComponentVisible();
-
+  console.log(datas);
 
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
         <div onClick={() => setIsComponentVisible(false)}>
-          <CartItem><DropdownCart></DropdownCart></CartItem>
+          <CartItem><DropdownCart {...datas}></DropdownCart></CartItem>
         </div>
       )}
       {!isComponentVisible && (
@@ -169,22 +169,22 @@ function DropdownMenu() {
 }
 
 
-function DropdownCart() {
+function DropdownCart(datas) {
   function DropdownItem(props) {
     return props.children;
   }
 
+
   return (
-    // change to state rendering instead of a href asap
     <ul className="dropdown">
-      
-      <DropdownItem>
-        <Link to="/products/t-shirt" class="menu-item">
-          <li>TSHIRTS</li>
-        </Link>
+      <DropdownItem >
+
+        {Object.keys(datas).map(key =>
+          <Link class="menu-item" value={key}><li>{datas[key].name + ' ' + datas[key].count + ' ' + datas[key].size + ' ' + datas[key].price * datas[key].count + '€'}</li></Link>)}
+
       </DropdownItem>
 
-
+        
     </ul>
   );
 }
@@ -196,6 +196,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
+        {console.log(this.props.datas)}
         <nav>
           <div className="navbarOne">
             <div className="centeringParent">
@@ -210,23 +211,17 @@ export default class Navbar extends Component {
           </div>
           <div className="navbarThree">
             <div className="centeringParent">
-            {this.props.exampleState.product.count > 0 ?
-    <div>
+              <div>
+                <CartPreview {...this.props.datas}>
 
-      {this.props.exampleState.product.name}-
-  {this.props.exampleState.product.color}-
-  {this.props.exampleState.product.price}€-
-  {this.props.exampleState.product.count} units
-  </div>
-  :
-  <CartPreview></CartPreview>
-  }
+                </CartPreview>
+              </div>
             </div>
           </div>
         </nav>
-
       </div>
-    );
+
+
+    )
   }
 }
-
