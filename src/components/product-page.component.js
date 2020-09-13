@@ -1,4 +1,4 @@
-import React,  { Component, useState } from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -44,7 +44,6 @@ export default class ProductPage extends Component {
     var allSizeElements = document.getElementsByClassName('productSizing')[0].children,
       selectedSize = document.getElementById(size);
 
-    this.state.selectedSize = size;
 
     // give white background to all size elements
     for (var i = 0; i < allSizeElements.length; i++)
@@ -52,6 +51,12 @@ export default class ProductPage extends Component {
 
     // give black background to the selected size element
     selectedSize.style.cssText = "background: black; color: white; transition: background 0.2s, color  0.2s"
+
+    this.setState({
+      selectedSize: size,
+      fullyLoaded: true
+    })
+
   }
 
   determineStateProperties() {
@@ -143,10 +148,22 @@ export default class ProductPage extends Component {
   }
 
   render() {
-
+    console.log(this.state.selectedSize);
+    var sum = 0;
+    
     return (
       <div style={{ margin: "0 auto" }}>
 
+        { this.props.datas.map((data) => {
+          return <input type="text" name="name" value={data.name + ' ' + data.count + ' ' + data.size + ' ' + data.price * data.count + '€'} />
+        })
+        }
+
+        <p>total:   {this.props.datas.map((data) => {
+          sum += data.price * data.count;
+        })}
+          {sum + '.00€'}
+        </p>
         {/* DEMO */}
         <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
           <span style={{ fontWeight: '500' }}>
@@ -210,7 +227,9 @@ export default class ProductPage extends Component {
 
                 {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
-                  <button id="buyBtn" onClick={() => this.props.handleSet(this.state.name,this.state.curColor, this.state.price[this.state.allColors.indexOf(this.state.curColor)])} >PURCHASE</button>
+                  <button id="buyBtn" onClick={
+                    this.props.updateFieldChanged(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)])
+                  } >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
                 }

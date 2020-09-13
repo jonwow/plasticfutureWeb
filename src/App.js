@@ -55,6 +55,49 @@ const SearchableList = ({ }) => {
       console.log(exampleState)
     )
   }
+
+  // is it necessary to set a default 'datas' value?
+  const [datas, setDatas] = useState([ 
+  ]);
+  console.log(datas);
+  const updateFieldChanged = (index,name,size,price) => e => {
+
+    console.log('index: ' + index);
+    let newArr = [...datas]; // copying the old datas array
+    // newArr[0].name = index; // replace e.target.value with whatever you want to change it to
+    
+    var unique = true;
+    if (size == undefined)
+      alert('select a size (temporary fix)')
+
+    newArr.forEach(cartItem => {
+      if(cartItem.productCode == index && cartItem.size == size)
+        {console.log('THERE IS ONE!');
+        unique = false;
+        cartItem.count++;
+    }
+    });
+    if (unique && size != undefined)
+    {
+      newArr[newArr.length] = {
+        productCode: index, 
+        name: name, 
+        size: size,
+        price: price,
+        count: 1
+      }; 
+      console.log(123);
+      console.log(newArr);
+    }
+
+    setDatas(newArr); // ??
+  }
+/*
+ 
+
+    if (unique)
+      newArr.push(index.name)
+      */
   return (
     <Router>
       <ScrollToTop />
@@ -65,7 +108,7 @@ const SearchableList = ({ }) => {
         <Route
           path='/products/:productType/:productCode/:color/:id/'
           render={(props) => (
-            <ProductPage handleSet={handleSet} {...props} />
+            <ProductPage datas={datas} updateFieldChanged={updateFieldChanged} handleSet={handleSet} {...props} />
           )}
         />
         <Route path="/" exact component={ProductList} />
