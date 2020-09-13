@@ -218,7 +218,7 @@ export default class ProductPage extends Component {
                 {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn" onClick={
-                    this.props.updateFieldChanged(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)])
+                    this.props.updateFieldChanged(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season,this.state.curColor)
                   } >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
