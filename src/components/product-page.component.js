@@ -150,9 +150,6 @@ export default class ProductPage extends Component {
   }
 
   render() {
-    console.log(this.state.selectedSize);
-    var sum = 0;
-
     return (
       <div style={{ margin: "0 auto" }}>
 

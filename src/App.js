@@ -13,10 +13,7 @@ import ProductList from "./components/product-list.component";
 import ScrollToTop from "./scroll-to-top.js";
 
 
-const SearchableList = ({ }) => {
-
-
-
+const SearchableList = ({}) => {
   const [datas, setDatas] = useState([]);
 
   const updateFieldChanged = (index, name, size, price,type,season,color,_id) => () => {
@@ -59,20 +56,6 @@ const SearchableList = ({ }) => {
       <ScrollToTop />
       <Head />
       <Navbar datas={datas} />
-
-      {datas.map((data) => {
-        return <input type="text" name="name" value={data.name + ' ' + data.count + ' ' + data.size + ' ' + data.price * data.count + '€'} />
-      })
-      }
-
-      <p>
-        total:
-        {datas.map((data) => {
-        sum += data.price * data.count;
-      })}
-        {sum + '.00€'}
-      </p>
-
 
       <div className="container">
         <Route
