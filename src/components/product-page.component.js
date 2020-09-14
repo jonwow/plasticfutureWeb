@@ -154,6 +154,7 @@ export default class ProductPage extends Component {
       <div style={{ margin: "0 auto" }}>
 
         {/* DEMO */}
+        {!this.state.loading && 
         <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
           <span style={{ fontWeight: '500' }}>
             <Link to={{
@@ -172,6 +173,7 @@ export default class ProductPage extends Component {
             </Link>
           </span>
         </div>
+        }
 
 
         {/* <div class="fullScreenProductPhoto">

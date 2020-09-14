@@ -148,15 +148,22 @@ export default class ProductList extends Component {
                 {/* breadcrumbs DEMO!!! */}
                 {productType ?
                     // no need for 2 p's, fix later
-                    <p style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
+                    <div>
+                    <span style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: '500' }}>
                         {this.props.match.params.collection  } / 
+
+
+                    </span>
+                    <span style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
+
                         {productType}
 
                         {/* if the product type is jeans, dont add the 's' at the end */}
                         {productType[productType.length - 1] != 's' && 's'}
 
-                    </p>
+                    </span>
 
+                    </div>
                     :
 
                     <p style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>

@@ -8,7 +8,7 @@ function useComponentVisible() {
   const [isComponentVisible, setIsComponentVisible] = useState(false);
   const ref = useRef(null);
 
-  const handleHideDropdown = (event: KeyboardEvent) => {
+  const handleHideDropdown = (event) => {
     if (event.key === "Escape") {
       setIsComponentVisible(false);
     }
