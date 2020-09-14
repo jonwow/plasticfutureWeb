@@ -15,6 +15,7 @@ import ScrollToTop from "./scroll-to-top.js";
 
 const SearchableList = ({}) => {
   const [datas, setDatas] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
 
   const updateFieldChanged = (index, name, size, price,type,season,color,_id) => () => {
     if (size == undefined)
@@ -46,6 +47,7 @@ const SearchableList = ({}) => {
       }
 
       setDatas(newArr);
+      setTotalCount(totalCount+1);
     }
   }
 
@@ -55,7 +57,7 @@ const SearchableList = ({}) => {
     <Router>
       <ScrollToTop />
       <Head />
-      <Navbar datas={datas} />
+      <Navbar datas={datas} totalCount={totalCount}/>
 
       <div className="container">
         <Route

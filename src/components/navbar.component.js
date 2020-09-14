@@ -229,6 +229,10 @@ export default class Navbar extends Component {
                 <CartPreview {...this.props.datas}>
 
                 </CartPreview>
+                
+                
+          <span style={{position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh',  borderRadius: '6px', padding: '0 0.25vh'}}>{this.props.totalCount < 10 ? this.props.totalCount : '9+'}</span>
+
               </div>
             </div>
           </div>
