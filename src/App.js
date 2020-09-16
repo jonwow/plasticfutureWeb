@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as BrowserRouter, Router, Route, Link } from "react-router-dom";
 
 // components
 import Footer from "./components/footer.component";
@@ -13,11 +13,11 @@ import ProductList from "./components/product-list.component";
 import ScrollToTop from "./scroll-to-top.js";
 
 
-const SearchableList = ({}) => {
+const SearchableList = ({ }) => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  const updateFieldChanged = (index, name, size, price,type,season,color,_id) => () => {
+  const updateFieldChanged = (index, name, size, price, type, season, color, _id) => () => {
     if (size == undefined)
       alert('select a size (temporary fix)')
     else {
@@ -42,22 +42,22 @@ const SearchableList = ({}) => {
           type: type,
           season: season,
           color: color,
-          _id:_id
+          _id: _id
         };
       }
 
       setDatas(newArr);
-      setTotalCount(totalCount+1);
+      setTotalCount(totalCount + 1);
     }
   }
 
-  var sum = 0;
 
   return (
-    <Router>
-      <ScrollToTop />
+    <BrowserRouter basename={process.env.PUBLIC_URL}>      
+    
+    <ScrollToTop />
       <Head />
-      <Navbar datas={datas} totalCount={totalCount}/>
+      <Navbar datas={datas} totalCount={totalCount} />
 
       <div className="container">
         <Route
@@ -66,7 +66,7 @@ const SearchableList = ({}) => {
             <ProductPage datas={datas} updateFieldChanged={updateFieldChanged} {...props} />
           )}
         />
-        <Route path="/" exact component={ProductList} />
+        <Route path='/' exact component={ProductList} />
         {/* demo for gh pages */}
         <Route exact path="/plasticfutureWeb/" exact component={ProductList} />
         <Route path="/products" exact component={ProductList} />
@@ -96,8 +96,7 @@ const SearchableList = ({}) => {
         <Footer />
 
       </div>
-    </Router>
-  );
+    </BrowserRouter>);
 }
 
 export default SearchableList;
