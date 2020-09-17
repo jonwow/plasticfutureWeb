@@ -12,7 +12,6 @@ import ProductPage from "./components/product-page.component";
 import ProductList from "./components/product-list.component";
 import ScrollToTop from "./scroll-to-top.js";
 
-
 const SearchableList = ({ }) => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -48,14 +47,22 @@ const SearchableList = ({ }) => {
 
       setDatas(newArr);
       setTotalCount(totalCount + 1);
+      {window.sessionStorage.setItem("test", datas)}
+
+      Object.keys(datas).map(key =>
+        console.log(sessionStorage.getItem("test")[0].name)
+      )
+
+
+
+
     }
   }
 
-
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>      
-    
-    <ScrollToTop />
+
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <ScrollToTop />
       <Head />
       <Navbar datas={datas} totalCount={totalCount} />
 
@@ -96,7 +103,8 @@ const SearchableList = ({ }) => {
         <Footer />
 
       </div>
-    </BrowserRouter>);
-}
+    </BrowserRouter>
+  );
+};
 
 export default SearchableList;
