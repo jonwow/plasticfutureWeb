@@ -190,7 +190,7 @@ function DropdownCart(datas) {
 
               <li>
                 {datas[key].name + ' ' + datas[key].count + ' ' + datas[key].size + ' ' + datas[key].price + ' ' + datas[key].productCode + ' | total price: ' + datas[key].price * datas[key].count + '€'}
-                <img class="bigProduct" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
+                <img class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
 
               </li>
             </Link>)

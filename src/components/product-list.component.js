@@ -77,16 +77,16 @@ export default class ProductList extends Component {
             // product type has to match the type of the page that the client is on (tshirt, tote) or all products
             if (curProduct.season == productCollection || productCollection == undefined)
                 if (curProduct.type == productType || productType == undefined)
-                // for each color of that product
-                for (var index = 0; index < curProduct.color.length; index++) {
-                    // if the product in that color is public 
-                    if (curProduct.public[index]) {
-                        if (curProduct.available[index] && this.sumOfValues(curProduct.sizes, index) > 0)
-                            products.availColorIndex.push(index) && products.available.push(curProduct);
-                        else
-                            products.unavailColorIndex.push(index) && products.unavailable.push(curProduct);
+                    // for each color of that product
+                    for (var index = 0; index < curProduct.color.length; index++) {
+                        // if the product in that color is public 
+                        if (curProduct.public[index]) {
+                            if (curProduct.available[index] && this.sumOfValues(curProduct.sizes, index) > 0)
+                                products.availColorIndex.push(index) && products.available.push(curProduct);
+                            else
+                                products.unavailColorIndex.push(index) && products.unavailable.push(curProduct);
+                        }
                     }
-                }
         })
 
         // *******************************************************************
@@ -117,7 +117,7 @@ export default class ProductList extends Component {
     }
 
 
-    productList(productType,productCollection) {
+    productList(productType, productCollection) {
         var filteredObject = this.filterAndSort(productType, productCollection)
 
         var products = filteredObject.available.concat(filteredObject.unavailable),
@@ -141,38 +141,37 @@ export default class ProductList extends Component {
 
     render() {
         const productType = this.props.match.params.productType,
-              productCollection = this.props.match.params.collection;
-        
+            productCollection = this.props.match.params.collection;
+
         return (
             <div>
                 {/* breadcrumbs DEMO!!! */}
                 {productType ?
-                    // no need for 2 p's, fix later
                     <div>
-                    <span style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: '500' }}>
-                        {this.props.match.params.collection  } / 
+                        {this.props.match.params.collection &&
+                            <span style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: '500' }}>
+                                {this.props.match.params.collection} /
+                        </span>}
+
+                        <span style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
+
+                            {productType}
+
+                            {/* if the product type is jeans, dont add the 's' at the end */}
+                            {productType[productType.length - 1] != 's' && 's'}
+
+                        </span>
+                        <div>
 
 
-                    </span>
-                    <span style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
-
-                        {productType}
-
-                        {/* if the product type is jeans, dont add the 's' at the end */}
-                        {productType[productType.length - 1] != 's' && 's'}
-
-                    </span>
+                        </div>
 
                     </div>
                     :
-
-                    <p style={{ textAlign: "left", marginTop: '0.25rem' ,letterSpacing: '-1.2px',marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
+                    <p style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
                         ALL PRODUCTS
                     </p>
-
-
                 }
-                    {this.props.isAuthed}
 
                 <div className="centeredContainer" id="topElement" >
 
