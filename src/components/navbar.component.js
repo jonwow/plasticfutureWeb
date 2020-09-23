@@ -54,20 +54,31 @@ const ThreeLines = () => {
 };
 
 
-const CartPreview = (datas) => {
+const CartPreview = ({ fields }) => {
   const {
     // gives this const the ref from the useComponentVisible function
     ref,
     isComponentVisible,
     setIsComponentVisible,
-  } = useComponentVisible();
-  console.log(datas);
+  } = useComponentVisible(false);
+
+  if (fields.openCartPreview && !isComponentVisible) {
+    setIsComponentVisible(fields.openCartPreview)
+
+  }
+
+  // bugs here, check console.
+  setTimeout(() => {
+    if (isComponentVisible)
+      setIsComponentVisible(fields.openCartPreview)
+    console.log(isComponentVisible, fields.openCartPreview);
+  }, 3333);
 
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
         <div onClick={() => setIsComponentVisible(false)}>
-          <CartItem><DropdownCart {...datas}></DropdownCart></CartItem>
+          <CartItem><DropdownCart {...fields.datas}></DropdownCart></CartItem>
         </div>
       )}
       {!isComponentVisible && (
@@ -226,12 +237,12 @@ export default class Navbar extends Component {
           <div className="navbarThree">
             <div className="centeringParent">
               <div>
-                <CartPreview {...this.props.datas}>
+                <CartPreview fields={this.props} >
 
                 </CartPreview>
-                
-                
-          <span style={{zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh',  borderRadius: '6px', padding: '0 0.25vh'}}>{this.props.totalCount < 10 ? this.props.totalCount : '9+'}</span>
+
+
+                <span style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>{this.props.totalCount < 10 ? this.props.totalCount : '9+'}</span>
 
               </div>
             </div>

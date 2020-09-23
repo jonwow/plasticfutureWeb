@@ -16,10 +16,12 @@ const SearchableList = ({ }) => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
-  const updateFieldChanged = (index, name, size, price, type, season, color, _id) => () => {
+  const [openCartPreview, setOpenCartPreview] = useState(false);
+  const buyBtnPressed = (index, name, size, price, type, season, color, _id) => () => {
     if (size == undefined)
       alert('select a size (temporary fix)')
     else {
+      
       var unique = true;
       let newArr = [...datas];
 
@@ -47,6 +49,7 @@ const SearchableList = ({ }) => {
 
       setDatas(newArr);
       setTotalCount(totalCount + 1);
+      setOpenCartPreview(true);
       {window.sessionStorage.setItem("test", datas)}
 
       Object.keys(datas).map(key =>
@@ -64,13 +67,13 @@ const SearchableList = ({ }) => {
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ScrollToTop />
       <Head />
-      <Navbar datas={datas} totalCount={totalCount} />
+      <Navbar openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
 
       <div className="container">
         <Route
           path='/products/:productType/:productCode/:color/:id/'
           render={(props) => (
-            <ProductPage datas={datas} updateFieldChanged={updateFieldChanged} {...props} />
+            <ProductPage datas={datas} buyBtnPressed={buyBtnPressed} {...props} />
           )}
         />
         <Route path='/' exact component={ProductList} />
