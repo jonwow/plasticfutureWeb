@@ -34,11 +34,12 @@ footer div {
 }
 .dropdown {
   position: absolute;
-  top: 4.5rem;
-  width: 18rem;
+  /* full header height - icon height divided by two + icon height -1px */
+  top: calc((12vh - 5vh) / 2 + 5vh - 1px);
+  width: calc(33vw * 0.44);
   left: 0;
-  padding: 1rem;
   overflow: hidden;
+
   z-index: 2;
 }
 
@@ -254,7 +255,6 @@ footer {
 footer p {
   line-height: 2;
 }
-
 
 #navbarText a {
   font-family: "Open Sans Condensed", sans-serif;
@@ -670,13 +670,12 @@ nav img {
   margin-bottom: 10px;
 }
 
-.dropdown li{
+.dropdown li {
   background: whitesmoke;
-padding: 2rem;
-list-style: none;
-color: black;
+  padding: 2rem 1vw;
+  list-style: none;
+  color: black;
 }
-
 
 /* implement this soon */
 .buttonContainer {
@@ -700,8 +699,8 @@ color: black;
   text-align: center;
 }
 
-#buyBtn:hover{
-  background: rgb(225,225,225);
+#buyBtn:hover {
+  background: rgb(225, 225, 225);
   transition: background 0.2s;
   transition: filter 0.2s;
   filter: drop-shadow(0 0 0.15rem black);
@@ -767,8 +766,12 @@ color: black;
   .dropdown {
     width: 100vw;
     left: 0;
-    padding: 0;
     top: 8vh;
+  }
+
+  #cartDropdown {
+    width: 100vw;
+    left: -85vw;
   }
 
   .dropdown .menu-item li {

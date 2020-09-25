@@ -68,11 +68,11 @@ const CartPreview = ({ fields }) => {
   }
 
   // bugs here, check console.
-  setTimeout(() => {
-    if (isComponentVisible)
-      setIsComponentVisible(fields.openCartPreview)
-    console.log(isComponentVisible, fields.openCartPreview);
-  }, 3333);
+  // setTimeout(() => {
+  //   if (isComponentVisible)
+  //     setIsComponentVisible(fields.openCartPreview)
+  //   console.log(isComponentVisible, fields.openCartPreview);
+  // }, 3333);
 
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
@@ -138,7 +138,7 @@ function DropdownMenu() {
 
   return (
     // change to state rendering instead of a href asap
-    <ul className="dropdown">
+    <ul className="dropdown" >
       <DropdownItem>
         <Link to="/products/" class="menu-item">
           <li className="asd">ALL PRODUCTS</li>
@@ -187,7 +187,7 @@ function DropdownCart(datas) {
 
 
   return (
-    <ul className="dropdown">
+    <ul className="dropdown"  id="cartDropdown" >
       <DropdownItem >
 
         {datas[0] == undefined ? <li >no products.</li> :
