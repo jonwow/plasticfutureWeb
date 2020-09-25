@@ -103,7 +103,7 @@ const SearchableList = ({ }) => {
         </Route>
 
         <StickyFooter />
-
+            <Footer></Footer>
       </div>
     </BrowserRouter>
   );
