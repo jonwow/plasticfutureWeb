@@ -62,23 +62,24 @@ const CartPreview = ({ fields }) => {
     setIsComponentVisible,
   } = useComponentVisible(false);
 
-  if (fields.openCartPreview && !isComponentVisible) {
-    setIsComponentVisible(fields.openCartPreview)
+  // if (fields.openCartPreview && !isComponentVisible) {
+  //   setIsComponentVisible(fields.openCartPreview)
+  //   console.log(123);
+  // }
 
-  }
 
-  // bugs here, check console.
-  // setTimeout(() => {
-  //   if (isComponentVisible)
-  //     setIsComponentVisible(fields.openCartPreview)
-  //   console.log(isComponentVisible, fields.openCartPreview);
-  // }, 3333);
+
+  //settimeout bugs here, check console.
+  // if (isComponentVisible)
+  //   setIsComponentVisible(fields.openCartPreview)
 
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
         <div onClick={() => setIsComponentVisible(false)}>
-          <CartItem><DropdownCart {...fields.datas}></DropdownCart></CartItem>
+          <CartItem><DropdownCart {...fields.datas}>
+
+          </DropdownCart> </CartItem>
         </div>
       )}
       {!isComponentVisible && (
@@ -184,13 +185,16 @@ function DropdownCart(datas) {
   function DropdownItem(props) {
     return props.children;
   }
+  let sum = 0;
 
+  Object.keys(datas).map(key =>
+    sum += datas[key].price * datas[key].count)
 
   return (
-    <ul className="dropdown"  id="cartDropdown" >
+    <ul className="dropdown" id="cartDropdown" >
       <DropdownItem >
 
-        {datas[0] == undefined ? <li >no products.</li> :
+        {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
 
           Object.keys(datas).map(key =>
             <Link value={key} class="cart-item" to={{
@@ -198,18 +202,49 @@ function DropdownCart(datas) {
 
             }}>
 
-
-              <li>
-                {datas[key].name + ' ' + datas[key].count + ' ' + datas[key].size + ' ' + datas[key].price + ' ' + datas[key].productCode + ' | total price: ' + datas[key].price * datas[key].count + '€'}
+              <li class="cartPreviewItem">
                 <img class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
+
+                <div class="cartPreviewItemTextGrid">
+                  <p style={{ fontSize: '1.2rem' }}>
+                    {
+                      datas[key].name + ' ' + datas[key].type
+                    }
+                  </p>
+
+                  <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
+                    {
+                      datas[key].price.toPrecision(4) + '€'
+                    }
+                  </p>
+
+                  <p style={{ fontSize: '0.85rem' }}>
+                    {
+                      datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
+                    }
+
+                  </p>
+
+                  <p style={{ margin: '0 auto', fontSize: '1.1rem' }}>
+                    {
+                      '- ' + datas[key].count + ' +'
+                    }
+                  </p>
+
+                  <p>
+                    {
+                      datas[key].color + ' — ' + datas[key].size + ' '}
+                  </p>
+
+                </div>
 
               </li>
             </Link>)
 
         }
       </DropdownItem>
-
-
+      {datas[0] != undefined && <p style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>TOTAL COST: {sum}€
+      </p>}
     </ul>
   );
 }

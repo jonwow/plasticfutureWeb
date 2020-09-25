@@ -43,7 +43,7 @@ const SearchableList = ({ }) => {
           type: type,
           season: season,
           color: color,
-          _id: _id
+          _id: _id,
         };
       }
 
@@ -103,7 +103,6 @@ const SearchableList = ({ }) => {
         </Route>
 
         <StickyFooter />
-        <Footer />
 
       </div>
     </BrowserRouter>

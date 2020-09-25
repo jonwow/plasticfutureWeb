@@ -9,6 +9,22 @@
   scroll-behavior: smooth;
 }
 
+#cartDropdown {
+  left: -10rem;
+  width: calc((33vw * 0.44) + 10rem);
+}
+#cartDropdown img {
+  width: 128px;
+  height: calc(8rem * 1.2);
+}
+
+.dropdown li {
+  background: whitesmoke;
+  padding: 2rem 1vw;
+  list-style: none;
+  color: black;
+}
+
 span a {
   text-decoration: none;
   color: black;
@@ -17,6 +33,7 @@ span a {
 .menu-item li {
   background: whitesmoke;
   padding: 2rem;
+  text-align: left;
 }
 
 .menu-item li:hover {
@@ -61,12 +78,31 @@ footer .imageContainer img {
   margin-top: 0.5rem;
 }
 
+.cartPreviewItemTextGrid {
+  padding-top: 1rem;
+  width: 100%;
+  display: grid;
+  margin-left: 1.5rem;
+  grid-template-rows: 2.5rem 5rem;
+
+  grid-template-columns: 70% 30%;
+}
+
 .fullScreenProductPhoto {
   background: red;
   width: 100%;
   height: 100vh;
   z-index: 999;
   position: absolute;
+}
+
+.cartPreviewItem {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.cartPreviewItem p {
+  text-transform: uppercase;
 }
 
 .productPrice {
@@ -286,7 +322,7 @@ nav > div > div > p {
   flex-basis: inherit;
 }
 
-nav img {
+.menu-item {
   display: block;
   margin: 0 auto;
   text-align: center;
@@ -670,13 +706,6 @@ nav img {
   margin-bottom: 10px;
 }
 
-.dropdown li {
-  background: whitesmoke;
-  padding: 2rem 1vw;
-  list-style: none;
-  color: black;
-}
-
 /* implement this soon */
 .buttonContainer {
   /* display: grid; */
@@ -797,7 +826,7 @@ nav img {
     transition: none;
   }
 
-  nav img:hover {
+  .icon-button img:hover {
     -webkit-transition: 0s;
     transition: 0s;
     width: 5vh;
@@ -922,5 +951,9 @@ nav img {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 33.3333333% 33.3333333% 33.3333333%;
+  }
+
+  .cartPreviewItemTextGrid {
+    grid-template-columns: 60% 40%;
   }
 }

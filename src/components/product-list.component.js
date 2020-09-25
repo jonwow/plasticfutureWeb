@@ -183,6 +183,7 @@ export default class ProductList extends Component {
                                 :
                                 this.productList(productType, productCollection)
                         }
+
                     </div >
                 </div >
             </div>

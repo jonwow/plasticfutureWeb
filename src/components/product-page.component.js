@@ -198,7 +198,7 @@ export default class ProductPage extends Component {
 
                 <p class="productPrice">
                   {this.state.curAvailable ?
-                    this.state.price[this.state.allColors.indexOf(this.state.curColor)] + '.00€'
+                    this.state.price[this.state.allColors.indexOf(this.state.curColor)].toPrecision(4) + '€'
                     :
                     'UNAVAILABLE'
 
