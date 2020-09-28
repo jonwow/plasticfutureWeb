@@ -13,12 +13,13 @@ import axios from 'axios';
 
 export default class ProductPage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       description: undefined,
       price: undefined,
       curColor: undefined,
+      isAuthed: 0,
       allColors: undefined,
       season: undefined,
       name: undefined,
@@ -32,7 +33,12 @@ export default class ProductPage extends Component {
       curAvailable: undefined,
       selectedSize: undefined
     }
+
+
   }
+
+
+
 
   selectTheSize(size) {
     var allSizeElements = document.getElementsByClassName('productSizing')[0].children,
@@ -50,17 +56,19 @@ export default class ProductPage extends Component {
 
   determineStateProperties() {
     var index = 0, lastIndex = undefined, countOfAvailableSizes = 0;
-
+    console.log(this.state);
     // loop that finds the last available size and whether there are more than 1 available size
     // i = size | Object.values(..)[..][..] = how many units are available for that size and color
     for (let i of Object.keys(this.state.sizes)) {
       // console.log(i);
+      console.log(Object.values(this.state.sizes)[index][this.state.allColors.indexOf(this.state.curColor)]);
       if (Object.values(this.state.sizes)[index][this.state.allColors.indexOf(this.state.curColor)] > 0) {
         lastIndex = index;
         countOfAvailableSizes++;
       }
       index++;
     }
+    console.log(countOfAvailableSizes);
 
     // if the product is available and it has at least 1 available size, set state to 'curAvailable: true'
     if (this.state.allAvailableStatuses[this.state.allColors.indexOf(this.state.curColor)] && countOfAvailableSizes > 0) {
@@ -81,6 +89,7 @@ export default class ProductPage extends Component {
     if (!this.state.loading)
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
   }
+
 
   componentDidMount() {
     if (this.props.location.product) {
@@ -133,18 +142,30 @@ export default class ProductPage extends Component {
     }
   }
 
-  // first lines after the constructor that get executed
   render() {
+
     return (
       <div style={{ margin: "0 auto" }}>
 
         {/* DEMO */}
         <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
-          <p to={{
-            pathname: "/products/" + this.state.type,
-          }}><span style={{ fontWeight: '99999999' }}>{this.state.season}</span><span style={{ fontWeight: '1' }} > / {this.state.type}s / {this.state.curColor}</span></p>
-        </div>
+          <span style={{ fontWeight: '500' }}>
+            <Link to={{
+              pathname: "/collections/" + this.state.season,
+            }}>
+              {this.state.season} {}
+            </Link>
+          </span>
 
+
+          <span style={{ marginLeft: '0.5rem', fontWeight: '1' }} >
+            <Link to={{
+              pathname: "/products/" + this.state.season + '/' + this.state.type,
+            }}>
+              / {this.state.type}s
+            </Link>
+          </span>
+        </div>
 
 
         {/* <div class="fullScreenProductPhoto">
@@ -189,7 +210,7 @@ export default class ProductPage extends Component {
 
                 {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
 
-                  <button id="buyBtn">PURCHASE</button>
+                  <button id="buyBtn" onClick={this.props.handleQuery} >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
                 }
@@ -205,7 +226,7 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div class="bigProductContainer">
-                <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
+                <img class="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div class="box3"> 
@@ -227,13 +248,13 @@ export default class ProductPage extends Component {
               <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
                 <div id="photosGrid">
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
 
                   </div>
 
 
                   <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={`${process.env.PUBLIC_URL}/images/` + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `_` + this.state.curColor + `_small.png`} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
 
                   </div>
                 </div>

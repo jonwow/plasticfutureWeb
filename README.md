@@ -8,4 +8,4 @@ Designed by <a href="https://github.com/OlimpoVaikas">OlimpoVaikas</a> & <a href
 Tech used: <b> React, JavaScript, CSS & HTML, CORS, MongoDB & Mongoose, Express.
 
 
-Removed some files and folders such as 'node_modules', '.env' for privacy and security reasons.
+Some files and folders such as 'node_modules', '.env' have been removed for privacy and security reasons.
