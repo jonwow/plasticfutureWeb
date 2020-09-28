@@ -8,6 +8,9 @@
   font-family: "Quicksand", sans-serif;
   scroll-behavior: smooth;
 }
+#countDiv:hover{
+  background: red;
+}
 
 #cartDropdown {
   left: -10rem;

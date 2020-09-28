@@ -12,16 +12,17 @@ import ProductPage from "./components/product-page.component";
 import ProductList from "./components/product-list.component";
 import ScrollToTop from "./scroll-to-top.js";
 
+
+
 const SearchableList = ({ }) => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
-
   const [openCartPreview, setOpenCartPreview] = useState(false);
   const buyBtnPressed = (index, name, size, price, type, season, color, _id) => () => {
     if (size == undefined)
       alert('select a size (temporary fix)')
     else {
-      
+
       var unique = true;
       let newArr = [...datas];
 
@@ -32,7 +33,6 @@ const SearchableList = ({ }) => {
           cartItem.count++;
         }
       });
-
       if (unique) {
         newArr[newArr.length] = {
           productCode: index,
@@ -44,13 +44,20 @@ const SearchableList = ({ }) => {
           season: season,
           color: color,
           _id: _id,
+
         };
       }
 
+      var sumCount = 0;
+      for (var i in newArr)
+        sumCount+= newArr[i].count
+      setTotalCount(sumCount);
+    
+
       setDatas(newArr);
-      setTotalCount(totalCount + 1);
+
       setOpenCartPreview(true);
-      {window.sessionStorage.setItem("test", datas)}
+      { window.sessionStorage.setItem("test", datas) }
 
       Object.keys(datas).map(key =>
         console.log(sessionStorage.getItem("test")[0].name)
@@ -59,16 +66,56 @@ const SearchableList = ({ }) => {
 
 
 
+
+
+
     }
+
+
   }
+  const modifyCount = (action, key) => {
+    var newArr = [...datas];
+
+    switch (action) {
+      case 'INCREASE':
+        newArr[key].count++;
+        break;
+
+      case 'DECREASE':
+        newArr[key].count--;
+        break;
+
+      default:
+        break;
+    };
+
+    console.log(key);
+
+    for (var i = 0; i < newArr.length; i++)
+      console.log(newArr[i]);
+
+    if (newArr[key].count == 0)
+      newArr.splice(key, 1);
+
+    for (var i = 0; i < newArr.length; i++)
+      console.log(newArr[i]);
+
+      var sumCount = 0;
+      for (var i in newArr)
+        sumCount+= newArr[i].count
+      setTotalCount(sumCount);
+    
+
+    setDatas(newArr);
+  }
+
 
   return (
 
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ScrollToTop />
       <Head />
-      <Navbar openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
-
+      <Navbar modifyCount={modifyCount} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
       <div className="container">
         <Route
           path='/products/:productType/:productCode/:color/:id/'
@@ -103,7 +150,7 @@ const SearchableList = ({ }) => {
         </Route>
 
         <StickyFooter />
-            <Footer></Footer>
+        <Footer></Footer>
       </div>
     </BrowserRouter>
   );

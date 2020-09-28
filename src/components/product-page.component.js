@@ -95,7 +95,11 @@ export default class ProductPage extends Component {
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
   }
 
+  componentDidUpdate(){
+    console.log('built different');
 
+    
+  }
   componentDidMount() {
     if (this.props.location.product) {
       console.log('cache exists, no data from the database is necessary')

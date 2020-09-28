@@ -77,7 +77,7 @@ const CartPreview = ({ fields }) => {
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
         <div onClick={() => setIsComponentVisible(false)}>
-          <CartItem><DropdownCart {...fields.datas}>
+          <CartItem><DropdownCart fields={fields}>
 
           </DropdownCart> </CartItem>
         </div>
@@ -181,11 +181,16 @@ function DropdownMenu() {
 }
 
 
-function DropdownCart(datas) {
+function DropdownCart({fields}) {
   function DropdownItem(props) {
     return props.children;
   }
   let sum = 0;
+
+  var datas = {...fields.datas};
+  Object.keys(datas).map(key =>
+    console.log(2)
+    );
 
   Object.keys(datas).map(key =>
     sum += datas[key].price * datas[key].count)
@@ -225,7 +230,7 @@ function DropdownCart(datas) {
 
                   </p>
 
-                  <p style={{ margin: '0 auto', fontSize: '1.1rem' }}>
+                  <p onClick={() => ({...fields.modifyCount('DECREASE', key)})} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
                     {
                       '- ' + datas[key].count + ' +'
                     }
@@ -269,10 +274,10 @@ export default class Navbar extends Component {
               <Link to="/">PLASTIC FUTURE</Link>
             </div>
           </div>
-          <div className="navbarThree">
+          <div  className="navbarThree">
             <div className="centeringParent">
               <div>
-                <CartPreview fields={this.props} >
+                <CartPreview   fields={this.props} >
 
                 </CartPreview>
 
