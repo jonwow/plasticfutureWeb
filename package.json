@@ -17,7 +17,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-    "react-switch": "^5.0.1"
+    "react-switch": "^5.0.1",
+    "source-map-explorer": "^2.5.0"
   },
   "scripts": {
     "start": "react-scripts start && node server.js",
@@ -26,7 +27,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run-script build",
     "deploy": "gh-pages -d build",
-        "dev": "concurrently \"npm server\" "
+    "dev": "concurrently \"npm server\" ", 
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
