@@ -18,7 +18,6 @@ function useComponentVisible() {
     if (ref.current && !ref.current.contains(event.target)) {
       setIsComponentVisible(false);
     }
-    console.log(ref);
   };
 
   document.addEventListener("keydown", handleHideDropdown, true);
@@ -74,23 +73,28 @@ const CartPreview = ({ fields }) => {
   //settimeout bugs here, check console.
   // if (isComponentVisible)
   //   setIsComponentVisible(fields.openCartPreview)
+
+
+
+  // do this the react way
   const handleClickOutside = (event) => {
-    if (refx.current && !refx.current.contains(event.target)) {
-      console.log(refx.current + event.target)
-    }
-    if (event.target.tagname == "IMG")
-      console.log(123);
-    console.log(event.target);
+
+    if (event.target.tagName == "IMG")
+      setIsComponentVisible(false)
   };
-  
-  document.addEventListener("click", handleClickOutside, true);
 
+  const handleClick = (e) => { 
+    e.preventDefault(); 
+    if (e.target.tagName == "IMG")
+      setIsComponentVisible(false)
 
+    console.log('The link was clicked.'); 
+  }
 
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
-        <div>
+        <div onClick={handleClick}>
           <CartItem><DropdownCart fn={setIsComponentVisible} fields={fields}>
 
           </DropdownCart> </CartItem>
@@ -191,13 +195,13 @@ function DropdownMenu() {
 }
 
 
-function DropdownCart({fn, fields}) {
+function DropdownCart({ fn, fields }) {
   function DropdownItem(props) {
     return props.children;
   }
   let sum = 0;
 
-  var datas = {...fields.datas};
+  var datas = { ...fields.datas };
 
 
   Object.keys(datas).map(key =>
@@ -216,7 +220,7 @@ function DropdownCart({fn, fields}) {
             }}>
 
               <li class="cartPreviewItem">
-                <img onClick={()=>fn(false)} class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
+                <img onClick={() => fn(false)} class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
 
                 <div class="cartPreviewItemTextGrid">
                   <p style={{ fontSize: '1.2rem' }}>
@@ -238,7 +242,7 @@ function DropdownCart({fn, fields}) {
 
                   </p>
 
-                  <p onClick={() => ({...fields.modifyCount('DECREASE', key)})} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
+                  <p onClick={() => ({ ...fields.modifyCount('DECREASE', key) })} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
                     {
                       '- ' + datas[key].count + ' +'
                     }
@@ -282,10 +286,10 @@ export default class Navbar extends Component {
               <Link to="/">PLASTIC FUTURE</Link>
             </div>
           </div>
-          <div  className="navbarThree">
+          <div className="navbarThree">
             <div className="centeringParent">
               <div>
-                <CartPreview   fields={this.props} >
+                <CartPreview fields={this.props} >
 
                 </CartPreview>
 

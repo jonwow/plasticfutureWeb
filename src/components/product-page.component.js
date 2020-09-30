@@ -37,7 +37,15 @@ export default class ProductPage extends Component {
 
   }
 
+  componentWillReceiveProps(nextProps) {
+    const currentId = this.props.id
+    const nextId = nextProps.id
 
+    if (currentId !== nextId) {
+      this.props.fetchPost(nextId)
+      console.log('fuck');
+    }
+  }
 
 
   selectTheSize(size) {
@@ -96,11 +104,14 @@ export default class ProductPage extends Component {
   }
 
   componentDidUpdate(){
-    console.log('built different');
+    // if(this.state.fullyLoaded)
+    //   alert('i have updated ! ');  
+   
+  }
+
+  componentDidMount() {
 
     
-  }
-  componentDidMount() {
     if (this.props.location.product) {
       console.log('cache exists, no data from the database is necessary')
 
