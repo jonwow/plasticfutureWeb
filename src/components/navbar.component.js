@@ -66,7 +66,6 @@ const CartPreview = ({ fields }) => {
   //   setIsComponentVisible(fields.openCartPreview)
   //   console.log(123);
   // }
-  const refx = useRef(null);
 
 
 
@@ -76,19 +75,13 @@ const CartPreview = ({ fields }) => {
 
 
 
-  // do this the react way
-  const handleClickOutside = (event) => {
 
-    if (event.target.tagName == "IMG")
-      setIsComponentVisible(false)
-  };
-
-  const handleClick = (e) => { 
-    e.preventDefault(); 
+  const handleClick = (e) => {
+    e.preventDefault();
     if (e.target.tagName == "IMG")
       setIsComponentVisible(false)
 
-    console.log('The link was clicked.'); 
+    console.log('The link was clicked.');
   }
 
   return (
@@ -205,7 +198,8 @@ function DropdownCart({ fn, fields }) {
 
 
   Object.keys(datas).map(key =>
-    sum += datas[key].price * datas[key].count)
+    sum += datas[key].price * datas[key].count
+  )
 
   return (
     <ul className="dropdown" id="cartDropdown" >
@@ -242,10 +236,16 @@ function DropdownCart({ fn, fields }) {
 
                   </p>
 
-                  <p onClick={() => ({ ...fields.modifyCount('DECREASE', key) })} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
+                  <p>
+                    <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
+                      -
+                    </span>
                     {
-                      '- ' + datas[key].count + ' +'
+                     ' ' + datas[key].count + ' '
                     }
+                    <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
+                      +
+                    </span>
                   </p>
 
                   <p>

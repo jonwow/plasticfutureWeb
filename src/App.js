@@ -50,9 +50,9 @@ const SearchableList = ({ }) => {
 
       var sumCount = 0;
       for (var i in newArr)
-        sumCount+= newArr[i].count
+        sumCount += newArr[i].count
       setTotalCount(sumCount);
-    
+
 
       setDatas(newArr);
 
@@ -73,40 +73,34 @@ const SearchableList = ({ }) => {
 
 
   }
-  const modifyCount = (action, key) => {
-    var newArr = [...datas];
+  const modifyCount = (action, amount, key) => {
+    let cartItems = [...datas];
 
     switch (action) {
       case 'INCREASE':
-        newArr[key].count++;
+        cartItems[key].count += amount;
         break;
 
       case 'DECREASE':
-        newArr[key].count--;
+        cartItems[key].count -= amount;
         break;
 
       default:
         break;
     };
 
-    console.log(key);
+    // if the count of the item is 0, remove it from the array of the items in the cart.
+    if (cartItems[key].count == 0)
+      cartItems.splice(key, 1);
 
-    for (var i = 0; i < newArr.length; i++)
-      console.log(newArr[i]);
+    // calculate how many units of items are in the cart.
+    let countOfItems = 0;
+    for (var i in cartItems)
+      countOfItems += cartItems[i].count;
 
-    if (newArr[key].count == 0)
-      newArr.splice(key, 1);
-
-    for (var i = 0; i < newArr.length; i++)
-      console.log(newArr[i]);
-
-      var sumCount = 0;
-      for (var i in newArr)
-        sumCount+= newArr[i].count
-      setTotalCount(sumCount);
-    
-
-    setDatas(newArr);
+    // call the function to set the total count of items and set the "global" 
+    setTotalCount(countOfItems);
+    setDatas(cartItems);
   }
 
 
