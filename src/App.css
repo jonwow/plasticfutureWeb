@@ -15,6 +15,9 @@
 #cartDropdown {
   left: -10rem;
   width: calc((33vw * 0.44) + 10rem);
+  max-height: calc(((8rem * 1.2) + 4rem) * 3);
+  overflow: scroll;
+  overflow-x: hidden;
 }
 #cartDropdown img {
   width: 128px;
@@ -736,6 +739,7 @@ nav img {
   transition: background 0.2s;
   transition: filter 0.2s;
   filter: drop-shadow(0 0 0.15rem black);
+
 }
 
 /* tablet vertical display. min-width 500px makes phones NOT applicable to this query */
