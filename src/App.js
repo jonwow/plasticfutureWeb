@@ -22,7 +22,6 @@ const SearchableList = ({ }) => {
     if (size == undefined)
       alert('select a size (temporary fix)')
     else {
-
       var unique = true;
       let newArr = [...datas];
 
@@ -57,6 +56,7 @@ const SearchableList = ({ }) => {
       setDatas(newArr);
 
       setOpenCartPreview(true);
+      console.log(openCartPreview);
       { window.sessionStorage.setItem("test", datas) }
 
       Object.keys(datas).map(key =>
@@ -73,6 +73,7 @@ const SearchableList = ({ }) => {
 
 
   }
+
   const modifyCount = (action, amount, key) => {
     let cartItems = [...datas];
 
@@ -98,7 +99,7 @@ const SearchableList = ({ }) => {
     for (var i in cartItems)
       countOfItems += cartItems[i].count;
 
-    // call the function to set the total count of items and set the "global" 
+    // call the function to set the "global" state  
     setTotalCount(countOfItems);
     setDatas(cartItems);
   }
@@ -109,7 +110,9 @@ const SearchableList = ({ }) => {
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ScrollToTop />
       <Head />
-      <Navbar modifyCount={modifyCount} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
+      <Navbar modifyCount={modifyCount}  setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
+      {console.log(openCartPreview)}
+      
       <div className="container">
         <Route
           path='/products/:productType/:productCode/:color/:id/'

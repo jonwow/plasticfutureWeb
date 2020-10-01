@@ -8,16 +8,12 @@
   font-family: "Quicksand", sans-serif;
   scroll-behavior: smooth;
 }
-#countDiv:hover{
-  background: red;
-}
 
 #cartDropdown {
   left: -10rem;
   width: calc((33vw * 0.44) + 10rem);
   max-height: calc(((8rem * 1.2) + 4rem) * 3);
-  overflow: scroll;
-  overflow-x: hidden;
+  overflow-y: auto;
 }
 #cartDropdown img {
   width: 128px;

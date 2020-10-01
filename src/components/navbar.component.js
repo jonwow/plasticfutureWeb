@@ -60,37 +60,52 @@ const CartPreview = ({ fields }) => {
     ref,
     isComponentVisible,
     setIsComponentVisible,
-  } = useComponentVisible(false);
+  } = useComponentVisible();
+
+  // NEEDS DOCUMENTATION!
+  if (fields.openCartPreview && isComponentVisible != true) {
+    setIsComponentVisible(true)
+    console.log(1233);
+
+    setTimeout(() => {
+      fields.setOpenCartPreview(false);
+      setIsComponentVisible(false);
+      console.log('123');
+    }, 5000);
+  }
+  //  if provided opened cart preview value is not the same as the default one
+  console.log(fields.openCartPreview, isComponentVisible);
+
+  // removed as of 10-01
+  // const {
+  //   // gives this const the ref from the useComponentVisible function
+  //   ref,
+  //   isComponentVisible = true,
+  //   setIsComponentVisible,
+  // } = useComponentVisible();
 
   // if (fields.openCartPreview && !isComponentVisible) {
   //   setIsComponentVisible(fields.openCartPreview)
   //   console.log(123);
   // }
-
-
-
   //settimeout bugs here, check console.
   // if (isComponentVisible)
   //   setIsComponentVisible(fields.openCartPreview)
-
-
-
 
   const handleClick = (e) => {
     e.preventDefault();
     if (e.target.tagName == "IMG")
       setIsComponentVisible(false)
-
-    console.log('The link was clicked.');
   }
 
   return (
-    <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
+    <div style={{ width: "5vh", margin: "0 auto" }} ref={ref} >
       {isComponentVisible && (
         <div onClick={handleClick}>
-          <CartItem><DropdownCart fn={setIsComponentVisible} fields={fields}>
-
-          </DropdownCart> </CartItem>
+          <CartItem>
+            <DropdownCart fn={setIsComponentVisible} fields={fields}>
+            </DropdownCart>
+          </CartItem>
         </div>
       )}
       {!isComponentVisible && (
@@ -99,6 +114,7 @@ const CartPreview = ({ fields }) => {
         </div>
       )}
     </div>
+
   );
 };
 
@@ -195,19 +211,18 @@ function DropdownCart({ fn, fields }) {
   let sum = 0;
 
   var datas = { ...fields.datas };
-
-
   Object.keys(datas).map(key =>
     sum += datas[key].price * datas[key].count
   )
 
   return (
     <ul className="dropdown" id="cartDropdown" >
-      <DropdownItem >
 
-        {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
+      {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
 
-          Object.keys(datas).map(key =>
+        Object.keys(datas).map(key =>
+          <DropdownItem >
+
             <Link value={key} class="cart-item" to={{
               pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
 
@@ -236,14 +251,14 @@ function DropdownCart({ fn, fields }) {
 
                   </p>
 
-                  <p>
-                    <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
+                  <p style={{ textAlign: 'center' }}>
+                    <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
                       -
                     </span>
                     {
-                     ' ' + datas[key].count + ' '
+                      ' ' + datas[key].count + ' '
                     }
-                    <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} id="countDiv" style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
+                    <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
                       +
                     </span>
                   </p>
@@ -256,10 +271,11 @@ function DropdownCart({ fn, fields }) {
                 </div>
 
               </li>
-            </Link>)
+            </Link>
+          </DropdownItem>
+        )
 
-        }
-      </DropdownItem>
+      }
       {datas[0] != undefined && <p style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>TOTAL COST: {sum}€
       </p>}
     </ul>
