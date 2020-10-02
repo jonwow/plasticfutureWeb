@@ -71,7 +71,7 @@ const CartPreview = ({ fields }) => {
   if (fields.openCartPreview && isComponentVisible != true) {
     setIsComponentVisible(true)
     console.log('in the if block');
-    for (var i=0; i<timeouts.length; i++) {
+    for (var i = 0; i < timeouts.length; i++) {
       clearTimeout(timeouts[i]);
       // perhaps remove the items from the array too?
     }
@@ -227,71 +227,72 @@ function DropdownCart({ fn, fields }) {
   return (
     <div>
       <ul className="dropdown" id="cartDropdown" >
+        <div class="dropdownChild">
+          {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
 
-        {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
+            Object.keys(datas).map(key =>
+              <DropdownItem >
 
-          Object.keys(datas).map(key =>
-            <DropdownItem >
+                <Link value={key} class="cart-item" to={{
+                  pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
 
-              <Link value={key} class="cart-item" to={{
-                pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                }}>
 
-              }}>
+                  <li class="cartPreviewItem">
+                    <img onClick={() => fn(false)} class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
 
-                <li class="cartPreviewItem">
-                  <img onClick={() => fn(false)} class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
+                    <div class="cartPreviewItemTextGrid">
+                      <p style={{ fontSize: '1.2rem' }}>
+                        {
+                          datas[key].name + ' ' + datas[key].type
+                        }
+                      </p>
 
-                  <div class="cartPreviewItemTextGrid">
-                    <p style={{ fontSize: '1.2rem' }}>
-                      {
-                        datas[key].name + ' ' + datas[key].type
-                      }
-                    </p>
+                      <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
+                        {
+                          datas[key].price.toPrecision(4) + '€'
+                        }
+                      </p>
 
-                    <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
-                      {
-                        datas[key].price.toPrecision(4) + '€'
-                      }
-                    </p>
+                      <p style={{ fontSize: '0.85rem' }}>
+                        {
+                          datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
+                        }
 
-                    <p style={{ fontSize: '0.85rem' }}>
-                      {
-                        datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
-                      }
+                      </p>
 
-                    </p>
-
-                    <p style={{ textAlign: 'center' }}>
-                      <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
-                        -
+                      <p style={{ textAlign: 'center' }}>
+                        <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
+                          -
                     </span>
-                      {
-                        ' ' + datas[key].count + ' '
-                      }
-                      <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
-                        +
+                        {
+                          ' ' + datas[key].count + ' '
+                        }
+                        <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
+                          +
                     </span>
-                    </p>
+                      </p>
 
-                    <p>
-                      {
-                        datas[key].color + ' — ' + datas[key].size + ' '}
-                    </p>
+                      <p>
+                        {
+                          datas[key].color + ' — ' + datas[key].size + ' '}
+                      </p>
 
-                  </div>
+                    </div>
 
-                </li>
-              </Link>
-            </DropdownItem>
-          )
+                  </li>
+                </Link>
+              </DropdownItem>
+            )
 
-        }
-
+          }
+        </div>
+        <p style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>
+        TOTAL COST: {sum.toPrecision(4)}€
+    </p>
       </ul>
       {/* {datas[0] != undefined && */}
-      <p class='dropdown' style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>
-        TOTAL COST: {sum}€
-    </p>
+
       {/* } */}
     </div>
   );

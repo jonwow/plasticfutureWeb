@@ -12,8 +12,6 @@
 #cartDropdown {
   left: -10rem;
   width: calc((33vw * 0.44) + 10rem);
-  max-height: calc(((8rem * 1.2) + 4rem) * 3);
-  overflow-y: auto;
 }
 #cartDropdown img {
   width: 128px;
@@ -62,6 +60,13 @@ footer div {
   z-index: 2;
 }
 
+.dropdownChild {
+  max-height: calc(((8rem * 1.2) + 4rem) * 3);
+  width: inherit;
+  max-width: inherit;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 .menu-item {
   list-style: none;
 }
