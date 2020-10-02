@@ -110,7 +110,7 @@ const SearchableList = ({ }) => {
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ScrollToTop />
       <Head />
-      <Navbar modifyCount={modifyCount}  setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
+      <Navbar modifyCount={modifyCount} setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
       {console.log(openCartPreview)}
       
       <div className="container">

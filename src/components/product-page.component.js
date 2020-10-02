@@ -69,19 +69,15 @@ export default class ProductPage extends Component {
 
   determineStateProperties() {
     var index = 0, lastIndex = undefined, countOfAvailableSizes = 0;
-    console.log(this.state);
     // loop that finds the last available size and whether there are more than 1 available size
     // i = size | Object.values(..)[..][..] = how many units are available for that size and color
     for (let i of Object.keys(this.state.sizes)) {
-      // console.log(i);
-      console.log(Object.values(this.state.sizes)[index][this.state.allColors.indexOf(this.state.curColor)]);
       if (Object.values(this.state.sizes)[index][this.state.allColors.indexOf(this.state.curColor)] > 0) {
         lastIndex = index;
         countOfAvailableSizes++;
       }
       index++;
     }
-    console.log(countOfAvailableSizes);
 
     // if the product is available and it has at least 1 available size, set state to 'curAvailable: true'
     if (this.state.allAvailableStatuses[this.state.allColors.indexOf(this.state.curColor)] && countOfAvailableSizes > 0) {
@@ -90,8 +86,6 @@ export default class ProductPage extends Component {
           curAvailable: true
         },
         function () {
-          console.log('this.state.curAvailable equals to ' + this.state.curAvailable);
-
           if (countOfAvailableSizes == 1 && this.state.curAvailable)
             this.selectTheSize(Object.keys(this.state.sizes)[lastIndex])
         }
@@ -202,7 +196,7 @@ export default class ProductPage extends Component {
             // everything below here until the end of the conditional operator curly braces DOES NOT GET EXECUTED ON THE INITIAL RENDER
             :
             <div class="box2">
-              <div class="productDescription">{console.log('loading completed')}
+              <div class="productDescription">
                 {/* height of ~400-600 and overflow scroll */}
                 {/* long text bugs this. better of making a single p with a scroll overflow */}
                 {/* max 3 lines of text so the design looks good */}

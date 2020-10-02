@@ -1,6 +1,8 @@
-import React, { useState, Component, useEffect, useRef } from "react";
+import React, { useState, Component, useRef } from "react";
 import { Link } from "react-router-dom";
 
+// timeouts array is mainly used in the 'cart preview' function to prevent multiple 'purchase button' clicks from lagging the site and bugging the timeouts. (it gets cleared on every call of CartPreview component from its 'if' block)
+var timeouts = [];
 
 // make this usable for footer. probably just change the inside of ThreeLines return
 function useComponentVisible() {
@@ -54,6 +56,8 @@ const ThreeLines = () => {
 };
 
 
+
+
 const CartPreview = ({ fields }) => {
   const {
     // gives this const the ref from the useComponentVisible function
@@ -62,19 +66,24 @@ const CartPreview = ({ fields }) => {
     setIsComponentVisible,
   } = useComponentVisible();
 
-  // NEEDS DOCUMENTATION!
+
+  // NEEDS DOCUMENTATION! clicking the buy button too much bugs the program
   if (fields.openCartPreview && isComponentVisible != true) {
     setIsComponentVisible(true)
-    console.log(1233);
+    console.log('in the if block');
+    for (var i=0; i<timeouts.length; i++) {
+      clearTimeout(timeouts[i]);
+      // perhaps remove the items from the array too?
+    }
 
-    setTimeout(() => {
-      fields.setOpenCartPreview(false);
+    fields.setOpenCartPreview(false);
+    timeouts.push(setTimeout(() => {
       setIsComponentVisible(false);
-      console.log('123');
-    }, 5000);
+    }, 5000));
   }
+
+
   //  if provided opened cart preview value is not the same as the default one
-  console.log(fields.openCartPreview, isComponentVisible);
 
   // removed as of 10-01
   // const {
@@ -216,69 +225,75 @@ function DropdownCart({ fn, fields }) {
   )
 
   return (
-    <ul className="dropdown" id="cartDropdown" >
+    <div>
+      <ul className="dropdown" id="cartDropdown" >
 
-      {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
+        {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
 
-        Object.keys(datas).map(key =>
-          <DropdownItem >
+          Object.keys(datas).map(key =>
+            <DropdownItem >
 
-            <Link value={key} class="cart-item" to={{
-              pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+              <Link value={key} class="cart-item" to={{
+                pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
 
-            }}>
+              }}>
 
-              <li class="cartPreviewItem">
-                <img onClick={() => fn(false)} class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
+                <li class="cartPreviewItem">
+                  <img onClick={() => fn(false)} class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
 
-                <div class="cartPreviewItemTextGrid">
-                  <p style={{ fontSize: '1.2rem' }}>
-                    {
-                      datas[key].name + ' ' + datas[key].type
-                    }
-                  </p>
+                  <div class="cartPreviewItemTextGrid">
+                    <p style={{ fontSize: '1.2rem' }}>
+                      {
+                        datas[key].name + ' ' + datas[key].type
+                      }
+                    </p>
 
-                  <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
-                    {
-                      datas[key].price.toPrecision(4) + '€'
-                    }
-                  </p>
+                    <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
+                      {
+                        datas[key].price.toPrecision(4) + '€'
+                      }
+                    </p>
 
-                  <p style={{ fontSize: '0.85rem' }}>
-                    {
-                      datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
-                    }
+                    <p style={{ fontSize: '0.85rem' }}>
+                      {
+                        datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
+                      }
 
-                  </p>
+                    </p>
 
-                  <p style={{ textAlign: 'center' }}>
-                    <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
-                      -
+                    <p style={{ textAlign: 'center' }}>
+                      <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
+                        -
                     </span>
-                    {
-                      ' ' + datas[key].count + ' '
-                    }
-                    <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
-                      +
+                      {
+                        ' ' + datas[key].count + ' '
+                      }
+                      <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
+                        +
                     </span>
-                  </p>
+                    </p>
 
-                  <p>
-                    {
-                      datas[key].color + ' — ' + datas[key].size + ' '}
-                  </p>
+                    <p>
+                      {
+                        datas[key].color + ' — ' + datas[key].size + ' '}
+                    </p>
 
-                </div>
+                  </div>
 
-              </li>
-            </Link>
-          </DropdownItem>
-        )
+                </li>
+              </Link>
+            </DropdownItem>
+          )
 
-      }
-      {datas[0] != undefined && <p style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>TOTAL COST: {sum}€
-      </p>}
-    </ul>
+        }
+
+      </ul>
+      {/* {datas[0] != undefined && */}
+      <p class='dropdown' style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>
+        TOTAL COST: {sum}€
+    </p>
+      {/* } */}
+    </div>
   );
 }
 
@@ -289,7 +304,6 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
-        {console.log(this.props.datas)}
         <nav>
           <div className="navbarOne">
             <div className="centeringParent">
