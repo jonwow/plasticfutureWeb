@@ -98,14 +98,75 @@ export default class ProductPage extends Component {
   }
 
   componentDidUpdate(){
-    // if(this.state.fullyLoaded)
-    //   alert('i have updated ! ');  
-   
+
+    // DOCUMENTATION!!!!
+    var tempState = {
+      productCode: this.state.productCode,
+      color: this.state.color
+    }
+
+    console.log('didupdate');
+    
+    if (this.props.match.params.color != tempState.color && this.props.match.params.productCode != tempState.productCode)
+    {
+      if (this.props.location.product) {
+        console.log('cache exists, no data from the database is necessary')
+  
+        this.setState(
+          {
+            description: this.props.location.product.description,
+            price: this.props.location.product.price,
+            // without the 'match.params' the color would be undecided if the product has >1 color
+            curColor: this.props.match.params.color,
+            allColors: this.props.location.product.color,
+            season: this.props.location.product.season,
+            name: this.props.location.product.name,
+            info: this.props.location.product.info,
+            type: this.props.location.product.type,
+            sizes: this.props.location.product.sizes,
+            public: this.props.location.product.public,
+            allAvailableStatuses: this.props.location.product.available,
+            curAvailable: false,
+            productCode: this.props.location.product.productCode,
+            loading: false,
+            _id: this.props.location.product._id,
+          },
+          this.determineStateProperties
+        );
+      }
+      else {
+        console.log('no cache is present, therefore we get data from the database');
+  
+        axios.get('http://localhost:5000/products/' + this.props.match.params.id)
+          .then(response => {
+            this.setState({
+              description: response.data.description,
+              price: response.data.price,
+              curColor: this.props.match.params.color,
+              allColors: response.data.color,
+              season: response.data.season,
+              name: response.data.name,
+              info: response.data.info,
+              sizes: response.data.sizes,
+              public: response.data.public,
+              productCode: response.data.productCode,
+              allAvailableStatuses: response.data.available,
+              type: response.data.type,
+              loading: false,
+              _id: response.data._id
+            },
+              this.determineStateProperties
+            )
+          })
+      }
+    }
+    
+    
+    
+    
   }
 
   componentDidMount() {
-
-    
     if (this.props.location.product) {
       console.log('cache exists, no data from the database is necessary')
 
