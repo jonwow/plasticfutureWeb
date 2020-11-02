@@ -942,7 +942,7 @@ nav img {
 /* mobile widescreen */
 @media only screen and (max-height: 600px) and (min-width: 500px) {
   html {
-    font-size: 1.35vmax;
+    font-size: 1.3vmax;
   }
 }
 

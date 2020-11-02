@@ -288,8 +288,10 @@ function DropdownCart({ fn, fields }) {
           }
         </div>
         <p style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>
-        TOTAL COST: {sum.toPrecision(4)}€
-    </p>
+          TOTAL COST: 
+           {sum > 0 ? sum.toFixed(2): sum}
+          €
+      </p>
       </ul>
       {/* {datas[0] != undefined && */}
 
@@ -316,7 +318,7 @@ export default class Navbar extends Component {
             <div className="centeringParent" id="navbarText">
               <Link to="/" onClick={
                 document.getElementsByClassName('container')[0] != undefined ? document.getElementsByClassName('container')[0].scrollTop = 0 : alert(4)
-                }>PLASTIC FUTURE</Link>
+              }>PLASTIC FUTURE</Link>
             </div>
           </div>
           <div className="navbarThree">
