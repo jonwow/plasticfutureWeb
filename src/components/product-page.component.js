@@ -97,7 +97,7 @@ export default class ProductPage extends Component {
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
 
     // DOCUMENTATION!!!!
     var tempState = {
@@ -106,12 +106,11 @@ export default class ProductPage extends Component {
     }
 
     console.log('didupdate');
-    
-    if (this.props.match.params.color != tempState.color && this.props.match.params.productCode != tempState.productCode)
-    {
+
+    if (this.props.match.params.color != tempState.color && this.props.match.params.productCode != tempState.productCode) {
       if (this.props.location.product) {
         console.log('cache exists, no data from the database is necessary')
-  
+
         this.setState(
           {
             description: this.props.location.product.description,
@@ -136,7 +135,7 @@ export default class ProductPage extends Component {
       }
       else {
         console.log('no cache is present, therefore we get data from the database');
-  
+
         axios.get('http://localhost:5000/products/' + this.props.match.params.id)
           .then(response => {
             this.setState({
@@ -160,10 +159,10 @@ export default class ProductPage extends Component {
           })
       }
     }
-    
-    
-    
-    
+
+
+
+
   }
 
   componentDidMount() {
@@ -224,25 +223,25 @@ export default class ProductPage extends Component {
       <div style={{ margin: "0 auto" }}>
 
         {/* DEMO */}
-        {!this.state.loading && 
-        <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
-          <span style={{ fontWeight: '500' }}>
-            <Link to={{
-              pathname: "/collections/" + this.state.season,
-            }}>
-              {this.state.season} {}
-            </Link>
-          </span>
+        {!this.state.loading &&
+          <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
+            <span style={{ fontWeight: '500' }}>
+              <Link to={{
+                pathname: "/collections/" + this.state.season,
+              }}>
+                {this.state.season} {}
+              </Link>
+            </span>
 
 
-          <span style={{ marginLeft: '0.5rem', fontWeight: '1' }} >
-            <Link to={{
-              pathname: "/products/" + this.state.season + '/' + this.state.type,
-            }}>
-              / {this.state.type}s
+            <span style={{ marginLeft: '0.5rem', fontWeight: '1' }} >
+              <Link to={{
+                pathname: "/products/" + this.state.season + '/' + this.state.type,
+              }}>
+                / {this.state.type}s
             </Link>
-          </span>
-        </div>
+            </span>
+          </div>
         }
 
 
@@ -282,7 +281,10 @@ export default class ProductPage extends Component {
                   {this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="M" onClick={this.selectTheSize.bind(this, 'M')}>M</li>}
                   {this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="L" onClick={this.selectTheSize.bind(this, 'L')}>L</li>}
                   {this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XL" onClick={this.selectTheSize.bind(this, 'XL')}>XL</li>}
-                  <li>(i)</li>
+                  <li>
+            <img src={require('../../src/images/icons/sizing.png')} style={{height: '1.5rem', width: '1.5rem', position: 'relative', top: '0.2rem'}} />
+                    
+                  </li>
                 </ul>
                 }
 
@@ -290,8 +292,8 @@ export default class ProductPage extends Component {
 
                   <button id="buyBtn" onClick={
 
-                    this.props.buyBtnPressed(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season,this.state.curColor,this.state._id)
-                  
+                    this.props.buyBtnPressed(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season, this.state.curColor, this.state._id)
+
                   } >PURCHASE</button>
                   {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>

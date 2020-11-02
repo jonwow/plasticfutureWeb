@@ -314,7 +314,9 @@ export default class Navbar extends Component {
 
           <div className="navbarTwo">
             <div className="centeringParent" id="navbarText">
-              <Link to="/">PLASTIC FUTURE</Link>
+              <Link to="/" onClick={
+                document.getElementsByClassName('container')[0] != undefined ? document.getElementsByClassName('container')[0].scrollTop = 0 : alert(4)
+                }>PLASTIC FUTURE</Link>
             </div>
           </div>
           <div className="navbarThree">
