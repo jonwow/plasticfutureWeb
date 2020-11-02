@@ -104,10 +104,10 @@ const SearchableList = ({ }) => {
     setDatas(cartItems);
   }
 
-
   return (
-
     <BrowserRouter basename={process.env.PUBLIC_URL}>
+      {window.innerWidth <= 240 && window.innerHeight <= 320 &&  window.location.replace("https://genius.com/Playboi-carti-broke-boi-lyrics")}
+
       <ScrollToTop />
       <Head />
       <Navbar modifyCount={modifyCount} setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />

@@ -7,8 +7,7 @@ import App from './App';
 // styles
 import './App.css';
 
-
 ReactDOM.render(
-  <App />,
+  <App />  ,
   document.getElementById('root')
 );
