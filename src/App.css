@@ -14,8 +14,9 @@
   width: calc((33vw * 0.44) + 10rem);
 }
 #cartDropdown img {
-  width: 128px;
-  height: calc(8rem * 1.2);
+  width: 7.5rem;
+  height: calc(8rem * 1.15);
+  padding-top: 1rem;
 }
 
 .dropdown li {
