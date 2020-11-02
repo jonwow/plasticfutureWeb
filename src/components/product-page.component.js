@@ -102,12 +102,14 @@ export default class ProductPage extends Component {
     // DOCUMENTATION!!!!
     var tempState = {
       productCode: this.state.productCode,
-      color: this.state.color
+      color: this.state.curColor
     }
 
-    console.log('didupdate');
-
-    if (this.props.match.params.color != tempState.color && this.props.match.params.productCode != tempState.productCode) {
+    // console.log('didupdate. tempstate color and prod code: ' + tempState.color + tempState.productCode);
+    // console.log('params data: ' +this.props.match.params.color  +  this.props.match.params.productCode);
+    
+    if (this.props.match.params.color != tempState.color || this.props.match.params.productCode != tempState.productCode) {
+      console.log('xd');
       if (this.props.location.product) {
         console.log('cache exists, no data from the database is necessary')
 
