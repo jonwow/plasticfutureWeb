@@ -741,7 +741,6 @@ nav img {
   transition: background 0.2s;
   transition: filter 0.2s;
   filter: drop-shadow(0 0 0.15rem black);
-
 }
 
 /* tablet vertical display. min-width 500px makes phones NOT applicable to this query */
@@ -811,6 +810,8 @@ nav img {
     width: 100vw;
     left: -85vw;
   }
+
+
 
   .dropdown .menu-item li {
     padding: 1.25rem;
@@ -947,6 +948,15 @@ nav img {
   }
 }
 
+/* iphone 5s, se NON WIDESCREEN specific:  */
+@media only screen and (max-height: 570px) and (min-width: 300px) and (max-width: 340px)
+{
+  .bigProduct,
+  .bigProductContainer {
+    width: 20rem;
+    height: 24rem;
+  }
+}
 /* iphone 4 5 5s se WIDESCREEN all look imperfect with the 10px, so i set it to 8 here */
 @media only screen and (max-height: 400px) and (min-width: 500px) and (max-width: 600px) {
   html {
