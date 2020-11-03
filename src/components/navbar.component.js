@@ -17,8 +17,10 @@ function useComponentVisible() {
   };
 
   const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsComponentVisible(false);
+    if (ref.current && !ref.current.contains(event.target) && event.target.parentNode.classList[0] != 'productSizing') {
+      console.log(event.target.parentNode);
+      console.log(ref.current);
+        setIsComponentVisible(false);
     }
   };
 
@@ -103,8 +105,11 @@ const CartPreview = ({ fields }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log('123');
     if (e.target.tagName == "IMG")
       setIsComponentVisible(false)
+
+    console.log(e);
   }
 
   return (
