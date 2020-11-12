@@ -81,7 +81,7 @@ const CartPreview = ({ fields }) => {
   var timeouts = [];
 
   // NEEDS DOCUMENTATION! clicking the buy button too much bugs the program
-  if (fields.openCartPreview && isComponentVisible != true) {
+  if (fields.openCartPreview && isComponentVisible !== true) {
     setIsComponentVisible(true)
     console.log('in the if block');
     for (var i = 0; i < timeouts.length; i++) {
@@ -103,7 +103,7 @@ const CartPreview = ({ fields }) => {
     e.preventDefault();
 
     // close cart dropdown if you press on a product (image)
-    if (e.target.tagName == "IMG")
+    if (e.target.tagName === "IMG")
       setIsComponentVisible(false)
 
     console.log(e);
@@ -143,6 +143,7 @@ function NavItem(props) {
       <img
         src={require('../../src/images/navbar/threeLines.png')}
         className="icon-button clickable"
+        alt="threeLines-logo"
         onClick={() => {
           setOpen(!open);
         }}
@@ -159,6 +160,7 @@ function CartItem(props) {
       <img
         src={require('../../src/images/navbar/cart.png')}
         className="icon-button clickable"
+        alt="cart-logo"
       />
 
       {props.children}
@@ -230,7 +232,7 @@ function DropdownCart({ fn, fields }) {
     <div>
       <ul className="dropdown" id="cartDropdown" >
         <div class="dropdownChild">
-          {datas[0] == undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
+          {datas[0] === undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
 
             Object.keys(datas).map(key =>
               <DropdownItem >
@@ -241,7 +243,10 @@ function DropdownCart({ fn, fields }) {
                 }}>
 
                   <li class="cartPreviewItem">
-                    <img onClick={() => fn(false)} class="" src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
+                    <img onClick={() => fn(false)} 
+                    class="" 
+                    src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} 
+                    alt={datas[key].name+'-'+datas[key].color+'-photo'}/>
 
                     <div class="cartPreviewItemTextGrid">
                       <p style={{ fontSize: '1.2rem' }}>
@@ -320,7 +325,7 @@ export default class Navbar extends Component {
             <div className="centeringParent" id="navbarText">
               {/* when PLASTICFUTURE logo is pressed, go to top of the 'container' */}
               <Link to="/" onClick={() => {
-                if (document.getElementsByClassName('container')[0] != undefined)
+                if (document.getElementsByClassName('container')[0] !== undefined)
                   document.getElementsByClassName('container')[0].scrollTop = 0;
               }}>
                 PLASTIC FUTURE
