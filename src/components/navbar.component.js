@@ -1,26 +1,35 @@
 import React, { useState, Component, useRef } from "react";
 import { Link } from "react-router-dom";
 
-// timeouts array is mainly used in the 'cart preview' function to prevent multiple 'purchase button' clicks from lagging the site and bugging the timeouts. (it gets cleared on every call of CartPreview component from its 'if' block)
-var timeouts = [];
+// https://stackoverflow.com/questions/61730769/handlekeypress-method-is-called-multiple-times-in-react
+// https://www.geeksforgeeks.org/javascript-removeeventlistener-method-with-examples/
+// https://jsfiddle.net/2jbLdo9n/
+// https://stackoverflow.com/questions/59505296/why-are-my-events-getting-called-so-many-times-react-electron
+
+
+
 
 // make this usable for footer. probably just change the inside of ThreeLines return
-function useComponentVisible() {
+function useComponentVisible(xd) {
   // true/false in useState parentheses = whether the dropdown menu is opened or close on page load
   const [isComponentVisible, setIsComponentVisible] = useState(false);
   const ref = useRef(null);
 
   const handleHideDropdown = (event) => {
+    console.log('handlehidedropdown');
     if (event.key === "Escape") {
       setIsComponentVisible(false);
     }
   };
 
   const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target) && event.target.parentNode.classList[0] != 'productSizing') {
+
+    console.log('handleclickoutside');
+
+    if (ref.current && !ref.current.contains(event.target) && event.target.parentNode.classList[0] !== 'productSizing') {
       console.log(event.target.parentNode);
       console.log(ref.current);
-        setIsComponentVisible(false);
+      setIsComponentVisible(false);
     }
   };
 
@@ -36,20 +45,20 @@ const ThreeLines = () => {
     ref,
     isComponentVisible,
     setIsComponentVisible,
-  } = useComponentVisible();
+  } = useComponentVisible('threelines');
 
 
   return (
     <div style={{ width: "5vh", margin: "0 auto" }} ref={ref}>
       {isComponentVisible && (
-        <div onClick={() => setIsComponentVisible(false)}>
+        <div onClick={() => { setIsComponentVisible(false); console.log("closing threeLines") }}>
           <NavItem>
             <DropdownMenu />
           </NavItem>
         </div>
       )}
       {!isComponentVisible && (
-        <div onClick={() => setIsComponentVisible(true)}>
+        <div onClick={() => { setIsComponentVisible(true); console.log("opening threeLines ") }}>
           <NavItem></NavItem>
         </div>
       )}
@@ -66,15 +75,19 @@ const CartPreview = ({ fields }) => {
     ref,
     isComponentVisible,
     setIsComponentVisible,
-  } = useComponentVisible();
+  } = useComponentVisible('cart');
 
+  // timeouts array is mainly used in the 'cart preview' function to prevent multiple 'purchase button' clicks from lagging the site and bugging the timeouts. (it gets cleared on every call of CartPreview component from its 'if' block)
+  var timeouts = [];
 
   // NEEDS DOCUMENTATION! clicking the buy button too much bugs the program
   if (fields.openCartPreview && isComponentVisible != true) {
     setIsComponentVisible(true)
     console.log('in the if block');
     for (var i = 0; i < timeouts.length; i++) {
+      console.log(timeouts[i]);
       clearTimeout(timeouts[i]);
+      console.log(timeouts[i]);
       // perhaps remove the items from the array too?
     }
 
@@ -85,27 +98,11 @@ const CartPreview = ({ fields }) => {
   }
 
 
-  //  if provided opened cart preview value is not the same as the default one
-
-  // removed as of 10-01
-  // const {
-  //   // gives this const the ref from the useComponentVisible function
-  //   ref,
-  //   isComponentVisible = true,
-  //   setIsComponentVisible,
-  // } = useComponentVisible();
-
-  // if (fields.openCartPreview && !isComponentVisible) {
-  //   setIsComponentVisible(fields.openCartPreview)
-  //   console.log(123);
-  // }
-  //settimeout bugs here, check console.
-  // if (isComponentVisible)
-  //   setIsComponentVisible(fields.openCartPreview)
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log('123');
+
+    // close cart dropdown if you press on a product (image)
     if (e.target.tagName == "IMG")
       setIsComponentVisible(false)
 
@@ -123,7 +120,7 @@ const CartPreview = ({ fields }) => {
         </div>
       )}
       {!isComponentVisible && (
-        <div onClick={() => setIsComponentVisible(true)}>
+        <div onClick={() => { setIsComponentVisible(true); console.log("opening cart") }}>
           <CartItem></CartItem>
         </div>
       )}
@@ -293,8 +290,8 @@ function DropdownCart({ fn, fields }) {
           }
         </div>
         <p style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>
-          TOTAL COST: 
-           {sum > 0 ? sum.toFixed(2): sum}
+          TOTAL COST:
+           {sum > 0 ? sum.toFixed(2) : sum}
           €
       </p>
       </ul>
@@ -321,16 +318,19 @@ export default class Navbar extends Component {
 
           <div className="navbarTwo">
             <div className="centeringParent" id="navbarText">
-              <Link to="/" onClick={
-                document.getElementsByClassName('container')[0] != undefined ? document.getElementsByClassName('container')[0].scrollTop = 0 : alert(4)
-              }>PLASTIC FUTURE</Link>
+              {/* when PLASTICFUTURE logo is pressed, go to top of the 'container' */}
+              <Link to="/" onClick={() => {
+                if (document.getElementsByClassName('container')[0] != undefined)
+                  document.getElementsByClassName('container')[0].scrollTop = 0;
+              }}>
+                PLASTIC FUTURE
+              </Link>
             </div>
           </div>
           <div className="navbarThree">
             <div className="centeringParent">
               <div>
                 <CartPreview fields={this.props} >
-
                 </CartPreview>
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as BrowserRouter, Router, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route,  } from "react-router-dom";
 
 // components
 import Footer from "./components/footer.component";
@@ -111,7 +111,6 @@ const SearchableList = ({ }) => {
       <ScrollToTop />
       <Head />
       <Navbar modifyCount={modifyCount} setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
-      {console.log(openCartPreview)}
       
       <div className="container" id="top">
         <Route

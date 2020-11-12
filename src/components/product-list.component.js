@@ -13,7 +13,7 @@ const Product = props => (
     }}>
 
         <div style={props.style} className="product">
-            <img src={require(`../../src/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `-` + props.color + `-small.png`)} />
+            <img src={require(`../../src/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `-` + props.color + `-small.png`)} alt={props.product.name+'-'+props.color+'-photo'} />
             {/* make a proper formatting solution */}
 
 
@@ -75,8 +75,8 @@ export default class ProductList extends Component {
         // for every product that gets fetched from the database 
         this.state.fetchedProducts.map(curProduct => {
             // product type has to match the type of the page that the client is on (tshirt, tote) or all products
-            if (curProduct.season == productCollection || productCollection == undefined)
-                if (curProduct.type == productType || productType == undefined)
+            if (curProduct.season === productCollection || productCollection === undefined)
+                if (curProduct.type === productType || productType=== undefined)
                     // for each color of that product
                     for (var index = 0; index < curProduct.color.length; index++) {
                         // if the product in that color is public 
@@ -87,7 +87,12 @@ export default class ProductList extends Component {
                                 products.unavailColorIndex.push(index) && products.unavailable.push(curProduct);
                         }
                     }
-        })
+
+        
+        return;
+        }
+        
+        )
 
         // *******************************************************************
         // SORTING

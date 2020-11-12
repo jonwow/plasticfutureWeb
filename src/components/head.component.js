@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 
 export default () => (
-  document.title = 'P L A S T I C F U T U R E',
+  document.title = 'P L A S T I C F U T U R E' &&
   <Helmet>
     <meta charset="UTF-8"></meta>
     <meta
