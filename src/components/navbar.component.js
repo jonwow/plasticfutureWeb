@@ -245,9 +245,9 @@ function DropdownCart({ fn, fields }) {
                   <li class="cartPreviewItem">
                     <img onClick={() => fn(false)} 
                     class="" 
+                    style={{maxWidth: "100%", maxHeight: "100%", height: "max-content", margin: "0 auto"}}
                     src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} 
                     alt={datas[key].name+'-'+datas[key].color+'-photo'}/>
-
                     <div class="cartPreviewItemTextGrid">
                       <p style={{ fontSize: '1.2rem' }}>
                         {
