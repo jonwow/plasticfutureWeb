@@ -91,6 +91,7 @@ const CartPreview = ({ fields }) => {
       // perhaps remove the items from the array too?
     }
 
+    // throws an error when you first click the purchase button.
     fields.setOpenCartPreview(false);
     timeouts.push(setTimeout(() => {
       setIsComponentVisible(false);
@@ -177,38 +178,38 @@ function DropdownMenu() {
     // change to state rendering instead of a href asap
     <ul className="dropdown" >
       <DropdownItem>
-        <Link to="/products/" class="menu-item">
+        <Link to="/products/" className="menu-item">
           <li className="asd">ALL PRODUCTS</li>
         </Link>
       </DropdownItem>
 
 
       <DropdownItem>
-        <Link to="/products/t-shirt" class="menu-item">
+        <Link to="/products/t-shirt" className="menu-item">
           <li className="asd">TSHIRTS</li>
         </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <Link to="/products/tote" class="menu-item">
+        <Link to="/products/tote" className="menu-item">
           <li>TOTE BAGS</li>
         </Link>
       </DropdownItem>
 
       {/* <DropdownItem>
-        <Link to="/youraccount" class="menu-item">
+        <Link to="/youraccount" className="menu-item">
           <li>YOUR ACCOUNT</li>
         </Link>
       </DropdownItem> */}
 
       <DropdownItem>
-        <Link to="/collections" class="menu-item">
+        <Link to="/collections" className="menu-item">
           <li>COLLECTIONS</li>
         </Link>
       </DropdownItem>
 
       <DropdownItem>
-        <Link to="/contacts" class="menu-item">
+        <Link to="/contacts" className="menu-item">
           <li>CONTACTS</li>
         </Link>
       </DropdownItem>
@@ -231,24 +232,24 @@ function DropdownCart({ fn, fields }) {
   return (
     <div>
       <ul className="dropdown" id="cartDropdown" >
-        <div class="dropdownChild">
+        <div className="dropdownChild">
           {datas[0] === undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
 
             Object.keys(datas).map(key =>
-              <DropdownItem >
+              <DropdownItem key={key} >
 
-                <Link value={key} class="cart-item" to={{
+                <Link value={key} className="cart-item" to={{
                   pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
 
                 }}>
 
-                  <li class="cartPreviewItem">
+                  <li className="cartPreviewItem">
                     <img onClick={() => fn(false)} 
-                    class="" 
+                    className="" 
                     style={{maxWidth: "100%", maxHeight: "100%", height: "max-content", margin: "0 auto"}}
                     src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} 
                     alt={datas[key].name+'-'+datas[key].color+'-photo'}/>
-                    <div class="cartPreviewItemTextGrid">
+                    <div className="cartPreviewItemTextGrid">
                       <p style={{ fontSize: '1.2rem' }}>
                         {
                           datas[key].name + ' ' + datas[key].type

@@ -68,7 +68,6 @@ export default class ProductList extends Component {
             unavailable: [],
             unavailColorIndex: [],
         }
-        console.log(productCollection);
 
         // *******************************************************************
         // FILTERING
@@ -88,8 +87,8 @@ export default class ProductList extends Component {
                         }
                     }
 
-        
-        return;
+        // make this fn not an arrow fn or provide a proper return value
+        return 0;
         }
         
         )
@@ -123,7 +122,8 @@ export default class ProductList extends Component {
 
 
     productList(productType, productCollection) {
-        var filteredObject = this.filterAndSort(productType, productCollection)
+        var filteredObject = this.filterAndSort(productType, productCollection);
+        var currentStyle;   
 
         var products = filteredObject.available.concat(filteredObject.unavailable),
             colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
@@ -137,9 +137,9 @@ export default class ProductList extends Component {
             if (!curProduct.available[colorIndexes[i]] || !this.sumOfValues(curProduct.sizes, colorIndexes[i]))
                 currentStyle = { filter: "grayscale(1) blur(1px)" }
             else
-                var currentStyle = {};
+                currentStyle = {};
 
-            return <Product product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
+            return <Product key={curProduct.productCode+curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
         })
     }
 
@@ -163,7 +163,7 @@ export default class ProductList extends Component {
                             {productType}
 
                             {/* if the product type is jeans, dont add the 's' at the end */}
-                            {productType[productType.length - 1] != 's' && 's'}
+                            {productType[productType.length - 1] !== 's' && 's'}
 
                         </span>
                         <div>

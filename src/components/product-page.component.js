@@ -37,15 +37,6 @@ export default class ProductPage extends Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
-    const currentId = this.props.id
-    const nextId = nextProps.id
-
-    if (currentId !== nextId) {
-      this.props.fetchPost(nextId)
-      console.log('fuck');
-    }
-  }
 
 
   selectTheSize(size) {
@@ -72,7 +63,7 @@ export default class ProductPage extends Component {
     // loop that finds the last available size and whether there are more than 1 available size
     // i = size | Object.values(..)[..][..] = how many units are available for that size and color
     for (let i of Object.keys(this.state.sizes)) {
-      if (Object.values(this.state.sizes)[index][this.state.allColors.indexOf(this.state.curColor)] > 0) {
+      if (Object(this.state.sizes)[i][this.state.allColors.indexOf(this.state.curColor)] > 0) {
         lastIndex = index;
         countOfAvailableSizes++;
       }
@@ -86,7 +77,7 @@ export default class ProductPage extends Component {
           curAvailable: true
         },
         function () {
-          if (countOfAvailableSizes == 1 && this.state.curAvailable)
+          if (countOfAvailableSizes === 1 && this.state.curAvailable)
             this.selectTheSize(Object.keys(this.state.sizes)[lastIndex])
         }
       );
@@ -97,8 +88,9 @@ export default class ProductPage extends Component {
       document.title = this.state.name + ' ' + this.state.type + ' - ' + this.state.curColor
   }
 
-  componentDidUpdate() {
 
+  // maybe merge this with component didmount?
+  componentDidUpdate() {
     // DOCUMENTATION!!!!
     var tempState = {
       productCode: this.state.productCode,
@@ -108,10 +100,9 @@ export default class ProductPage extends Component {
     // console.log('didupdate. tempstate color and prod code: ' + tempState.color + tempState.productCode);
     // console.log('params data: ' +this.props.match.params.color  +  this.props.match.params.productCode);
     
-    if (this.props.match.params.color != tempState.color || this.props.match.params.productCode != tempState.productCode) {
-      console.log('xd');
+    if (this.props.match.params.color !== tempState.color || this.props.match.params.productCode !== tempState.productCode) {
       if (this.props.location.product) {
-        console.log('cache exists, no data from the database is necessary')
+        // console.log('cache exists, no data from the database is necessary')
 
         this.setState(
           {
@@ -136,7 +127,7 @@ export default class ProductPage extends Component {
         );
       }
       else {
-        console.log('no cache is present, therefore we get data from the database');
+        // console.log('no cache is present, therefore we get data from the database');
 
         axios.get('http://localhost:5000/products/' + this.props.match.params.id)
           .then(response => {
@@ -169,7 +160,7 @@ export default class ProductPage extends Component {
 
   componentDidMount() {
     if (this.props.location.product) {
-      console.log('cache exists, no data from the database is necessary')
+      // console.log('cache exists, no data from the database is necessary')
 
       this.setState(
         {
@@ -194,7 +185,7 @@ export default class ProductPage extends Component {
       );
     }
     else {
-      console.log('no cache is present, therefore we get data from the database');
+      // console.log('no cache is present, therefore we get data from the database');
 
       axios.get('http://localhost:5000/products/' + this.props.match.params.id)
         .then(response => {
@@ -247,27 +238,27 @@ export default class ProductPage extends Component {
         }
 
 
-        {/* <div class="fullScreenProductPhoto">
-        <img class="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
+        {/* <div className="fullScreenProductPhoto">
+        <img className="bigProduct" src={process.env.PUBLIC_URL + '/images/' + this.state.season + `/designs/` + this.state.name + `/` + this.state.name + `_` + this.state.color + `_small.png`} />
 
         </div> */}
 
         <div style={!this.state.curAvailable ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
-            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p> && console.log('loading bro')
+            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p> 
             // everything below here until the end of the conditional operator curly braces DOES NOT GET EXECUTED ON THE INITIAL RENDER
             :
-            <div class="box2">
-              <div class="productDescription">
+            <div className="box2">
+              <div className="productDescription">
                 {/* height of ~400-600 and overflow scroll */}
                 {/* long text bugs this. better of making a single p with a scroll overflow */}
                 {/* max 3 lines of text so the design looks good */}
-                <div class="productDescriptionText">
+                <div className="productDescriptionText">
                   <p>{this.state.description}</p>
                   <p>{this.state.info}</p>
                 </div>
 
-                <p class="productPrice">
+                <p className="productPrice">
                   {this.state.curAvailable ?
                     this.state.price[this.state.allColors.indexOf(this.state.curColor)].toPrecision(4) + '€'
                     :
@@ -276,7 +267,7 @@ export default class ProductPage extends Component {
                   }
                 </p>
                 {/* if product type = tote, accessory. jewelry etc  = onesize only */}
-                {this.state.curAvailable && <ul class="productSizing">
+                {this.state.curAvailable && <ul className="productSizing">
                   {/* object keys here? */}
                   {this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XS" onClick={this.selectTheSize.bind(this, 'XS')}>XS</li>}
                   {this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="S" onClick={this.selectTheSize.bind(this, 'S')}>S</li>}
@@ -284,20 +275,20 @@ export default class ProductPage extends Component {
                   {this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="L" onClick={this.selectTheSize.bind(this, 'L')}>L</li>}
                   {this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XL" onClick={this.selectTheSize.bind(this, 'XL')}>XL</li>}
                   <li>
-            <img src={require('../../src/images/icons/sizing.png')} style={{height: '1.5rem', width: '1.5rem', position: 'relative', top: '0.2rem'}} />
+            <img src={require('../../src/images/icons/sizing.png')} alt="sizing-logo" style={{height: '1.5rem', width: '1.5rem', position: 'relative', top: '0.2rem'}} />
                     
                   </li>
                 </ul>
                 }
 
-                {this.state.curAvailable && <div class='buttonContainer' style={{ textAlign: "center" }}>
+                {this.state.curAvailable && <div className='buttonContainer' style={{ textAlign: "center" }}>
 
                   <button id="buyBtn" onClick={
 
                     this.props.buyBtnPressed(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season, this.state.curColor, this.state._id)
 
                   } >PURCHASE</button>
-                  {/* <button id="cartBtn"><img class='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
+                  {/* <button id="cartBtn"><img className='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
                 </div>
                 }
 
@@ -311,11 +302,11 @@ export default class ProductPage extends Component {
               {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
 
               {/* rename this class 'bigproductcontainer */}
-              <div class="bigProductContainer">
-                <img class="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
+              <div className="bigProductContainer">
+                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-big'} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
-                {/** <div class="box3"> 
+                {/** <div className="box3"> 
             <div id="arrowLeft">
             {/* hide arrows in mobile view 
               <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
@@ -331,16 +322,16 @@ export default class ProductPage extends Component {
                   </div>
                 */}
               </div>
-              <div class="additionalProductPhotos" style={{ maxWidth: "100%" }}>
+              <div className="additionalProductPhotos" style={{ maxWidth: "100%" }}>
                 <div id="photosGrid">
-                  <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
+                  <div className="additionalPhotoBox">
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-photo2'} />
 
                   </div>
 
 
-                  <div class="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} />
+                  <div className="additionalPhotoBox">
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-photo3'} />
 
                   </div>
                 </div>

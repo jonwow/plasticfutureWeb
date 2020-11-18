@@ -14,19 +14,19 @@ import ScrollToTop from "./scroll-to-top.js";
 
 
 
-const SearchableList = ({ }) => {
+const SearchableList = () => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [openCartPreview, setOpenCartPreview] = useState(false);
   const buyBtnPressed = (index, name, size, price, type, season, color, _id) => () => {
-    if (size == undefined)
+    if (size === undefined)
       alert('select a size (temporary fix)')
     else {
       var unique = true;
       let newArr = [...datas];
 
       newArr.forEach(cartItem => {
-        if (cartItem.productCode == index && cartItem.size == size) {
+        if (cartItem.productCode === index && cartItem.size === size && cartItem.color === color) {
           console.log('THERE IS ONE!');
           unique = false;
           cartItem.count++;
@@ -57,7 +57,7 @@ const SearchableList = ({ }) => {
 
       setOpenCartPreview(true);
       console.log(openCartPreview);
-      { window.sessionStorage.setItem("test", datas) }
+       window.sessionStorage.setItem("test", datas);
 
       Object.keys(datas).map(key =>
         console.log(sessionStorage.getItem("test")[0].name)
@@ -91,7 +91,7 @@ const SearchableList = ({ }) => {
     };
 
     // if the count of the item is 0, remove it from the array of the items in the cart.
-    if (cartItems[key].count == 0)
+    if (cartItems[key].count === 0)
       cartItems.splice(key, 1);
 
     // calculate how many units of items are in the cart.
@@ -121,10 +121,10 @@ const SearchableList = ({ }) => {
         />
         <Route path='/' exact component={ProductList} />
         {/* demo for gh pages */}
-        <Route exact path="/plasticfutureWeb/" exact component={ProductList} />
+        <Route exact path="/plasticfutureWeb/"  component={ProductList} />
         <Route path="/products" exact component={ProductList} />
         {/* <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} /> */}
-        <Route exact path="/products/:collection/:productType" exact component={ProductList} />
+        <Route exact path="/products/:collection/:productType"  component={ProductList} />
         <Route
           exact path='/products/:productType/'
           render={(props) => (
