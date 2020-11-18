@@ -269,7 +269,7 @@ function DropdownCart({ fn, fields }) {
 
                       </p>
 
-                      <p style={{ textAlign: 'center' }}>
+                      <a  style={{ textAlign: 'center' }}>
                         <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
                           -
                     </span>
@@ -279,7 +279,7 @@ function DropdownCart({ fn, fields }) {
                         <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
                           +
                     </span>
-                      </p>
+                      </a>
 
                       <p>
                         {
