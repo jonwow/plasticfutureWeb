@@ -238,7 +238,7 @@ function DropdownCart({ fn, fields }) {
             Object.keys(datas).map(key =>
               <DropdownItem key={key} >
 
-                <Link value={key} className="cart-item" to={{
+                <Link value={key} className="cart-item"  style={{maxHeight: "calc((8rem * 1.2) + 4rem)", display:"block"}}to={{
                   pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
 
                 }}>
@@ -246,7 +246,7 @@ function DropdownCart({ fn, fields }) {
                   <li className="cartPreviewItem">
                     <img onClick={() => fn(false)} 
                     className="" 
-                    style={{maxWidth: "100%", maxHeight: "100%", height: "max-content", margin: "0 auto"}}
+                  
                     src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} 
                     alt={datas[key].name+'-'+datas[key].color+'-photo'}/>
                     <div className="cartPreviewItemTextGrid">

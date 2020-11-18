@@ -13,6 +13,12 @@
   left: -10rem;
   width: calc((33vw * 0.44) + 10rem);
 }
+
+.cartPreviewItem img {
+ max-width: 100%;
+ max-height: calc((((33vw * 0.44) + 10rem) - 2vw) * 0.4);
+}
+
 #cartDropdown img {
   width: 7.5rem;
   height: calc(8rem * 1.15);
@@ -91,10 +97,10 @@ footer .imageContainer img {
   padding-top: 1rem;
   width: 100%;
   display: grid;
-  margin-left: 1.5rem;
+  margin-left: 0.5vw;
   grid-template-rows: 2.5rem 5rem;
 
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 40%;
 }
 
 .fullScreenProductPhoto {
@@ -805,6 +811,10 @@ nav img {
     width: 100vw;
     left: 0;
     top: 8vh;
+  }
+  .cartPreviewItem img {
+    margin: 0 auto;
+    max-height: none;
   }
 
   #cartDropdown {
