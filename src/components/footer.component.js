@@ -6,9 +6,12 @@ export default class Footer extends Component {
   render() {
     return (
       <footer>
-        {/* 600 weight here */}
         <div>
-          <p>MB „PLASTIC FUTURE" © 2020, all rights reserved.</p>
+          <p>MB „PLASTIC FUTURE" © 2020, all rights reserved</p>
+          
+          <Link to="/tac">
+            <p>TERMS AND CONDITIONS</p>
+          </Link>
         </div>
 
 
@@ -29,9 +32,6 @@ export default class Footer extends Component {
             <img src={require('../../src/images/icons/slavery.png')} alt="anti-slavery-logo" />
           </a>
 
-          <Link to="/tac">
-            <img src={require('../../src/images/icons/tac.png')} alt="tac-logo" />
-          </Link>
 
           {/* <Link to="/career">
             <img src={process.env.PUBLIC_URL + '/images/icons/career_resized.png'} />

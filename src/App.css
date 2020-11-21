@@ -54,7 +54,6 @@
 {
   position: absolute;
 left: 2%;     font-family: 'Roboto', sans-serif;
-width: 100%;
   font-size: 2rem;
   bottom: 5%;
   font-weight: bold;
@@ -86,6 +85,16 @@ span a {
 footer div {
   font-weight: 600;
 }
+
+footer a:visited,
+footer a {
+  color: black;
+}
+
+footer a p {
+  font-weight: normal;
+}
+
 .dropdown {
   position: absolute;
   /* full header height - icon height divided by two + icon height -1px */
@@ -1009,7 +1018,7 @@ nav img {
     width: 60%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 33.3333333% 33.3333333% 33.3333333%;
+    grid-template-columns: 25% 25% 25% 25%;
   }
 
   .cartPreviewItemTextGrid {
