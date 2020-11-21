@@ -6,16 +6,7 @@ export default class Footer extends Component {
   render() {
     return (
       <footer>
-        <div>
-          <p>MB „PLASTIC FUTURE" © 2020, all rights reserved</p>
-          
-          <Link to="/tac">
-            <p>TERMS AND CONDITIONS</p>
-          </Link>
-        </div>
-
-
-        <div className="imageContainer">
+        <div id="footer-image-container">
           <a href="https://instagram.com/_plasticfuture" target="_blank" rel="noopener noreferrer">
             <img src={require('../../src/images/icons/instagram.png')}  alt="instagram-logo"/>
           </a>
@@ -38,6 +29,14 @@ export default class Footer extends Component {
           </Link> */}
 
 
+        </div>
+
+        <div>
+          <p>MB „PLASTIC FUTURE" © 2020, all rights reserved</p>
+          
+          <Link to="/tac">
+            <p>TERMS AND CONDITIONS</p>
+          </Link>
         </div>
       </footer >
 

@@ -12,7 +12,9 @@
 #cartDropdown {
   left: -10rem;
   width: calc((33vw * 0.44) + 10rem);
+  filter: drop-shadow(0 2px 0.35rem white);
 }
+
 
 .cartPreviewItem img {
  max-width: 100%;
@@ -25,6 +27,10 @@
   padding-top: 1rem;
 }
 
+#cartDropdown a {
+  text-decoration: none;
+  color: black;
+}
 
 #grid-for-total-cost {
   display: grid;
@@ -40,12 +46,13 @@
   text-align: center;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1.2rem;
   padding: 1rem 0;
 }
 
 .checkout-text:hover{
   transition: filter 0.25s;
-  filter: invert(1);
+  filter: invert(10%  );
 }
 
 .dropdown li {
@@ -120,8 +127,8 @@ footer a p {
 
 .dropdown {
   position: absolute;
-  /* full header height - icon height divided by two + icon height -1px */
-  top: calc((12vh - 5vh) / 2 + 5vh - 1px);
+  /* full header height - icon height divided by two + icon height */
+  top: calc((12vh - 5vh) / 2 + 5vh );
   width: calc(33vw * 0.44);
   left: 0;
   overflow: hidden;
@@ -148,7 +155,7 @@ footer p {
 }
 
 /* applies to left and right footer parts */
-footer .imageContainer img {
+#footer-image-container img {
   width: 2.2rem;
   padding: 0 1.3rem;
   margin-top: 0.5rem;
@@ -450,9 +457,13 @@ nav .navbarTwo .centeringParent {
   margin: 0;
 }
 
-nav p {
+nav p, nav h2, nav h3 {
   text-decoration: none;
   line-height: 0.8;
+}
+
+#cartDropdown h3 {
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 319px) and (min-width: 0px) {
@@ -881,6 +892,7 @@ nav img {
   #cartDropdown {
     width: 100vw;
     left: -85vw;
+    filter: drop-shadow(0 0 0.35rem white);
   }
 
 
@@ -1037,7 +1049,7 @@ nav img {
 }
 
 @media only screen and (max-width: 420px) {
-  footer .imageContainer {
+  #footer-image-container {
     width: 60%;
     margin: 0 auto;
     display: grid;

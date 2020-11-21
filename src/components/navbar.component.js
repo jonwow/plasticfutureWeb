@@ -104,7 +104,7 @@ const CartPreview = ({ fields }) => {
     e.preventDefault();
 
     // close cart dropdown if you press on a product (image)
-    if (e.target.tagName === "IMG")
+    if (e.target.tagName === "IMG" || e.target.tagName === "H2" || e.target.tagName === "H3")
       setIsComponentVisible(false)
 
     console.log(e);
@@ -238,23 +238,26 @@ function DropdownCart({ fn, fields }) {
             Object.keys(datas).map(key =>
               <DropdownItem key={key} >
 
-                <Link value={key} className="cart-item"  style={{maxHeight: "calc((8rem * 1.2) + 4rem)", display:"block"}}to={{
-                  pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
-
-                }}>
-
+                <div value={key} className="cart-item" style={{ maxHeight: "calc((8rem * 1.2) + 4rem)", display: "block" }}>
                   <li className="cartPreviewItem">
-                    <img onClick={() => fn(false)} 
-                    className="" 
-                  
-                    src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} 
-                    alt={datas[key].name+'-'+datas[key].color+'-photo'}/>
+                    <Link to={{
+                      pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                    }}>
+                      <img onClick={() => fn(false)}
+                        className=""
+
+                        src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
+                        alt={datas[key].name + '-' + datas[key].color + '-photo'} /></Link>
                     <div className="cartPreviewItemTextGrid">
-                      <p style={{ fontSize: '1.2rem' }}>
-                        {
-                          datas[key].name + ' ' + datas[key].type
-                        }
-                      </p>
+                      <Link to={{
+                        pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                      }}>
+                        <h2 style={{ fontSize: '1.2rem', textTransform: "uppercase" }}>
+                          {
+                            datas[key].name + ' ' + datas[key].type
+                          }
+                        </h2>
+                      </Link>
 
                       <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
                         {
@@ -262,25 +265,32 @@ function DropdownCart({ fn, fields }) {
                         }
                       </p>
 
-                      <p style={{ fontSize: '0.85rem' }}>
+                      <Link to={{
+                      pathname: "/collections/" + datas[key].season + '/' ,
+                    }}>
+                      <h3 style={{textTransform:"uppercase", fontWeight:"normal", fontSize: '1rem' }}>
                         {
                           datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
                         }
 
-                      </p>
-
-                      <a  style={{ textAlign: 'center' }}>
-                        <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }}>
+                      </h3>
+                      </Link>
+                      <div style={{ marginTop: '-0.5rem',cursor: 'pointer',textAlign: 'center' }}>
+                        <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding:'0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
                           -
                     </span>
-                        {
+                    <span >
+
+                    {
                           ' ' + datas[key].count + ' '
                         }
-                        <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
+
+                    </span>
+                        <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{padding:'0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
                           +
                     </span>
 
-                      </a>
+                      </div>
 
                       <p>
                         {
@@ -291,7 +301,7 @@ function DropdownCart({ fn, fields }) {
                     </div>
 
                   </li>
-                </Link>
+                </div>
               </DropdownItem>
             )
 
@@ -299,16 +309,16 @@ function DropdownCart({ fn, fields }) {
         </div>
 
         <div id="grid-for-total-cost">
-        <p style={{ textAlign: "left"}}>
-          TOTAL COST:
+          <p style={{ textAlign: "left" }}>
+            TOTAL COST:
       </p>
-      <p style={{textAlign: "right"}}>
-      {sum > 0 ? sum.toFixed(2) : sum}
+          <p style={{ textAlign: "right", fontWeight: "550" }}>
+            {sum > 0 ? sum.toFixed(2) : sum}
           €
       </p>
-          </div> 
-  <p class="checkout-text">
-    CHECKOUT
+        </div>
+        <p class="checkout-text">
+          CHECKOUT
   </p>
 
       </ul>
@@ -353,8 +363,8 @@ export default class Navbar extends Component {
 
                 <span style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
                   {this.props.totalCount < 10 ? this.props.totalCount : '9+'}
-                  
-                  </span>
+
+                </span>
 
               </div>
             </div>
