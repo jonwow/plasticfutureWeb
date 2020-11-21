@@ -25,6 +25,15 @@
   padding-top: 1rem;
 }
 
+
+#grid-for-total-cost {
+  display: grid;
+  background: whitesmoke;
+  grid-template-columns: 40% 60%;
+  padding: 1rem;
+  filter: invert(3.5%);
+}
+
 .dropdown li {
   background: whitesmoke;
   padding: 2rem 1vw;

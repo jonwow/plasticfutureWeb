@@ -279,12 +279,14 @@ function DropdownCart({ fn, fields }) {
                         <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ margin: '0 auto', fontSize: '1.1rem', zIndex: '3' }} >
                           +
                     </span>
+
                       </a>
 
                       <p>
                         {
                           datas[key].color + ' — ' + datas[key].size + ' '}
                       </p>
+
 
                     </div>
 
@@ -295,11 +297,18 @@ function DropdownCart({ fn, fields }) {
 
           }
         </div>
-        <p style={{ background: 'whitesmoke', padding: '1rem', textAlign: 'right' }}>
+
+        <div id="grid-for-total-cost">
+        <p style={{ textAlign: "left"}}>
           TOTAL COST:
-           {sum > 0 ? sum.toFixed(2) : sum}
+      </p>
+      <p style={{textAlign: "right"}}>
+      {sum > 0 ? sum.toFixed(2) : sum}
           €
       </p>
+
+
+          </div> 
       </ul>
       {/* {datas[0] != undefined && */}
 
@@ -340,7 +349,10 @@ export default class Navbar extends Component {
                 </CartPreview>
 
 
-                <span style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>{this.props.totalCount < 10 ? this.props.totalCount : '9+'}</span>
+                <span style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
+                  {this.props.totalCount < 10 ? this.props.totalCount : '9+'}
+                  
+                  </span>
 
               </div>
             </div>
