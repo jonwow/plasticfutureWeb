@@ -306,9 +306,11 @@ function DropdownCart({ fn, fields }) {
       {sum > 0 ? sum.toFixed(2) : sum}
           €
       </p>
-
-
           </div> 
+  <p class="checkout-text">
+    CHECKOUT
+  </p>
+
       </ul>
       {/* {datas[0] != undefined && */}
 

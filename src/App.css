@@ -34,6 +34,20 @@
   filter: invert(3.5%);
 }
 
+.checkout-text {
+  background: #0a0a0a ;
+  color: whitesmoke;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 1rem 0;
+}
+
+.checkout-text:hover{
+  transition: filter 0.25s;
+  filter: invert(1);
+}
+
 .dropdown li {
   background: whitesmoke;
   padding: 2rem 1vw;
