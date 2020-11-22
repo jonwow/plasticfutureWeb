@@ -238,7 +238,7 @@ function DropdownCart({ fn, fields }) {
             Object.keys(datas).map(key =>
               <DropdownItem key={key} >
 
-                <div value={key} className="cart-item" style={{ maxHeight: "calc((8rem * 1.2) + 4rem)", display: "block" }}>
+                <div value={key} className="cart-item" style={{ maxHeight: "calc(((8rem * 1.2) + 4rem)", display: "block" }}>
                   <li className="cartPreviewItem">
                     <Link to={{
                       pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
@@ -317,10 +317,12 @@ function DropdownCart({ fn, fields }) {
           €
       </p>
         </div>
+
+        {datas[0] !== undefined  &&
         <p class="checkout-text">
           CHECKOUT
   </p>
-
+}
       </ul>
       {/* {datas[0] != undefined && */}
 
