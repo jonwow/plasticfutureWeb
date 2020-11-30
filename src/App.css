@@ -71,7 +71,7 @@
 
 .dropdown li {
   background: whitesmoke;
-  padding: 2rem 1vw;
+  padding: 0 1vw;
   list-style: none;
   color: black;
 }
@@ -151,7 +151,7 @@ footer a p {
 }
 
 .dropdownChild {
-  max-height: calc(((8rem * 1.2) + 4rem) * 3);  scrollbar-width: thin;
+  max-height: calc(((8rem * 1.2) + 6rem) * 3);  scrollbar-width: thin;
 
   width: inherit;
   max-width: inherit;

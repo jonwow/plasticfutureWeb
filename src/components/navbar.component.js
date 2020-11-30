@@ -238,7 +238,7 @@ function DropdownCart({ fn, fields }) {
             Object.keys(datas).map(key =>
               <DropdownItem key={key} >
 
-                <div value={key} className="cart-item" style={{ maxHeight: "calc(((8rem * 1.2) + 4rem)", display: "block" }}>
+                <div value={key} className="cart-item" style={{ maxHeight: "calc(((8rem * 1.2) + 4rem)", display: "block", padding: '2rem 0', background: 'whitesmoke' }}>
                   <li className="cartPreviewItem">
                     <Link to={{
                       pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
