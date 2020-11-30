@@ -32,7 +32,7 @@
 }
 .cartPreviewItem img {
  max-width: 100%;
- max-height: calc((((33vw * 0.44) + 10rem) - 2vw) * 0.4);
+ /* max-height: calc((((33vw * 0.44) + 10rem) - 2vw) * 0.4); */
 }
 
 #cartDropdown img {
@@ -49,7 +49,7 @@
 #grid-for-total-cost {
   display: grid;
   background: whitesmoke;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 50% 50%;
   padding: 1rem;
   filter: invert(3.5%);
 }
@@ -151,7 +151,8 @@ footer a p {
 }
 
 .dropdownChild {
-  max-height: calc(((8rem * 1.2) + 6rem) * 3);  scrollbar-width: thin;
+  max-height: calc(42rem);
+    scrollbar-width: thin;
 
   width: inherit;
   max-width: inherit;
@@ -920,8 +921,8 @@ nav img {
 
   #cartDropdown {
     width: 100vw;
+    filter: none;
     left: -85vw;
-    filter: drop-shadow(0 0 0.35rem white);
   }
 
 
@@ -1058,6 +1059,20 @@ nav img {
 @media only screen and (max-height: 600px) and (min-width: 500px) {
   html {
     font-size: 1.3vmax;
+  }
+}
+
+/* smaller height devices should only display 2 items in the cart dropdown */
+@media only screen and (max-height: 800px) {
+  .dropdownChild {
+    max-height: calc((10rem + 4rem) * 2);
+  }
+}
+
+/* smaller height devices should only display 1 item in the cart dropdown*/
+@media only screen and (max-height: 500px) {
+  .dropdownChild {
+    max-height: calc((10rem + 4rem) * 1);
   }
 }
 
