@@ -211,6 +211,7 @@ export default class ProductPage extends Component {
     }
   }
 
+
   render() {
     return (
       <div style={{ margin: "0 auto" }}>
@@ -303,7 +304,8 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div className="bigProductContainer">
-                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-big'} />
+                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-big'} onClick={() =>  document.getElementsByClassName('bigProduct')[0].classList.toggle("zoomed-in-product")
+} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div className="box3"> 

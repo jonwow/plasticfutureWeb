@@ -348,7 +348,7 @@ export default class Navbar extends Component {
           <div className="navbarTwo">
             <div className="centeringParent" id="navbarText">
               {/* when PLASTICFUTURE logo is pressed, go to top of the 'container' */}
-              <Link to="/" onClick={() => {
+              <Link to="/" className="no-select-bg" onClick={() => {
                 if (document.getElementsByClassName('container')[0] !== undefined)
                   document.getElementsByClassName('container')[0].scrollTop = 0;
               }}>
@@ -363,7 +363,7 @@ export default class Navbar extends Component {
                 </CartPreview>
 
 
-                <span style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
+                <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
                   {this.props.totalCount < 10 ? this.props.totalCount : '9+'}
 
                 </span>

@@ -15,7 +15,21 @@
   filter: drop-shadow(0 2px 0.35rem white);
 }
 
+.no-select-bg::selection {
+  background: rgba(255, 0, 0, 0);
+}
+#cartDropdown p::selection,
+#cartDropdown a::selection,
+#cartDropdown h2::selection,
+#cartDropdown h3::selection,
+#cartDropdown span::selection{
+  background: rgba(255, 0, 0, 0);
+}
 
+.dropdown li::selection {
+  background: rgba(255, 0, 0, 0);
+
+}
 .cartPreviewItem img {
  max-width: 100%;
  max-height: calc((((33vw * 0.44) + 10rem) - 2vw) * 0.4);
@@ -256,11 +270,11 @@ button {
   height: 27rem;
 }
 
-.bigProduct:hover {
+.zoomed-in-product {
   width: 25rem;
   transition: 0.15s;
   height: 30rem;
-}
+} 
 
 .bigProductContainer {
   width: 22.5rem;

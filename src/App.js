@@ -121,7 +121,7 @@ const SearchableList = () => {
       {window.innerWidth <= 240 && window.innerHeight <= 320 &&  window.location.replace("https://genius.com/Playboi-carti-broke-boi-lyrics")}
      
           {/*  */}
-      {firstTimeBOOL != "false" ?
+      {firstTimeBOOL !== "false" ?
        <div id="first-time-container" onClick={()=> firstTime()}>
 
          <p class="first-time-welcome-text">ENTER<br/> PLASTIC FUTURE</p>
