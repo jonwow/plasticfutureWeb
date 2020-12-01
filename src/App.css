@@ -10,8 +10,8 @@
 }
 
 #cartDropdown {
-  left: -17rem;
-  width: calc((33vw * 0.44) + 17rem);
+  left: -15rem;
+  width: calc((33vw * 0.44) + 15rem);
   filter: drop-shadow(0 2px 0.35rem white);
 }
 
@@ -906,7 +906,7 @@ nav img {
   /* CHANGES THE 'REM' INITIAL SIZE FOR ALL ELEMENTS.  */
   /* 'REM' UNITS ARE USED IN FONT AND IMAGE SIZING */
   html {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .dropdown {
@@ -1063,14 +1063,14 @@ nav img {
 }
 
 /* smaller height devices should only display 2 items in the cart dropdown */
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 900px) {
   .dropdownChild {
     max-height: calc((10rem + 4rem) * 2);
   }
 }
 
 /* smaller height devices should only display 1 item in the cart dropdown*/
-@media only screen and (max-height: 500px) {
+@media only screen and (max-height: 670px) and (min-width: 400px) {
   .dropdownChild {
     max-height: calc((10rem + 4rem) * 1);
   }

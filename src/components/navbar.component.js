@@ -241,6 +241,7 @@ function DropdownCart({ fn, fields }) {
 {/* 10rem+2*2rem(padding) *3 */}
                 <div value={key} className="cart-item" style={{ height: "10rem", display: "block", padding: '2rem 0', background: 'whitesmoke' }}>
                   <li className="cartPreviewItem">
+                    <div style={{margin: '0 auto'}}>
                     <Link to={{
                       pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
                     }}>
@@ -249,6 +250,7 @@ function DropdownCart({ fn, fields }) {
 
                         src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
                         alt={datas[key].name + '-' + datas[key].color + '-photo'} /></Link>
+                        </div>
                     <div className="cartPreviewItemTextGrid">
                       <Link to={{
                         pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
