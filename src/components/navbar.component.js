@@ -233,7 +233,7 @@ function DropdownCart({ fn, fields }) {
     <div>
       <ul className="dropdown" id="cartDropdown" >
         <div className="dropdownChild">
-          {datas[0] === undefined ? <li style={{ textAlign: "center" }} >no products.</li> :
+          {datas[0] === undefined ? <li style={{ textAlign: "center", padding: '2rem 0' }} >no products.</li> :
 
             Object.keys(datas).map(key =>
               <DropdownItem key={key} >
@@ -278,7 +278,7 @@ function DropdownCart({ fn, fields }) {
 
                       </h3>
                       </Link>
-                      <div style={{ marginTop: '-0.5rem',cursor: 'pointer',textAlign: 'center' }}>
+                      <div style={{ marginTop: '-0.75rem',cursor: 'pointer',textAlign: 'center' }}>
                         <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding:'0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
                           -
                     </span>

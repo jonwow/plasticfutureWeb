@@ -269,12 +269,14 @@ button {
   /* max-width: 100%; */
   max-height: 87vh;
   height: 27rem;
+  cursor: pointer;
 }
 
+
 .zoomed-in-product {
-  width: 25rem;
+  width: 27rem;
   transition: 0.15s;
-  height: 30rem;
+  height: 32rem;
 } 
 
 .bigProductContainer {
@@ -380,8 +382,8 @@ button {
   padding: 0 1vmin;
   position: relative;
   margin: 0.5vmin auto;
-  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55));
-  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.55));
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.35));
 }
 
 footer {
@@ -1129,5 +1131,19 @@ nav img {
   #cartDropdown{
     left: -85.5vw;
     width: 100vw;
+  }
+}
+
+/* 2k fix */
+@media only screen and (min-width: 2400px) and (max-width: 3799px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+/* 4k fix */
+@media only screen and (min-width: 3800px) {
+  html {
+    font-size: 30px;
   }
 }
