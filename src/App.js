@@ -116,6 +116,10 @@ const SearchableList = () => {
   }
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Head />
+{          console.log('public url: ', process.env.PUBLIC_URL)}
+
+
       {window.innerWidth <= 240 && window.innerHeight <= 320 &&  window.location.replace("https://genius.com/Playboi-carti-broke-boi-lyrics")}
      
           {/*  */}
@@ -128,7 +132,6 @@ const SearchableList = () => {
       :
       <div>
         <ScrollToTop />
-        <Head />
         <Navbar modifyCount={modifyCount} setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
 
       
@@ -142,7 +145,7 @@ const SearchableList = () => {
         />
         <Route path='/' exact component={ProductList} />
         {/* demo for gh pages */}
-        <Route exact path="/plasticfutureWeb/"  component={ProductList} />
+        <Route exact path="/1s/"  component={ProductList} />
         <Route path="/products" exact component={ProductList} />
         {/* <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} /> */}
         <Route exact path="/products/:collection/:productType"  component={ProductList} />

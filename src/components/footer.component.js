@@ -15,7 +15,7 @@ export default class Footer extends Component {
             <img src={require('../../src/images/icons/twitter.png')}  alt="twitter-logo"/>
           </a>
 
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.youtube.com/channel/UCnLGSWlLm_MEHQgKbeqSolg" target="_blank" rel="noopener noreferrer">
             <img src={require('../../src/images/icons/youtube.png')}  alt="youtube-logo"/>
           </a>
 
