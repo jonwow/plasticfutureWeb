@@ -18,7 +18,7 @@ const Product = props => (
 
 
             {props.product.available[props.index] && props.amountOfSizes > 0 ?
-                props.product.price.toString().includes('.') ?
+                props.product.price[props.index].toString().includes('.') ?
                     <p >{props.product.price[props.index]}</p>
                     :
                     <p  >{props.product.price[props.index].toFixed(2)}{currency}</p>
