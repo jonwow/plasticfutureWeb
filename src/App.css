@@ -730,7 +730,7 @@ nav p::selection {
   background: rgba(245, 245, 245, 0.85);
 }
 
-.stickyFooter ul li p {
+.stickyFooter ul li a {
   position: relative;
   top: 50%;
   left: 50%;
@@ -824,7 +824,10 @@ nav img {
   text-align: center;
   margin-bottom: 10px;
 }
-
+.visible {
+  display: block !important;
+  background: red;
+}
 /* implement this soon */
 .buttonContainer {
   /* display: grid; */
@@ -1060,7 +1063,7 @@ nav img {
 /* mobile widescreen */
 @media only screen and (max-height: 600px) and (min-width: 500px) {
   html {
-    font-size: 1.3vmax;
+    /* font-size: 1.3vmax; */
   }
 }
 

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from "react-router-dom";
 
 
 export default class StickyFooter extends Component {
@@ -7,15 +8,15 @@ export default class StickyFooter extends Component {
             < div className="stickyFooter" >
                 <ul>
                     <li className="clickable">
-                        <p>NEWSLETTER</p>
+                        <Link>NEWSLETTER</Link>
                     </li>
 
                     <li className="clickable">
-                        <p>COLLECTIONS</p>
+                        <Link>COLLECTIONS</Link>
                     </li>
 
                     <li className="clickable">
-                        <p>CONTACTS</p>
+                        <Link>CONTACTS</Link>
                     </li>
                 </ul>
             </div >

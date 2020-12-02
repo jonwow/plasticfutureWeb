@@ -259,9 +259,10 @@ export default class ProductPage extends Component {
                   <p>{this.state.info}</p>
                 </div>
 
+            {console.log((this.state.price[this.state.allColors.indexOf(this.state.curColor)]))}
                 <p className="productPrice">
                   {this.state.curAvailable ?
-                    this.state.price[this.state.allColors.indexOf(this.state.curColor)].toPrecision(4) + '€'
+                    this.state.price[this.state.allColors.indexOf(this.state.curColor)].toFixed(2) + '€'
                     :
                     'UNAVAILABLE'
 

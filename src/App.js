@@ -22,12 +22,12 @@ const SearchableList = () => {
     if (size === undefined)
     {
      document.getElementById("root").style.cssText = "transition: filter 0.75s; filter: blur(5px) grayscale(1)";
-      document.getElementById("choose-a-size-msg").style.cssText= " transition: filter 0.75s; color: white; display: inline; z-index: 999; position: absolute; top: 35%; left: 42vw; background: rgba(0, 0, 0, 0.85); padding: 4rem; border: 1px solid black; font-size: 30px";
+      document.getElementById("choose-a-size-msg").classList.toggle("visible");
 
       setTimeout(() => {
      document.getElementById("root").style.cssText = "transition: 0.75s; filter: blur(0px) grayscale(0)";
-      document.getElementById("choose-a-size-msg").style.cssText= "display: none; transition: all 0.75s; z-index: 999; position: absolute; top: 50%; left: 47vw; background:white; padding: 2rem; border: 1px solid black";
-      }, 2700);
+     document.getElementById("choose-a-size-msg").classList.toggle("visible");
+    }, 2700);
     }
     else {
       var unique = true;

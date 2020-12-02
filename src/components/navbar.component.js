@@ -9,6 +9,45 @@ import { Link } from "react-router-dom";
 
 
 
+
+function priceFormatting(sum) {
+  // short explanation of how this works:
+  // step 1: reverse and add empty spaces.
+  // a (10045)   5 4 0 _ 0 1
+  // b (2085671) 1 7 6 _ 5 8 0 _ 2
+  // step 2: reverse again.
+  let sumString = String(Math.floor(sum));
+  let splitArray = String(sum).split('.');
+
+  let integerSplit = splitArray[0],
+    decimalSplit = splitArray[1];
+
+  let newStr = '', string = '';
+
+
+  // making a new string by adding each character from the end to the start (reversed) out of the 'sumString'.
+  for (let i = sumString.length - 1; sumString[i] != undefined; i--) {
+    string += sumString[i];
+
+    // if 3 characters have been added AND there are more characters to add from the sumString, add an empty space.
+    if ((sumString.length - i) % 3 == 0 && sumString[i + 1] != undefined)
+      string += ' ';
+  }
+
+
+  // reversing the reversed string and storing it into 'newStr'.
+  for (let i = string.length - 1; i >= 0; i--)
+    newStr += string[i];
+
+  // if the number has a decimal, add the decimal to the newStr.
+  if (integerSplit % 1 != 0)
+    newStr += '.' + decimalSplit;
+  else
+    newStr += '.00';
+
+  return newStr;
+}
+
 // make this usable for footer. probably just change the inside of ThreeLines return
 function useComponentVisible(xd) {
   // true/false in useState parentheses = whether the dropdown menu is opened or close on page load
@@ -228,6 +267,9 @@ function DropdownCart({ fn, fields }) {
   Object.keys(datas).map(key =>
     sum += datas[key].price * datas[key].count
   )
+    
+  let sumStr = priceFormatting(sum);
+
 
   return (
     <div>
@@ -238,19 +280,19 @@ function DropdownCart({ fn, fields }) {
             Object.keys(datas).map(key =>
               <DropdownItem key={key} >
 
-{/* 10rem+2*2rem(padding) *3 */}
+                {/* 10rem+2*2rem(padding) *3 */}
                 <div value={key} className="cart-item" style={{ height: "10rem", display: "block", padding: '2rem 0', background: 'whitesmoke' }}>
                   <li className="cartPreviewItem">
-                    <div style={{margin: '0 auto'}}>
-                    <Link to={{
-                      pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
-                    }}>
-                      <img onClick={() => fn(false)}
-                        className=""
+                    <div style={{ margin: '0 auto' }}>
+                      <Link to={{
+                        pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                      }}>
+                        <img onClick={() => fn(false)}
+                          className=""
 
-                        src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
-                        alt={datas[key].name + '-' + datas[key].color + '-photo'} /></Link>
-                        </div>
+                          src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
+                          alt={datas[key].name + '-' + datas[key].color + '-photo'} /></Link>
+                    </div>
                     <div className="cartPreviewItemTextGrid">
                       <Link to={{
                         pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
@@ -269,33 +311,33 @@ function DropdownCart({ fn, fields }) {
                       </p>
 
                       <Link to={{
-                      pathname: "/collections/" + datas[key].season + '/' ,
-                    }}>
-                      <h3 style={{textTransform:"uppercase", fontWeight:"normal", fontSize: '1rem' }}>
-                        {
-                          datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
-                        }
+                        pathname: "/collections/" + datas[key].season + '/',
+                      }}>
+                        <h3 style={{ textTransform: "uppercase", fontWeight: "normal", fontSize: '1rem' }}>
+                          {
+                            datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
+                          }
 
-                      </h3>
+                        </h3>
                       </Link>
-                      <div style={{ marginTop: '-0.75rem',cursor: 'pointer',textAlign: 'center' }}>
-                        <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding:'0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
+                      <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
+                        <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
                           -
                     </span>
-                    <span >
+                        <span >
 
-                    {
-                          ' ' + datas[key].count + ' '
-                        }
+                          {
+                            ' ' + datas[key].count + ' '
+                          }
 
-                    </span>
-                        <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{padding:'0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
+                        </span>
+                        <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
                           +
                     </span>
 
                       </div>
 
-                      <p style={{position: 'relative', top: '35%'}}>
+                      <p style={{ position: 'relative', top: '35%' }}>
                         {
                           datas[key].color + ' — ' + datas[key].size + ' '}
                       </p>
@@ -316,16 +358,16 @@ function DropdownCart({ fn, fields }) {
             TOTAL COST:
       </p>
           <p style={{ textAlign: "right", fontWeight: "550" }}>
-            {sum > 0 ? sum.toFixed(2) : sum}
+            {sum > 0 ? sumStr : sum}
           €
       </p>
         </div>
 
-        {datas[0] !== undefined  &&
-        <p class="checkout-text">
-          CHECKOUT
+        {datas[0] !== undefined &&
+          <p class="checkout-text">
+            CHECKOUT
   </p>
-}
+        }
       </ul>
       {/* {datas[0] != undefined && */}
 
