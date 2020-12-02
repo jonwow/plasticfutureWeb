@@ -21,7 +21,7 @@ const Product = props => (
                 props.product.price.toString().includes('.') ?
                     <p >{props.product.price[props.index]}</p>
                     :
-                    <p  >{props.product.price[props.index]}.00{currency}</p>
+                    <p  >{props.product.price[props.index].toFixed(2)}{currency}</p>
                 :
                 <p>unavailable</p>
             }

@@ -306,7 +306,7 @@ function DropdownCart({ fn, fields }) {
 
                       <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
                         {
-                          datas[key].price.toPrecision(4) + '€'
+                          datas[key].price.toFixed(2) + '€'
                         }
                       </p>
 
