@@ -690,11 +690,9 @@ nav p::selection {
 }
 
 .stickyFooter {
-  margin-top: 2vh;
   position: fixed;
   bottom: 0;
   width: 100%;
-  margin-top: 2vh;
   z-index: 2;
 }
 
@@ -731,15 +729,14 @@ nav p::selection {
 }
 
 .stickyFooter ul li a {
-  position: relative;
   top: 50%;
-  left: 50%;
   font-size: 2vmin;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: white;
-  /* without this, the color won't change on hover as the hover is only applicable to 'li' */
   color: inherit;
+  margin: 0;
+  position: absolute;
+  top: 50%;
 }
 
 .additionalPhotoBox img {
@@ -1063,7 +1060,7 @@ nav img {
 /* mobile widescreen */
 @media only screen and (max-height: 600px) and (min-width: 500px) {
   html {
-    /* font-size: 1.3vmax; */
+    font-size: 1.3vmax;
   }
 }
 

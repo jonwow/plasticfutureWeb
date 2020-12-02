@@ -13,15 +13,12 @@ const Product = props => (
     }}>
 
         <div style={props.style} className="product">
-            <img src={require(`../../src/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `-` + props.color + `-small.png`)} alt={props.product.name+'-'+props.color+'-photo'} />
+            <img src={require(`../../src/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `-` + props.color + `-small.png`)} alt={props.product.name + '-' + props.color + '-photo'} />
             {/* make a proper formatting solution */}
 
 
             {props.product.available[props.index] && props.amountOfSizes > 0 ?
-                props.product.price[props.index].toString().includes('.') ?
-                    <p >{props.product.price[props.index]}</p>
-                    :
-                    <p  >{props.product.price[props.index].toFixed(2)}{currency}</p>
+                <p >{props.product.price[props.index].toFixed(2)}{currency}</p>
                 :
                 <p>unavailable</p>
             }
@@ -75,7 +72,7 @@ export default class ProductList extends Component {
         this.state.fetchedProducts.map(curProduct => {
             // product type has to match the type of the page that the client is on (tshirt, tote) or all products
             if (curProduct.season === productCollection || productCollection === undefined)
-                if (curProduct.type === productType || productType=== undefined)
+                if (curProduct.type === productType || productType === undefined)
                     // for each color of that product
                     for (var index = 0; index < curProduct.color.length; index++) {
                         // if the product in that color is public 
@@ -87,10 +84,10 @@ export default class ProductList extends Component {
                         }
                     }
 
-        // make this fn not an arrow fn or provide a proper return value
-        return 0;
+            // make this fn not an arrow fn or provide a proper return value
+            return 0;
         }
-        
+
         )
 
         // *******************************************************************
@@ -123,7 +120,7 @@ export default class ProductList extends Component {
 
     productList(productType, productCollection) {
         var filteredObject = this.filterAndSort(productType, productCollection);
-        var currentStyle;   
+        var currentStyle;
 
         var products = filteredObject.available.concat(filteredObject.unavailable),
             colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
@@ -139,7 +136,7 @@ export default class ProductList extends Component {
             else
                 currentStyle = {};
 
-            return <Product key={curProduct.productCode+curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
+            return <Product key={curProduct.productCode + curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
         })
     }
 
