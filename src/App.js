@@ -13,6 +13,7 @@ import ProductList from "./components/product-list.component";
 import ScrollToTop from "./scroll-to-top.js";
 
 
+
 const SearchableList = () => {
   const [firstTimeBOOL, setFirstTime] = useState(localStorage.getItem("firstVisit"));
   const [datas, setDatas] = useState([]);
@@ -152,7 +153,7 @@ const SearchableList = () => {
         <Route
           exact path='/products/:productType/'
           render={(props) => (
-            <ProductList {...props} isAuthed={1} />
+            <ProductList {...props}  isAuthed={1} />
           )}
         />
 

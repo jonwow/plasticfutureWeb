@@ -11,26 +11,30 @@ import { Link } from "react-router-dom";
 
 
 function priceFormatting(sum) {
-  // short explanation of how this works:
-  // step 1: reverse and add empty spaces.
-  // a (10045)   5 4 0 _ 0 1
-  // b (2085671) 1 7 6 _ 5 8 0 _ 2
+  // step 1: remove the decimal point, reverse the string and add empty spaces after every 3 characters (example: (2085671) 1 7 6 _ 5 8 0 _ 2)
   // step 2: reverse again.
-  let sumString = String(Math.floor(sum));
-  let splitArray = String(sum).split('.');
-
-  let integerSplit = splitArray[0],
-    decimalSplit = splitArray[1];
-
+  let sumString = String(Math.floor(sum)),
+      decimalSplit = String(sum).split('.')[1];
   let newStr = '', string = '';
+
+  // if there is a decimal
+  if (decimalSplit !== undefined) {
+    // if it has only one number (e.g. the decimal for 0.90 would be 9, NOT 90)
+    if (decimalSplit.length === 1)
+      // add a 0 to the string
+      decimalSplit += '0';
+  }
+  else
+    decimalSplit = '00';
+
 
 
   // making a new string by adding each character from the end to the start (reversed) out of the 'sumString'.
-  for (let i = sumString.length - 1; sumString[i] != undefined; i--) {
+  for (let i = sumString.length - 1; sumString[i] !== undefined; i--) {
     string += sumString[i];
 
     // if 3 characters have been added AND there are more characters to add from the sumString, add an empty space.
-    if ((sumString.length - i) % 3 == 0 && sumString[i + 1] != undefined)
+    if ((sumString.length - i) % 3 === 0 && sumString[i + 1] !== undefined)
       string += ' ';
   }
 
@@ -39,13 +43,9 @@ function priceFormatting(sum) {
   for (let i = string.length - 1; i >= 0; i--)
     newStr += string[i];
 
-  // if the number has a decimal, add the decimal to the newStr.
-  if (integerSplit % 1 != 0)
-    newStr += '.' + decimalSplit;
-  else
-    newStr += '.00';
 
-  return newStr;
+  // adding a point and two decimal points to the string
+  return newStr + '.' + decimalSplit[0] + decimalSplit[1];
 }
 
 // make this usable for footer. probably just change the inside of ThreeLines return
@@ -267,7 +267,7 @@ function DropdownCart({ fn, fields }) {
   Object.keys(datas).map(key =>
     sum += datas[key].price * datas[key].count
   )
-    
+
   let sumStr = priceFormatting(sum);
 
 
@@ -358,7 +358,10 @@ function DropdownCart({ fn, fields }) {
             TOTAL COST:
       </p>
           <p style={{ textAlign: "right", fontWeight: "550" }}>
-            {sum > 0 ? sumStr : sum}
+            {sum > 0 ?
+              <div>{console.log('above 0' + sumStr + '|' + sum)}
+                {sumStr}
+              </div> : sum}
           €
       </p>
         </div>
