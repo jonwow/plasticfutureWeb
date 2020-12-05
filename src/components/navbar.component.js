@@ -14,7 +14,7 @@ function priceFormatting(sum) {
   // step 1: remove the decimal point, reverse the string and add empty spaces after every 3 characters (example: (2085671) 1 7 6 _ 5 8 0 _ 2)
   // step 2: reverse again.
   let sumString = String(Math.floor(sum)),
-      decimalSplit = String(sum).split('.')[1];
+    decimalSplit = String(sum).split('.')[1];
   let newStr = '', string = '';
 
   // if there is a decimal
@@ -306,7 +306,7 @@ function DropdownCart({ fn, fields }) {
 
                       <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
                         {
-                          datas[key].price.toFixed(2) + '€'
+                          priceFormatting(datas[key].price.toFixed(2)) + '€'
                         }
                       </p>
 
@@ -359,9 +359,8 @@ function DropdownCart({ fn, fields }) {
       </p>
           <p style={{ textAlign: "right", fontWeight: "550" }}>
             {sum > 0 ?
-              <div>{console.log('above 0' + sumStr + '|' + sum)}
-                {sumStr}
-              </div> : sum}
+               sumStr 
+              : sum}
           €
       </p>
         </div>
