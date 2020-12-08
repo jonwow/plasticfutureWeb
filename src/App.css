@@ -269,13 +269,14 @@ button {
   /* max-width: 100%; */
   max-height: 87vh;
   height: 27rem;
-  cursor: pointer;
+  cursor: zoom-in;
 }
 
 
 .zoomed-in-product {
   width: 27rem;
   transition: 0.15s;
+  cursor: zoom-out;
   height: 32rem;
 } 
 
@@ -715,8 +716,6 @@ nav p::selection {
   color: white;
   list-style: none;
   text-align: center;
-  -ms-flex-preferred-size: 33.3333%;
-  flex-basis: 33.3333%;
   height: calc(4.65vh + 0.75vmin);
   -webkit-transition: background 190ms, color 0.7s;
   transition: background 190ms, color 0.7s;
@@ -728,15 +727,17 @@ nav p::selection {
   background: rgba(245, 245, 245, 0.85);
 }
 
-.stickyFooter ul li a {
-  top: 50%;
+
+
+.stickyFooter ul a {
+  /* top: 50%;
   font-size: 2vmin;
   transform: translate(-50%, -50%);
   color: white;
   color: inherit;
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 50%; */
 }
 
 .additionalPhotoBox img {

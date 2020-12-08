@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -10,13 +10,14 @@ import axios from 'axios';
 3.2 - IF DONT FETCH - data is received from the previous location and state is then changed thus updating the render component
 4 - render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'
 */
+let listOfImages = [];
 
 
 function priceFormatting(sum) {
   // step 1: remove the decimal point, reverse the string and add empty spaces after every 3 characters (example: (2085671) 1 7 6 _ 5 8 0 _ 2)
   // step 2: reverse again.
   let sumString = String(Math.floor(sum)),
-      decimalSplit = String(sum).split('.')[1];
+    decimalSplit = String(sum).split('.')[1];
   let newStr = '', string = '';
 
   // if there is a decimal
@@ -137,7 +138,7 @@ export default class ProductPage extends Component {
 
     // console.log('didupdate. tempstate color and prod code: ' + tempState.color + tempState.productCode);
     // console.log('params data: ' +this.props.match.params.color  +  this.props.match.params.productCode);
-    
+
     if (this.props.match.params.color !== tempState.color || this.props.match.params.productCode !== tempState.productCode) {
       if (this.props.location.product) {
         // console.log('cache exists, no data from the database is necessary')
@@ -197,6 +198,7 @@ export default class ProductPage extends Component {
   }
 
   componentDidMount() {
+
     if (this.props.location.product) {
       // console.log('cache exists, no data from the database is necessary')
 
@@ -219,7 +221,7 @@ export default class ProductPage extends Component {
           loading: false,
           _id: this.props.location.product._id,
         },
-        this.determineStateProperties
+        this.determineStateProperties,
       );
     }
     else {
@@ -250,9 +252,13 @@ export default class ProductPage extends Component {
   }
 
 
+
+
   render() {
+
     return (
       <div style={{ margin: "0 auto" }}>
+
 
         {/* DEMO */}
         {!this.state.loading &&
@@ -261,7 +267,7 @@ export default class ProductPage extends Component {
               <Link to={{
                 pathname: "/collections/" + this.state.season,
               }}>
-                {this.state.season} {}
+                {this.state.season} { }
               </Link>
             </span>
 
@@ -284,11 +290,16 @@ export default class ProductPage extends Component {
 
         <div style={!this.state.curAvailable ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
-            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p> 
+            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
             // everything below here until the end of the conditional operator curly braces DOES NOT GET EXECUTED ON THE INITIAL RENDER
             :
             <div className="box2">
               <div className="productDescription">
+                {
+                  // listOfImages = this.importAll(require.context('../../src/images/', true, /\_.png$/))
+
+                }
+                {console.log(listOfImages)}
                 {/* height of ~400-600 and overflow scroll */}
                 {/* long text bugs this. better of making a single p with a scroll overflow */}
                 {/* max 3 lines of text so the design looks good */}
@@ -313,8 +324,8 @@ export default class ProductPage extends Component {
                   {this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="L" onClick={this.selectTheSize.bind(this, 'L')}>L</li>}
                   {this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XL" onClick={this.selectTheSize.bind(this, 'XL')}>XL</li>}
                   <li>
-            <img src={require('../../src/images/icons/sizing.png')} alt="sizing-logo" style={{height: '1.5rem', width: '1.5rem', position: 'relative', top: '0.2rem'}} />
-                    
+                    <img src={require('../../src/images/icons/sizing.png')} alt="sizing-logo" style={{ height: '1.5rem', width: '1.5rem', position: 'relative', top: '0.2rem' }} />
+
                   </li>
                 </ul>
                 }
@@ -341,8 +352,8 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div className="bigProductContainer">
-                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-big'} onClick={() =>  document.getElementsByClassName('bigProduct')[0].classList.toggle("zoomed-in-product")
-} />
+                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'} onClick={() => document.getElementsByClassName('bigProduct')[0].classList.toggle("zoomed-in-product")
+                } />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div className="box3"> 
@@ -364,13 +375,14 @@ export default class ProductPage extends Component {
               <div className="additionalProductPhotos" style={{ maxWidth: "100%" }}>
                 <div id="photosGrid">
                   <div className="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-photo2'} />
+          
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-photo2'} />
 
                   </div>
 
 
                   <div className="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name+'-'+this.state.curColor+'-photo3'} />
+                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-photo3'} />
 
                   </div>
                 </div>
