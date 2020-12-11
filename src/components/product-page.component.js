@@ -252,9 +252,8 @@ export default class ProductPage extends Component {
   }
   
   zoomIn() {
-    if(window.innerHeight > 720 && window.innerWidth > 1280)
-    document.getElementsByClassName('bigProduct')[0].classList.toggle("zoomed-in-product");
-
+    if (window.innerHeight > 720 && window.innerWidth > 1280)
+      document.getElementsByClassName('bigProduct')[0].classList.toggle("zoomed-in-product");
   }
 
 
