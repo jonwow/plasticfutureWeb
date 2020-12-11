@@ -250,6 +250,12 @@ export default class ProductPage extends Component {
         })
     }
   }
+  
+  zoomIn() {
+    if(window.innerHeight > 720 && window.innerWidth > 1280)
+    document.getElementsByClassName('bigProduct')[0].classList.toggle("zoomed-in-product");
+
+  }
 
 
 
@@ -352,7 +358,7 @@ export default class ProductPage extends Component {
 
               {/* rename this class 'bigproductcontainer */}
               <div className="bigProductContainer">
-                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'} onClick={() => document.getElementsByClassName('bigProduct')[0].classList.toggle("zoomed-in-product")
+                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'} onClick={() => this.zoomIn()
                 } />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
