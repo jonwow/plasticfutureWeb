@@ -10,7 +10,6 @@ import axios from 'axios';
 3.2 - IF DONT FETCH - data is received from the previous location and state is then changed thus updating the render component
 4 - render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'
 */
-let listOfImages = [];
 
 
 function priceFormatting(sum) {
@@ -304,7 +303,6 @@ export default class ProductPage extends Component {
                   // listOfImages = this.importAll(require.context('../../src/images/', true, /\_.png$/))
 
                 }
-                {console.log(listOfImages)}
                 {/* height of ~400-600 and overflow scroll */}
                 {/* long text bugs this. better of making a single p with a scroll overflow */}
                 {/* max 3 lines of text so the design looks good */}
