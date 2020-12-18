@@ -105,23 +105,12 @@ const Navbar = (props) => {
     // timeouts array is mainly used in the 'cart preview' function to prevent multiple 'purchase button' clicks from lagging the site and bugging the timeouts. (it gets cleared on every call of CartPreview component from its 'if' block)
     var timeouts = [];
 
-    // NEEDS DOCUMENTATION! clicking the buy button too much bugs the program
-    // if (fields.openCartPreview && openedDropdown !== true) {
-    //   setA(p=>'cart-')
-    //   console.log('in the if block');
-    //   for (var i = 0; i < timeouts.length; i++) {
-    //     console.log(timeouts[i]);
-    //     clearTimeout(timeouts[i]);
-    //     console.log(timeouts[i]);
-    //     // perhaps remove the items from the array too?
-    //   }
-
-    //   // throws an error when you first click the purchase button.
-    //   fields.setOpenCartPreview(false);
-    //   timeouts.push(setTimeout(() => {
-    //     setA(p=>'cart-opened');
-    //   }, 5000));
-    // }
+    // NEEDS DOCUMENTATION! 
+    // setstate is wrong here (check console )
+    if (fields.openCartPreview &&  openedCart === false) {
+      setOC(true);
+     
+    }
 
 
 
@@ -299,12 +288,12 @@ const Navbar = (props) => {
   }
   // END OF LEFT PART OF THE NAVBAR
   ///////////////////////////////////////////////////////////////////////////////////////////
-  
 
 
 
 
-  
+
+
   // HIDE-SHOW DROPDOWNS
   const [openedThreeLines, setOTL] = useState(false);
   const [openedCart, setOC] = useState(false);
@@ -334,7 +323,7 @@ const Navbar = (props) => {
   }, []); // end of React.useEffect()
   // END OF HIDE-SHOW DROPDOWNS
   ///////////////////////////////////////////////////////////////////////////////////////////
-  
+
 
   return (
     <div>

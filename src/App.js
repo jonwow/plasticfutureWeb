@@ -66,7 +66,7 @@ const SearchableList = () => {
 
       
 
-      // setOpenCartPreview(true);
+      setOpenCartPreview(true);
       // console.log(openCartPreview);
 
 

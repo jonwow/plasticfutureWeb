@@ -715,8 +715,8 @@ nav p::selection {
   background: rgba(0, 0, 0, 0.85);
   color: white;
   list-style: none;
+  padding: 1rem 0;
   text-align: center;
-  height: calc(4.65vh + 0.75vmin);
   -webkit-transition: background 190ms, color 0.7s;
   transition: background 190ms, color 0.7s;
   -webkit-transition: 190ms background linear;
