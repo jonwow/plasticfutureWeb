@@ -102,44 +102,33 @@ const Navbar = (props) => {
   // RIGHT PART OF THE NAVBAR
   // renders the cart image or the dropdown if its clicked.
   const CartMenu = ({ fields }) => {
-    // timeouts array is mainly used in the 'cart preview' function to prevent multiple 'purchase button' clicks from lagging the site and bugging the timeouts. (it gets cleared on every call of CartPreview component from its 'if' block)
-    var timeouts = [];
-
-    // NEEDS DOCUMENTATION! 
-    // setstate is wrong here (check console )
-    if (fields.openCartPreview &&  openedCart === false) {
-      setOC(true);
-     
-    }
-
-
-
+    // only fires off when clicking on an opened cart's icon
     const handleClick = (e) => {
-      // e.preventDefault();
+
+      if (e.target.id === 'cart-img')
+        setOC(false);
 
       // // close cart dropdown if you press on a product (image)
       // if (e.target.tagName === "IMG" || e.target.tagName === "H2" || e.target.tagName === "H3")
       // {
-      //   setIsComponentVisible(false)
-      //   console.log('iki')
+      //   setOC()
       // }
 
     }
 
 
-
     return (
       <div style={{ width: "5vh", margin: "0 auto" }}  >
         {openedCart && (
-          <div onClick={() => setOC(false)}>
-            <Cart>
+          <div onClick={handleClick}>
+            <Cart >
               <DropdownCart fn={setOC} fields={fields}>
               </DropdownCart>
             </Cart>
           </div>
         )}
         {!openedCart &&
-          <div onClick={() => { setOC(true); console.log("opening cart") }}>
+          <div onClick={() => { setOC(true) }}>
             <Cart></Cart>
           </div>
         }
@@ -147,7 +136,6 @@ const Navbar = (props) => {
 
     );
   };
-
 
   const Cart = (props) => {
     return (
@@ -164,6 +152,7 @@ const Navbar = (props) => {
       </div>
     );
   }
+
 
 
   const DropdownCart = ({ fn, fields }) => {
@@ -195,8 +184,8 @@ const Navbar = (props) => {
                       <div style={{ margin: '0 auto' }}>
                         <Link to={{
                           pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
-                        }}>
-                          <img onClick={() => fn(false)}
+                        }} >
+                          <img
                             className=""
 
                             src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
@@ -205,7 +194,7 @@ const Navbar = (props) => {
                       <div className="cartPreviewItemTextGrid">
                         <Link to={{
                           pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
-                        }}>
+                        }} >
                           <h2 style={{ fontSize: '1.2rem', textTransform: "uppercase" }}>
                             {
                               datas[key].name + ' ' + datas[key].type
@@ -230,7 +219,7 @@ const Navbar = (props) => {
                           </h3>
                         </Link>
                         <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
-                          <span onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
+                          <span id='decrease-amount' onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
                             -
                     </span>
                           <span >
@@ -240,7 +229,7 @@ const Navbar = (props) => {
                             }
 
                           </span>
-                          <span onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
+                          <span id='increase-amount' onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
                             +
                     </span>
 
@@ -298,7 +287,23 @@ const Navbar = (props) => {
   const [openedThreeLines, setOTL] = useState(false);
   const [openedCart, setOC] = useState(false);
 
-  // mouse clicks, escape clicks and etc need to close dropdowns.
+
+
+  // after clicking the purchase button
+  React.useEffect(() => {
+    if (props.openCartPreview) {
+      setOC(true);
+
+      setTimeout(() => {
+        props.setOpenCartPreview(false);
+        setOC(false)
+
+      }, 4000);
+    }
+  }, [props.openCartPreview]);
+
+
+
 
 
   React.useEffect(() => {
@@ -306,13 +311,13 @@ const Navbar = (props) => {
       if (event.key === 'Escape') {
         console.log('Escape pressed in useEffect')
         setOTL(false);
-        setOC(false);
       }
     }
 
-    function handleMouseClick(event) {
-      console.log('Mouse click was pressed in useEffect')
-      if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img') {
+    const handleMouseClick = (event) => {
+      // if the click wasnt on threelines or cart or purchase button
+      if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img' && event.target.id !== 'buyBtn' && event.target.id !== 'decrease-amount' && event.target.id !== 'increase-amount') {
+        console.log('id is' + event.target.id)
         setOTL(false);
         setOC(false);
       }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, } from "react-router-dom";
 
 // components
@@ -19,7 +19,7 @@ const SearchableList = () => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [openCartPreview, setOpenCartPreview] = useState(false);
-  
+
   // can be 'INCREASE', 'DECREASE' or 'NONE'. used because if the cart has 1 item and we remove it it will not update the sessionStorage.cartItems because it would have an  'if datas !== 0'
   const [lastCartAction, setLastCartAction] = useState('NONE');
 
@@ -43,23 +43,19 @@ const SearchableList = () => {
     // if there is something in 'datas', update the sessionStorage
     if (lastCartAction !== 'NONE') {
       sessionStorage.setItem('cartItems', JSON.stringify(datas))
-      console.log('sessionstorage cartitems updated')
-      console.log(JSON.parse(sessionStorage.getItem('cartItems')));
       setCartLoaded(true);
     }
 
 
     // if there are no items in the cart and sessionStorage has something in it
     if (datas.length === 0 && JSON.parse(sessionStorage.getItem('cartItems')) !== null && JSON.parse(sessionStorage.getItem('cartItems')).length !== 0) {
-      console.log('no items in data and sessiosntorage has soemthing')
       setDatas(JSON.parse(sessionStorage.getItem('cartItems')));
 
     }
     // if at least one product is in the cart
     if (datas.length !== 0)
       setCartLoaded(true);
-    
-      console.log(datas.length)
+
   }, [datas]);
 
 
@@ -82,7 +78,6 @@ const SearchableList = () => {
 
       newArr.forEach(cartItem => {
         if (cartItem.productCode === index && cartItem.size === size && cartItem.color === color) {
-          console.log('THERE IS ONE!');
           unique = false;
           cartItem.count++;
         }
@@ -179,8 +174,6 @@ const SearchableList = () => {
     // if the count of the item is 0, remove it from the array of the items in the cart.
     if (cartItems[key].count === 0) {
       cartItems.splice(key, 1);
-      console.log('removed')
-      console.log(cartItems)
     }
     setDatas(cartItems);
   }
