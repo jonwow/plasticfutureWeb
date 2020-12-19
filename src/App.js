@@ -20,14 +20,14 @@ const SearchableList = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [openCartPreview, setOpenCartPreview] = useState(false);
 
-  // can be 'INCREASE', 'DECREASE' or 'NONE'. used because if the cart has 1 item and we remove it it will not update the sessionStorage.cartItems because it would have an  'if datas !== 0'
+  // can be 'INCREASE', 'DECREASE' or 'NONE'. used because if the cart has 1 item and we remove it it will not update the localStorage.cartItems because it would have an  'if datas !== 0'
   const [lastCartAction, setLastCartAction] = useState('NONE');
 
   // setCartLoaded prevents the cart from displaying '0' by default because while the page is loading it looks like 0 and then transfers to the number of items in the cart which is irritating
   const [cartLoaded, setCartLoaded] = useState(false);
 
   // called every time 'datas' is updated and i think every time the page is loaded:
-  //   updates sessionstorage cartItems
+  //   updates localStorage cartItems
   //   updates total item count
   //   removes items from the cart once their count is 0
   React.useEffect(() => {
@@ -40,16 +40,16 @@ const SearchableList = () => {
     setTotalCount(countOfItems);
 
 
-    // if there is something in 'datas', update the sessionStorage
+    // if there is something in 'datas', update the localStorage
     if (lastCartAction !== 'NONE') {
-      sessionStorage.setItem('cartItems', JSON.stringify(datas))
+      localStorage.setItem('cartItems', JSON.stringify(datas))
       setCartLoaded(true);
     }
 
 
-    // if there are no items in the cart and sessionStorage has something in it
-    if (datas.length === 0 && JSON.parse(sessionStorage.getItem('cartItems')) !== null && JSON.parse(sessionStorage.getItem('cartItems')).length !== 0) {
-      setDatas(JSON.parse(sessionStorage.getItem('cartItems')));
+    // if there are no items in the cart and localStorage has something in it
+    if (datas.length === 0 && JSON.parse(localStorage.getItem('cartItems')) !== null && JSON.parse(localStorage.getItem('cartItems')).length !== 0) {
+      setDatas(JSON.parse(localStorage.getItem('cartItems')));
 
     }
     // if at least one product is in the cart
@@ -109,7 +109,7 @@ const SearchableList = () => {
 
 
 
-      sessionStorage.setItem('cartItems', JSON.stringify(datas))
+      localStorage.setItem('cartItems', JSON.stringify(datas))
     }
 
 
