@@ -353,7 +353,8 @@ const Navbar = (props) => {
 
 
               <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
-                {props.totalCount < 10 ? props.totalCount : '9+'}
+                {
+                  props.cartLoaded ? props.totalCount < 10 ? props.totalCount : '9+' : ''}
 
               </span>
 

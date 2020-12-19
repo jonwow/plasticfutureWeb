@@ -19,9 +19,12 @@ const SearchableList = () => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [openCartPreview, setOpenCartPreview] = useState(false);
-
+  
   // can be 'INCREASE', 'DECREASE' or 'NONE'. used because if the cart has 1 item and we remove it it will not update the sessionStorage.cartItems because it would have an  'if datas !== 0'
   const [lastCartAction, setLastCartAction] = useState('NONE');
+
+  // setCartLoaded prevents the cart from displaying '0' by default because while the page is loading it looks like 0 and then transfers to the number of items in the cart which is irritating
+  const [cartLoaded, setCartLoaded] = useState(false);
 
   // called every time 'datas' is updated and i think every time the page is loaded:
   //   updates sessionstorage cartItems
@@ -42,13 +45,15 @@ const SearchableList = () => {
       sessionStorage.setItem('cartItems', JSON.stringify(datas))
       console.log('sessionstorage cartitems updated')
       console.log(JSON.parse(sessionStorage.getItem('cartItems')));
+      setCartLoaded(true);
     }
 
-    
+
     // if there are no items in the cart and sessionStorage has something in it
     if (datas.length === 0 && JSON.parse(sessionStorage.getItem('cartItems')) !== null && JSON.parse(sessionStorage.getItem('cartItems')).length !== 0) {
       console.log('no items in data and sessiosntorage has soemthing')
       setDatas(JSON.parse(sessionStorage.getItem('cartItems')));
+      setCartLoaded(true);
     }
   }, [datas]);
 
@@ -200,7 +205,7 @@ const SearchableList = () => {
         :
         <div>
           <ScrollToTop />
-          <Navbar priceFormatting={priceFormatting} modifyCount={modifyCount} setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
+          <Navbar cartLoaded={cartLoaded} priceFormatting={priceFormatting} modifyCount={modifyCount} setOpenCartPreview={setOpenCartPreview} openCartPreview={openCartPreview} datas={datas} totalCount={totalCount} />
 
 
           <div className="container" id="top">
