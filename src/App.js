@@ -53,8 +53,13 @@ const SearchableList = () => {
     if (datas.length === 0 && JSON.parse(sessionStorage.getItem('cartItems')) !== null && JSON.parse(sessionStorage.getItem('cartItems')).length !== 0) {
       console.log('no items in data and sessiosntorage has soemthing')
       setDatas(JSON.parse(sessionStorage.getItem('cartItems')));
-      setCartLoaded(true);
+
     }
+    // if at least one product is in the cart
+    if (datas.length !== 0)
+      setCartLoaded(true);
+    
+      console.log(datas.length)
   }, [datas]);
 
 
