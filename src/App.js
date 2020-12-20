@@ -63,6 +63,7 @@ const SearchableList = () => {
 
   const buyBtnPressed = (index, name, size, price, type, season, color, _id) => () => {
     if (size === undefined) {
+      
       document.getElementById("root").style.cssText = "transition: filter 0.75s; filter: blur(5px) grayscale(1)";
       document.getElementById("choose-a-size-msg").classList.toggle("visible");
 
