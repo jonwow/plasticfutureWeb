@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// components, mini webapps
-import App from './App';
-
 // styles
 import './App.css';
+
+
+// components
+import App from './App';
+
+
+
 
 ReactDOM.render(
   <App />  ,

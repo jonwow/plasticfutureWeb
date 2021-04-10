@@ -190,11 +190,11 @@ const SearchableList = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Head />
-
-
+      {/* for people with extraordinary screens */}
       {window.innerWidth <= 240 && window.innerHeight <= 320 && window.location.replace("https://genius.com/Playboi-carti-broke-boi-lyrics")}
 
-      {/*  */}
+
+
       {firstTimeBOOL !== "false" ?
         <div id="first-time-container" onClick={() => firstTime()}>
 

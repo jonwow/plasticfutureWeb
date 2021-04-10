@@ -13,37 +13,37 @@ function priceFormatting(sum) {
     let sumString = String(Math.floor(sum)),
         decimalSplit = String(sum).split('.')[1];
     let newStr = '', string = '';
-  
+
     // if there is a decimal
     if (decimalSplit !== undefined) {
-      // if it has only one number (e.g. the decimal for 0.90 would be 9, NOT 90)
-      if (decimalSplit.length === 1)
-        // add a 0 to the string
-        decimalSplit += '0';
+        // if it has only one number (e.g. the decimal for 0.90 would be 9, NOT 90)
+        if (decimalSplit.length === 1)
+            // add a 0 to the string
+            decimalSplit += '0';
     }
     else
-      decimalSplit = '00';
-  
-  
-  
+        decimalSplit = '00';
+
+
+
     // making a new string by adding each character from the end to the start (reversed) out of the 'sumString'.
     for (let i = sumString.length - 1; sumString[i] !== undefined; i--) {
-      string += sumString[i];
-  
-      // if 3 characters have been added AND there are more characters to add from the sumString, add an empty space.
-      if ((sumString.length - i) % 3 === 0 && sumString[i + 1] !== undefined)
-        string += ' ';
+        string += sumString[i];
+
+        // if 3 characters have been added AND there are more characters to add from the sumString, add an empty space.
+        if ((sumString.length - i) % 3 === 0 && sumString[i + 1] !== undefined)
+            string += ' ';
     }
-  
-  
+
+
     // reversing the reversed string and storing it into 'newStr'.
     for (let i = string.length - 1; i >= 0; i--)
-      newStr += string[i];
-  
-  
+        newStr += string[i];
+
+
     // adding a point and two decimal points to the string
     return newStr + '.' + decimalSplit[0] + decimalSplit[1];
-  }
+}
 
 const Product = props => (
     <Link to={{
@@ -55,14 +55,16 @@ const Product = props => (
 
         <div style={props.style} className="product">
             <img src={require(`../../src/images/` + props.product.season + `/designs/` + props.product.type + 's/' + props.product.name + `/` + props.product.name + `-` + props.color + `-small.png`)} alt={props.product.name + '-' + props.color + '-photo'} />
-            {/* make a proper formatting solution */}
 
 
-            {props.product.available[props.index] && props.amountOfSizes > 0 ?
-                <p >{priceFormatting(props.product.price[props.index].toFixed(2))}{currency}</p>
-                :
-                <p>unavailable</p>
-            }
+            <p>
+                {/* product is not hidden and there are available units(amountOfSizes) */}
+                {props.product.available[props.index] && props.amountOfSizes > 0 ?
+                    priceFormatting(props.product.price[props.index].toFixed(2)) + currency
+                    :
+                    "unavailable"
+                }
+            </p>
         </div>
 
     </Link >
