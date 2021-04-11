@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const Navbar = (props) => {
+export default (props) => {
   const LeftContainer = () => {
     return (
       <div style={{ width: "5vh", margin: "0 auto" }} >
@@ -294,12 +294,15 @@ const Navbar = (props) => {
 
   return (
     <nav>
+      {/* left part of the navbar */}
       <div className="navbarChild">
         <div className="centeringParent">
           <LeftContainer />
         </div>
       </div>
 
+
+      {/* mid part of the navbar */}
       <div className="navbarChild">
         <div className="centeringParent" id="navbarText">
           {/* when PLASTICFUTURE logo is pressed, go to top of the 'container' (for example when you are on the main page and want to go to the top by clicking it) */}
@@ -313,11 +316,12 @@ const Navbar = (props) => {
       </div>
 
 
+      {/* right part of the navbar */}
       <div className="navbarChild">
         <div className="centeringParent">
             <CartMenu fields={props} />
             <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
-              {props.cartLoaded ? props.totalCount < 10 ? props.totalCount : '9+' : ''}
+              {props.cartLoaded ? props.totalCount < 10 ? props.totalCount !== 0 && props.totalCount : '9+' : ''}
             </span>
         </div>
       </div>
@@ -326,5 +330,3 @@ const Navbar = (props) => {
 
   );
 }
-
-export default Navbar;

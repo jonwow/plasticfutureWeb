@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-let currency = '€';
-
-
+let currency = [['EUR','€']];
 
 
 function priceFormatting(sum) {
@@ -60,7 +58,7 @@ const Product = props => (
             <p>
                 {/* product is not hidden and there are available units(amountOfSizes) */}
                 {props.product.available[props.index] && props.amountOfSizes > 0 ?
-                    priceFormatting(props.product.price[props.index].toFixed(2)) + currency
+                    priceFormatting(props.product.price[props.index].toFixed(2)) + currency[0][1]
                     :
                     "unavailable"
                 }
@@ -71,7 +69,7 @@ const Product = props => (
 )
 
 
-export default class ProductList extends Component {
+export default class extends Component {
     constructor(props) {
         super(props);
         this.state = { fetchedProducts: [], loading: true };
@@ -79,8 +77,6 @@ export default class ProductList extends Component {
 
 
     componentDidMount() {
-        document.title = 'P L A S T I C F U T U R E '
-
         axios.get("http://localhost:5000/products/")
             .then(response => {
                 this.setState({ fetchedProducts: response.data, loading: false });
@@ -111,7 +107,7 @@ export default class ProductList extends Component {
         // *******************************************************************
         // FILTERING
         // for every product that gets fetched from the database 
-        this.state.fetchedProducts.map(curProduct => {
+        this.state.fetchedProducts.forEach(curProduct => {
             // product type has to match the type of the page that the client is on (tshirt, tote) or all products
             if (curProduct.season === productCollection || productCollection === undefined)
                 if (curProduct.type === productType || productType === undefined)
@@ -125,11 +121,7 @@ export default class ProductList extends Component {
                                 products.unavailColorIndex.push(index) && products.unavailable.push(curProduct);
                         }
                     }
-
-            // make this fn not an arrow fn or provide a proper return value
-            return 0;
         }
-
         )
 
         // *******************************************************************
@@ -189,8 +181,6 @@ export default class ProductList extends Component {
 
         return (
             <div>
-
-                {/* breadcrumbs DEMO!!! */}
                 {productType ?
                     <div>
                         {this.props.match.params.collection &&
@@ -201,9 +191,6 @@ export default class ProductList extends Component {
                         <span style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
 
                             {productType}
-
-                            {/* if the product type is jeans, dont add the 's' at the end */}
-                            {productType[productType.length - 1] !== 's' && 's'}
 
                         </span>
                         <div>
@@ -224,7 +211,7 @@ export default class ProductList extends Component {
                         {
                             this.state.loading ?
 
-                                <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0' }}></p>
+                                <div style={{height:'120vh'}}/>
                                 :
                                 this.productList(productType, productCollection)
                         }

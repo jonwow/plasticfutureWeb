@@ -4,11 +4,11 @@ import { BrowserRouter, Route, } from "react-router-dom";
 // components
 import Footer from "./components/Footer.component";
 import Navbar from "./components/Navbar.component";
-import StickyFooter from "./components/stickyFooter.component";
-import ProductPage from "./components/product-page.component";
+import StickyFooter from "./components/StickyFooter.component";
+import ProductPage from "./components/ProductPage.component";
 
 // components-route paths
-import ProductList from "./components/product-list.component";
+import ProductList from "./components/ProductList.component";
 import ScrollToTop from "./scroll-to-top.js";
 
 
