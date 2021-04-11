@@ -178,7 +178,7 @@ export default class ProductList extends Component {
             else
                 currentStyle = {};
 
-            return <Product key={curProduct.productCode + curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}></Product>
+            return <Product key={curProduct.productCode + curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}/>
         })
     }
 

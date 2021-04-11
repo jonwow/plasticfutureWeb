@@ -97,7 +97,7 @@ const Navbar = (props) => {
         {openedCart && (
           <div onClick={handleClick}>
             <Cart >
-              <DropdownCart fn={setOC} fields={fields}/>
+              <DropdownCart fn={setOC} fields={fields} />
             </Cart>
           </div>
         )}
@@ -131,8 +131,7 @@ const Navbar = (props) => {
 
   const DropdownCart = ({ fn, fields }) => {
     let sum = 0;
-    // cart items
-    var datas = { ...fields.datas };
+    var cartItems = { ...fields.datas };
 
     function DropdownItem(props) {
       return props.children;
@@ -140,8 +139,8 @@ const Navbar = (props) => {
 
 
 
-    Object.keys(datas).map(key =>
-      sum += datas[key].price * datas[key].count
+    Object.keys(cartItems).map(key =>
+      sum += cartItems[key].price * cartItems[key].count
     )
 
     let sumStr = fields.priceFormatting(sum);
@@ -151,61 +150,67 @@ const Navbar = (props) => {
       <div>
         <ul className="dropdown" id="cartDropdown" >
           <div className="dropdownChild">
-            {datas[0] === undefined ? <li style={{ textAlign: "center", padding: '2rem 0' }} >no products.</li> :
+            {cartItems[0] === undefined ? <li style={{ textAlign: "center", padding: '2rem 0' }} >no products.</li> :
 
 
-              Object.keys(datas).map(key =>
+              Object.keys(cartItems).map(key =>
                 <DropdownItem key={key} >
-
                   {/* 10rem+2*2rem(padding) *3 */}
                   <div value={key} className="cart-item" style={{ height: "10rem", display: "block", padding: '2rem 0', background: 'whitesmoke' }}>
                     <li className="cartPreviewItem">
+
+                      {/* image of the product */}
                       <div style={{ margin: '0 auto' }}>
                         <Link to={{
-                          pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                          pathname: "/products/" + cartItems[key].type + '/' + cartItems[key].productCode + '/' + cartItems[key].color + '/' + cartItems[key]._id + "/",
                         }} >
                           <img
                             className=""
-                            src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
-                            alt={datas[key].name + '-' + datas[key].color + '-photo'} /></Link>
+                            src={require('../../src/images/' + cartItems[key].season + `/designs/` + cartItems[key].type + 's/' + cartItems[key].name + `/` + cartItems[key].name + `-` + cartItems[key].color + `-small.png`)}
+                            alt={cartItems[key].name + '-' + cartItems[key].color + '-photo'} />
+                        </Link>
                       </div>
+
+
                       <div className="cartPreviewItemTextGrid">
                         <Link to={{
-                          pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                          pathname: "/products/" + cartItems[key].type + '/' + cartItems[key].productCode + '/' + cartItems[key].color + '/' + cartItems[key]._id + "/",
                         }} >
                           <h2 style={{ fontSize: '1.2rem', textTransform: "uppercase" }}>
                             {
-                              datas[key].name + ' ' + datas[key].type
+                              cartItems[key].name + ' ' + cartItems[key].type
                             }
                           </h2>
                         </Link>
 
+
+
                         <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
                           {
-                            fields.priceFormatting(datas[key].price.toFixed(2)) + '€'
+                            fields.priceFormatting(cartItems[key].price.toFixed(2)) + '€'
                           }
                         </p>
 
                         <Link to={{
-                          pathname: "/collections/" + datas[key].season + '/',
+                          pathname: "/collections/" + cartItems[key].season + '/',
                         }}>
                           <h3 style={{ textTransform: "uppercase", fontWeight: "normal", fontSize: '1rem' }}>
                             {
-                              datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
+                              cartItems[key].season + "'" + cartItems[key].productCode[4] + cartItems[key].productCode[5]
                             }
 
                           </h3>
                         </Link>
+
                         <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
                           <span id='decrease-amount' onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
                             -
-                    </span>
+                          </span>
+
                           <span >
-
                             {
-                              ' ' + datas[key].count + ' '
+                              ' ' + cartItems[key].count + ' '
                             }
-
                           </span>
                           <span id='increase-amount' onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
                             +
@@ -215,59 +220,39 @@ const Navbar = (props) => {
 
                         <p style={{ position: 'relative', top: '35%' }}>
                           {
-                            datas[key].color + ' — ' + datas[key].size + ' '}
+                            cartItems[key].color + ' — ' + cartItems[key].size + ' '}
                         </p>
 
 
                       </div>
-
                     </li>
                   </div>
                 </DropdownItem>
               )
-
             }
           </div>
 
           <div id="grid-for-total-cost">
-            <p style={{ textAlign: "left" }}>
-              TOTAL COST:
-      </p>
-            <p style={{ textAlign: "right", fontWeight: "550" }}>
-              {sum > 0 ?
-                sumStr
-                : sum}
-          €
-      </p>
+            <p style={{ textAlign: "left" }}>TOTAL COST:</p>
+            <p style={{ textAlign: "right", fontWeight: "550" }}>{sumStr} €</p>
           </div>
 
-          {datas[0] !== undefined &&
+          {cartItems[0] !== undefined &&
             <p class="checkout-text" onClick={() => {
-              console.log(datas)
-            }}>
-              CHECKOUT
-  </p>
+              console.log(cartItems)
+            }}>CHECKOUT</p>
           }
-        </ul>
-        {/* {datas[0] != undefined && */}
 
-        {/* } */}
+        </ul>
       </div>
     );
   }
-  // END OF LEFT PART OF THE NAVBAR
-  ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
   // HIDE-SHOW DROPDOWNS
   const [openedThreeLines, setOTL] = useState(false);
   const [openedCart, setOC] = useState(false);
-
-
 
   // after clicking the purchase button
   React.useEffect(() => {
@@ -278,14 +263,12 @@ const Navbar = (props) => {
         props.setOpenCartPreview(false);
         setOC(false)
 
-      }, 4000);
+      }, 4500);
     }
   }, [props.openCartPreview]);
 
 
-
-
-
+  // handle clicks
   React.useEffect(() => {
     function handleKeyPress(event) {
       if (event.key === 'Escape') {
@@ -305,49 +288,40 @@ const Navbar = (props) => {
 
     document.addEventListener('keydown', handleKeyPress);
     document.addEventListener('click', handleMouseClick);
-  }, []); // end of React.useEffect()
-  // END OF HIDE-SHOW DROPDOWNS
-  ///////////////////////////////////////////////////////////////////////////////////////////
+  }, []);
+
 
 
   return (
-    <div>
-      <nav>
-        <div className="navbarOne">
-          <div className="centeringParent">
-            <LeftContainer />
-          </div>
+    <nav>
+      <div className="navbarChild">
+        <div className="centeringParent">
+          <LeftContainer />
         </div>
+      </div>
 
-        <div className="navbarTwo">
-          <div className="centeringParent" id="navbarText">
-            {/* when PLASTICFUTURE logo is pressed, go to top of the 'container' */}
-            <Link to="/" className="no-select-bg" onClick={() => {
-              if (document.getElementsByClassName('container')[0] !== undefined)
-                document.getElementsByClassName('container')[0].scrollTop = 0;
-            }}>
-              PLASTIC FUTURE
+      <div className="navbarChild">
+        <div className="centeringParent" id="navbarText">
+          {/* when PLASTICFUTURE logo is pressed, go to top of the 'container' (for example when you are on the main page and want to go to the top by clicking it) */}
+          <Link to="/" className="no-select-bg" onClick={() => {
+            if (document.getElementsByClassName('container')[0] !== undefined)
+              document.getElementsByClassName('container')[0].scrollTop = 0;
+          }}>
+            PLASTIC FUTURE
               </Link>
-          </div>
         </div>
-        <div className="navbarThree">
-          <div className="centeringParent">
-            <div>
-              <CartMenu fields={props} >
-              </CartMenu>
+      </div>
 
 
-              <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
-                {
-                  props.cartLoaded ? props.totalCount < 10 ? props.totalCount : '9+' : ''}
-
-              </span>
-
-            </div>
-          </div>
+      <div className="navbarChild">
+        <div className="centeringParent">
+            <CartMenu fields={props} />
+            <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
+              {props.cartLoaded ? props.totalCount < 10 ? props.totalCount : '9+' : ''}
+            </span>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
 
 
   );

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +9,9 @@
   scroll-behavior: smooth;
 }
 
+html {
+  overflow: hidden;
+}
 #cartDropdown {
   left: -15rem;
   width: calc((33vw * 0.44) + 15rem);
@@ -22,17 +25,16 @@
 #cartDropdown a::selection,
 #cartDropdown h2::selection,
 #cartDropdown h3::selection,
-#cartDropdown span::selection{
+#cartDropdown span::selection {
   background: rgba(255, 0, 0, 0);
 }
 
 .dropdown li::selection {
   background: rgba(255, 0, 0, 0);
-
 }
 .cartPreviewItem img {
- max-width: 100%;
- /* max-height: calc((((33vw * 0.44) +git 10rem) - 2vw) * 0.4); */
+  max-width: 100%;
+  /* max-height: calc((((33vw * 0.44) +git 10rem) - 2vw) * 0.4); */
 }
 
 #cartDropdown img {
@@ -55,7 +57,7 @@
 }
 
 .checkout-text {
-  background: #0a0a0a ;
+  background: #0a0a0a;
   color: whitesmoke;
   text-align: center;
   cursor: pointer;
@@ -64,9 +66,9 @@
   padding: 1rem 0;
 }
 
-.checkout-text:hover{
+.checkout-text:hover {
   transition: filter 0.25s;
-  filter: invert(10%  );
+  filter: invert(10%);
 }
 
 .dropdown li {
@@ -76,17 +78,17 @@
   color: black;
 }
 
-#first-time-container
-{
-  background: url('./images/plasticIDOL/background.png');
- height: 100vh;
- width: 100vw;
- background-size: cover;
- overflow: hidden;
+#first-time-container {
+  background: url("./images/plasticIDOL/background.png");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  overflow: hidden;
 }
 
-.first-time-welcome-text{
-  text-align: center;    font-family: 'Roboto', sans-serif;
+.first-time-welcome-text {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
   font-size: 8rem;
   top: 30%;
   position: relative;
@@ -94,21 +96,19 @@
   filter: drop-shadow(3px 13px 3px black);
 }
 
-.first-time-tnc-gdpr-text
-{
+.first-time-tnc-gdpr-text {
   position: absolute;
-left: 2%;     font-family: 'Roboto', sans-serif;
+  left: 2%;
+  font-family: "Roboto", sans-serif;
   font-size: 2rem;
   bottom: 5%;
   font-weight: bold;
 }
 
-
 span a {
   text-decoration: none;
   color: black;
 }
-
 
 .menu-item li {
   background: whitesmoke;
@@ -142,7 +142,7 @@ footer a p {
 .dropdown {
   position: absolute;
   /* full header height - icon height divided by two + icon height */
-  top: calc((12vh - 5vh) / 2 + 5vh );
+  top: calc((12vh - 5vh) / 2 + 5vh);
   width: calc(33vw * 0.44);
   left: 0;
   overflow: hidden;
@@ -152,7 +152,7 @@ footer a p {
 
 .dropdownChild {
   max-height: calc(42rem);
-    scrollbar-width: thin;
+  scrollbar-width: thin;
 
   width: inherit;
   max-width: inherit;
@@ -242,7 +242,6 @@ button {
   font-size: 1.5rem;
 }
 
-
 .loadingImgParent {
   margin: 0 auto;
   margin-top: 66px;
@@ -273,13 +272,12 @@ button {
   cursor: zoom-in;
 }
 
-
 .zoomed-in-product {
   width: 27rem;
   transition: 0.15s;
   cursor: zoom-out;
   height: 32rem;
-} 
+}
 
 .bigProductContainer {
   width: 22.5rem;
@@ -288,16 +286,14 @@ button {
   margin: 0 auto;
 }
 
-@media (max-height: 720px) and (max-width: 1280px)
-{
+@media (max-height: 720px) and (max-width: 1280px) {
   .bigProduct {
-    cursor:  default;
+    cursor: default;
   }
-  
-  
+
   .zoomed-in-product {
-    cursor:  default;
-  } 
+    cursor: default;
+  }
 }
 
 .box {
@@ -450,26 +446,20 @@ nav > div > div > p {
   text-align: center;
 }
 
-nav .navbarOne,
-nav .navbarTwo,
-nav .navbarThree {
+nav .navbarChild {
   width: 33vw;
   height: 12vh;
 }
 
-nav .navbarOne {
+nav :nth-child(1),
+nav :nth-child(3) {
   -ms-flex-preferred-size: 15%;
   flex-basis: 15%;
 }
 
-nav .navbarTwo {
+nav :nth-child(2) {
   -ms-flex-preferred-size: 70%;
   flex-basis: 70%;
-}
-
-nav .navbarThree {
-  -ms-flex-preferred-size: 15%;
-  flex-basis: 15%;
 }
 
 .icon-button {
@@ -485,7 +475,7 @@ nav .navbarThree {
 }
 
 /* without this, the 'parent' div gets too large and the text ('a') isn't centered. */
-nav .navbarTwo .centeringParent {
+nav :nth-child(2) .centeringParent {
   margin: 0;
   width: fit-content;
   width: -moz-fit-content;
@@ -496,7 +486,9 @@ nav .navbarTwo .centeringParent {
   margin: 0;
 }
 
-nav p, nav h2, nav h3 {
+nav p,
+nav h2,
+nav h3 {
   text-decoration: none;
   line-height: 0.8;
 }
@@ -674,7 +666,6 @@ nav p, nav h2, nav h3 {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   /* thumb and track color*/
   scrollbar-width: thin;
-
 }
 .container {
   scrollbar-color: #7f7f7f white;
@@ -740,8 +731,6 @@ nav p::selection {
   background: rgba(245, 245, 245, 0.85);
 }
 
-
-
 .stickyFooter ul a {
   /* top: 50%;
   font-size: 2vmin;
@@ -763,7 +752,7 @@ nav p::selection {
   filter: drop-shadow(2px 1px 4px #000033);
 }
 
-nav .navbarTwo .parent p:hover {
+nav :nth-child(2) .parent p:hover {
   -webkit-transition: 1s;
   transition: 1s;
   /* change the color to black and ditch the invert  */
@@ -941,8 +930,6 @@ nav img {
     left: -85vw;
   }
 
-
-
   .dropdown .menu-item li {
     padding: 1.25rem;
   }
@@ -954,7 +941,7 @@ nav img {
     filter: none;
   }
 
-  nav .navbarTwo .parent p:hover {
+  nav :nth-child(2) .parent p:hover {
     -webkit-transition: 0s;
     transition: 0s;
     -webkit-filter: none;
@@ -1093,8 +1080,7 @@ nav img {
 }
 
 /* iphone 5s, se NON WIDESCREEN specific:  */
-@media only screen and (max-height: 570px) and (min-width: 300px) and (max-width: 340px)
-{
+@media only screen and (max-height: 570px) and (min-width: 300px) and (max-width: 340px) {
   html {
     font-size: 12px;
   }
@@ -1124,25 +1110,22 @@ nav img {
   }
 }
 
-@media only screen and (min-width: 1250px) and  (min-height: 3  00px) and (max-width: 1500px){
-  #cartDropdown{
+@media only screen and (min-width: 1250px) and (min-height: 3  00px) and (max-width: 1500px) {
+  #cartDropdown {
     width: 35vw;
     left: -20.5vw;
   }
-
 }
 
-@media only screen and  (min-width: 750px) and  (min-height: 300px) and (max-width: 1249px){
-
-  #cartDropdown{
+@media only screen and (min-width: 750px) and (min-height: 300px) and (max-width: 1249px) {
+  #cartDropdown {
     width: calc(30vw + 10rem);
     left: calc((15vw + 10rem) * -1);
   }
-
 }
 
-@media only screen and  (min-width: 680px) and  (min-height: 430px) and (max-width: 749px){
-  #cartDropdown{
+@media only screen and (min-width: 680px) and (min-height: 430px) and (max-width: 749px) {
+  #cartDropdown {
     left: -85.5vw;
     width: 100vw;
   }

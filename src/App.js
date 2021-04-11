@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { BrowserRouter, Route, } from "react-router-dom";
 
 // components
-import Footer from "./components/footer.component";
-import Navbar from "./components/navbar.component";
+import Footer from "./components/Footer.component";
+import Navbar from "./components/Navbar.component";
 import StickyFooter from "./components/stickyFooter.component";
-import Head from "./components/head.component";
 import ProductPage from "./components/product-page.component";
 
 // components-route paths
@@ -189,7 +188,6 @@ const SearchableList = () => {
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Head />
       {/* for people with extraordinary screens */}
       {window.innerWidth <= 240 && window.innerHeight <= 320 && window.location.replace("https://genius.com/Playboi-carti-broke-boi-lyrics")}
 
