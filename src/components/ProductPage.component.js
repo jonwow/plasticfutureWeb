@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import priceFormatting from './priceFormatting';
 
 /* how this component works:
 1 - constructor starts
@@ -11,53 +12,15 @@ import axios from 'axios';
 4 - render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'*/
 
 
-function priceFormatting(sum) {
-  // step 1: remove the decimal point, reverse the string and add empty spaces after every 3 characters (example: (2085671) 1 7 6 _ 5 8 0 _ 2)
-  // step 2: reverse again.
-  let sumString = String(Math.floor(sum)),
-    decimalSplit = String(sum).split('.')[1];
-  let newStr = '', string = '';
-
-  // if there is a decimal
-  if (decimalSplit !== undefined) {
-    // if it has only one number (e.g. the decimal for 0.90 would be 9, NOT 90)
-    if (decimalSplit.length === 1)
-      // add a 0 to the string
-      decimalSplit += '0';
-  }
-  else
-    decimalSplit = '00';
-
-
-
-  // making a new string by adding each character from the end to the start (reversed) out of the 'sumString'.
-  for (let i = sumString.length - 1; sumString[i] !== undefined; i--) {
-    string += sumString[i];
-
-    // if 3 characters have been added AND there are more characters to add from the sumString, add an empty space.
-    if ((sumString.length - i) % 3 === 0 && sumString[i + 1] !== undefined)
-      string += ' ';
-  }
-
-
-  // reversing the reversed string and storing it into 'newStr'.
-  for (let i = string.length - 1; i >= 0; i--)
-    newStr += string[i];
-
-
-  // adding a point and two decimal points to the string
-  return newStr + '.' + decimalSplit[0] + decimalSplit[1];
-}
-
 export default class extends Component {
   constructor(props) {
     super(props)
+    console.log(props)
 
     this.state = {
       description: undefined,
       price: undefined,
       curColor: undefined,
-      isAuthed: 0,
       allColors: undefined,
       season: undefined,
       name: undefined,
@@ -131,7 +94,7 @@ export default class extends Component {
 
     // if tempState is set (typically only when this.state is set)
     if (tempState.productCode !== undefined && tempState.color !== undefined)
-    // if current url params do not match with the previous state
+      // if current url params do not match with the previous state
       if (this.props.match.params.color !== tempState.color || this.props.match.params.productCode !== tempState.productCode) {
 
         console.log('url switch and didupdate. tempstate color and prod code: ' + tempState.color + tempState.productCode);
@@ -195,6 +158,7 @@ export default class extends Component {
   }
 
   componentDidMount() {
+    console.log('n')
     if (this.props.location.product) {
       // console.log('cache exists, no data from the database is necessary')
       this.setState(
@@ -246,10 +210,56 @@ export default class extends Component {
     }
   }
 
+  buyBtnPressed(index, name, size, price, type, season, color, _id) {
+    // show 'select a size' msg
+    if (size === undefined) {
 
+      document.getElementById("root").style.cssText = "transition: filter 0.75s; filter: blur(5px) grayscale(1)";
+      document.getElementById("choose-a-size-msg").classList.toggle("visible");
+
+      setTimeout(() => {
+        document.getElementById("root").style.cssText = "transition: 0.75s; filter: blur(0px) grayscale(0)";
+        document.getElementById("choose-a-size-msg").classList.toggle("visible");
+      }, 2700);
+    }
+    else {
+    console.log(this.props.datas)
+
+      var unique = true;
+      let newArr = [...this.props.datas];
+
+      // add item to dropdown if its not already there
+      newArr.forEach(cartItem => {
+        if (cartItem.productCode === index && cartItem.size === size && cartItem.color === color) {
+          unique = false;
+          cartItem.count++;
+        }
+      });
+
+      if (unique) {
+        newArr[newArr.length] = {
+          productCode: index,
+          name: name,
+          size: size,
+          price: price,
+          count: 1,
+          type: type,
+          season: season,
+          color: color,
+          _id: _id,
+        };  
+      }
+
+      this.props.setDatas(newArr);
+      this.props.setOpenCartPreview(true);
+
+      localStorage.setItem('cartItems', JSON.stringify(this.props.datas))
+    }
+  }
 
 
   render() {
+    console.log(this.props)
 
     return (
       <div style={{ margin: "0 auto" }}>
@@ -272,7 +282,7 @@ export default class extends Component {
                 pathname: "/products/" + this.state.season + '/' + this.state.type,
               }}>
                 / {this.state.type}
-            </Link>
+              </Link>
             </span>
           </div>
         }
@@ -318,9 +328,9 @@ export default class extends Component {
 
                 {this.state.curAvailable && <div className='buttonContainer' style={{ textAlign: "center" }}>
 
-                  <button id="buyBtn" onClick={
+                  <button id="buyBtn" onClick={ ()=>
 
-                    this.props.buyBtnPressed(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season, this.state.curColor, this.state._id)
+                    this.buyBtnPressed(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season, this.state.curColor, this.state._id)
 
                   } >PURCHASE</button>
                   {/* <button id="cartBtn"><img className='cartBtnImg'  style={{height: '60px', width: '60px'}}src={`${process.env.PUBLIC_URL}/images/navbar/cart.png`}></img></button> */}
@@ -337,7 +347,7 @@ export default class extends Component {
               {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
 
               <div className="bigProductContainer">
-                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'}  />
+                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div className="box3"> 

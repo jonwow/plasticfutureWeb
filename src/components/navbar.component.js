@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import priceFormatting from './priceFormatting';
 
 
 export default (props) => {
@@ -143,7 +144,7 @@ export default (props) => {
       sum += cartItems[key].price * cartItems[key].count
     )
 
-    let sumStr = fields.priceFormatting(sum);
+    let sumStr = priceFormatting(sum);
 
 
     return (
@@ -187,7 +188,7 @@ export default (props) => {
 
                         <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
                           {
-                            fields.priceFormatting(cartItems[key].price.toFixed(2)) + '€'
+                            priceFormatting(cartItems[key].price.toFixed(2)) + '€'
                           }
                         </p>
 
@@ -203,7 +204,7 @@ export default (props) => {
                         </Link>
 
                         <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
-                          <span id='decrease-amount' onClick={() => ({ ...fields.modifyCount('DECREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
+                          <span id='decrease-amount' onClick={() => (modifyCount( -1, key) )} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
                             -
                           </span>
 
@@ -212,7 +213,7 @@ export default (props) => {
                               ' ' + cartItems[key].count + ' '
                             }
                           </span>
-                          <span id='increase-amount' onClick={() => ({ ...fields.modifyCount('INCREASE', 1, key) })} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
+                          <span id='increase-amount' onClick={() => (modifyCount( 1, key) )} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
                             +
                     </span>
 
@@ -291,6 +292,23 @@ export default (props) => {
   }, []);
 
 
+  const modifyCount = (amount, key) => {
+    let datasTemp = [...props.datas];
+
+    datasTemp[key].count += amount;
+
+    // if the count of the item is 0, remove it from the array of the items in the cart.
+    if (datasTemp[key].count === 0) {
+      datasTemp.splice(key, 1);
+    }
+    props.setDatas(datasTemp);
+
+    // if 0 items are present in the array after removing the last one
+    localStorage.setItem('cartItems', JSON.stringify(datasTemp))
+  }
+
+
+
 
   return (
     <nav>
@@ -321,7 +339,7 @@ export default (props) => {
         <div className="centeringParent">
             <CartMenu fields={props} />
             <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
-              {props.cartLoaded ? props.totalCount < 10 ? props.totalCount !== 0 && props.totalCount : '9+' : ''}
+              {(props.totalCount < 10  ) ? props.totalCount !== 0 && props.totalCount : '9+'}
             </span>
         </div>
       </div>
