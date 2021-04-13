@@ -30,7 +30,7 @@ export default (props) => {
                 :
                 <div>
                     <ScrollToTop />
-                    <Navbar setDatas={props.setDatas} setOpenCartPreview={props.setOpenCartPreview} openCartPreview={props.openCartPreview} datas={props.datas} totalCount={props.totalCount} />
+                    <Navbar cartPreviewTimeout={props.cartPreviewTimeout} setDatas={props.setDatas} setOpenCartPreview={props.setOpenCartPreview} openCartPreview={props.openCartPreview} datas={props.datas} totalCount={props.totalCount} />
 
 
                     <div className="container" id="top">

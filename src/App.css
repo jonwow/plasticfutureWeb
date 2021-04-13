@@ -86,7 +86,9 @@ html {
   cursor: pointer;
   overflow: hidden;
 }
-
+.display-none{
+  display: none;
+}
 .first-time-welcome-text {
   text-align: center;
   font-family: "Roboto", sans-serif;
@@ -98,6 +100,55 @@ html {
 }
 
 
+#background-container-2 {
+  width: inherit;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: inherit;
+  text-align: center;
+}
+
+#background-container-2 img {
+  max-width: 50%;
+  max-height: 50%;
+  margin: 0 auto;
+}
+
+#background-container {
+  background: #000000e8;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+}
+
+@media (max-width: 1501px) and (max-height: 1501px) {
+  #background-container-2 img {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 700px) and (min-height: 700px) {
+  .big-img-container {
+    transform: scale(1.08);
+  }
+
+}
+
+@media (min-width: 1200px) and (min-height: 800px) {
+  .big-img-container {
+    transform: scale(1.2);
+  }
+
+}
+
+#background-container *::selection,
+#interior-container *::selection {
+  background: none;
+}
 .first-time-tnc-gdpr-text {
   position: absolute;
   left: 2%;

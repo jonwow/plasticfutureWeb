@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import priceFormatting from './priceFormatting';
-
+var timerID;
 /* how this component works:
 1 - constructor starts
 2 - render shows the initial render (displays the part that gets displayed if 'this.state.loading = true' because the state is as defined in the constructor)
@@ -32,7 +32,8 @@ export default class extends Component {
       public: undefined,
       allAvailableStatuses: undefined,
       curAvailable: undefined,
-      selectedSize: undefined
+      selectedSize: undefined,
+      imageName: []
     }
 
 
@@ -210,6 +211,7 @@ export default class extends Component {
     }
   }
 
+
   buyBtnPressed(index, name, size, price, type, season, color, _id) {
     // show 'select a size' msg
     if (size === undefined) {
@@ -223,7 +225,7 @@ export default class extends Component {
       }, 2700);
     }
     else {
-    console.log(this.props.datas)
+      console.log(this.props.datas)
 
       var unique = true;
       let newArr = [...this.props.datas];
@@ -247,27 +249,53 @@ export default class extends Component {
           season: season,
           color: color,
           _id: _id,
-        };  
+        };
       }
-
       this.props.setDatas(newArr);
       this.props.setOpenCartPreview(true);
+      this.props.cartPreviewTimeout('SET');
+
 
       localStorage.setItem('cartItems', JSON.stringify(this.props.datas))
     }
   }
 
+  enlargeImage = (imgSrc) => {
+    if (document.getElementById("background-container") !== undefined) {
+      document.getElementById("background-container").style.top = window.pageYOffset + 'px';
+      document.getElementById("product-page-main-container").style.opacity = "0.5";
+      document.getElementById("background-container").classList.toggle("display-none");
+      document.getElementsByTagName("body")[0].classList.toggle("setHeightLimit");
+      document.getElementById("enlarged-img").src = imgSrc;
+
+    }
+  }
 
   render() {
-    console.log(this.props)
+    var i = -1;
 
     return (
       <div style={{ margin: "0 auto" }}>
+        {/* hidden by default */}
+        <div style={{ cursor: 'pointer', background: 'rgb(0 0 0 / 85%)' }} onClick={() => {
+          document.getElementById("background-container").classList.toggle("display-none");
+          document.getElementById("product-page-main-container").style.opacity = "1";
+          document.getElementsByTagName("body")[0].classList.toggle("setHeightLimit");
+        }} className="display-none" id="background-container">
 
+          <div id="background-container-2">
+            <img className="big-img-container" style={{ borderRadius: '5px', zIndex: '111' }} onClick={() => {
+              document.getElementById("product-page-main-container").style.opacity = "1";
+
+            }} id="enlarged-img" alt='enlarged' src="https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" />
+
+          </div>
+
+        </div>
 
         {/* DEMO */}
         {!this.state.loading &&
-          <div style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
+          <div id="product-page-main-container" style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
             <span style={{ fontWeight: '500' }}>
               <Link to={{
                 pathname: "/collections/" + this.state.season,
@@ -328,7 +356,7 @@ export default class extends Component {
 
                 {this.state.curAvailable && <div className='buttonContainer' style={{ textAlign: "center" }}>
 
-                  <button id="buyBtn" onClick={ ()=>
+                  <button id="buyBtn" onClick={() =>
 
                     this.buyBtnPressed(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season, this.state.curColor, this.state._id)
 
@@ -347,7 +375,8 @@ export default class extends Component {
               {/* max width of the grids box so 100% equals to one cell (33.33333%) of the grid box */}
 
               <div className="bigProductContainer">
-                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'} />
+                <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'}
+                  onClick={(e) => this.enlargeImage(e.target.src)} />
 
                 {/* perhpas remove box3 altogether andj ust make a css class */}
                 {/** <div className="box3"> 
@@ -366,26 +395,38 @@ export default class extends Component {
                   </div>
                 */}
               </div>
-              <div className="additionalProductPhotos" style={{ maxWidth: "100%" }}>
-                <div id="photosGrid">
-                  <div className="additionalPhotoBox">
+              {this.state.imageName.length > 1 &&
+                <div className="additionalProductPhotos" style={{ maxWidth: "100%" }}>
+                  {!this.state.loading &&
+                    this.state.imageName.map(() => {
+                      i++;
 
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + `s/` + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-photo2'} />
+                      if (this.state.imageName[i] !== undefined)
+                        return (
+                          <div key={i + '-item'} id="asd">
+                            <img style={{ maxWidth: '100%', cursor: 'pointer', fontSize: '0', margin: '0 auto' }}
+                              onClick={(e) => this.swapImages(e.target)} src={this.state.path + this.state.imageName[i]} id={'img' + i} alt={this.state.imageName[i] + "-additional-photo"} />
+                          </div>
+                        );
+                      // if there arent enough additional photos, the grid would portray them improperly therefore an empty picture seems like a decent solution
+                      // 3 because max 3 photos and it starts from 0
+                      if (i !== 3) {
 
-                  </div>
+                        return (
+                          <div key={i + '-item'} id="asd">
+                            <img alt='additional-empty-pic' style={{ opacity: '0', height: 'inherit', maxWidth: '100%', cursor: 'pointer', fontSize: '0', margin: '0 auto' }} ></img>
+                          </div>
+                        );
+                      }
 
+                      return null;
+                    })}
 
-                  <div className="additionalPhotoBox">
-                    <img style={{ width: '96%', padding: '0 2%' }} src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-photo3'} />
-
-                  </div>
                 </div>
-
-
-
-              </div>
-
+              }
             </div>
+
+
           }
         </div>
       </div>

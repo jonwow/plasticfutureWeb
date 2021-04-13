@@ -89,21 +89,24 @@ export default (props) => {
   const CartMenu = ({ fields }) => {
     // only fires off when clicking on an opened cart's icon
     const handleClick = (e) => {
+      props.cartPreviewTimeout('clear');
+
+
       if (e.target.id === 'cart-img')
-        setOC(false);
+        props.setOpenCartPreview(false);
     }
 
     return (
       <div style={{ width: "5vh", margin: "0 auto" }}  >
-        {openedCart && (
+        {props.openCartPreview && (
           <div onClick={handleClick}>
             <Cart >
-              <DropdownCart fn={setOC} fields={fields} />
+              <DropdownCart fn={props.setOpenCartPreview} fields={fields} />
             </Cart>
           </div>
         )}
-        {!openedCart &&
-          <div onClick={() => { setOC(true) }}>
+        {!props.openCartPreview &&
+          <div onClick={() => { props.setOpenCartPreview(true) }}>
             <Cart></Cart>
           </div>
         }
@@ -204,7 +207,7 @@ export default (props) => {
                         </Link>
 
                         <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
-                          <span id='decrease-amount' onClick={() => (modifyCount( -1, key) )} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
+                          <span id='decrease-amount' onClick={() => (modifyCount(-1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
                             -
                           </span>
 
@@ -213,7 +216,7 @@ export default (props) => {
                               ' ' + cartItems[key].count + ' '
                             }
                           </span>
-                          <span id='increase-amount' onClick={() => (modifyCount( 1, key) )} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
+                          <span id='increase-amount' onClick={() => (modifyCount(1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
                             +
                     </span>
 
@@ -257,15 +260,14 @@ export default (props) => {
 
   // after clicking the purchase button
   React.useEffect(() => {
-    if (props.openCartPreview) {
-      setOC(true);
+    // if (props.openCartPreview) {
+    //   setOC(true);
+    //   setTimeout(() => {
+    //     props.setOpenCartPreview(false);
+    //     setOC(false)
 
-      setTimeout(() => {
-        props.setOpenCartPreview(false);
-        setOC(false)
-
-      }, 4500);
-    }
+    //   }, 4500);
+    // }
   }, [props.openCartPreview]);
 
 
@@ -337,10 +339,10 @@ export default (props) => {
       {/* right part of the navbar */}
       <div className="navbarChild">
         <div className="centeringParent">
-            <CartMenu fields={props} />
-            <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
-              {(props.totalCount < 10  ) ? props.totalCount !== 0 && props.totalCount : '9+'}
-            </span>
+          <CartMenu fields={props} />
+          <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
+            {(props.totalCount < 10) ? props.totalCount !== 0 && props.totalCount : '9+'}
+          </span>
         </div>
       </div>
     </nav>

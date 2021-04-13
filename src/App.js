@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Routes from './components/Routes.component';
-
-
+var timerID;
 
 
 export default () => {
@@ -9,6 +8,16 @@ export default () => {
   const [totalCount, setTotalCount] = useState(0);
   const [openCartPreview, setOpenCartPreview] = useState(false);
 
+
+  const cartPreviewTimeout = (action) => {
+    clearTimeout(timerID)
+
+    if (action === 'SET')
+      timerID = setTimeout(() => {
+        setOpenCartPreview(false);
+        return () => clearTimeout(timerID);
+      }, 4500);
+  }
 
   // called everytime 'datas' is updated. it updates localStorage cartItems, total item count
   React.useEffect(() => {
@@ -31,9 +40,7 @@ export default () => {
   }, [datas]);
 
 
-
-
   return (
-   <Routes datas={datas} openCartPreview={openCartPreview} totalCount={totalCount}    setDatas={setDatas} setOpenCartPreview={setOpenCartPreview} setTotalCount={setTotalCount}/>
+    <Routes cartPreviewTimeout={cartPreviewTimeout} datas={datas} openCartPreview={openCartPreview} totalCount={totalCount} setDatas={setDatas} setOpenCartPreview={setOpenCartPreview} setTotalCount={setTotalCount} />
   );
 };
