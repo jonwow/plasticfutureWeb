@@ -258,7 +258,6 @@ export default (props) => {
   React.useEffect(() => {
     function handleKeyPress(event) {
       if (event.key === 'Escape') {
-        console.log('Escape pressed in useEffect')
         setOTL(false);
       }
     }
@@ -267,18 +266,16 @@ export default (props) => {
       console.log('clicked on soemthing' + event.target.id + openedThreeLines)
       // if the click wasnt on threelines or cart or purchase button
       if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img' && event.target.id !== 'buyBtn' && event.target.id !== 'decrease-amount' && event.target.id !== 'increase-amount') {
-        console.log('id is' + event.target.id)
         setOTL(false);
         props.setOpenCartPreview(false);
       }
 
       if (window.innerWidth < 750 && window.innerHeight < 1300) {
-        console.log('1')
         // if threelines were displayed on a mobile device and we clicked on the cart
         if (event.target.id === 'cart-img') {
           setOTL(false);
         }
-        else if ( event.target.id === "three-lines-img")
+        else if (event.target.id === "three-lines-img")
           props.setOpenCartPreview(false)
       }
 

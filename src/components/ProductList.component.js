@@ -146,23 +146,6 @@ export default class extends Component {
 
         return (
             <div>
-                {productType ?
-                    <div>
-                        {this.props.match.params.collection &&
-                            <span style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: '500' }}>
-                                {this.props.match.params.collection} /
-                        </span>}
-
-                        <span style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
-                            {productType}
-                        </span>
-                    </div>
-                    :
-                    <p style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
-                        ALL PRODUCTS
-                    </p>
-                }
-
                 <div className="centeredContainer" id="topElement" >
                     <div className="box">
                         {

@@ -261,7 +261,7 @@ export default class extends Component {
   enlargeImage = (imgSrc) => {
     if (document.getElementById("background-container") !== undefined) {
       document.getElementById("background-container").style.top = window.pageYOffset + 'px';
-      document.getElementById("product-page-main-container").style.opacity = "0.5";
+      document.getElementsByClassName("productPageGrid")[0].style.opacity = "0.5";
       document.getElementById("background-container").classList.toggle("display-none");
       document.getElementsByTagName("body")[0].classList.toggle("setHeightLimit");
       document.getElementById("enlarged-img").src = imgSrc;
@@ -277,13 +277,13 @@ export default class extends Component {
       < div style={{ cursor: 'pointer', background: 'rgb(0 0 0 / 85%)' }
       } onClick={() => {
         document.getElementById("background-container").classList.toggle("display-none");
-        document.getElementById("product-page-main-container").style.opacity = "1";
+        document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
         document.getElementsByTagName("body")[0].classList.toggle("setHeightLimit");
       }} className="display-none" id="background-container" >
 
         <div id="background-container-2">
           <img className="big-img-container" style={{ borderRadius: '5px', zIndex: '111' }} onClick={() => {
-            document.getElementById("product-page-main-container").style.opacity = "1";
+            document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
           }} id="enlarged-img" alt='enlarged' src="https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" />
         </div>
       </div >
@@ -400,33 +400,9 @@ export default class extends Component {
       <div style={{ margin: "0 auto" }}>
         <this.BackgroundContainer />
 
-        {!this.state.loading &&
-          <div id="product-page-main-container" style={{ letterSpacing: '-1.2px', textTransform: "uppercase", textDecoration: 'none', color: "black", marginLeft: '1rem', fontSize: "1.8rem", marginTop: '0.25rem' }}>
-            <span style={{ fontWeight: '500' }}>
-              <Link to={{
-                pathname: "/collections/" + this.state.season,
-              }}>
-                {this.state.season} { }
-              </Link>
-            </span>
-
-
-            <span style={{ marginLeft: '0.5rem', fontWeight: '1' }} >
-              <Link to={{
-                pathname: "/products/" + this.state.season + '/' + this.state.type,
-              }}>
-                / {this.state.type}
-              </Link>
-            </span>
-          </div>
-        }
-
-
-
         <div style={!this.state.curAvailable ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
-            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}></p>
-
+            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}/>
             :
             <div className="productPageGrid">
               <this.ProductDescription />

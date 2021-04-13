@@ -86,7 +86,7 @@ html {
   cursor: pointer;
   overflow: hidden;
 }
-.display-none{
+.display-none {
   display: none;
 }
 .first-time-welcome-text {
@@ -98,7 +98,6 @@ html {
   color: white;
   filter: drop-shadow(3px 13px 3px black);
 }
-
 
 #background-container-2 {
   width: inherit;
@@ -129,24 +128,16 @@ nav ::selection {
   top: 0;
 }
 
-@media (max-width: 1501px) and (max-height: 1501px) {
-  #background-container-2 img {
-    max-width: 90%;
-  }
-}
-
 @media (min-width: 700px) and (min-height: 700px) {
   .big-img-container {
     transform: scale(1.08);
   }
-
 }
 
 @media (min-width: 1200px) and (min-height: 800px) {
   .big-img-container {
     transform: scale(1.2);
   }
-
 }
 
 #background-container *::selection,
@@ -523,6 +514,45 @@ nav :nth-child(2) {
   width: 5vh;
 }
 
+#bcnl-container {
+  list-style: none;
+  padding-top: 1rem;
+  position: relative;
+  z-index: 100;
+  display: grid;
+  display: -ms-grid;
+  grid-template-columns: 70% 30%;
+  -ms-grid-columns: 70% 30%;
+
+  width: 100%;
+  color: white;
+}
+
+#bcnl-container li,
+#bcnl-container h1,
+#bcnl-container h2,
+#bcnl-container h3 {
+  cursor: pointer;
+  font-weight: normal;
+  display: inline;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+}
+
+#bcnl-container li,
+#bcnl-container a,
+#bcnl-container h1,
+#bcnl-container h2,
+#bcnl-container h3,
+#bcnl-container span {
+  font-size: 1.25rem;
+  font-family: "Roboto";
+}
+
+#bcnl-container a:hover {
+  text-decoration: underline;
+}
+
 #navbarText a {
   font-size: calc(9vmin);
   text-decoration: none;
@@ -891,6 +921,12 @@ nav img {
   /* grid-template-columns: 80% 20%; */
 }
 
+#breadcrumbs-links a,
+#breadcrumbs-links h1,
+#breadcrumbs-links h2,
+#breadcrumbs-links span {
+  font-size: 1.45rem;
+}
 .cartBtnImg {
   filter: invert(1);
 }
@@ -1199,5 +1235,87 @@ nav img {
 @media only screen and (min-width: 3800px) {
   html {
     font-size: 30px;
+  }
+}
+
+@media (max-width: 1501px) and (max-height: 1501px) {
+  #background-container-2 img {
+    max-width: 90%;
+  }
+
+  #bcnl-container {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 1000px) and (max-height: 1000px) {
+  /* BREADCRUMBS */
+  #bcnl-container {
+    grid-template-columns: 100%;
+    -ms-grid-columns: 100%;
+  }
+
+  #breadcrumbs-links {
+    display: none;
+  }
+}
+
+@media (max-width: 1150px) {
+  /* BREADCRUMBS */
+  #bcnl-container {
+    grid-template-columns: 100%;
+    -ms-grid-columns: 100%;
+  }
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */
+/* nokia 240x320 */
+@media (min-width: 200px) and (max-width: 399px) and (min-height: 290px) and (max-height: 400px) {
+  /* BREADCRUMBS */
+  #bcnl-container {
+    grid-template-columns: 100%;
+    -ms-grid-columns: 100%;
+  }
+
+  #breadcrumbs-links {
+    display: none;
+  }
+
+  #bcnl-container a {
+    font-size: 2.5rem;
+  }
+}
+
+/* iphone 5s se */
+@media (min-width: 300px) and (max-width: 400px) and (max-height: 620px) and (min-height: 401px) {
+  /* BREADCRUMBS */
+  #bcnl-container {
+    grid-template-columns: 100%;
+    -ms-grid-columns: 100%;
+  }
+
+  #breadcrumbs-links {
+    display: none;
+  }
+
+  #bcnl-container a {
+    font-size: 2rem;
+  }
+}
+
+/* iphone 6 7 8, galaxy note 3 galaxy s9 s9+*/
+@media (max-width: 410px) and (min-height: 621px) and (max-height: 760px) {
+  /* BREADCRUMBS */
+  #bcnl-container {
+    grid-template-columns: 100%;
+    -ms-grid-columns: 100%;
+  }
+
+  #breadcrumbs-links {
+    display: none;
+  }
+
+  #bcnl-container a {
+    font-size: 2rem;
   }
 }

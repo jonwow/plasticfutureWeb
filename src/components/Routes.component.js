@@ -2,6 +2,8 @@ import { BrowserRouter, Route, } from "react-router-dom";
 import React from "react";
 
 // components
+import Breadcrumbs from './Breadcrumbs.component';
+import FirstVisit from './FirstVisit.component';
 import Footer from "./Footer.component";
 import Navbar from "./Navbar.component";
 import StickyFooter from "./StickyFooter.component";
@@ -16,21 +18,12 @@ export default (props) => {
             {window.innerWidth <= 240 && window.innerHeight <= 320 && window.location.replace("https://genius.com/Playboi-carti-broke-boi-lyrics")}
 
             {localStorage.getItem("firstVisit") !== "false" ?
-                <div id="first-time-container" onClick={() => {
-                    localStorage.setItem("firstVisit", "false");
-                    window.location.replace("/")
-                }}>
-                    <span>
-                        <p class="first-time-welcome-text">ENTER</p>
-                        <p class="first-time-welcome-text">PLASTIC FUTURE</p>
-                    </span>
-
-                    <p class="first-time-tnc-gdpr-text">BY CLICKING ANY BUTTON YOU AGREE TO THE TERMS AND CONDITIONS AND THE PRIVACY&GDPR POLICY OF "PLASTIC FUTURE".</p>
-                </div>
+                <FirstVisit />
                 :
                 <div>
                     <ScrollToTop />
                     <Navbar cartPreviewTimeout={props.cartPreviewTimeout} setDatas={props.setDatas} setOpenCartPreview={props.setOpenCartPreview} openCartPreview={props.openCartPreview} datas={props.datas} totalCount={props.totalCount} />
+                    <Breadcrumbs />
 
 
                     <div className="container" id="top">
