@@ -116,6 +116,10 @@ html {
   margin: 0 auto;
 }
 
+nav ::selection {
+  background: none;
+}
+
 #background-container {
   background: #000000e8;
   width: 100vw;
@@ -362,8 +366,8 @@ button {
   margin-bottom: 15vh;
 }
 
-/* box2 = grid for the product page */
-.box2 {
+/* productPageGrid = grid for the product page */
+.productPageGrid {
   display: grid;
   grid-template-columns: 33.33333% 33.33333% 33.33333%;
   align-items: center;
@@ -835,7 +839,7 @@ nav img {
 
 /* product page */
 
-.box2 img {
+.productPageGrid img {
   margin: 0 auto;
 }
 
@@ -912,7 +916,7 @@ nav img {
 
 /* tablet vertical display. min-width 500px makes phones NOT applicable to this query */
 @media only screen and (max-width: 1100px) and (min-height: 800px) and (min-width: 500px) {
-  .box2 {
+  .productPageGrid {
     /* for some reason '1fr' extends the page to the right, so i am using 100% */
     grid-template-columns: 100%;
     padding-top: 10px;
@@ -923,7 +927,7 @@ nav img {
     padding-top: 2vh;
   }
 
-  .box2 .productDescription {
+  .productPageGrid .productDescription {
     order: 3;
   }
 
@@ -1069,7 +1073,7 @@ nav img {
     display: block;
   }
 
-  .box2 {
+  .productPageGrid {
     grid-template-columns: 100%;
     padding-top: 10px;
     margin-bottom: 3vh;
@@ -1079,7 +1083,7 @@ nav img {
     padding-top: 2vh;
   }
 
-  .box2 .productDescription {
+  .productPageGrid .productDescription {
     order: 3;
   }
 
@@ -1163,7 +1167,7 @@ nav img {
   }
 }
 
-@media only screen and (min-width: 1250px) and (min-height: 3  00px) and (max-width: 1500px) {
+@media only screen and (min-width: 1250px) and (min-height: 300px) and (max-width: 1500px) {
   #cartDropdown {
     width: 35vw;
     left: -20.5vw;

@@ -8,10 +8,10 @@ export default () => {
   const [totalCount, setTotalCount] = useState(0);
   const [openCartPreview, setOpenCartPreview] = useState(false);
 
-
   const cartPreviewTimeout = (action) => {
     clearTimeout(timerID)
 
+    localStorage.setItem('cartItems', JSON.stringify(datas))
     if (action === 'SET')
       timerID = setTimeout(() => {
         setOpenCartPreview(false);
@@ -19,7 +19,7 @@ export default () => {
       }, 4500);
   }
 
-  // called everytime 'datas' is updated. it updates localStorage cartItems, total item count
+  // updates localStorage cartItems, total item count
   React.useEffect(() => {
     let countOfItems = 0;
     for (var i in datas)

@@ -242,7 +242,7 @@ export default (props) => {
           </div>
 
           {cartItems[0] !== undefined &&
-            <p class="checkout-text" onClick={() => {
+            <p className="checkout-text" onClick={() => {
               console.log(cartItems)
             }}>CHECKOUT</p>
           }
@@ -252,26 +252,9 @@ export default (props) => {
     );
   }
 
-
-
-  // HIDE-SHOW DROPDOWNS
   const [openedThreeLines, setOTL] = useState(false);
-  const [openedCart, setOC] = useState(false);
-
-  // after clicking the purchase button
-  React.useEffect(() => {
-    // if (props.openCartPreview) {
-    //   setOC(true);
-    //   setTimeout(() => {
-    //     props.setOpenCartPreview(false);
-    //     setOC(false)
-
-    //   }, 4500);
-    // }
-  }, [props.openCartPreview]);
-
-
   // handle clicks
+
   React.useEffect(() => {
     function handleKeyPress(event) {
       if (event.key === 'Escape') {
@@ -281,12 +264,24 @@ export default (props) => {
     }
 
     const handleMouseClick = (event) => {
+      console.log('clicked on soemthing' + event.target.id + openedThreeLines)
       // if the click wasnt on threelines or cart or purchase button
       if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img' && event.target.id !== 'buyBtn' && event.target.id !== 'decrease-amount' && event.target.id !== 'increase-amount') {
         console.log('id is' + event.target.id)
         setOTL(false);
-        setOC(false);
+        props.setOpenCartPreview(false);
       }
+
+      if (window.innerWidth < 750 && window.innerHeight < 1300) {
+        console.log('1')
+        // if threelines were displayed on a mobile device and we clicked on the cart
+        if (event.target.id === 'cart-img') {
+          setOTL(false);
+        }
+        else if ( event.target.id === "three-lines-img")
+          props.setOpenCartPreview(false)
+      }
+
     }
 
     document.addEventListener('keydown', handleKeyPress);

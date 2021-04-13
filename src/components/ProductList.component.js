@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import priceFormatting from './priceFormatting';
 
-let currency = [['EUR','€']];
+let currency = [['EUR', '€']];
 
 
 
@@ -135,7 +135,7 @@ export default class extends Component {
             else
                 currentStyle = {};
 
-            return <Product key={curProduct.productCode + curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes}/>
+            return <Product key={curProduct.productCode + curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes} />
         })
     }
 
@@ -154,15 +154,8 @@ export default class extends Component {
                         </span>}
 
                         <span style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
-
                             {productType}
-
                         </span>
-                        <div>
-
-
-                        </div>
-
                     </div>
                     :
                     <p style={{ textAlign: "left", marginTop: '0.25rem', letterSpacing: '-1.2px', marginLeft: '1rem', fontSize: "1.8rem", textTransform: 'uppercase', fontWeight: 'lighter' }}>
@@ -171,16 +164,10 @@ export default class extends Component {
                 }
 
                 <div className="centeredContainer" id="topElement" >
-
                     <div className="box">
                         {
-                            this.state.loading ?
-
-                                <div style={{height:'120vh'}}/>
-                                :
-                                this.productList(productType, productCollection)
+                            this.state.loading ? <div style={{ height: '120vh' }} /> : this.productList(productType, productCollection)
                         }
-
                     </div >
                 </div >
             </div>
