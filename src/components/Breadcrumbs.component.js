@@ -1,19 +1,17 @@
 import React from "react";
-import {  Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-export default (props) => {
+const Breadcrumbs = () => {
     var location = useLocation();
     var modifiedPathname = [];
 
-    // if breadcrumbs are longer than MAIN/*PAGE*
-    // example: MAIN/*PAGE*/*CRITERIA*
+    // if breadcrumbs are longer than "MAIN/{PAGE}""
     // 0th element is nonexistent because the string starts with /
     for (let i = location.pathname.split("/").length - 1; i > 0; i--)
         modifiedPathname[i - 1] = (location.pathname.split("/")[i]);
 
-    // remove empty strings.
+    // remove empty and incorrect strings.
     modifiedPathname = modifiedPathname.filter(el => el !== "" && el !== "undefined" && el !== undefined && el !== "null" && el !== null);
-
 
     return (
         <ul style={{ background: "transparent" }} id="bcnl-container">
@@ -26,7 +24,7 @@ export default (props) => {
                 {modifiedPathname.length > 0 &&
                     <>
                         <span style={{ color: 'rgba(0, 0, 0, 0.7501)' }}>/</span>
-                        <Link to={"/"  + modifiedPathname[0]} style={{ transition: '0.55s', cursor: 'pointer', fontFamily: 'Roboto', color: ' rgba(0, 0, 0, 0.7501)', textTransform: 'uppercase' }}>
+                        <Link to={"/" + modifiedPathname[0]} style={{ transition: '0.55s', cursor: 'pointer', fontFamily: 'Roboto', color: ' rgba(0, 0, 0, 0.7501)', textTransform: 'uppercase' }}>
                             <h1>
                                 {modifiedPathname[0]}
                             </h1>
@@ -49,3 +47,5 @@ export default (props) => {
         </ul >
     );
 }
+
+export default Breadcrumbs;

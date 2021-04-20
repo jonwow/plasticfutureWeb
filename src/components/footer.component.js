@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default () => {
+const Footer = () => {
   return (
     <footer>
       <div id="footer-image-container">
@@ -32,3 +32,6 @@ export default () => {
     </footer >
   );
 }
+
+
+export default Footer;

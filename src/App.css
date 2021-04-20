@@ -78,6 +78,7 @@ html {
   color: black;
 }
 
+
 #first-time-container {
   background: url("./images/plasticIDOL/background.png");
   height: 100vh;
@@ -158,18 +159,18 @@ span a {
   color: black;
 }
 
-.menu-item li {
+.dropdown > a li {
   background: whitesmoke;
   padding: 2rem;
   text-align: left;
 }
 
-.menu-item li:hover {
+.dropdown > a li:hover {
   transition: 0.1s;
   background: rgb(219, 219, 219);
 }
 
-.menu-item {
+.dropdown > a {
   color: black;
   text-decoration: none;
 }
@@ -207,7 +208,7 @@ footer a p {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.menu-item {
+.dropdown > a {
   list-style: none;
 }
 
@@ -488,7 +489,7 @@ nav > div > div > p {
   flex-basis: inherit;
 }
 
-.menu-item {
+.dropdown > a {
   display: block;
   margin: 0 auto;
   text-align: center;
@@ -832,12 +833,12 @@ nav p::selection {
 .additionalPhotoBox img {
   height: 13rem;
 }
-.product img:hover {
+/* .product img:hover {
   -webkit-transition: 0.3s linear;
   transition: 0.3s linear;
   -webkit-filter: drop-shadow(2px 1px 4px #000033);
   filter: drop-shadow(2px 1px 4px #000033);
-}
+} */
 
 nav :nth-child(2) .parent p:hover {
   -webkit-transition: 1s;
@@ -896,6 +897,12 @@ nav img {
   text-align: right;
 }
 
+.box ::selection {
+  background: none;
+}
+.dropdownChild{
+  scroll-behavior: auto;
+}
 #cartBtn {
   padding: 0 10px;
   margin: 0 auto;
@@ -1023,7 +1030,7 @@ nav img {
     left: -85vw;
   }
 
-  .dropdown .menu-item li {
+  .dropdown .dropdown > a li {
     padding: 1.25rem;
   }
 

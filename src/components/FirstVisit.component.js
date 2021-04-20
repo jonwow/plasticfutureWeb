@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default () => {
+const FirstVisit =  () => {
     return <div id="first-time-container" onClick={() => {
         localStorage.setItem("firstVisit", "false");
         window.location.replace("/")
@@ -14,3 +14,5 @@ export default () => {
         <p class="first-time-tnc-gdpr-text">BY CLICKING ANY BUTTON YOU AGREE TO THE TERMS AND CONDITIONS AND THE PRIVACY&GDPR POLICY OF "PLASTIC FUTURE".</p>
     </div>
 }
+
+export default FirstVisit;

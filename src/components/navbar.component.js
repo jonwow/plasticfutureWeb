@@ -2,259 +2,182 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import priceFormatting from './priceFormatting';
 
+const Navbar = (props) => {
+  const [openLeftContDD, setOTL] = useState(false);
 
-export default (props) => {
+
   const LeftContainer = () => {
     return (
-      <div style={{ width: "5vh", margin: "0 auto" }} >
-        {/* OPENED */}
-        { openedThreeLines &&
-          <div onClick={() => { setOTL(false) }}>
-            <ThreeLines>
-              <DropdownMenu />
-            </ThreeLines>
-          </div>}
+      <div onClick={() => { setOTL(!openLeftContDD) }} style={{ width: "3rem", margin: "0 auto" }}>
+        <img src={require('../../src/images/navbar/threeLines.png')}
+          className="icon-button clickable" id='three-lines-img' alt="threeLines-logo" />
 
-
-        {/* CLOSED */}
-        { !openedThreeLines &&
-          <div onClick={() => { setOTL(true) }}>
-            <ThreeLines></ThreeLines>
-          </div>}
-      </div>
+        {openLeftContDD && <LeftContainerDropdown />}
+      </div >
     );
   };
 
-  const ThreeLines = (props) => {
-    return (
-      <div style={{ width: "5vh", margin: "0 auto" }}>
-        <img
-          src={require('../../src/images/navbar/threeLines.png')}
-          className="icon-button clickable"
-          alt="threeLines-logo"
-          id='three-lines-img'
-        />
-
-        {/* dropdown */}
-        {props.children}
-      </div>
-    );
-  }
-
-  const DropdownMenu = () => {
-
-    function DropdownItem(props) {
-      return props.children;
-    }
-
+  const LeftContainerDropdown = () => {
     return (
       <ul className="dropdown" >
-        <DropdownItem>
-          <Link to="/products/" className="menu-item">
-            <li>ALL PRODUCTS</li>
-          </Link>
-        </DropdownItem>
+        <Link to="/products/">
+          <li>ALL PRODUCTS</li>
+        </Link>
 
-        <DropdownItem>
-          <Link to="/products/t-shirt" className="menu-item">
-            <li>T-SHIRTS</li>
-          </Link>
-        </DropdownItem>
+        <Link to="/products/t-shirt">
+          <li>T-SHIRTS</li>
+        </Link>
 
-        <DropdownItem>
-          <Link to="/products/tote" className="menu-item">
-            <li>TOTE BAGS</li>
-          </Link>
-        </DropdownItem>
+        <Link to="/products/tote">
+          <li>TOTE BAGS</li>
+        </Link>
 
-        <DropdownItem>
-          <Link to="/collections" className="menu-item">
-            <li>COLLECTIONS</li>
-          </Link>
-        </DropdownItem>
+        <Link to="/collections">
+          <li>COLLECTIONS</li>
+        </Link>
 
-        <DropdownItem>
-          <Link to="/contacts" className="menu-item">
-            <li>CONTACTS</li>
-          </Link>
-        </DropdownItem>
+        <Link to="/contacts">
+          <li>CONTACTS</li>
+        </Link>
       </ul>
     );
   }
 
 
 
-
-
-  const CartMenu = ({ fields }) => {
-    // only fires off when clicking on an opened cart's icon
+  const Cart = () => {
+    // if the user clicks on the dropdown (for example he clicks + or -), the cart doesn't hide 
     const handleClick = (e) => {
-      props.cartPreviewTimeout('clear');
-
-
       if (e.target.id === 'cart-img')
-        props.setOpenCartPreview(false);
+        props.setOpenCartDropdown(!props.openCartDropdown);
     }
 
-    return (
-      <div style={{ width: "5vh", margin: "0 auto" }}  >
-        {props.openCartPreview && (
-          <div onClick={handleClick}>
-            <Cart >
-              <DropdownCart fn={props.setOpenCartPreview} fields={fields} />
-            </Cart>
-          </div>
-        )}
-        {!props.openCartPreview &&
-          <div onClick={() => { props.setOpenCartPreview(true) }}>
-            <Cart></Cart>
-          </div>
-        }
-      </div>
 
+    return (
+      <div onClick={handleClick} style={{ width: "3rem", margin: "0 auto" }}>
+        <img src={require('../../src/images/navbar/cart.png')}
+          id='cart-img' className="icon-button clickable" alt="cart-logo" />
+
+        {props.openCartDropdown && <DropdownCart datas={props.datas} />}
+      </div>
     );
   };
 
-  const Cart = (props) => {
-    return (
-      <div style={{ width: "5vh", margin: "0 auto" }}>
-        <img
-          src={require('../../src/images/navbar/cart.png')}
-          className="icon-button clickable"
-          alt="cart-logo"
-          id='cart-img'
-        />
 
-        {/* dropdown */}
-        {props.children}
-      </div>
-    );
-  }
-
-
-
-  const DropdownCart = ({ fn, fields }) => {
+  // transform this to smaller components
+  const DropdownCart = ({ datas }) => {
     let sum = 0;
-    var cartItems = { ...fields.datas };
-
-    function DropdownItem(props) {
-      return props.children;
-    }
 
 
-
-    Object.keys(cartItems).map(key =>
-      sum += cartItems[key].price * cartItems[key].count
+    Object.keys(datas).map(key =>
+      // used to use state instead of localstorage, if any problems occur - this is where they are
+      sum += datas[key].price * datas[key].count
     )
 
-    let sumStr = priceFormatting(sum);
-
-
     return (
-      <div>
-        <ul className="dropdown" id="cartDropdown" >
-          <div className="dropdownChild">
-            {cartItems[0] === undefined ? <li style={{ textAlign: "center", padding: '2rem 0' }} >no products.</li> :
+      <ul className="dropdown" id="cartDropdown" >
+        <div className="dropdownChild">
+          {datas[0] === undefined ? <li style={{ textAlign: "center", padding: '2rem 0' }}>no products.</li> :
+            Object.keys(datas).map(key =>
+              <div key={key} value={key} className="cart-item" style={{ height: "max-content", display: "block", padding: '1.5rem 0', background: 'whitesmoke' }}>
+                <li className="cartPreviewItem">
+
+                  {/* image of the product */}
+                  <div style={{ margin: '0 auto' }}>
+                    <Link to={{
+                      pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                    }} >
+                      <img
+                        className=""
+                        src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
+                        alt={datas[key].name + '-' + datas[key].color + '-photo'} />
+                    </Link>
+                  </div>
 
 
-              Object.keys(cartItems).map(key =>
-                <DropdownItem key={key} >
-                  {/* 10rem+2*2rem(padding) *3 */}
-                  <div value={key} className="cart-item" style={{ height: "10rem", display: "block", padding: '2rem 0', background: 'whitesmoke' }}>
-                    <li className="cartPreviewItem">
-
-                      {/* image of the product */}
-                      <div style={{ margin: '0 auto' }}>
-                        <Link to={{
-                          pathname: "/products/" + cartItems[key].type + '/' + cartItems[key].productCode + '/' + cartItems[key].color + '/' + cartItems[key]._id + "/",
-                        }} >
-                          <img
-                            className=""
-                            src={require('../../src/images/' + cartItems[key].season + `/designs/` + cartItems[key].type + 's/' + cartItems[key].name + `/` + cartItems[key].name + `-` + cartItems[key].color + `-small.png`)}
-                            alt={cartItems[key].name + '-' + cartItems[key].color + '-photo'} />
-                        </Link>
-                      </div>
-
-
-                      <div className="cartPreviewItemTextGrid">
-                        <Link to={{
-                          pathname: "/products/" + cartItems[key].type + '/' + cartItems[key].productCode + '/' + cartItems[key].color + '/' + cartItems[key]._id + "/",
-                        }} >
-                          <h2 style={{ fontSize: '1.2rem', textTransform: "uppercase" }}>
-                            {
-                              cartItems[key].name + ' ' + cartItems[key].type
-                            }
-                          </h2>
-                        </Link>
+                  <div className="cartPreviewItemTextGrid">
+                    <Link to={{
+                      pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
+                    }} >
+                      <h2 style={{ fontSize: '1.2rem', textTransform: "uppercase" }}>
+                        {
+                          datas[key].name + ' ' + datas[key].type
+                        }
+                      </h2>
+                    </Link>
 
 
 
-                        <p style={{ margin: '0 auto', fontSize: '1.2rem' }}>
-                          {
-                            priceFormatting(cartItems[key].price.toFixed(2)) + '€'
-                          }
-                        </p>
+                    <p style={{ cursor: 'default', margin: '0 auto', fontSize: '1.2rem' }}>
+                      {
+                        priceFormatting(datas[key].price.toFixed(2)) + '€'
+                      }
+                    </p>
 
-                        <Link to={{
-                          pathname: "/collections/" + cartItems[key].season + '/',
-                        }}>
-                          <h3 style={{ textTransform: "uppercase", fontWeight: "normal", fontSize: '1rem' }}>
-                            {
-                              cartItems[key].season + "'" + cartItems[key].productCode[4] + cartItems[key].productCode[5]
-                            }
+                    <Link to={{
+                      pathname: "/collections/" + datas[key].season + '/',
+                    }}>
+                      <h3 style={{ textTransform: "uppercase", fontWeight: "normal", fontSize: '1rem' }}>
+                        {
+                          datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
+                        }
 
-                          </h3>
-                        </Link>
+                      </h3>
+                    </Link>
 
-                        <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
-                          <span id='decrease-amount' onClick={() => (modifyCount(-1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
-                            -
+                    <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
+
+                      <span id='decrease-amount' onClick={() => (props.modifyCount(-1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
+                        -
                           </span>
 
-                          <span >
-                            {
-                              ' ' + cartItems[key].count + ' '
-                            }
-                          </span>
-                          <span id='increase-amount' onClick={() => (modifyCount(1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
-                            +
+                      <span >
+                        {
+                          ' ' + datas[key].count + ' '
+                        }
+                      </span>
+
+                      <span id='increase-amount' onClick={() => (props.modifyCount(1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
+                        +
                     </span>
 
-                        </div>
+                    </div>
 
-                        <p style={{ position: 'relative', top: '35%' }}>
-                          {
-                            cartItems[key].color + ' — ' + cartItems[key].size + ' '}
-                        </p>
+                    <p style={{ cursor: 'default', position: 'relative', top: '35%' }}>
+                      {
+                        datas[key].color + ' — ' + datas[key].size + ' '}
+                    </p>
 
 
-                      </div>
-                    </li>
                   </div>
-                </DropdownItem>
-              )
-            }
-          </div>
-
-          <div id="grid-for-total-cost">
-            <p style={{ textAlign: "left" }}>TOTAL COST:</p>
-            <p style={{ textAlign: "right", fontWeight: "550" }}>{sumStr} €</p>
-          </div>
-
-          {cartItems[0] !== undefined &&
-            <p className="checkout-text" onClick={() => {
-              console.log(cartItems)
-            }}>CHECKOUT</p>
+                </li>
+              </div>
+            )
           }
+        </div>
 
-        </ul>
-      </div>
+        <div id="grid-for-total-cost">
+          <p style={{ textAlign: "left" }}>TOTAL COST:</p>
+          <p style={{ textAlign: "right", fontWeight: "550" }}>{priceFormatting(sum)} €</p>
+        </div>
+
+        {/* if the cart isnt empty, show the checkout button */}
+        {
+          datas[0] !== undefined &&
+          <p className="checkout-text" onClick={() => {
+            console.log(datas)
+          }}>CHECKOUT</p>
+        }
+      </ul >
     );
   }
 
-  const [openedThreeLines, setOTL] = useState(false);
-  // handle clicks
 
+
+
+
+
+  // handle clicks
   React.useEffect(() => {
     function handleKeyPress(event) {
       if (event.key === 'Escape') {
@@ -263,11 +186,10 @@ export default (props) => {
     }
 
     const handleMouseClick = (event) => {
-      console.log('clicked on soemthing' + event.target.id + openedThreeLines)
       // if the click wasnt on threelines or cart or purchase button
       if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img' && event.target.id !== 'buyBtn' && event.target.id !== 'decrease-amount' && event.target.id !== 'increase-amount') {
         setOTL(false);
-        props.setOpenCartPreview(false);
+        props.setOpenCartDropdown(false);
       }
 
       if (window.innerWidth < 750 && window.innerHeight < 1300) {
@@ -276,7 +198,7 @@ export default (props) => {
           setOTL(false);
         }
         else if (event.target.id === "three-lines-img")
-          props.setOpenCartPreview(false)
+          props.setOpenCartDropdown(false)
       }
 
     }
@@ -286,20 +208,6 @@ export default (props) => {
   }, []);
 
 
-  const modifyCount = (amount, key) => {
-    let datasTemp = [...props.datas];
-
-    datasTemp[key].count += amount;
-
-    // if the count of the item is 0, remove it from the array of the items in the cart.
-    if (datasTemp[key].count === 0) {
-      datasTemp.splice(key, 1);
-    }
-    props.setDatas(datasTemp);
-
-    // if 0 items are present in the array after removing the last one
-    localStorage.setItem('cartItems', JSON.stringify(datasTemp))
-  }
 
 
 
@@ -331,7 +239,7 @@ export default (props) => {
       {/* right part of the navbar */}
       <div className="navbarChild">
         <div className="centeringParent">
-          <CartMenu fields={props} />
+          <Cart datas={props.datas} openCartPreview={props.openCartDropdown} />
           <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
             {(props.totalCount < 10) ? props.totalCount !== 0 && props.totalCount : '9+'}
           </span>
@@ -342,3 +250,6 @@ export default (props) => {
 
   );
 }
+
+
+export default Navbar;

@@ -34,7 +34,7 @@ const Product = props => (
 )
 
 
-export default class extends Component {
+export default class ProductList extends Component {
     constructor(props) {
         super(props);
         this.state = { fetchedProducts: [], loading: true };
@@ -69,7 +69,6 @@ export default class extends Component {
             unavailColorIndex: [],
         }
 
-        // *******************************************************************
         // FILTERING
         // for every product that gets fetched from the database 
         this.state.fetchedProducts.forEach(curProduct => {
@@ -89,7 +88,6 @@ export default class extends Component {
         }
         )
 
-        // *******************************************************************
         // SORTING
         for (var i = 0; i < products.available.length; i++)
             for (var j = i + 1; j < products.available.length; j++)

@@ -11,8 +11,7 @@ import priceFormatting from './priceFormatting';
 3.2 - IF DONT FETCH - data is received from the previous location and state is then changed thus updating the render component
 4 - render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'*/
 
-
-export default class extends Component {
+export default class ProductPage extends Component {
   constructor(props) {
     super(props)
 
@@ -228,7 +227,6 @@ export default class extends Component {
       var unique = true;
       let newArr = [...this.props.datas];
 
-      // add item to dropdown if its not already there
       newArr.forEach(cartItem => {
         if (cartItem.productCode === index && cartItem.size === size && cartItem.color === color) {
           unique = false;
@@ -236,6 +234,7 @@ export default class extends Component {
         }
       });
 
+      // add item to dropdown if its not already there
       if (unique) {
         newArr[newArr.length] = {
           productCode: index,
@@ -250,7 +249,7 @@ export default class extends Component {
         };
       }
       this.props.setDatas(newArr);
-      this.props.setOpenCartPreview(true);
+      this.props.setOpenCartDropdown(true);
       this.props.cartPreviewTimeout('SET');
 
 
@@ -270,9 +269,8 @@ export default class extends Component {
   }
 
 
-  // components
+  // hidden by default
   BackgroundContainer = () => {
-    // hidden by default
     return (
       < div style={{ cursor: 'pointer', background: 'rgb(0 0 0 / 85%)' }
       } onClick={() => {
@@ -326,12 +324,13 @@ export default class extends Component {
   ProductDescription = () => {
     return <div className="productDescription">
       {/* height of ~400-600 and overflow scroll */}
-      {/* long text bugs this. better of making a single p with a scroll overflow */}
+      {/* long text bugs this. better off making a single p with a scroll overflow */}
       {/* max 3 lines of text so the design looks good */}
       <div className="productDescriptionText">
         <p>{this.state.description}</p>
         <p>{this.state.info}</p>
       </div>
+
       <p className="productPrice">
         {this.state.curAvailable ?
           priceFormatting(this.state.price[this.state.allColors.indexOf(this.state.curColor)].toFixed(2)) + '€'
@@ -340,9 +339,8 @@ export default class extends Component {
 
         }
       </p>
-      {/* if product type = tote, accessory. jewelry etc  = onesize only */}
+
       {this.state.curAvailable && <ul className="productSizing">
-        {/* object keys here? */}
         {this.state.sizes.XS[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XS" onClick={this.selectTheSize.bind(this, 'XS')}>XS</li>}
         {this.state.sizes.S[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="S" onClick={this.selectTheSize.bind(this, 'S')}>S</li>}
         {this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="M" onClick={this.selectTheSize.bind(this, 'M')}>M</li>}
@@ -374,26 +372,23 @@ export default class extends Component {
     return <div className="bigProductContainer">
       <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'}
         onClick={(e) => this.enlargeImage(e.target.src)} />
+{/* 
+      <div className="box3">
+        <div id="arrowLeft">
+          <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
+        </div>
+        <div onClick={() => console.log(this.state.curColor)} style={{ background: this.state.curColor, border: "1px solid black", width: "40px", height: "40px" }}>               </div>
 
-      {/* perhpas remove box3 altogether andj ust make a css class */}
-      {/** <div className="box3"> 
-<div id="arrowLeft">
-{/* hide arrows in mobile view 
-  <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />
-  </div>
-  {/* some styles need to go to css and this needs horiz+vertic centering 
-    {/* if >1 color, show it 
-      <div onClick={this.print(this.state.color)} style={{ background: this.state.color, border: "1px solid black", width: "40px", height: "40px" }}>               </div>
-      
-      <div id="arrowRight">
-      <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{ height: "30px", width: "40px" }} />
-      
-      </div>
-      </div>
-    */}
+        <div id="arrowRight">
+          <img src={`${process.env.PUBLIC_URL}/images/icons/arrowRight.png`} alt="" style={{ height: "30px", width: "40px" }} />
+
+        </div>
+      </div> */}
+
     </div>
 
   }
+
 
   render() {
     return (
@@ -402,7 +397,7 @@ export default class extends Component {
 
         <div style={!this.state.curAvailable ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
-            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }}/>
+            <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }} />
             :
             <div className="productPageGrid">
               <this.ProductDescription />

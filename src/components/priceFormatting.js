@@ -1,4 +1,4 @@
-export default function (sum) {
+export default function priceFormatting(sum) {
     // step 1: remove the decimal point, reverse the string and add empty spaces after every 3 characters (example: (2085671) 1 7 6 _ 5 8 0 _ 2)
     // step 2: reverse again.
     let sumString = String(Math.floor(sum)),
