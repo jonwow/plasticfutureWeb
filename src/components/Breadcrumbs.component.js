@@ -2,16 +2,16 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Breadcrumbs = () => {
-    var location = useLocation();
-    var modifiedPathname = [];
+    const location = useLocation();
+    let modifiedPathname = [];
 
     // if breadcrumbs are longer than "MAIN/{PAGE}""
     // 0th element is nonexistent because the string starts with /
     for (let i = location.pathname.split("/").length - 1; i > 0; i--)
         modifiedPathname[i - 1] = (location.pathname.split("/")[i]);
 
-    // remove empty and incorrect strings.
-    modifiedPathname = modifiedPathname.filter(el => el !== "" && el !== "undefined" && el !== undefined && el !== "null" && el !== null);
+    // remove falsy strings
+    modifiedPathname = modifiedPathname.filter(el => el);
 
     return (
         <ul style={{ background: "transparent" }} id="bcnl-container">
@@ -32,8 +32,7 @@ const Breadcrumbs = () => {
                     </>
                 }
 
-
-                {modifiedPathname.length > 1 && modifiedPathname[1] !== "null" && modifiedPathname[1] !== "undefined" &&
+                {modifiedPathname.length > 1 &&
                     <>
                         <span style={{ color: 'rgba(0, 0, 0, 0.7501)' }}>/</span>
                         <Link to={location.pathname.split(modifiedPathname[1])[0] + modifiedPathname[1]} style={{ transition: '0.55s', cursor: 'pointer', fontFamily: 'Roboto', color: 'rgba(0, 0, 0, 0.7501)', textTransform: 'uppercase' }}>

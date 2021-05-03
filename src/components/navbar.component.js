@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import priceFormatting from './priceFormatting';
+import priceFormatting from '../modules/priceFormatting';
 
 const Navbar = (props) => {
   const [openLeftContDD, setOTL] = useState(false);

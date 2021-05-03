@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import priceFormatting from './priceFormatting';
+import priceFormatting from '../modules/priceFormatting';
 
-let currency = [['EUR', '€']];
+const currency = [['EUR', '€']];
 
 
 
@@ -35,10 +35,7 @@ const Product = props => (
 
 
 export default class ProductList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { fetchedProducts: [], loading: true };
-    }
+    state = { fetchedProducts: [], loading: true };
 
 
     componentDidMount() {
@@ -61,7 +58,7 @@ export default class ProductList extends Component {
     }
 
     filterAndSort(productType, productCollection) {
-        var products = {
+        let products = {
             available: [],
             availColorIndex: [],
 
@@ -76,7 +73,7 @@ export default class ProductList extends Component {
             if (curProduct.season === productCollection || productCollection === undefined)
                 if (curProduct.type === productType || productType === undefined)
                     // for each color of that product
-                    for (var index = 0; index < curProduct.color.length; index++) {
+                    for (let index = 0; index < curProduct.color.length; index++) {
                         // if the product in that color is public 
                         if (curProduct.public[index]) {
                             if (curProduct.available[index] && this.sumOfValues(curProduct.sizes, index) > 0)
@@ -89,8 +86,8 @@ export default class ProductList extends Component {
         )
 
         // SORTING
-        for (var i = 0; i < products.available.length; i++)
-            for (var j = i + 1; j < products.available.length; j++)
+        for (let i = 0; i < products.available.length; i++)
+            for (let j = i + 1; j < products.available.length; j++)
                 // if the number in the left is bigger than the number in the right. 
                 // price index = the index of that color, e.g. YesLove in black (color #2) product price index has to be 2 as well
 
@@ -99,7 +96,7 @@ export default class ProductList extends Component {
 
                 // ***** SORT BY UNITS SOLD
                 if (products.available[i].unitsSold[products.availColorIndex[i]] < products.available[j].unitsSold[products.availColorIndex[j]]) {
-                    var temp = products.available[j],
+                    let temp = products.available[j],
                         tempColor = products.availColorIndex[j];
 
 
@@ -116,10 +113,10 @@ export default class ProductList extends Component {
 
 
     productList(productType, productCollection) {
-        var filteredObject = this.filterAndSort(productType, productCollection);
-        var currentStyle;
+        let filteredObject = this.filterAndSort(productType, productCollection);
+        let currentStyle;
 
-        var products = filteredObject.available.concat(filteredObject.unavailable),
+        let products = filteredObject.available.concat(filteredObject.unavailable),
             colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
 
         let i = -1;

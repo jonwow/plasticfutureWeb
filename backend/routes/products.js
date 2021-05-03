@@ -1,7 +1,7 @@
 const router = require('express').Router();
-var Product = require('../models/product.model');
+let Product = require('../models/product.model');
 
-router.route('/').get((req, res) => {
+router.route('/').get((res) => {
   Product.find()
     .then(products => res.json(products))
     .catch(err => res.status(400).json('Error: ' + err));
@@ -12,8 +12,8 @@ router.route('/add').post((req, res) => {
   const type = req.body.type;
   const name = req.body.name;
   const season = req.body.season;
-  const color = req.body.color;  
-  const primeCost = req.body.primeCost;  
+  const color = req.body.color;
+  const primeCost = req.body.primeCost;
   const price = req.body.price;
   const orderBy = req.body.orderBy;
   const unitsSold = req.body.unitsSold;
@@ -25,8 +25,8 @@ router.route('/add').post((req, res) => {
   const public = req.body.public;
   const available = req.body.available;
   const description = req.body.description;
-  
-  
+
+
   const newProduct = new Product({
     type,
     name,
@@ -47,9 +47,9 @@ router.route('/add').post((req, res) => {
   });
 
   newProduct.save()
-  .then(() => res.json('Product added!'))
-  .catch(err => res.status(400).json('Error: ' + err));
-}); 
+    .then(() => res.json('Product added!'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 
 // ROUTE THAT DISPLAYS PRODUCTS

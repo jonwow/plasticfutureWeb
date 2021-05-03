@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import priceFormatting from './priceFormatting';
+import priceFormatting from '../modules/priceFormatting';
 
 /* how this component works:
 1 - constructor starts
@@ -12,40 +11,34 @@ import priceFormatting from './priceFormatting';
 4 - render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'*/
 
 export default class ProductPage extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      description: undefined,
-      price: undefined,
-      curColor: undefined,
-      allColors: undefined,
-      season: undefined,
-      name: undefined,
-      info: undefined,
-      loading: true,
-      sizes: undefined,
-      productCode: undefined,
-      type: undefined,
-      public: undefined,
-      allAvailableStatuses: undefined,
-      curAvailable: undefined,
-      selectedSize: undefined,
-      imageName: ['124', '12', '14']
-    }
-
-
-  }
+  state = {
+    description: undefined,
+    price: undefined,
+    curColor: undefined,
+    allColors: undefined,
+    season: undefined,
+    name: undefined,
+    info: undefined,
+    loading: true,
+    sizes: undefined,
+    productCode: undefined,
+    type: undefined,
+    public: undefined,
+    allAvailableStatuses: undefined,
+    curAvailable: undefined,
+    selectedSize: undefined,
+    imageName: ['124', '12', '14']
+  };
 
 
 
   selectTheSize(size) {
-    var allSizeElements = document.getElementsByClassName('productSizing')[0].children,
+    let allSizeElements = document.getElementsByClassName('productSizing')[0].children,
       selectedSize = document.getElementById(size);
 
 
     // give white background to all size elements
-    for (var i = 0; i < allSizeElements.length; i++)
+    for (let i = 0; i < allSizeElements.length; i++)
       allSizeElements[i].style.cssText = "background: white"
 
     // give black background to the selected size element
@@ -59,7 +52,8 @@ export default class ProductPage extends Component {
   }
 
   determineStateProperties() {
-    var index = 0, lastIndex = undefined, countOfAvailableSizes = 0;
+    let index = 0, lastIndex = undefined, countOfAvailableSizes = 0;
+
     // loop that finds the last available size and whether there are more than 1 available size
     // i = size | Object.values(..)[..][..] = how many units are available for that size and color
     for (let i of Object.keys(this.state.sizes)) {
@@ -67,6 +61,7 @@ export default class ProductPage extends Component {
         lastIndex = index;
         countOfAvailableSizes++;
       }
+
       index++;
     }
 
@@ -76,7 +71,7 @@ export default class ProductPage extends Component {
         {
           curAvailable: true
         },
-        function () {
+        () => {
           if (countOfAvailableSizes === 1 && this.state.curAvailable)
             this.selectTheSize(Object.keys(this.state.sizes)[lastIndex])
         }
@@ -86,13 +81,13 @@ export default class ProductPage extends Component {
 
 
   componentDidUpdate() {
-    var tempState = {
+    let tempState = {
       productCode: this.state.productCode,
       color: this.state.curColor
     }
 
     // if tempState is set (typically only when this.state is set)
-    if (tempState.productCode !== undefined && tempState.color !== undefined)
+    if (tempState.productCode && tempState.color)
       // if current url params do not match with the previous state
       if (this.props.match.params.color !== tempState.color || this.props.match.params.productCode !== tempState.productCode) {
 
@@ -211,7 +206,7 @@ export default class ProductPage extends Component {
 
   buyBtnPressed(index, name, size, price, type, season, color, _id) {
     // show 'select a size' msg
-    if (size === undefined) {
+    if (!size) {
 
       document.getElementById("root").style.cssText = "transition: filter 0.75s; filter: blur(5px) grayscale(1)";
       document.getElementById("choose-a-size-msg").classList.toggle("visible");
@@ -224,7 +219,7 @@ export default class ProductPage extends Component {
     else {
       console.log(this.props.datas)
 
-      var unique = true;
+      let unique = true;
       let newArr = [...this.props.datas];
 
       newArr.forEach(cartItem => {
@@ -289,7 +284,7 @@ export default class ProductPage extends Component {
   }
 
   AdditPhotoContainer = () => {
-    var i = 0;
+    let i = 0;
 
     return this.state.imageName.length > 1 &&
       <div className="additionalProductPhotos" style={{ maxWidth: "100%" }}>
@@ -372,7 +367,7 @@ export default class ProductPage extends Component {
     return <div className="bigProductContainer">
       <img className="bigProduct" src={require('../../src/images/' + this.state.season + `/designs/` + this.state.type + 's/' + this.state.name + `/` + this.state.name + `-` + this.state.curColor + `-small.png`)} alt={this.state.name + '-' + this.state.curColor + '-big'}
         onClick={(e) => this.enlargeImage(e.target.src)} />
-{/* 
+      {/* 
       <div className="box3">
         <div id="arrowLeft">
           <img src={`${process.env.PUBLIC_URL}/images/icons/arrowLeft.png`} alt="" style={{ height: "30px", width: "40px" }} />

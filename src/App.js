@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Routes from './components/Routes.component';
-var timerID;
+let timerID;
 
 
 const App = () => {
@@ -25,12 +25,12 @@ const App = () => {
     datasTemp[key].count += amount;
 
     // if the count of the item is 0, remove it from the array of the items in the cart.
-      if(datasTemp[key].count === 0) {
+    if (datasTemp[key].count === 0) {
       datasTemp.splice(key, 1);
     }
 
     setDatas(datasTemp);
-    
+
     // if 0 items are present in the array after removing the last one
     localStorage.setItem('cartItems', JSON.stringify(datasTemp))
   }

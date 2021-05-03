@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-export default function StickyFooter() {
+const StickyFooter = () => {
     const list = ['NEWSLETTER', 'COLLECTIONS', 'CONTACTS'];
 
     return (
@@ -19,3 +19,5 @@ export default function StickyFooter() {
         </div >
     );
 }
+
+export default StickyFooter;
