@@ -3,12 +3,11 @@ import axios from 'axios';
 import priceFormatting from '../modules/priceFormatting';
 
 /* how this component works:
-1 - constructor starts
-2 - render shows the initial render (displays the part that gets displayed if 'this.state.loading = true' because the state is as defined in the constructor)
-3 - componentDidMount starts and checks whether to fetch data from the database or no. both options are ASYNC
-3.1 - IF FETCH - axios.get starts and changes the state of 'this' thus updating the render component
-3.2 - IF DONT FETCH - data is received from the previous location and state is then changed thus updating the render component
-4 - render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'*/
+render shows the initial render (displays the part that gets displayed if 'this.state.loading = true' because the state is as defined in the constructor)
+componentDidMount starts and checks whether to fetch data from the database or no. both options are ASYNC
+FETCH ? - axios.get starts and changes the state of 'this' thus updating the render component
+!FETCH ? - data is received from the previous location and state is then changed thus updating the render component
+render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'*/
 
 export default class ProductPage extends Component {
   state = {
@@ -27,7 +26,7 @@ export default class ProductPage extends Component {
     allAvailableStatuses: undefined,
     curAvailable: undefined,
     selectedSize: undefined,
-    imageName: ['124', '12', '14']
+    imageName: []
   };
 
 
@@ -217,8 +216,6 @@ export default class ProductPage extends Component {
       }, 2700);
     }
     else {
-      console.log(this.props.datas)
-
       let unique = true;
       let newArr = [...this.props.datas];
 

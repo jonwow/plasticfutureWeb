@@ -1,57 +1,47 @@
-import { BrowserRouter, Route, } from "react-router-dom";
-import React from "react";
+import { BrowserRouter, Route, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 
 // components
-import Breadcrumbs from './Breadcrumbs.component';
-import FirstVisit from './FirstVisit.component';
-import Footer from "./Footer.component";
-import Navbar from "./Navbar.component";
-import StickyFooter from "./StickyFooter.component";
+
 import ProductPage from "./ProductPage.component";
 import ProductList from "./ProductList.component";
-import ScrollToTop from "../scrollToTop";
 
 const Routes = (props) => {
+    const location = useLocation();
+
+
+    useEffect(() => {
+        const el = document.getElementsByClassName("container");
+
+        window.scrollTo(0, 0);
+        el[0].scrollTop = 0;
+        el[0].scrollLeft = 0;
+    }, [location]);
+
+
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-            {
-            // localStorage.getItem("firstVisit") !== "false" ?
-            //     <FirstVisit />
-            //     :
-                <div>
-                    <ScrollToTop />
-                    <Navbar datas={props.datas} totalCount={props.totalCount} openCartDropdown={props.openCartDropdown} setOpenCartDropdown={props.setOpenCartDropdown} modifyCount={props.modifyCount} />
-
-                    <div className="container" id="top">
-                        <Breadcrumbs />
-
-                        {/* {...props} contains every props passed to Routes */}
-                        <Route exact path='/products/:productType/:productCode/:color/:id/'
-                            location={props.location}
-                            render={({
-                                location,
-                                match
-                            }) => (<ProductPage  setOpenCartDropdown={props.setOpenCartDropdown} cartPreviewTimeout={props.cartPreviewTimeout} setDatas={props.setDatas} datas={props.datas} match={match} location={location} />)
-                            } />
+        <>
+            {/* {...props} contains every props passed to Routes */}
+            <Route exact path='/products/:productType/:productCode/:color/:id/'
+                location={props.location}
+                render={({
+                    location,
+                    match
+                }) => (<ProductPage setOpenCartDropdown={props.setOpenCartDropdown} cartPreviewTimeout={props.cartPreviewTimeout} setDatas={props.setDatas} datas={props.datas} match={match} location={location} />)
+                } />
 
 
 
-                        <Route path='/' exact component={ProductList} />
+            <Route path='/' exact component={ProductList} />
 
-                        <Route path="/products" exact component={ProductList} />
-                        {/* <Route path="/products/:productType/:productCode/:color/:id/" exact component={ProductPage} /> */}
-                        <Route exact path="/products/:collection/:productType" component={ProductList} />
-                        <Route exact path='/products/:productType/' component={ProductList} />
-                        <Route path="/yourAccount">yourAccount</Route>
-                        <Route path="/collections">collections:</Route>
-                        <Route path="/collections/:collectionName">page of a certain collection, soon to be implemented!</Route>
-                        <Route path="/contacts">contacts</Route>
-                        <StickyFooter />
-                        <Footer />
-                    </div>
-                </div>
-            }
-        </BrowserRouter>
+            <Route path="/products" exact component={ProductList} />
+            <Route exact path="/products/:collection/:productType" component={ProductList} />
+            <Route exact path='/products/:productType/' component={ProductList} />
+            <Route path="/yourAccount">yourAccount</Route>
+            <Route path="/collections">collections:</Route>
+            <Route path="/collections/:collectionName">page of a certain collection, soon to be implemented!</Route>
+            <Route path="/contacts">contacts</Route>
+        </>
     )
 
 }

@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import Routes from './components/Routes.component';
+import Breadcrumbs from './components/Breadcrumbs.component';
+import FirstVisit from './components/FirstVisit.component';
+import Footer from "./components/Footer.component";
+import Navbar from "./components/Navbar.component";
+import StickyFooter from "./components/StickyFooter.component";
 let timerID;
+
 
 
 const App = () => {
   const [datas, setDatas] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [openCartDropdown, setOpenCartDropdown] = useState(false);
+
 
   const cartPreviewTimeout = (action) => {
     clearTimeout(timerID)
@@ -35,8 +43,6 @@ const App = () => {
     localStorage.setItem('cartItems', JSON.stringify(datasTemp))
   }
 
-
-
   // updates localStorage cartItems, total item count
   React.useEffect(() => {
     let countOfItems = 0;
@@ -59,8 +65,26 @@ const App = () => {
   }, [datas]);
 
 
+
+
   return (
-    <Routes datas={datas} modifyCount={modifyCount} cartPreviewTimeout={cartPreviewTimeout} openCartDropdown={openCartDropdown} totalCount={totalCount} setDatas={setDatas} setOpenCartDropdown={setOpenCartDropdown} setTotalCount={setTotalCount} />
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      {
+        // localStorage.getItem("firstVisit") !== "false" ?
+        //     <FirstVisit />
+        //     :
+        <div>
+          <Navbar datas={datas} totalCount={totalCount} openCartDropdown={openCartDropdown} setOpenCartDropdown={setOpenCartDropdown} modifyCount={modifyCount} />
+
+          <div className="container" id="top">
+            <Breadcrumbs />
+            <Routes datas={datas} modifyCount={modifyCount} cartPreviewTimeout={cartPreviewTimeout} openCartDropdown={openCartDropdown} totalCount={totalCount} setDatas={setDatas} setOpenCartDropdown={setOpenCartDropdown} setTotalCount={setTotalCount} />
+            <StickyFooter />
+            <Footer />
+          </div>
+        </div>
+      }
+    </BrowserRouter>
   );
 };
 

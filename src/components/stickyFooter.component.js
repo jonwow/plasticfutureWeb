@@ -6,7 +6,7 @@ const StickyFooter = () => {
     const list = ['NEWSLETTER', 'COLLECTIONS', 'CONTACTS'];
 
     return (
-        < div className="stickyFooter" >
+        <div className="stickyFooter">
             <ul>
                 {list.map(item => {
                     return <Link key={item} to={"/" + item.toLowerCase()} style={{ flexBasis: '33.333333%' }}>

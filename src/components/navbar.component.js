@@ -225,9 +225,9 @@ const Navbar = (props) => {
       {/* mid part of the navbar */}
       <div className="navbarChild">
         <div className="centeringParent" id="navbarText">
-          {/* when PLASTICFUTURE logo is pressed, go to top of the 'container' (for example when you are on the main page and want to go to the top by clicking it) */}
+          {/* when the logo is pressed, go to top of the 'container' (for example when you are on the main page and want to go to the top by clicking it) */}
           <Link to="/" className="no-select-bg" onClick={() => {
-            if (document.getElementsByClassName('container')[0] !== undefined)
+            if (document.getElementsByClassName('container')[0])
               document.getElementsByClassName('container')[0].scrollTop = 0;
           }}>
             PLASTIC FUTURE

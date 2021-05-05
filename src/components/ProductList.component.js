@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import priceFormatting from '../modules/priceFormatting';
 
-const currency = [['EUR', '€']];
+let currency = [['EUR', '€']];
 
 
 
@@ -70,8 +70,8 @@ export default class ProductList extends Component {
         // for every product that gets fetched from the database 
         this.state.fetchedProducts.forEach(curProduct => {
             // product type has to match the type of the page that the client is on (tshirt, tote) or all products
-            if (curProduct.season === productCollection || productCollection === undefined)
-                if (curProduct.type === productType || productType === undefined)
+            if (curProduct.season === productCollection || !productCollection)
+                if (curProduct.type === productType || !productType)
                     // for each color of that product
                     for (let index = 0; index < curProduct.color.length; index++) {
                         // if the product in that color is public 
@@ -113,18 +113,17 @@ export default class ProductList extends Component {
 
 
     productList(productType, productCollection) {
-        let filteredObject = this.filterAndSort(productType, productCollection);
-        let currentStyle;
-
-        let products = filteredObject.available.concat(filteredObject.unavailable),
+        let filteredObject = this.filterAndSort(productType, productCollection),
+            currentStyle, i = -1,
+            products = filteredObject.available.concat(filteredObject.unavailable),
             colorIndexes = filteredObject.availColorIndex.concat(filteredObject.unavailColorIndex)
 
-        let i = -1;
 
         return products.map(curProduct => {
             i++
             let amountOfSizes = this.sumOfValues(curProduct.sizes, colorIndexes[i]);
 
+            // if no sizes are available in that color or that product is not available
             if (!curProduct.available[colorIndexes[i]] || !this.sumOfValues(curProduct.sizes, colorIndexes[i]))
                 currentStyle = { filter: "grayscale(1) blur(1px)" }
             else
