@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import priceFormatting from '../modules/priceFormatting';
+import products from '../modules/products.json'
 
 /* how this component works:
 render shows the initial render (displays the part that gets displayed if 'this.state.loading = true' because the state is as defined in the constructor)
@@ -177,28 +178,56 @@ export default class ProductPage extends Component {
     }
     else {
       // console.log('no cache is present, therefore we get data from the database');
+      let objIndex;
 
-      axios.get('http://localhost:5000/products/' + this.props.match.params.id)
-        .then(response => {
-          this.setState({
-            description: response.data.description,
-            price: response.data.price,
-            curColor: this.props.match.params.color,
-            allColors: response.data.color,
-            season: response.data.season,
-            name: response.data.name,
-            info: response.data.info,
-            sizes: response.data.sizes,
-            public: response.data.public,
-            productCode: response.data.productCode,
-            allAvailableStatuses: response.data.available,
-            type: response.data.type,
-            loading: false,
-            _id: response.data._id
-          },
-            this.determineStateProperties
-          )
-        })
+      for (let i in products)
+        if (products[i]._id === this.props.match.params.id) {
+          objIndex = i;
+          break;
+        }
+
+      // temporary using local json db
+      this.setState({
+        description: products[objIndex].description,
+        price: products[objIndex].price,
+        curColor: this.props.match.params.color,
+        allColors: products[objIndex].color,
+        season: products[objIndex].season,
+        name: products[objIndex].name,
+        info: products[objIndex].info,
+        sizes: products[objIndex].sizes,
+        public: products[objIndex].public,
+        productCode: products[objIndex].productCode,
+        allAvailableStatuses: products[objIndex].available,
+        type: products[objIndex].type,
+        loading: false,
+        _id: products[objIndex]._id
+      },
+        this.determineStateProperties
+      )
+
+      //   axios.get('http://localhost:5000/products/' + this.props.match.params.id)
+      //     .then(response => {
+      //       this.setState({
+      //         description: response.data.description,
+      //         price: response.data.price,
+      //         curColor: this.props.match.params.color,
+      //         allColors: response.data.color,
+      //         season: response.data.season,
+      //         name: response.data.name,
+      //         info: response.data.info,
+      //         sizes: response.data.sizes,
+      //         public: response.data.public,
+      //         productCode: response.data.productCode,
+      //         allAvailableStatuses: response.data.available,
+      //         type: response.data.type,
+      //         loading: false,
+      //         _id: response.data._id
+      //       },
+      //         this.determineStateProperties
+      //       )
+      //     })
+      // }
     }
   }
 
@@ -206,7 +235,6 @@ export default class ProductPage extends Component {
   buyBtnPressed(index, name, size, price, type, season, color, _id) {
     // show 'select a size' msg
     if (!size) {
-
       document.getElementById("root").style.cssText = "transition: filter 0.75s; filter: blur(5px) grayscale(1)";
       document.getElementById("choose-a-size-msg").classList.toggle("visible");
 
