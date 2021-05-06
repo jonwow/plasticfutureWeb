@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 
 // components
 
-import ProductPage from "./ProductPage.component";
-import ProductList from "./ProductList.component";
+import ProductPage from "./ProductPage";
+import ProductList from "./ProductList";
 
 const Routes = (props) => {
     const location = useLocation();
@@ -37,10 +37,11 @@ const Routes = (props) => {
             <Route path="/products" exact component={ProductList} />
             <Route exact path="/products/:collection/:productType" component={ProductList} />
             <Route exact path='/products/:productType/' component={ProductList} />
-            <Route path="/yourAccount">yourAccount</Route>
-            <Route path="/collections">collections:</Route>
+            <Route path="/yourAccount">yourAccount page will be available soon!</Route>
+            <Route path="/newsletter">newsletter page will be available soon!</Route>
+            <Route path="/collections">Collections page will be available soon!</Route>
             <Route path="/collections/:collectionName">page of a certain collection, soon to be implemented!</Route>
-            <Route path="/contacts">contacts</Route>
+            <Route path="/contacts">Contacts page will be available soon!</Route>
         </>
     )
 

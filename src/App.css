@@ -78,7 +78,6 @@ html {
   color: black;
 }
 
-
 #first-time-container {
   background: url("./images/plasticIDOL/background.png");
   height: 100vh;
@@ -108,6 +107,11 @@ html {
   align-items: center;
   height: inherit;
   text-align: center;
+}
+
+.container {
+  height: 100vh;
+  overflow-y: auto;
 }
 
 #background-container-2 img {
@@ -389,13 +393,6 @@ button {
 .box img::selection,
 .productSizing li::selection {
   background: rgba(255, 0, 0, 0);
-}
-
-/* makes the footer stay at the bottom of the page even if the page has no content. position-fixed for footer is not desired for the footer */
-.container {
-  /* full viewpoint - nav height - stickyfooter height */
-  height: calc(100vh - 12vh);
-  overflow: auto;
 }
 
 /* centers the cssgrid "box" that contains all the products.
@@ -900,7 +897,7 @@ nav img {
 .box ::selection {
   background: none;
 }
-.dropdownChild{
+.dropdownChild {
   scroll-behavior: auto;
 }
 #cartBtn {

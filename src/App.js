@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import Routes from './components/Routes.component';
-import Breadcrumbs from './components/Breadcrumbs.component';
-import FirstVisit from './components/FirstVisit.component';
-import Footer from "./components/Footer.component";
-import Navbar from "./components/Navbar.component";
-import StickyFooter from "./components/StickyFooter.component";
-let timerID;
+import Routes from './components/Routes';
+import Breadcrumbs from './components/Breadcrumbs';
+import FirstVisit from './components/FirstVisit';
+import Footer, { StickyFooter } from "./components/Footers";
+import Navbar from "./components/Navbar";
+
 
 
 
@@ -15,18 +14,18 @@ const App = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [openCartDropdown, setOpenCartDropdown] = useState(false);
 
+  // let timerID;
+  // const cartPreviewTimeout = (action) => {
+  //   clearTimeout(timerID)
 
-  const cartPreviewTimeout = (action) => {
-    clearTimeout(timerID)
+  //   if (action === 'SET')
+  //     timerID = setTimeout(() => {
+  //       setOpenCartDropdown(false);
 
-    if (action === 'SET')
-      timerID = setTimeout(() => {
-        setOpenCartDropdown(false);
-
-        // prevent memory leaks
-        return () => clearTimeout(timerID);
-      }, 4500);
-  }
+  //       // prevent memory leaks
+  //       return () => clearTimeout(timerID);
+  //     }, 4500);
+  // }
 
   const modifyCount = (amount, key) => {
     let datasTemp = JSON.parse(localStorage.getItem('cartItems'));
@@ -43,10 +42,11 @@ const App = () => {
     localStorage.setItem('cartItems', JSON.stringify(datasTemp))
   }
 
-  // updates localStorage cartItems, total item count
+  // updates totalCount & localStorage cartItems
   React.useEffect(() => {
     let countOfItems = 0;
-    for (var i in datas)
+
+    for (let i in datas)
       countOfItems += datas[i].count;
 
     // call the function to set the "global" state  
@@ -60,8 +60,6 @@ const App = () => {
     if (datas.length === 0 && JSON.parse(localStorage.getItem('cartItems')) !== null && JSON.parse(localStorage.getItem('cartItems')).length !== 0) {
       setDatas(JSON.parse(localStorage.getItem('cartItems')));
     }
-
-
   }, [datas]);
 
 
@@ -73,15 +71,14 @@ const App = () => {
         // localStorage.getItem("firstVisit") !== "false" ?
         //     <FirstVisit />
         //     :
-        <div>
+        <div className="container" id="top">
           <Navbar datas={datas} totalCount={totalCount} openCartDropdown={openCartDropdown} setOpenCartDropdown={setOpenCartDropdown} modifyCount={modifyCount} />
+          <Breadcrumbs />
 
-          <div className="container" id="top">
-            <Breadcrumbs />
-            <Routes datas={datas} modifyCount={modifyCount} cartPreviewTimeout={cartPreviewTimeout} openCartDropdown={openCartDropdown} totalCount={totalCount} setDatas={setDatas} setOpenCartDropdown={setOpenCartDropdown} setTotalCount={setTotalCount} />
-            <StickyFooter />
-            <Footer />
-          </div>
+          <Routes datas={datas} modifyCount={modifyCount} openCartDropdown={openCartDropdown} totalCount={totalCount} setDatas={setDatas} setOpenCartDropdown={setOpenCartDropdown} setTotalCount={setTotalCount} />
+
+          <StickyFooter />
+          <Footer />
         </div>
       }
     </BrowserRouter>

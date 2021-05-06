@@ -139,15 +139,13 @@ export default class ProductList extends Component {
             productCollection = this.props.match.params.collection;
 
         return (
-            <div>
-                <div className="centeredContainer" id="topElement" >
-                    <div className="box">
-                        {
-                            this.state.loading ? <div style={{ height: '120vh' }} /> : this.productList(productType, productCollection)
-                        }
-                    </div >
+            <div className="centeredContainer" id="topElement" >
+                <div className="box">
+                    {
+                        this.state.loading ? <div style={{ height: '120vh' }} /> : this.productList(productType, productCollection)
+                    }
                 </div >
-            </div>
+            </div >
 
         )
     }

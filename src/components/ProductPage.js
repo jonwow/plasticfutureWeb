@@ -242,7 +242,7 @@ export default class ProductPage extends Component {
       }
       this.props.setDatas(newArr);
       this.props.setOpenCartDropdown(true);
-      this.props.cartPreviewTimeout('SET');
+      // this.props.cartPreviewTimeout('SET');
 
 
       localStorage.setItem('cartItems', JSON.stringify(this.props.datas))
@@ -338,10 +338,10 @@ export default class ProductPage extends Component {
         {this.state.sizes.M[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="M" onClick={this.selectTheSize.bind(this, 'M')}>M</li>}
         {this.state.sizes.L[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="L" onClick={this.selectTheSize.bind(this, 'L')}>L</li>}
         {this.state.sizes.XL[this.state.allColors.indexOf(this.state.curColor)] > 0 && <li id="XL" onClick={this.selectTheSize.bind(this, 'XL')}>XL</li>}
-        <li>
+        {/* <li>
           <img src={require('../../src/images/icons/sizing.png')} alt="sizing-logo" style={{ height: '1.5rem', width: '1.5rem', position: 'relative', top: '0.2rem' }} />
 
-        </li>
+        </li> */}
       </ul>
       }
 
