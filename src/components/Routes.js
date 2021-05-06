@@ -42,6 +42,7 @@ const Routes = (props) => {
             <Route path="/collections">Collections page will be available soon!</Route>
             <Route path="/collections/:collectionName">page of a certain collection, soon to be implemented!</Route>
             <Route path="/contacts">Contacts page will be available soon!</Route>
+            <Route path="/tac">T&C page will be available soon!</Route>
         </>
     )
 

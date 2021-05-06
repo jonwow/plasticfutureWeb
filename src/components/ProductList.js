@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import priceFormatting from '../modules/priceFormatting';
+import products from '../modules/products.json'
 
-let currency = [['EUR', '€']];
 
 
 
@@ -23,7 +23,7 @@ const Product = props => (
             <p>
                 {/* product is not hidden and there are available units(amountOfSizes) */}
                 {props.product.available[props.index] && props.amountOfSizes > 0 ?
-                    priceFormatting(props.product.price[props.index].toFixed(2)) + currency[0][1]
+                    priceFormatting(props.product.price[props.index].toFixed(2)) + props.currency[0][1]
                     :
                     "unavailable"
                 }
@@ -35,18 +35,19 @@ const Product = props => (
 
 
 export default class ProductList extends Component {
-    state = { fetchedProducts: [], loading: true };
+    state = { fetchedProducts: products, loading: false };
 
 
-    componentDidMount() {
-        axios.get("http://localhost:5000/products/")
-            .then(response => {
-                this.setState({ fetchedProducts: response.data, loading: false });
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+    // temp disabled because no external database is necessary
+    // componentDidMount() {
+    //     axios.get("http://localhost:5000/products/")
+    //         .then(response => {
+    //             this.setState({ fetchedProducts: response.data, loading: false });
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
 
     sumOfValues(values, index) {
         let sum = 0;
@@ -112,7 +113,7 @@ export default class ProductList extends Component {
     }
 
 
-    productList(productType, productCollection) {
+    productList(productType, productCollection, currency) {
         let filteredObject = this.filterAndSort(productType, productCollection),
             currentStyle, i = -1,
             products = filteredObject.available.concat(filteredObject.unavailable),
@@ -129,20 +130,22 @@ export default class ProductList extends Component {
             else
                 currentStyle = {};
 
-            return <Product key={curProduct.productCode + curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes} />
+            return <Product currency={currency} key={curProduct.productCode + curProduct.color[colorIndexes[i]]} product={curProduct} color={curProduct.color[colorIndexes[i]]} style={currentStyle} index={colorIndexes[i]} amountOfSizes={amountOfSizes} />
         })
     }
 
 
     render() {
-        const productType = this.props.match.params.productType,
-            productCollection = this.props.match.params.collection;
+        let currency = [['EUR', '€']];
+
+        let productType = this.props.match.params.productType || undefined,
+            collection = this.props.match.params.collection || undefined;
 
         return (
             <div className="centeredContainer" id="topElement" >
                 <div className="box">
                     {
-                        this.state.loading ? <div style={{ height: '120vh' }} /> : this.productList(productType, productCollection)
+                        this.state.loading ? <div style={{ height: '100vh' }} /> : this.productList(productType, collection, currency)
                     }
                 </div >
             </div >
