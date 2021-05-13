@@ -1,6 +1,33 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import priceFormatting from '../modules/priceFormatting';
+
+// sum = 0
+// z.forEach(item => sum += item.count)
+
+
+
+
+
+
+
+
+
+class CartProductPhoto extends Component {
+  constructor() {
+    super();
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  render() {
+    { console.log('rendering image') }
+    return <img src={this.props.src} alt={this.props.altText} />;
+  }
+
+}
 
 const Navbar = (props) => {
   const [openLeftContDD, setOTL] = useState(false);
@@ -68,7 +95,6 @@ const Navbar = (props) => {
   const DropdownCart = ({ datas }) => {
     let sum = 0;
 
-
     Object.keys(datas).map(key =>
       // used to use state instead of localstorage, if any problems occur - this is where they are
       sum += datas[key].price * datas[key].count
@@ -87,10 +113,7 @@ const Navbar = (props) => {
                     <Link to={{
                       pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
                     }} >
-                      <img
-                        className=""
-                        src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)}
-                        alt={datas[key].name + '-' + datas[key].color + '-photo'} />
+                      <CartProductPhoto altText={datas[key].name + '-' + datas[key].color + '-photo'} src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
                     </Link>
                   </div>
 
@@ -214,6 +237,8 @@ const Navbar = (props) => {
 
   return (
     <nav>
+      {console.log('Navbar rendered')}
+      {console.log(props)}
       {/* left part of the navbar */}
       <div className="navbarChild">
         <div className="centeringParent">

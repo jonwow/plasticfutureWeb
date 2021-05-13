@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import priceFormatting from '../modules/priceFormatting';
-import products from '../modules/products.json'
-
 
 
 
 
 const Product = props => (
     <Link to={{
-        pathname: "/products/" + props.product.type + '/' + props.product.productCode + '/' + props.color + '/' + props.product._id + "/",
+        pathname: "/allProducts/" + props.product.type + '/' + props.product.productCode + '/' + props.color + '/' + props.product._id + "/",
         product: props.product,
         style: props.style,
         amountOfSizes: props.amountOfSizes
@@ -35,19 +33,20 @@ const Product = props => (
 
 
 export default class ProductList extends Component {
-    state = { fetchedProducts: products, loading: false };
+    state = { fetchedProducts: [], loading: true };
 
 
-    // temp disabled because no external database is necessary
-    // componentDidMount() {
-    //     axios.get("http://localhost:5000/products/")
-    //         .then(response => {
-    //             this.setState({ fetchedProducts: response.data, loading: false });
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
+    componentDidMount() {
+        axios.get("https://plasticfuture.net:5000/products/")
+            .then(response => {
+                console.log("axios success: GET the /products/");
+                this.setState({ fetchedProducts: response.data, loading: false });
+            })
+            .catch((error) => {
+                console.log("axios fail: GET the /products/");
+                console.log(error);
+            })
+    }
 
     sumOfValues(values, index) {
         let sum = 0;
@@ -134,12 +133,13 @@ export default class ProductList extends Component {
         })
     }
 
-
     render() {
-        let currency = [['EUR', '€']];
+        let currency = [
+            ['EUR', '€']
+        ];
 
-        let productType = this.props.match.params.productType || undefined,
-            collection = this.props.match.params.collection || undefined;
+        let productType = undefined,
+            collection = undefined;
 
         return (
             <div className="centeredContainer" id="topElement" >

@@ -34,7 +34,6 @@ html {
 }
 .cartPreviewItem img {
   max-width: 100%;
-  /* max-height: calc((((33vw * 0.44) +git 10rem) - 2vw) * 0.4); */
 }
 
 #cartDropdown img {
@@ -292,7 +291,15 @@ button {
 
 .productDescriptionText p {
   line-height: 2;
+  transition: text-shadow 0.05s;
   font-size: 1.5rem;
+}
+
+#buyBtn::selection {
+  background: none;
+}
+.productDescriptionText p:hover {
+  text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.404);
 }
 
 .loadingImgParent {
@@ -319,7 +326,6 @@ button {
 .bigProduct {
   width: 22.5rem;
   transition: 0.15s;
-  /* max-width: 100%; */
   max-height: 87vh;
   height: 27rem;
   cursor: zoom-in;
@@ -334,8 +340,6 @@ button {
 
 .bigProductContainer {
   width: 22.5rem;
-  /* max-width: 100%; */
-  /* max-height: 100%; */
   margin: 0 auto;
 }
 
@@ -381,7 +385,6 @@ button {
 }
 
 .box img {
-  width: 300px;
   margin: 0 auto;
   height: 348.5px;
 }
@@ -740,8 +743,6 @@ nav h3 {
     font-size: 1.1em;
     max-height: calc(100vh - 95vmin);
 
-    /* bugs on 768 zoomed in,  */
-    /* max-width: calc(100vh - 95vmin); */
     font-size: 3vh;
   }
 }
@@ -816,26 +817,9 @@ nav p::selection {
   background: rgba(245, 245, 245, 0.85);
 }
 
-.stickyFooter ul a {
-  /* top: 50%;
-  font-size: 2vmin;
-  transform: translate(-50%, -50%);
-  color: white;
-  color: inherit;
-  margin: 0;
-  position: absolute;
-  top: 50%; */
-}
-
 .additionalPhotoBox img {
   height: 13rem;
 }
-/* .product img:hover {
-  -webkit-transition: 0.3s linear;
-  transition: 0.3s linear;
-  -webkit-filter: drop-shadow(2px 1px 4px #000033);
-  filter: drop-shadow(2px 1px 4px #000033);
-} */
 
 nav :nth-child(2) .parent p:hover {
   -webkit-transition: 1s;
@@ -862,9 +846,6 @@ nav img {
   transition: 1s;
 }
 
-/* used for scss. perhaps useless otherwise?  */
-/*# sourceMappingURL=main.css.map */
-
 /* product page */
 
 .productPageGrid img {
@@ -872,7 +853,6 @@ nav img {
 }
 
 .centeredContainer2 {
-  /* width: calc(0.33fr * 3); */
   width: 0.99fr;
   margin: 0 auto;
 }
@@ -894,7 +874,10 @@ nav img {
   text-align: right;
 }
 
-.box ::selection {
+.box ::selection,
+.stickyFooter ul a li::selection,
+.productSizing li::selection,
+.bigProductContainer img::selection {
   background: none;
 }
 .dropdownChild {
@@ -918,11 +901,6 @@ nav img {
 .visible {
   display: block !important;
   background: red;
-}
-/* implement this soon */
-.buttonContainer {
-  /* display: grid; */
-  /* grid-template-columns: 80% 20%; */
 }
 
 #breadcrumbs-links a,
@@ -1005,8 +983,6 @@ nav img {
 }
 /* TYPICAL PHONES. min height makes widescreen mode NOT applicable to this rule */
 @media only screen and (max-width: 679px) and (min-width: 320px) and (min-height: 400px) {
-  /* CHANGES THE 'REM' INITIAL SIZE FOR ALL ELEMENTS.  */
-  /* 'REM' UNITS ARE USED IN FONT AND IMAGE SIZING */
   html {
     font-size: 13px;
   }
@@ -1095,7 +1071,6 @@ nav img {
   }
 
   .box img {
-    /* CHANGE THIS to a percentage or vw/vh. */
     width: 42vmin;
     max-width: calc(100vh - 70vmin);
     height: 38vh;
