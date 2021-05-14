@@ -25,7 +25,7 @@ const Footer = () => {
       <div>
         <p>PLASTIC FUTURE © {new Date().getFullYear()}, all rights reserved</p>
 
-        <Link to="/tac">
+        <Link to='/tac'>
           <p>TERMS AND CONDITIONS</p>
         </Link>
       </div>
@@ -40,13 +40,17 @@ export const StickyFooter = () => {
   return (
     <div className="stickyFooter">
       <ul>
-        {list.map(item => {
-          return <Link key={item} to={"/" + item.toLowerCase()} style={{ flexBasis: '33.333333%' }}>
-            <li className="clickable">
-              {item}
-            </li>
-          </Link>
-        })}
+        {
+          list.map(item => {
+            return <Link to={`/${item.toLowerCase()}`}
+              key={item} style={{ flexBasis: '33.333333%' }}
+            >
+              <li className="clickable">
+                {item}
+              </li>
+            </Link>
+          })
+        }
       </ul>
     </div >
   );

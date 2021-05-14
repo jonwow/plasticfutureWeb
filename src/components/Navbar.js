@@ -2,17 +2,10 @@ import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
 import priceFormatting from '../modules/priceFormatting';
 
-// sum = 0
-// z.forEach(item => sum += item.count)
 
 
 
-
-
-
-
-
-
+// demo for performance
 class CartProductPhoto extends Component {
   constructor() {
     super();
@@ -23,7 +16,6 @@ class CartProductPhoto extends Component {
   }
 
   render() {
-    { console.log('rendering image') }
     return <img src={this.props.src} alt={this.props.altText} />;
   }
 
@@ -31,6 +23,36 @@ class CartProductPhoto extends Component {
 
 const Navbar = (props) => {
   const [openLeftContDD, setOTL] = useState(false);
+
+  // handle clicks
+  React.useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'Escape') {
+        setOTL(false);
+      }
+    }
+
+    const handleMouseClick = (event) => {
+      // if the click wasnt on threelines or cart or purchase button
+      if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img' && event.target.id !== 'buyBtn' && event.target.id !== 'decrease-amount' && event.target.id !== 'increase-amount') {
+        setOTL(false);
+        props.setOpenCartDropdown(false);
+      }
+
+      if (window.innerWidth < 750 && window.innerHeight < 1300) {
+        // if threelines were displayed on a mobile device and we clicked on the cart
+        if (event.target.id === 'cart-img') {
+          setOTL(false);
+        }
+        else if (event.target.id === "three-lines-img")
+          props.setOpenCartDropdown(false)
+      }
+
+    }
+
+    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener('click', handleMouseClick);
+  }, []);
 
 
   const LeftContainer = () => {
@@ -68,7 +90,7 @@ const Navbar = (props) => {
         </Link>
       </ul>
     );
-  }
+  };
 
 
 
@@ -195,40 +217,22 @@ const Navbar = (props) => {
     );
   }
 
+  const itemCount = (datas) => {
+    let count = 0;
+
+    if (datas)
+      datas.forEach(arrItem => {
+        count += arrItem.count;
+      });
+
+    return count;
+  };
 
 
 
 
 
-  // handle clicks
-  React.useEffect(() => {
-    function handleKeyPress(event) {
-      if (event.key === 'Escape') {
-        setOTL(false);
-      }
-    }
 
-    const handleMouseClick = (event) => {
-      // if the click wasnt on threelines or cart or purchase button
-      if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img' && event.target.id !== 'buyBtn' && event.target.id !== 'decrease-amount' && event.target.id !== 'increase-amount') {
-        setOTL(false);
-        props.setOpenCartDropdown(false);
-      }
-
-      if (window.innerWidth < 750 && window.innerHeight < 1300) {
-        // if threelines were displayed on a mobile device and we clicked on the cart
-        if (event.target.id === 'cart-img') {
-          setOTL(false);
-        }
-        else if (event.target.id === "three-lines-img")
-          props.setOpenCartDropdown(false)
-      }
-
-    }
-
-    document.addEventListener('keydown', handleKeyPress);
-    document.addEventListener('click', handleMouseClick);
-  }, []);
 
 
 
@@ -238,37 +242,28 @@ const Navbar = (props) => {
   return (
     <nav>
       {console.log('Navbar rendered')}
-      {console.log(props)}
       {/* left part of the navbar */}
-      <div className="navbarChild">
-        <div className="centeringParent">
-          <LeftContainer />
-        </div>
+      <div>
+
+        <LeftContainer />
       </div>
 
 
       {/* mid part of the navbar */}
-      <div className="navbarChild">
-        <div className="centeringParent" id="navbarText">
-          {/* when the logo is pressed, go to top of the 'container' (for example when you are on the main page and want to go to the top by clicking it) */}
-          <Link to="/" className="no-select-bg" onClick={() => {
-            if (document.getElementsByClassName('container')[0])
-              document.getElementsByClassName('container')[0].scrollTop = 0;
-          }}>
-            PLASTIC FUTURE
-              </Link>
-        </div>
+      <div className="" id="navbarText">
+        {/* when the logo is pressed, go to top of the 'container' (for example when you are on the main page and want to go to the top by clicking it) */}
+        <Link to='/' className="no-select-bg">PLASTIC FUTURE</Link>
       </div>
 
 
       {/* right part of the navbar */}
-      <div className="navbarChild">
-        <div className="centeringParent">
-          <Cart datas={props.datas} openCartPreview={props.openCartDropdown} />
-          <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
-            {(props.totalCount < 10) ? props.totalCount !== 0 && props.totalCount : '9+'}
-          </span>
-        </div>
+      <div>
+
+        <Cart datas={props.datas} openCartPreview={props.openCartDropdown} />
+        <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
+          {
+            itemCount(props.datas) < 10 ? itemCount(props.datas) !== 0 && itemCount(props.datas) : '9+'}
+        </span>
       </div>
     </nav>
 

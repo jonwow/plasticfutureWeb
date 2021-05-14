@@ -22,7 +22,7 @@ const Routes = (props) => {
     return (
         <Switch>
             {/* {...props} contains every props passed to Routes */}
-            <Route exact path='/allProducts/:productType/:productCode/:color/:id/'
+            <Route exact path='/products/:productType/:productCode/:color/:id/'
                 location={props.location}
                 render={({
                     location,
@@ -34,16 +34,26 @@ const Routes = (props) => {
 
             <Route path='/' exact component={ProductList} />
 
-            <Route path="/allProducts" exact component={ProductList} />
-            <Route exact path="/allProducts/:collection/:productType" component={ProductList} />
-            <Route exact path='/allProducts/:productType/' component={ProductList} />
+            <Route path="/products" exact component={ProductList} />
+            <Route exact path="/products/:collection/:productType" component={ProductList} />
+            <Route exact path='/products/:productType/' component={ProductList} />
             <Route path="/yourAccount">yourAccount page will be available soon!</Route>
             <Route path="/newsletter">newsletter page will be available soon!</Route>
-            <Route path="/collections"><ProductList/></Route>
-            <Route path="/collections/:collectionName"><ProductList/></Route>
-            <Route path="/contacts"><ProductList/>!</Route>
+
+            <Route path="/collections">
+                collections
+            </Route>
+
+            <Route path="/collections/:collectionName">
+                collections
+                </Route>
+
+            <Route path="/contacts">
+                contacts
+            </Route>
+
             <Route path="/tac">T&C page will be available soon!</Route>
-            
+
             {/* non route pages / 404 */}
             <Route path="*">
                 <div style={{ height: 'inherit' }}>

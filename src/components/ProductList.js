@@ -8,7 +8,7 @@ import priceFormatting from '../modules/priceFormatting';
 
 const Product = props => (
     <Link to={{
-        pathname: "/allProducts/" + props.product.type + '/' + props.product.productCode + '/' + props.color + '/' + props.product._id + "/",
+        pathname: `/products/${props.product.type}/${props.product.productCode}/${props.color}/${props.product._id}/`,
         product: props.product,
         style: props.style,
         amountOfSizes: props.amountOfSizes
@@ -37,14 +37,13 @@ export default class ProductList extends Component {
 
 
     componentDidMount() {
-        axios.get("https://plasticfuture.net:5000/products/")
+        axios.get("http://plasticfuture.net:5000/DBproducts/")
             .then(response => {
-                console.log("axios success: GET the /products/");
                 this.setState({ fetchedProducts: response.data, loading: false });
             })
             .catch((error) => {
-                console.log("axios fail: GET the /products/");
-                console.log(error);
+                console.log(`axios fail: GET the /DBproducts/
+                ${error}`);
             })
     }
 
@@ -138,8 +137,8 @@ export default class ProductList extends Component {
             ['EUR', '€']
         ];
 
-        let productType = undefined,
-            collection = undefined;
+        let productType = this.props.match.params.productType || undefined,
+            collection = this.props.match.params.collection || undefined;
 
         return (
             <div className="centeredContainer" id="topElement" >

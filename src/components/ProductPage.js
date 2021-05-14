@@ -78,79 +78,7 @@ export default class ProductPage extends Component {
     }
   }
 
-
-  componentDidUpdate() {
-    let tempState = {
-      productCode: this.state.productCode,
-      color: this.state.curColor
-    }
-
-    // if tempState is set (typically only when this.state is set)
-    if (tempState.productCode && tempState.color)
-      // if current url params do not match with the previous state
-      if (this.props.match.params.color !== tempState.color || this.props.match.params.productCode !== tempState.productCode) {
-
-        // console.log('url switch and didupdate. tempstate color and prod code: ' + tempState.color + tempState.productCode);
-        // console.log('params data: ' + this.props.match.params.color + this.props.match.params.productCode);
-
-        if (this.props.location.product) {
-          // console.log('cache exists, no data from the database is necessary')
-
-          this.setState(
-            {
-              description: this.props.location.product.description,
-              price: this.props.location.product.price,
-              // without the 'match.params' the color would be undecided if the product has >1 color
-              curColor: this.props.match.params.color,
-              allColors: this.props.location.product.color,
-              season: this.props.location.product.season,
-              name: this.props.location.product.name,
-              info: this.props.location.product.info,
-              type: this.props.location.product.type,
-              sizes: this.props.location.product.sizes,
-              public: this.props.location.product.public,
-              allAvailableStatuses: this.props.location.product.available,
-              curAvailable: false,
-              productCode: this.props.location.product.productCode,
-              loading: false,
-              _id: this.props.location.product._id,
-            },
-            this.determineStateProperties
-          );
-        }
-        else {
-          // console.log('no cache is present, therefore we get data from the database');
-
-          axios.get('https://plasticfuture.net:5000/products/' + this.props.match.params.id)
-            .then(response => {
-              this.setState({
-                description: response.data.description,
-                price: response.data.price,
-                curColor: this.props.match.params.color,
-                allColors: response.data.color,
-                season: response.data.season,
-                name: response.data.name,
-                info: response.data.info,
-                sizes: response.data.sizes,
-                public: response.data.public,
-                productCode: response.data.productCode,
-                allAvailableStatuses: response.data.available,
-                type: response.data.type,
-                loading: false,
-                _id: response.data._id
-              },
-                this.determineStateProperties
-              )
-            })
-        }
-      }
-
-
-
-
-  }
-
-  componentDidMount() {
+  setProductProperties() {
     if (this.props.location.product) {
       // console.log('cache exists, no data from the database is necessary')
       this.setState(
@@ -178,7 +106,7 @@ export default class ProductPage extends Component {
     else {
       // console.log('no cache is present, therefore we get data from the database');
 
-      axios.get('https://plasticfuture.net:5000/products/' + this.props.match.params.id)
+      axios.get('http://plasticfuture.net:5000/DBproducts/' + this.props.match.params.id)
         .then(response => {
           this.setState({
             description: response.data.description,
@@ -199,7 +127,36 @@ export default class ProductPage extends Component {
             this.determineStateProperties
           )
         })
+        .catch((error) => {
+          console.log(`axios fail: GET the /DBproducts/
+          ${error}`);
+        })
     }
+  }
+
+
+
+  // switching URLs by clicking on products from the cart dropdown triggers this a lot
+  componentDidUpdate() {
+    let tempState = {
+      productCode: this.state.productCode,
+      color: this.state.curColor
+    }
+
+    // if tempState is set (only when this.state is set)
+    if (tempState.productCode && tempState.color)
+      // if current url params do not match with the previous state
+      if (this.props.match.params.color !== tempState.color || this.props.match.params.productCode !== tempState.productCode) {
+
+        // console.log('url switch and didupdate. tempstate color and prod code: ' + tempState.color + tempState.productCode);
+        // console.log('params data: ' + this.props.match.params.color + this.props.match.params.productCode);
+
+        this.setProductProperties();
+      }
+  }
+
+  componentDidMount() {
+    this.setProductProperties();
   }
 
 
@@ -273,7 +230,7 @@ export default class ProductPage extends Component {
         <div id="background-container-2">
           <img className="big-img-container" style={{ borderRadius: '5px', zIndex: '111' }} onClick={() => {
             document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
-          }} id="enlarged-img" alt='enlarged' src="https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" />
+          }} id="enlarged-img" alt='enlarged' src="http://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" />
         </div>
       </div >
     )

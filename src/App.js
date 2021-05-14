@@ -41,8 +41,6 @@ const App = () => {
     localStorage.setItem('cartItems', JSON.stringify(datasTemp));
   }
 
-  console.log(localStorage.getItem('cartItems'))
-  console.log(localStorage.getItem('cartItems') === true)
 
   // a deeper problem exists . probably in modify count
 
@@ -55,7 +53,6 @@ const App = () => {
     else if (localStorage.getItem('cartItems') !== null)
       // OR if there are no items in the cart and localStorage has something in it
       if (datas.length === 0 && localStorage.getItem('cartItems') !== [] && localStorage.getItem('cartItems').length > 0 && 0) {
-        console.log('x')
         setDatas(JSON.parse(localStorage.getItem('cartItems')));
       }
   }, [datas]);

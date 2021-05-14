@@ -1,49 +1,47 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
+// any amount of words is possible in the breadcrumbs.
 const Breadcrumbs = () => {
-    const location = useLocation();
-    let modifiedPathname = [];
+    console.log('Rendering breadcrumbs')
+    // amount of links in the breadcrumbs
+    const MAX_LINKS = 3,
+        location = useLocation();
 
-    // if breadcrumbs are longer than "MAIN/{PAGE}""
-    // 0th element is nonexistent because the string starts with /
-    for (let i = location.pathname.split("/").length - 1; i > 0; i--)
-        modifiedPathname[i - 1] = (location.pathname.split("/")[i]);
+    let stringsInPathname = [];
 
-    // remove falsy strings
-    modifiedPathname = modifiedPathname.filter(el => el);
+    // populate the array of strings that are in the pathname
+    for (let i = location.pathname.split('/').length - 1; i > 0; i--)
+        stringsInPathname[i - 1] = location.pathname.split('/')[i];
+
+
+    // remove falsy strings (in this case they are typically empty strings)
+    stringsInPathname = stringsInPathname.filter(el => el);
+
 
     return (
-        <ul style={{ background: "transparent" }} id="bcnl-container">
+        <ul id="bcnl-container" >
             <div id="breadcrumbs-links">
-                <Link to={"/"} style={{ paddingLeft: '1rem', transition: '0.55s', cursor: 'pointer', fontFamily: 'Roboto', color: ' rgba(0, 0, 0, 0.7501)' }}>
-                    MAIN
-                </Link>
+                <Link to='/'>MAIN</Link>
 
-                {/* length is > 0 when at least one item is present. the item starts at index 0, therefore modifiedPathname[0] is required */}
-                {modifiedPathname.length > 0 &&
-                    <>
-                        <span style={{ color: 'rgba(0, 0, 0, 0.7501)' }}>/</span>
-                        <Link to={"/" + modifiedPathname[0]} style={{ transition: '0.55s', cursor: 'pointer', fontFamily: 'Roboto', color: ' rgba(0, 0, 0, 0.7501)', textTransform: 'uppercase' }}>
-                            <h1>
-                                {modifiedPathname[0]}
-                            </h1>
-                        </Link>
-                    </>
-                }
+                {stringsInPathname.map(link => {
+                    const index = stringsInPathname.indexOf(link) + 1;
 
-                {modifiedPathname.length > 1 &&
-                    <>
-                        <span style={{ color: 'rgba(0, 0, 0, 0.7501)' }}>/</span>
-                        <Link to={location.pathname.split(modifiedPathname[1])[0] + modifiedPathname[1]} style={{ transition: '0.55s', cursor: 'pointer', fontFamily: 'Roboto', color: 'rgba(0, 0, 0, 0.7501)', textTransform: 'uppercase' }}>
-                            <h2 style={{ fontWeight: 'bold' }}>
-                                {modifiedPathname[1]}
-                            </h2>
-                        </Link>
-                    </>
-                }
+                    if (index < MAX_LINKS) {
+                        const path = index === 1 ? `/${link}` : location.pathname.split(stringsInPathname[index - 1])[0] + link,
+                            isBold = index + 1 === MAX_LINKS || index === stringsInPathname.length;
+
+                        return <span key={index}>
+                            <span>/</span>
+
+                            <Link to={path} className={isBold ? 'bold-text' : 'normal-text'}>
+                                {link}
+                            </Link>
+                        </span>
+                    }
+                })}
             </div>
-        </ul >
+        </ul>
     );
 }
 

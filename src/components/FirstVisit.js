@@ -1,11 +1,12 @@
 import React from "react";
 
 
-const FirstVisit =  () => {
+const FirstVisit = () => {
     return <div id="first-time-container" onClick={() => {
         localStorage.setItem("firstVisit", "false");
-        window.location.replace("/")
+        window.location.replace("/");
     }}>
+
         <span>
             <p class="first-time-welcome-text">ENTER</p>
             <p class="first-time-welcome-text">PLASTIC FUTURE</p>

@@ -35,11 +35,11 @@ connection.once('open', () => {
 });
 
 
-// creates a router for products based on the ./routes/products.js file 
-const productsRouter = require("./routes/products");
-app.use('/products', productsRouter);
+// creates a router for products based on the ./routes/DBproducts.js file 
+const productsRouter = require("./routes/DBproducts");
+app.use('/DBproducts', productsRouter);
 
 
 app.listen(port, () => {
-  console.log('listening to port ' + port);
+  // console.log('Listening to port ' + port);
 });

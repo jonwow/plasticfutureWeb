@@ -12,8 +12,14 @@
 html {
   overflow: hidden;
 }
+
+.normal-text {
+  font-weight: normal;
+}
+
 #cartDropdown {
-  left: -15rem;
+  right: 0;
+  left: unset;
   width: calc((33vw * 0.44) + 15rem);
   filter: drop-shadow(0 2px 0.35rem white);
 }
@@ -53,6 +59,10 @@ html {
   grid-template-columns: 50% 50%;
   padding: 1rem;
   filter: invert(3.5%);
+}
+
+.bold-text {
+  font-weight: bold;
 }
 
 .checkout-text {
@@ -110,7 +120,7 @@ html {
 
 .container {
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 #background-container-2 img {
@@ -178,6 +188,10 @@ span a {
   text-decoration: none;
 }
 
+footer img::selection {
+  background: none;
+}
+
 footer div {
   font-weight: 600;
 }
@@ -193,8 +207,7 @@ footer a p {
 
 .dropdown {
   position: absolute;
-  /* full header height - icon height divided by two + icon height */
-  top: calc((12vh - 5vh) / 2 + 5vh);
+  top: 12.25vh;
   width: calc(33vw * 0.44);
   left: 0;
   overflow: hidden;
@@ -216,7 +229,10 @@ footer a p {
 }
 
 footer {
-  padding-top: 2.25rem;
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 5.5rem;
+  margin-top: 2.25rem;
 }
 footer p {
   font-size: 1rem;
@@ -298,9 +314,6 @@ button {
 #buyBtn::selection {
   background: none;
 }
-.productDescriptionText p:hover {
-  text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 0, 0.404);
-}
 
 .loadingImgParent {
   margin: 0 auto;
@@ -324,7 +337,7 @@ button {
 }
 
 .bigProduct {
-  width: 22.5rem;
+  /* width: 22.5rem; */
   transition: 0.15s;
   max-height: 87vh;
   height: 27rem;
@@ -341,6 +354,7 @@ button {
 .bigProductContainer {
   width: 22.5rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 @media (max-height: 720px) and (max-width: 1280px) {
@@ -374,6 +388,19 @@ button {
   justify-items: center;
   padding-top: 3vh;
   margin-bottom: 15vh;
+}
+
+#breadcrumbs-links > span > span {
+  color: rgba(0, 0, 0, 0.7501);
+  padding: 0 0.2rem;
+}
+
+#breadcrumbs-links a {
+  transition: 0.55s;
+  cursor: pointer;
+  font-family: "Roboto";
+  color: rgba(0, 0, 0, 0.7501);
+  text-transform: uppercase;
 }
 
 .box3 {
@@ -495,18 +522,13 @@ nav > div > div > p {
   text-align: center;
 }
 
-nav .navbarChild {
-  width: 33vw;
-  height: 12vh;
-}
-
-nav :nth-child(1),
-nav :nth-child(3) {
+nav > :nth-child(1),
+nav > :nth-child(3) {
   -ms-flex-preferred-size: 15%;
   flex-basis: 15%;
 }
 
-nav :nth-child(2) {
+nav > :nth-child(2) {
   -ms-flex-preferred-size: 70%;
   flex-basis: 70%;
 }
@@ -519,6 +541,7 @@ nav :nth-child(2) {
   list-style: none;
   padding-top: 1rem;
   position: relative;
+  margin-left: 1rem;
   z-index: 100;
   display: grid;
   display: -ms-grid;
@@ -530,27 +553,21 @@ nav :nth-child(2) {
 }
 
 #bcnl-container li,
-#bcnl-container h1,
-#bcnl-container h2,
-#bcnl-container h3 {
+#bcnl-container span a {
   cursor: pointer;
-  font-weight: normal;
   display: inline;
   text-align: center;
-  font-family: "Quicksand", sans-serif;
 }
 
 #bcnl-container li,
-#bcnl-container a,
-#bcnl-container h1,
-#bcnl-container h2,
-#bcnl-container h3,
+#bcnl-container span a,
+#bcnl-container p,
 #bcnl-container span {
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   font-family: "Roboto";
 }
 
-#bcnl-container a:hover {
+#bcnl-container span a:hover {
   text-decoration: underline;
 }
 
@@ -562,9 +579,20 @@ nav :nth-child(2) {
   color: black;
 }
 
-/* without this, the 'parent' div gets too large and the text ('a') isn't centered. */
-nav :nth-child(2) .centeringParent {
+nav > :nth-child(1),
+nav > :nth-child(3) {
+  height: 12rem;
+  display: flex;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+nav > :nth-child(2) {
   margin: 0;
+  text-align: center;
   width: fit-content;
   width: -moz-fit-content;
   width: -webkit-fit-content;
@@ -711,8 +739,7 @@ nav h3 {
   }
 
   .box img {
-    /* CHANGE THIS to a percentage or vw/vh. */
-    width: 42vmin;
+    /* width: 42vmin; */
     max-width: calc(100vh - 70vmin);
     margin: 0 auto;
     height: 38vh;
@@ -756,6 +783,7 @@ nav h3 {
 .container {
   scrollbar-color: #7f7f7f white;
   /* thumb and track color*/
+  overflow-x: hidden;
   scrollbar-width: thin;
 }
 
@@ -821,7 +849,7 @@ nav p::selection {
   height: 13rem;
 }
 
-nav :nth-child(2) .parent p:hover {
+nav > :nth-child(2) .parent p:hover {
   -webkit-transition: 1s;
   transition: 1s;
   /* change the color to black and ditch the invert  */
@@ -970,7 +998,7 @@ nav img {
   }
 
   .bigProduct {
-    width: 25.008rem;
+    /* width: 25.008rem; */
     height: 30rem;
     max-height: 500px;
   }
@@ -990,7 +1018,7 @@ nav img {
   .dropdown {
     width: 100vw;
     left: 0;
-    top: 8vh;
+    top: 9vh;
   }
   .cartPreviewItem img {
     margin: 0 auto;
@@ -1000,7 +1028,7 @@ nav img {
   #cartDropdown {
     width: 100vw;
     filter: none;
-    left: -85vw;
+    left: 0;
   }
 
   .dropdown .dropdown > a li {
@@ -1014,7 +1042,7 @@ nav img {
     filter: none;
   }
 
-  nav :nth-child(2) .parent p:hover {
+  nav > :nth-child(2) .parent p:hover {
     -webkit-transition: 0s;
     transition: 0s;
     -webkit-filter: none;
@@ -1071,7 +1099,7 @@ nav img {
   }
 
   .box img {
-    width: 42vmin;
+    /* width: 42vmin; */
     max-width: calc(100vh - 70vmin);
     height: 38vh;
     max-height: 52vmin;
@@ -1158,7 +1186,7 @@ nav img {
   }
   .bigProduct,
   .bigProductContainer {
-    width: 20rem;
+    /* width: 20rem; */
     height: 24rem;
   }
 }
@@ -1260,7 +1288,7 @@ nav img {
     display: none;
   }
 
-  #bcnl-container a {
+  #bcnl-container span a {
     font-size: 2.5rem;
   }
 }
@@ -1277,7 +1305,7 @@ nav img {
     display: none;
   }
 
-  #bcnl-container a {
+  #bcnl-container span a {
     font-size: 2rem;
   }
 }
@@ -1294,7 +1322,7 @@ nav img {
     display: none;
   }
 
-  #bcnl-container a {
+  #bcnl-container span a {
     font-size: 2rem;
   }
 }
