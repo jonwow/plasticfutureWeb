@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +12,24 @@
 
 html {
   overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.51);
+}
+
+.box > a > .product {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#cart-item-count {
+  position: absolute;
+  top: 50%;
+  font-size: 0.95rem;
 }
 
 .normal-text {
@@ -27,6 +46,8 @@ html {
 .no-select-bg::selection {
   background: rgba(255, 0, 0, 0);
 }
+
+#cart-item-count ::selection,
 #cartDropdown p::selection,
 #cartDropdown a::selection,
 #cartDropdown h2::selection,
@@ -238,7 +259,6 @@ footer p {
   font-size: 1rem;
 }
 
-/* applies to left and right footer parts */
 #footer-image-container img {
   width: 2.2rem;
   padding: 0 1.3rem;
@@ -425,34 +445,13 @@ button {
   background: rgba(255, 0, 0, 0);
 }
 
-/* centers the cssgrid "box" that contains all the products.
- * 370px = one box in css grid. CHANGE IT TO A VARIABLE LATER.
- * multiplied by 5 because there are 5 boxes in one row by default. */
 .centeredContainer {
-  width: calc(370px * 4);
+  width: max-content;
   margin: 0 auto;
 }
 
-/* used in non mobile centering too */
-/* centers children horizontally and vertically. used in the navbar/nav */
-/* call it footer/navbarparent or sth bc parent CLASS(make it id maybe) can be used in a lot of scenarios */
-.centeringParent {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.horizFixedCenteringParent {
-  position: fixed;
-  left: 50%;
-  bottom: 6.045vh;
-  z-index: 999;
-}
-
 .product {
-  padding: 2vh 0;
+  padding: 1rem 0;
 }
 
 .product p {
@@ -473,7 +472,6 @@ button {
 }
 
 footer {
-  /* centers pictures too */
   text-align: center;
   margin-bottom: 5.5rem;
 }
@@ -567,7 +565,8 @@ nav > :nth-child(2) {
   font-family: "Roboto";
 }
 
-#bcnl-container span a:hover {
+#bcnl-container span a:hover,
+#bcnl-container a:hover {
   text-decoration: underline;
 }
 
@@ -614,67 +613,15 @@ nav h3 {
 }
 
 @media only screen and (max-width: 319px) and (min-width: 0px) {
-  footer {
-    margin-bottom: 1vh;
-  }
-
   .box {
-    margin-top: 0;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-items: center;
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 
-  #navbarText a {
-    font-size: 11vmin;
-  }
-
-  .centeredContainer {
-    width: auto;
-    margin: auto;
-  }
-
-  .stickyFooter {
-    position: relative;
-  }
-
-  .box img {
-    width: 25vh;
-    max-width: calc(100vh - 70vmin);
-    margin: 0 auto;
-    height: 30vh;
-    max-width: 49vw;
-  }
-
-  .box .product,
-  .box a {
-    margin: 0 auto;
-  }
-
-  .box img {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: block;
-    -webkit-margin-before: 1em;
-    margin-block-start: 1em;
-    -webkit-margin-after: 1em;
-    margin-block-end: 1em;
-    -webkit-margin-start: 0px;
-    margin-inline-start: 0px;
-    -webkit-margin-end: 0px;
-    margin-inline-end: 0px;
-  }
-
-  .product p {
-    height: auto;
-    font-size: 1.1em;
-    max-height: calc(100vh - 95vmin);
-    font-size: 3vh;
+  .box > a > .product > img {
+    height: 5rem;
   }
 }
 
@@ -690,11 +637,6 @@ nav h3 {
     align-items: center;
     justify-items: center;
   }
-
-  .centeredContainer {
-    width: calc(335px * 2);
-    margin: 0 auto;
-  }
 }
 
 /* TABLETS */
@@ -703,16 +645,14 @@ nav h3 {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 340px 340px 340px;
-    grid-template-columns: 340px 340px 340px;
+    grid-template-columns: 1fr 1fr 1fr;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
     justify-items: center;
   }
-
-  .centeredContainer {
-    width: calc(340px * 3);
-    margin: 0 auto;
+  .box > a {
+    padding: 0 1.5rem;
   }
 }
 
@@ -727,11 +667,6 @@ nav h3 {
     -ms-flex-align: center;
     align-items: center;
     justify-items: center;
-  }
-
-  .centeredContainer {
-    width: auto;
-    margin: auto;
   }
 
   .stickyFooter {
@@ -874,19 +809,8 @@ nav img {
   transition: 1s;
 }
 
-/* product page */
-
 .productPageGrid img {
   margin: 0 auto;
-}
-
-.centeredContainer2 {
-  width: 0.99fr;
-  margin: 0 auto;
-}
-
-.centeredContainer2 .product {
-  cursor: pointer;
 }
 
 .productDescription img {
@@ -1083,11 +1007,6 @@ nav img {
     -ms-flex-align: center;
     align-items: center;
     justify-items: center;
-  }
-
-  .centeredContainer {
-    width: auto;
-    margin: auto;
   }
 
   #navbarText a {

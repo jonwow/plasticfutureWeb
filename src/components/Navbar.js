@@ -106,7 +106,10 @@ const Navbar = (props) => {
       <div onClick={handleClick} style={{ width: "3rem", margin: "0 auto" }}>
         <img src={require('../../src/images/navbar/cart.png')}
           id='cart-img' className="icon-button clickable" alt="cart-logo" />
-
+        <span id='cart-item-count'>
+          {
+            itemCount(props.datas) < 10 ? itemCount(props.datas) !== 0 && itemCount(props.datas) : '9+'}
+        </span>
         {props.openCartDropdown && <DropdownCart datas={props.datas} />}
       </div>
     );
@@ -260,10 +263,7 @@ const Navbar = (props) => {
       <div>
 
         <Cart datas={props.datas} openCartPreview={props.openCartDropdown} />
-        <span className={"no-select-bg"} style={{ zIndex: "-1", position: 'absolute', left: '48%', top: '50%', fontSize: '1.5vh', borderRadius: '6px', padding: '0 0.25vh' }}>
-          {
-            itemCount(props.datas) < 10 ? itemCount(props.datas) !== 0 && itemCount(props.datas) : '9+'}
-        </span>
+
       </div>
     </nav>
 
