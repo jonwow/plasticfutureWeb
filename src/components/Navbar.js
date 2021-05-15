@@ -1,11 +1,9 @@
-import React, { Component, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Component, useState } from 'react';
+import { Link } from 'react-router-dom';
 import priceFormatting from '../modules/priceFormatting';
 
 
-
-
-// demo for performance
+// demo for performance. might try a PureComponent
 class CartProductPhoto extends Component {
   constructor() {
     super();
@@ -22,29 +20,27 @@ class CartProductPhoto extends Component {
 }
 
 const Navbar = (props) => {
-  const [openLeftContDD, setOTL] = useState(false);
+  const [openLeftDD, setOpenLeftDD] = useState(false);
 
   // handle clicks
   React.useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === 'Escape') {
-        setOTL(false);
-      }
-    }
+    const hideDropdowns = () => {
+      setOpenLeftDD(false);
+      props.setOpenCartDropdown(false);
+    };
 
-    const handleMouseClick = (event) => {
-      // if the click wasnt on threelines or cart or purchase button
-      if (event.target.id !== "three-lines-img" && event.target.id !== 'cart-img' && event.target.id !== 'buyBtn' && event.target.id !== 'decrease-amount' && event.target.id !== 'increase-amount') {
-        setOTL(false);
-        props.setOpenCartDropdown(false);
-      }
+    const handleKeyPress = e => e.key === 'Escape' && hideDropdowns();
+
+    const handleMouseClick = (e) => {
+      // hide dropdowns only if the click was on an element that does is not interactive in any way (e.g. not a purchase button, not a threelines button)
+      if (e.target.id !== 'icon-btn-container' && e.target.id !== 'three-lines-icon' && e.target.id !== 'cart-icon' && e.target.id !== 'buyBtn' && e.target.id !== 'modify-amount')
+        hideDropdowns();
 
       if (window.innerWidth < 750 && window.innerHeight < 1300) {
-        // if threelines were displayed on a mobile device and we clicked on the cart
-        if (event.target.id === 'cart-img') {
-          setOTL(false);
-        }
-        else if (event.target.id === "three-lines-img")
+        // if the three lines dropdown was displayed on a mobile device and we clicked on the cart
+        if (e.target.id === 'cart-icon' && openLeftDD)
+          setOpenLeftDD(false);
+        else if (e.target.id === 'three-lines-icon' && props.openCartDropdown)
           props.setOpenCartDropdown(false)
       }
 
@@ -57,35 +53,35 @@ const Navbar = (props) => {
 
   const LeftContainer = () => {
     return (
-      <div onClick={() => { setOTL(!openLeftContDD) }} style={{ width: "3rem", margin: "0 auto" }}>
+      <div onClick={() => { setOpenLeftDD(!openLeftDD) }} id='icon-btn-container'>
         <img src={require('../../src/images/navbar/threeLines.png')}
-          className="icon-button clickable" id='three-lines-img' alt="threeLines-logo" />
+          className='icon-button clickable' id='three-lines-icon' alt='threeLines-icon' />
 
-        {openLeftContDD && <LeftContainerDropdown />}
+        {openLeftDD && <LeftContainerDropdown />}
       </div >
     );
   };
 
   const LeftContainerDropdown = () => {
     return (
-      <ul className="dropdown" >
-        <Link to="/products/">
+      <ul className='dropdown' >
+        <Link to='/products/'>
           <li>ALL PRODUCTS</li>
         </Link>
 
-        <Link to="/products/t-shirt">
+        <Link to='/products/t-shirt'>
           <li>T-SHIRTS</li>
         </Link>
 
-        <Link to="/products/tote">
+        <Link to='/products/tote'>
           <li>TOTE BAGS</li>
         </Link>
 
-        <Link to="/collections">
+        <Link to='/collections'>
           <li>COLLECTIONS</li>
         </Link>
 
-        <Link to="/contacts">
+        <Link to='/contacts'>
           <li>CONTACTS</li>
         </Link>
       </ul>
@@ -96,20 +92,17 @@ const Navbar = (props) => {
 
   const Cart = () => {
     // if the user clicks on the dropdown (for example he clicks + or -), the cart doesn't hide 
-    const handleClick = (e) => {
-      if (e.target.id === 'cart-img')
-        props.setOpenCartDropdown(!props.openCartDropdown);
-    }
-
+    const handleClick = (e) => e.target.id === 'cart-icon' && props.setOpenCartDropdown(!props.openCartDropdown);
 
     return (
-      <div onClick={handleClick} style={{ width: "3rem", margin: "0 auto" }}>
+      <div onClick={handleClick} id='icon-btn-container'>
         <img src={require('../../src/images/navbar/cart.png')}
-          id='cart-img' className="icon-button clickable" alt="cart-logo" />
+          id='cart-icon' className='icon-button clickable' alt='cart-icon' />
+
         <span id='cart-item-count'>
-          {
-            itemCount(props.datas) < 10 ? itemCount(props.datas) !== 0 && itemCount(props.datas) : '9+'}
+          {itemCount(props.datas) < 10 ? itemCount(props.datas) !== 0 && itemCount(props.datas) : '9+'}
         </span>
+
         {props.openCartDropdown && <DropdownCart datas={props.datas} />}
       </div>
     );
@@ -121,82 +114,62 @@ const Navbar = (props) => {
     let sum = 0;
 
     Object.keys(datas).map(key =>
-      // used to use state instead of localstorage, if any problems occur - this is where they are
       sum += datas[key].price * datas[key].count
     )
 
     return (
-      <ul className="dropdown" id="cartDropdown" >
-        <div className="dropdownChild">
-          {datas[0] === undefined ? <li style={{ textAlign: "center", padding: '2rem 0' }}>no products.</li> :
+      <ul className='dropdown' id='cartDropdown'>
+        <div className='dropdownChild'>
+          {datas[0] === undefined ? <li style={{ textAlign: 'center', padding: '2rem 0' }}>no products.</li> :
             Object.keys(datas).map(key =>
-              <div key={key} value={key} className="cart-item" style={{ height: "max-content", display: "block", padding: '1.5rem 0', background: 'whitesmoke' }}>
-                <li className="cartPreviewItem">
+              <div key={key} value={key} className='cart-item' style={{ height: 'max-content', display: 'block', padding: '1.5rem 0', background: 'whitesmoke' }}>
+                <li className='cartPreviewItem'>
 
                   {/* image of the product */}
-                  <div style={{ margin: '0 auto' }}>
-                    <Link to={{
-                      pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
-                    }} >
-                      <CartProductPhoto altText={datas[key].name + '-' + datas[key].color + '-photo'} src={require('../../src/images/' + datas[key].season + `/designs/` + datas[key].type + 's/' + datas[key].name + `/` + datas[key].name + `-` + datas[key].color + `-small.png`)} />
-                    </Link>
-                  </div>
+                  <Link to={`/products/${datas[key].type}/${datas[key].productCode}/${datas[key].color}/${datas[key]._id}/`} >
+                    <CartProductPhoto src={require(`../../src/images/${datas[key].season}/designs/${datas[key].type}s/${datas[key].name}/${datas[key].name}-${datas[key].color}-small.png`)}
+                      altText={`${datas[key].name}-${datas[key].color}-photo`} />
+                  </Link>
 
 
-                  <div className="cartPreviewItemTextGrid">
-                    <Link to={{
-                      pathname: "/products/" + datas[key].type + '/' + datas[key].productCode + '/' + datas[key].color + '/' + datas[key]._id + "/",
-                    }} >
-                      <h2 style={{ fontSize: '1.2rem', textTransform: "uppercase" }}>
-                        {
-                          datas[key].name + ' ' + datas[key].type
-                        }
-                      </h2>
+                  <div className='cartPreviewItemTextGrid'>
+                    <Link to={`/products/${datas[key].type}/${datas[key].productCode}/${datas[key].color}/${datas[key]._id}/`}
+                      style={{ fontSize: '1.2rem', textTransform: 'uppercase' }}
+                    >
+                      {datas[key].name + ' ' + datas[key].type}
                     </Link>
 
 
 
                     <p style={{ cursor: 'default', margin: '0 auto', fontSize: '1.2rem' }}>
-                      {
-                        priceFormatting(datas[key].price.toFixed(2)) + '€'
-                      }
+                      {priceFormatting(datas[key].price.toFixed(2)) + '€'}
                     </p>
 
-                    <Link to={{
-                      pathname: "/collections/" + datas[key].season + '/',
-                    }}>
-                      <h3 style={{ textTransform: "uppercase", fontWeight: "normal", fontSize: '1rem' }}>
-                        {
-                          datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]
-                        }
-
-                      </h3>
+                    <Link to={`/collections/${datas[key].season}/`}
+                      style={{ textTransform: 'uppercase', fontWeight: 'normal', fontSize: '1rem' }}
+                    >
+                      {datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]}
                     </Link>
 
                     <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
 
-                      <span id='decrease-amount' onClick={() => (props.modifyCount(-1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }}>
+                      <span id='modify-amount' onClick={() => (props.modifyCount(-1, key))} >
                         -
-                          </span>
+                       </span>
 
-                      <span >
-                        {
-                          ' ' + datas[key].count + ' '
-                        }
+                      <span style={{ width: '10rem', margin: '0 1rem' }}>
+                        {datas[key].count}
                       </span>
 
-                      <span id='increase-amount' onClick={() => (props.modifyCount(1, key))} style={{ padding: '0 0.25rem', margin: '0 auto', fontSize: '1.5rem', zIndex: '3' }} >
+                      <span id='modify-amount' onClick={() => (props.modifyCount(1, key))}  >
                         +
                     </span>
 
                     </div>
 
                     <p style={{ cursor: 'default', position: 'relative', top: '35%' }}>
-                      {
-                        datas[key].color + ' — ' + datas[key].size + ' '}
+                      {datas[key].color + ' — ' + datas[key].size + ' '}
                     </p>
-
-
                   </div>
                 </li>
               </div>
@@ -204,19 +177,18 @@ const Navbar = (props) => {
           }
         </div>
 
-        <div id="grid-for-total-cost">
-          <p style={{ textAlign: "left" }}>TOTAL COST:</p>
-          <p style={{ textAlign: "right", fontWeight: "550" }}>{priceFormatting(sum)} €</p>
+        <div id='grid-for-total-cost'>
+          <p style={{ textAlign: 'left' }}>TOTAL COST:</p>
+          <p style={{ textAlign: 'right', fontWeight: '550' }}>{priceFormatting(sum)} €</p>
         </div>
 
         {/* if the cart isnt empty, show the checkout button */}
         {
           datas[0] !== undefined &&
-          <p className="checkout-text" onClick={() => {
-            console.log(datas)
+          <p className='checkout-text' onClick={() => {
           }}>CHECKOUT</p>
         }
-      </ul >
+      </ul>
     );
   }
 
@@ -245,29 +217,14 @@ const Navbar = (props) => {
   return (
     <nav>
       {console.log('Navbar rendered')}
-      {/* left part of the navbar */}
-      <div>
-
-        <LeftContainer />
-      </div>
+      <LeftContainer />
 
 
-      {/* mid part of the navbar */}
-      <div className="" id="navbarText">
-        {/* when the logo is pressed, go to top of the 'container' (for example when you are on the main page and want to go to the top by clicking it) */}
-        <Link to='/' className="no-select-bg">PLASTIC FUTURE</Link>
-      </div>
+      <Link to='/' className='no-select-bg'>PLASTIC FUTURE</Link>
 
 
-      {/* right part of the navbar */}
-      <div>
-
-        <Cart datas={props.datas} openCartPreview={props.openCartDropdown} />
-
-      </div>
+      <Cart datas={props.datas} openCartPreview={props.openCartDropdown} />
     </nav>
-
-
   );
 }
 

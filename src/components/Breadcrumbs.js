@@ -39,6 +39,8 @@ const Breadcrumbs = () => {
                             </Link>
                         </span>
                     }
+                    else
+                        return null;
                 })}
             </div>
         </ul>

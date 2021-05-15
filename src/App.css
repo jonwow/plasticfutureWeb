@@ -7,7 +7,6 @@
   margin: 0;
   padding: 0;
   font-family: "Quicksand", sans-serif;
-  scroll-behavior: smooth;
 }
 
 html {
@@ -26,14 +25,25 @@ html {
   text-align: center;
 }
 
+.box > a {
+  margin: 0 2rem;
+}
+
 #cart-item-count {
   position: absolute;
+  z-index: -1;
   top: 50%;
   font-size: 0.95rem;
 }
 
 .normal-text {
   font-weight: normal;
+}
+
+#modify-amount {
+  z-index: 3;
+  margin: 0 auto;
+  font-size: 1.5rem;
 }
 
 #cartDropdown {
@@ -63,6 +73,14 @@ html {
   max-width: 100%;
 }
 
+.cart-addit-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+}
+
 #cartDropdown img {
   width: 7.5rem;
   height: calc(8rem * 1.15);
@@ -74,6 +92,10 @@ html {
   color: black;
 }
 
+#cartDropdown .cartPreviewItemTextGrid a,
+#cartDropdown .cartPreviewItemTextGrid p {
+  text-align: left;
+}
 #grid-for-total-cost {
   display: grid;
   background: whitesmoke;
@@ -228,16 +250,23 @@ footer a p {
 
 .dropdown {
   position: absolute;
-  top: 12.25vh;
-  width: calc(33vw * 0.44);
+
+  /*top =  nav height */
+  top: 7.5rem;
+
+  width: max-content;
   left: 0;
   overflow: hidden;
 
   z-index: 2;
 }
 
+.dropdown > a > li {
+  padding-right: 10rem;
+}
+
 .dropdownChild {
-  max-height: calc(42rem);
+  max-height: 42rem;
   scrollbar-width: thin;
 
   width: inherit;
@@ -390,14 +419,14 @@ button {
 .box {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 370px 370px 370px 370px;
-  grid-template-columns: 370px 370px 370px 370px;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   -webkit-box-align: center;
   grid-template-rows: auto;
   -ms-flex-align: center;
   align-items: center;
   justify-items: center;
-  margin-bottom: 15vh;
+  margin-bottom: 12rem;
 }
 
 /* productPageGrid = grid for the product page */
@@ -406,8 +435,8 @@ button {
   grid-template-columns: 33.33333% 33.33333% 33.33333%;
   align-items: center;
   justify-items: center;
-  padding-top: 3vh;
-  margin-bottom: 15vh;
+  padding-top: 2rem;
+  margin-bottom: 12rem;
 }
 
 #breadcrumbs-links > span > span {
@@ -416,7 +445,6 @@ button {
 }
 
 #breadcrumbs-links a {
-  transition: 0.55s;
   cursor: pointer;
   font-family: "Roboto";
   color: rgba(0, 0, 0, 0.7501);
@@ -454,19 +482,19 @@ button {
   padding: 1rem 0;
 }
 
-.product p {
+.product > p {
   text-align: center;
   color: black;
-  font-size: 30px;
+  font-size: 2rem;
   height: -webkit-fit-content;
   height: fit-content;
   height: -moz-fit-content;
   width: -moz-fit-content;
   width: -webkit-fit-content;
   width: fit-content;
-  padding: 0 1vmin;
+  padding: 0 1rem;
   position: relative;
-  margin: 0.5vmin auto;
+  margin: 0.35rem auto;
   -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.35));
   filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.35));
 }
@@ -484,10 +512,6 @@ footer p {
   line-height: 2;
 }
 
-#navbarText a {
-  font-family: "Open Sans Condensed", sans-serif;
-}
-
 footer ul li p {
   font-family: "Raleway", serif;
 }
@@ -496,6 +520,9 @@ nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7.5rem;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -520,19 +547,18 @@ nav > div > div > p {
   text-align: center;
 }
 
-nav > :nth-child(1),
-nav > :nth-child(3) {
-  -ms-flex-preferred-size: 15%;
-  flex-basis: 15%;
-}
-
 nav > :nth-child(2) {
   -ms-flex-preferred-size: 70%;
   flex-basis: 70%;
 }
 
 .icon-button {
-  width: 5vh;
+  width: 3rem;
+}
+
+#icon-btn-container {
+  height: 100%;
+  cursor: pointer;
 }
 
 #bcnl-container {
@@ -570,40 +596,32 @@ nav > :nth-child(2) {
   text-decoration: underline;
 }
 
-#navbarText a {
-  font-size: calc(9vmin);
-  text-decoration: none;
-  -webkit-transition: font-size none;
-  transition: font-size none;
-  color: black;
-}
-
 nav > :nth-child(1),
 nav > :nth-child(3) {
-  height: 12rem;
   display: flex;
-  height: inherit;
   align-items: center;
   justify-content: center;
   text-align: center;
+  -ms-flex-preferred-size: 15%;
+  flex-basis: 15%;
   margin: 0 auto;
 }
 
 nav > :nth-child(2) {
   margin: 0;
   text-align: center;
+  font-family: "Open Sans Condensed", sans-serif;
+  text-decoration: none;
+  -webkit-transition: font-size none;
+  transition: font-size none;
+  color: black;
   width: fit-content;
+  font-size: 5rem;
   width: -moz-fit-content;
   width: -webkit-fit-content;
 }
 
-#navbarText {
-  margin: 0;
-}
-
-nav p,
-nav h2,
-nav h3 {
+nav p {
   text-decoration: none;
   line-height: 0.8;
 }
@@ -614,8 +632,6 @@ nav h3 {
 
 @media only screen and (max-width: 319px) and (min-width: 0px) {
   .box {
-    display: -ms-grid;
-    display: grid;
     -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
   }
@@ -628,28 +644,16 @@ nav h3 {
 /* VERY WIDE PHONES. UI LOOKS LIKE PC */
 @media only screen and (min-width: 680px) and (max-width: 1120px) {
   .box {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 335px 335px;
-    grid-template-columns: 335px 335px;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-items: center;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 /* TABLETS */
 @media only screen and (min-width: 1121px) and (max-width: 1500px) {
   .box {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 340px 340px 340px;
+    -ms-grid-columns: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-items: center;
   }
   .box > a {
     padding: 0 1.5rem;
@@ -659,14 +663,8 @@ nav h3 {
 @media only screen and (min-width: 330px) and (max-width: 1120px) and (min-height: 300px) and (max-height: 500px) {
   .box {
     margin: 0;
-    display: -ms-grid;
-    display: grid;
     -ms-grid-columns: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-items: center;
   }
 
   .stickyFooter {
@@ -674,7 +672,6 @@ nav h3 {
   }
 
   .box img {
-    /* width: 42vmin; */
     max-width: calc(100vh - 70vmin);
     margin: 0 auto;
     height: 38vh;
@@ -729,7 +726,7 @@ nav h3 {
 }
 
 .container ::-webkit-scrollbar {
-  width: 1vmin;
+  width: 0.6rem;
   background-color: #f5f5f5;
 }
 .container ::-webkit-scrollbar-thumb {
@@ -751,7 +748,6 @@ nav p::selection {
 }
 
 .stickyFooter ul {
-  /* if 'display: flex' is put into 'footer', it WON'T work (unless i put 'display: inherit' here) */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -759,7 +755,6 @@ nav p::selection {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0;
-  /* hides all things that exceed the 'footer ul' element */
   overflow: hidden;
 }
 
@@ -784,29 +779,14 @@ nav p::selection {
   height: 13rem;
 }
 
-nav > :nth-child(2) .parent p:hover {
-  -webkit-transition: 1s;
-  transition: 1s;
-  /* change the color to black and ditch the invert  */
-  -webkit-filter: drop-shadow(5px 1px 4px rgba(255, 255, 255, 0.815));
-  filter: drop-shadow(5px 1px 4px rgba(255, 255, 255, 0.815));
-}
-
 nav img {
   -webkit-transition: none;
   transition: none;
 }
 
 .icon-button:hover {
-  -webkit-transition: 0.1s linear;
-  transition: 0.1s linear;
   -webkit-filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
   filter: drop-shadow(5px 1px 2px rgba(0, 0, 0, 0.689));
-}
-
-#goToTopIcon {
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .productPageGrid img {
@@ -913,14 +893,6 @@ nav img {
     padding-top: 25px;
   }
 
-  .product p {
-    height: auto;
-    font-size: 1.1em;
-    max-height: calc(100vh - 95vmin);
-
-    font-size: 3vh;
-  }
-
   .bigProduct {
     /* width: 25.008rem; */
     height: 30rem;
@@ -942,7 +914,6 @@ nav img {
   .dropdown {
     width: 100vw;
     left: 0;
-    top: 9vh;
   }
   .cartPreviewItem img {
     margin: 0 auto;
@@ -978,39 +949,15 @@ nav img {
     transition: none;
   }
 
-  .icon-button img:hover {
-    -webkit-transition: 0s;
-    transition: 0s;
-    width: 5vh;
-    -webkit-filter: none;
-    filter: none;
-  }
-
   footer {
     padding-top: 5vh;
     margin-bottom: 1vh;
   }
 
-  #goToTopIcon {
-    bottom: 10px;
-    width: 65px;
-    height: 55px;
-    right: calc(50vw - 65px);
-  }
   .box {
     margin: 0;
-    display: -ms-grid;
-    display: grid;
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    justify-items: center;
-  }
-
-  #navbarText a {
-    font-size: 11vmin;
   }
 
   .stickyFooter {
@@ -1018,7 +965,6 @@ nav img {
   }
 
   .box img {
-    /* width: 42vmin; */
     max-width: calc(100vh - 70vmin);
     height: 38vh;
     max-height: 52vmin;
@@ -1059,14 +1005,6 @@ nav img {
     width: 150px;
     margin: 0 auto;
     padding-top: 25px;
-  }
-
-  .product p {
-    height: auto;
-    font-size: 1.1em;
-    max-height: calc(100vh - 95vmin);
-
-    font-size: 3vh;
   }
 }
 
@@ -1132,20 +1070,17 @@ nav img {
 @media only screen and (min-width: 1250px) and (min-height: 300px) and (max-width: 1500px) {
   #cartDropdown {
     width: 35vw;
-    left: -20.5vw;
   }
 }
 
 @media only screen and (min-width: 750px) and (min-height: 300px) and (max-width: 1249px) {
   #cartDropdown {
-    width: calc(30vw + 10rem);
-    left: calc((15vw + 10rem) * -1);
+    width: 30rem;
   }
 }
 
 @media only screen and (min-width: 680px) and (min-height: 430px) and (max-width: 749px) {
   #cartDropdown {
-    left: -85.5vw;
     width: 100vw;
   }
 }
