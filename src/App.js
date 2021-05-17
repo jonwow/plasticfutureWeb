@@ -10,7 +10,8 @@ import Navbar from "./components/Navbar";
 
 
 const App = () => {
-  const [datas, setDatas] = useState([]);
+  // if there is something in the 'cartItems', set 'datas' to it. otherwise - empty array (empty cart)
+  const [datas, setDatas] = useState(JSON.parse(localStorage.getItem('cartItems')) ? JSON.parse(localStorage.getItem('cartItems')) : []);
   const [openCartDropdown, setOpenCartDropdown] = useState(false);
 
   // let timerID;
@@ -27,34 +28,22 @@ const App = () => {
   // }
 
   const modifyCount = (amount, key) => {
-    let datasTemp = JSON.parse(JSON.stringify(datas));
+    const datasTemp = JSON.parse(JSON.stringify(datas));
     datasTemp[key].count += amount;
 
     // if the count of the item is 0, remove it from the array of the items in the cart.
-    if (datasTemp[key].count === 0) {
+    if (datasTemp[key].count === 0)
       datasTemp.splice(key, 1);
-    }
-
 
     setDatas(datasTemp);
-
-    localStorage.setItem('cartItems', JSON.stringify(datasTemp));
   }
 
 
-  // a deeper problem exists . probably in modify count
 
-  // updates localStorage cartItems
+  // whenever 'datas' changes
   React.useEffect(() => {
-    // if there is something in 'datas', update the localStorage
-    if (datas.length > 0)
-      localStorage.setItem('cartItems', JSON.stringify(datas));
-    // throws an error for some reason
-    else if (localStorage.getItem('cartItems') !== null)
-      // OR if there are no items in the cart and localStorage has something in it
-      if (datas.length === 0 && localStorage.getItem('cartItems') !== [] && localStorage.getItem('cartItems').length > 0 && 0) {
-        setDatas(JSON.parse(localStorage.getItem('cartItems')));
-      }
+    // updates localStorage cartItems if 'datas' isn't empty
+    localStorage.setItem('cartItems', JSON.stringify(datas));
   }, [datas]);
 
 

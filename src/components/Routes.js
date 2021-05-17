@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Link, Route, useLocation } from "react-router-dom";
 import React, { useEffect } from "react";
 
 // components
@@ -37,29 +37,46 @@ const Routes = (props) => {
             <Route path="/products" exact component={ProductList} />
             <Route exact path="/products/:collection/:productType" component={ProductList} />
             <Route exact path='/products/:productType/' component={ProductList} />
-            <Route path="/yourAccount">yourAccount page will be available soon!</Route>
-            <Route path="/newsletter">newsletter page will be available soon!</Route>
 
-            <Route path="/collections">
-                collections
+
+            <Route path="/newsletter">
+                <div className="under-construction-container">
+                    <p>This will be a page for the <strong>newsletter</strong>.</p>
+                </div>
             </Route>
 
-            <Route path="/collections/:collectionName">
-                collections
-                </Route>
+
+            <Route exact path="/collections">
+                <div className="under-construction-container">
+                    <p>This will be a page for the <strong>collections</strong>.</p>
+                </div>
+            </Route>
+
+            <Route exact path="/collections/:collectionName">
+                <div className="under-construction-container">
+                    <p>This will be a page for <strong>a collection</strong>.</p>
+                </div>
+            </Route>
 
             <Route path="/contacts">
-                contacts
+                <div className="under-construction-container">
+                    <p>This will be a page for the <strong>contacts</strong>.</p>
+                </div>
             </Route>
 
-            <Route path="/tac">T&C page will be available soon!</Route>
+            <Route exact path="/tac">
+                <div className="under-construction-container">
+                    <p>This will be a page for the <strong>terms and conditions</strong>.</p>
+                </div>
+            </Route>
 
             {/* non route pages / 404 */}
             <Route path="*">
-                <div style={{ height: 'inherit' }}>
-                    <h1 style={{ marginTop: '10%', fontSize: '6rem', fontWeight: 'lighter', fontFamily: 'Roboto', textAlign: 'center', margin: '0 auto', width: '95%' }}>
-                        "This page doesn't exist."
-                    </h1>
+                <div className="under-construction-container">
+                    <p>This page doesn't exist. </p>
+                    <p>
+                        <strong><Link to="/">Go to the main page.</Link></strong>
+                    </p>
                 </div>
             </Route>
         </Switch>

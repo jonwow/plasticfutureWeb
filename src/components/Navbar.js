@@ -12,12 +12,136 @@ class CartProductPhoto extends Component {
   shouldComponentUpdate() {
     return false;
   }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('Image updated')
+  }
 
   render() {
     return <img src={this.props.src} alt={this.props.altText} />;
   }
 
 }
+
+class DropdownCart extends Component {
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // Are we adding new items to the list?
+    // Capture the scroll position so we can adjust scroll later.
+    const list = this.listRef.current;
+    console.log(list)
+    console.log(list.scrollHeight - list.scrollTop)
+    return list.scrollHeight - list.scrollTop;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('updating dd cart')
+    const list = this.listRef.current;
+    list.scrollTop = list.scrollHeight - snapshot;
+  }
+
+  render() {
+    // for better readability as it is used in a lot of places and would take too much space
+    const d = this.props.datas;
+    let sum = 0;
+
+    Object.keys(d).map(key =>
+      sum += d[key].price * d[key].count
+    )
+
+    return (
+      <ul className='dropdown' id='cartDropdown'>
+        <div className='dropdownChild'>
+          {d[0] === undefined ? <li style={{ textAlign: 'center', padding: '2rem 0' }}>no products.</li> :
+            Object.keys(d).map(key =>
+              <div key={key} value={key} className='cart-item' style={{ height: 'max-content', display: 'block', padding: '1.5rem 0', background: 'whitesmoke' }}>
+                <li className='cartPreviewItem'>
+
+                  {/* image of the product */}
+                  <Link to={`/products/${d[key].type}/${d[key].productCode}/${d[key].color}/${d[key]._id}/`} >
+                    <CartProductPhoto src={require(`../../src/images/${d[key].season}/designs/${d[key].type}s/${d[key].name}/${d[key].name}-${d[key].color}-small.png`)}
+                      altText={`${d[key].name}-${d[key].color}-photo`} />
+                  </Link>
+
+
+                  <div className='cartPreviewItemTextGrid'>
+                    <Link to={`/products/${d[key].type}/${d[key].productCode}/${d[key].color}/${d[key]._id}/`}
+                      style={{ fontSize: '1.2rem', textTransform: 'uppercase' }}
+                    >
+                      {d[key].name + ' ' + d[key].type}
+                    </Link>
+
+
+
+                    <p style={{ cursor: 'default', margin: '0 auto', fontSize: '1.2rem' }}>
+                      {priceFormatting(d[key].price.toFixed(2)) + '€'}
+                    </p>
+
+                    <Link to={`/collections/${d[key].season}/`}
+                      style={{ textTransform: 'uppercase', fontWeight: 'normal', fontSize: '1rem' }}
+                    >
+                      {d[key].season + "'" + d[key].productCode[4] + d[key].productCode[5]}
+                    </Link>
+
+                    <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
+
+                      <span id='modify-amount' onClick={() => (this.props.modifyCount(-1, key))} >
+                        -
+                       </span>
+
+                      <span style={{ width: '10rem', margin: '0 1rem' }}>
+                        {d[key].count}
+                      </span>
+
+                      <span id='modify-amount' onClick={() => (this.props.modifyCount(1, key))}  >
+                        +
+                    </span>
+
+                    </div>
+
+                    <p style={{ cursor: 'default', position: 'relative', top: '35%' }}>
+                      {d[key].color + ' — ' + d[key].size + ' '}
+                    </p>
+                  </div>
+                </li>
+              </div>
+            )
+          }
+        </div>
+
+        <div id='grid-for-total-cost'>
+          <p style={{ textAlign: 'left' }}>TOTAL COST:</p>
+          <p style={{ textAlign: 'right', fontWeight: '550' }}>{priceFormatting(sum)} €</p>
+        </div>
+
+        {/* if the cart isnt empty, show the checkout button */}
+        {
+          d[0] !== undefined &&
+          <p className='checkout-text' onClick={() => {
+          }}>CHECKOUT</p>
+        }
+      </ul>
+    );
+  }
+}
+// transform dcart to smaller components
+
+
+const itemCount = (datas) => {
+  let count = 0;
+
+  if (datas)
+    datas.forEach(arrItem => {
+      count += arrItem.count;
+    });
+
+  return count;
+};
+
+
 
 const Navbar = (props) => {
   const [openLeftDD, setOpenLeftDD] = useState(false);
@@ -103,105 +227,13 @@ const Navbar = (props) => {
           {itemCount(props.datas) < 10 ? itemCount(props.datas) !== 0 && itemCount(props.datas) : '9+'}
         </span>
 
-        {props.openCartDropdown && <DropdownCart datas={props.datas} />}
+        {props.openCartDropdown && <DropdownCart modifyCount={props.modifyCount} datas={props.datas} />}
       </div>
     );
   };
 
 
-  // transform this to smaller components
-  const DropdownCart = ({ datas }) => {
-    let sum = 0;
 
-    Object.keys(datas).map(key =>
-      sum += datas[key].price * datas[key].count
-    )
-
-    return (
-      <ul className='dropdown' id='cartDropdown'>
-        <div className='dropdownChild'>
-          {datas[0] === undefined ? <li style={{ textAlign: 'center', padding: '2rem 0' }}>no products.</li> :
-            Object.keys(datas).map(key =>
-              <div key={key} value={key} className='cart-item' style={{ height: 'max-content', display: 'block', padding: '1.5rem 0', background: 'whitesmoke' }}>
-                <li className='cartPreviewItem'>
-
-                  {/* image of the product */}
-                  <Link to={`/products/${datas[key].type}/${datas[key].productCode}/${datas[key].color}/${datas[key]._id}/`} >
-                    <CartProductPhoto src={require(`../../src/images/${datas[key].season}/designs/${datas[key].type}s/${datas[key].name}/${datas[key].name}-${datas[key].color}-small.png`)}
-                      altText={`${datas[key].name}-${datas[key].color}-photo`} />
-                  </Link>
-
-
-                  <div className='cartPreviewItemTextGrid'>
-                    <Link to={`/products/${datas[key].type}/${datas[key].productCode}/${datas[key].color}/${datas[key]._id}/`}
-                      style={{ fontSize: '1.2rem', textTransform: 'uppercase' }}
-                    >
-                      {datas[key].name + ' ' + datas[key].type}
-                    </Link>
-
-
-
-                    <p style={{ cursor: 'default', margin: '0 auto', fontSize: '1.2rem' }}>
-                      {priceFormatting(datas[key].price.toFixed(2)) + '€'}
-                    </p>
-
-                    <Link to={`/collections/${datas[key].season}/`}
-                      style={{ textTransform: 'uppercase', fontWeight: 'normal', fontSize: '1rem' }}
-                    >
-                      {datas[key].season + "'" + datas[key].productCode[4] + datas[key].productCode[5]}
-                    </Link>
-
-                    <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
-
-                      <span id='modify-amount' onClick={() => (props.modifyCount(-1, key))} >
-                        -
-                       </span>
-
-                      <span style={{ width: '10rem', margin: '0 1rem' }}>
-                        {datas[key].count}
-                      </span>
-
-                      <span id='modify-amount' onClick={() => (props.modifyCount(1, key))}  >
-                        +
-                    </span>
-
-                    </div>
-
-                    <p style={{ cursor: 'default', position: 'relative', top: '35%' }}>
-                      {datas[key].color + ' — ' + datas[key].size + ' '}
-                    </p>
-                  </div>
-                </li>
-              </div>
-            )
-          }
-        </div>
-
-        <div id='grid-for-total-cost'>
-          <p style={{ textAlign: 'left' }}>TOTAL COST:</p>
-          <p style={{ textAlign: 'right', fontWeight: '550' }}>{priceFormatting(sum)} €</p>
-        </div>
-
-        {/* if the cart isnt empty, show the checkout button */}
-        {
-          datas[0] !== undefined &&
-          <p className='checkout-text' onClick={() => {
-          }}>CHECKOUT</p>
-        }
-      </ul>
-    );
-  }
-
-  const itemCount = (datas) => {
-    let count = 0;
-
-    if (datas)
-      datas.forEach(arrItem => {
-        count += arrItem.count;
-      });
-
-    return count;
-  };
 
 
 

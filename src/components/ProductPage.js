@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import priceFormatting from '../modules/priceFormatting';
 
-/* how this component works:
-render shows the initial render (displays the part that gets displayed if 'this.state.loading = true' because the state is as defined in the constructor)
-componentDidMount starts and checks whether to fetch data from the database or no. both options are ASYNC
-FETCH ? - axios.get starts and changes the state of 'this' thus updating the render component
-!FETCH ? - data is received from the previous location and state is then changed thus updating the render component
-render updates because the state got updated and displays the part that gets displayed if 'this.state.loading = false'*/
-
 export default class ProductPage extends Component {
   state = {
     description: undefined,
@@ -24,30 +17,24 @@ export default class ProductPage extends Component {
     type: undefined,
     public: undefined,
     allAvailableStatuses: undefined,
-    curAvailable: undefined,
+    curAvailable: false,
     selectedSize: undefined,
     imageName: []
   };
 
 
-
   selectTheSize(size) {
-    let allSizeElements = document.getElementsByClassName('productSizing')[0].children,
+    const allSizeElements = document.getElementsByClassName('productSizing')[0].children,
       selectedSize = document.getElementById(size);
-
 
     // give white background to all size elements
     for (let i = 0; i < allSizeElements.length; i++)
-      allSizeElements[i].style.cssText = "background: white"
+      allSizeElements[i].style.cssText = "background: white";
 
     // give black background to the selected size element
-    selectedSize.style.cssText = "background: black; color: white; transition: background 0.2s, color  0.2s"
+    selectedSize.style.cssText = "background: black; color: white; transition: background 0.2s, color  0.2s";
 
-    this.setState({
-      selectedSize: size,
-      fullyLoaded: true
-    })
-
+    this.setState({ selectedSize: size });
   }
 
   determineStateProperties() {
@@ -63,16 +50,15 @@ export default class ProductPage extends Component {
 
       index++;
     }
+
+
     // if the product is available and it has at least 1 available size, set state to 'curAvailable: true'
     if (this.state.allAvailableStatuses[this.state.allColors.indexOf(this.state.curColor)] && countOfAvailableSizes > 0) {
-      this.setState(
-        {
-          curAvailable: true
-        },
+      this.setState({ curAvailable: true },
+        // if only 1 size is available, select it
         () => {
-          if (countOfAvailableSizes === 1 && this.state.curAvailable && document.getElementsByClassName('productSizing').length > 0) {
-            this.selectTheSize(Object.keys(this.state.sizes)[lastIndex])
-          }
+          if (countOfAvailableSizes === 1 && this.state.curAvailable && document.getElementsByClassName('productSizing').length > 0)
+            this.selectTheSize(Object.keys(this.state.sizes)[lastIndex]);
         }
       );
     }
@@ -128,17 +114,15 @@ export default class ProductPage extends Component {
           )
         })
         .catch((error) => {
-          console.log(`axios fail: GET the /DBproducts/
-          ${error}`);
+          // console.log(`axios fail: GET the /DBproducts/${error}`);
         })
     }
   }
 
 
-
   // switching URLs by clicking on products from the cart dropdown triggers this a lot
   componentDidUpdate() {
-    let tempState = {
+    const tempState = {
       productCode: this.state.productCode,
       color: this.state.curColor
     }
@@ -150,18 +134,17 @@ export default class ProductPage extends Component {
 
         // console.log('url switch and didupdate. tempstate color and prod code: ' + tempState.color + tempState.productCode);
         // console.log('params data: ' + this.props.match.params.color + this.props.match.params.productCode);
-
         this.setProductProperties();
       }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setProductProperties();
   }
 
 
   buyBtnPressed(index, name, size, price, type, season, color, _id) {
-    // show 'select a size' msg
+    // show 'select a size' message
     if (!size) {
       document.getElementById("root").style.cssText = "transition: filter 0.75s; filter: blur(5px) grayscale(1)";
       document.getElementById("choose-a-size-msg").classList.toggle("visible");
@@ -173,7 +156,7 @@ export default class ProductPage extends Component {
     }
     else {
       let unique = true;
-      let newArr = [...this.props.datas];
+      const newArr = [...this.props.datas];
 
       newArr.forEach(cartItem => {
         if (cartItem.productCode === index && cartItem.size === size && cartItem.color === color) {
@@ -206,13 +189,12 @@ export default class ProductPage extends Component {
   }
 
   enlargeImage = (imgSrc) => {
-    if (document.getElementById("background-container") !== undefined) {
+    if (document.getElementById("background-container")) {
       document.getElementById("background-container").style.top = window.pageYOffset + 'px';
       document.getElementsByClassName("productPageGrid")[0].style.opacity = "0.5";
       document.getElementById("background-container").classList.toggle("display-none");
       document.getElementsByTagName("body")[0].classList.toggle("setHeightLimit");
       document.getElementById("enlarged-img").src = imgSrc;
-
     }
   }
 
@@ -220,17 +202,20 @@ export default class ProductPage extends Component {
   // hidden by default
   BackgroundContainer = () => {
     return (
-      < div style={{ cursor: 'pointer', background: 'rgb(0 0 0 / 85%)' }
-      } onClick={() => {
-        document.getElementById("background-container").classList.toggle("display-none");
-        document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
-        document.getElementsByTagName("body")[0].classList.toggle("setHeightLimit");
-      }} className="display-none" id="background-container" >
+      <div className="display-none" id="background-container"
+        style={{ cursor: 'pointer', background: 'rgb(0 0 0 / 85%)' }}
+        onClick={() => {
+          document.getElementById("background-container").classList.toggle("display-none");
+          document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
+          document.getElementsByTagName("body")[0].classList.toggle("setHeightLimit");
+        }} >
 
         <div id="background-container-2">
-          <img className="big-img-container" style={{ borderRadius: '5px', zIndex: '111' }} onClick={() => {
-            document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
-          }} id="enlarged-img" alt='enlarged' src="http://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" />
+          <img src="http://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" alt='enlarged'
+            className="big-img-container" id="enlarged-img" style={{ borderRadius: '5px', zIndex: '111' }}
+            onClick={() => {
+              document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
+            }} />
         </div>
       </div >
     )
@@ -265,7 +250,6 @@ export default class ProductPage extends Component {
 
             return null;
           })}
-
       </div>
   }
 
@@ -302,7 +286,6 @@ export default class ProductPage extends Component {
       }
 
       {this.state.curAvailable && <div className='buttonContainer' style={{ textAlign: "center" }}>
-
         <button id="buyBtn" onClick={() =>
 
           this.buyBtnPressed(this.state.productCode, this.state.name, this.state.selectedSize, this.state.price[this.state.allColors.indexOf(this.state.curColor)], this.state.type, this.state.season, this.state.curColor, this.state._id)
@@ -332,9 +315,7 @@ export default class ProductPage extends Component {
 
         </div>
       </div> */}
-
     </div>
-
   }
 
 
@@ -342,7 +323,8 @@ export default class ProductPage extends Component {
     return (
       <div style={{ margin: "0 auto" }}>
         <this.BackgroundContainer />
-
+        {console.log('Rendering productpage')}
+        {console.log(this.state)}
         <div style={!this.state.curAvailable ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
             <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }} />

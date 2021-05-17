@@ -16,6 +16,7 @@ html {
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.51);
 }
@@ -29,6 +30,29 @@ html {
   margin: 0 2rem;
 }
 
+div.under-construction-container {
+  height: 50vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+div.under-construction-container :nth-child(2) {
+  margin-top: 2rem;
+}
+
+div.under-construction-container > p,
+div.under-construction-container > p a {
+  font-size: 2.2rem;
+}
+
+div.under-construction-container > p a {
+  color: black;
+  text-decoration: none;
+}
 #cart-item-count {
   position: absolute;
   z-index: -1;
@@ -864,7 +888,6 @@ nav img {
   filter: drop-shadow(0 0 0.15rem black);
 }
 
-/* tablet vertical display. min-width 500px makes phones NOT applicable to this query */
 @media only screen and (max-width: 1100px) and (min-height: 800px) and (min-width: 500px) {
   .productPageGrid {
     /* for some reason '1fr' extends the page to the right, so i am using 100% */
