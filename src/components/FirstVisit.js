@@ -2,10 +2,11 @@ import React from "react";
 
 
 const FirstVisit = () => {
-    return <div id="first-time-container" onClick={() => {
-        localStorage.setItem("firstVisit", "false");
-        window.location.replace("/");
-    }}>
+    return <div id="first-time-container"
+        onClick={() => {
+            localStorage.setItem("firstVisit", "false");
+            window.location.replace("/");
+        }}>
 
         <span>
             <p class="first-time-welcome-text">ENTER</p>

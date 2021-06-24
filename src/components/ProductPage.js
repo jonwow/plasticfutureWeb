@@ -138,8 +138,11 @@ export default class ProductPage extends Component {
       }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setProductProperties();
+    document.addEventListener('click', () => {
+      console.log('123')
+    });
   }
 
 
@@ -156,6 +159,8 @@ export default class ProductPage extends Component {
     }
     else {
       let unique = true;
+
+      // why does this.props.datas not update the dropdown here
       const newArr = [...this.props.datas];
 
       newArr.forEach(cartItem => {
@@ -211,7 +216,7 @@ export default class ProductPage extends Component {
         }} >
 
         <div id="background-container-2">
-          <img src="http://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" alt='enlarged'
+          <img alt='enlarged'
             className="big-img-container" id="enlarged-img" style={{ borderRadius: '5px', zIndex: '111' }}
             onClick={() => {
               document.getElementsByClassName("productPageGrid")[0].style.opacity = "1";
@@ -323,8 +328,6 @@ export default class ProductPage extends Component {
     return (
       <div style={{ margin: "0 auto" }}>
         <this.BackgroundContainer />
-        {console.log('Rendering productpage')}
-        {console.log(this.state)}
         <div style={!this.state.curAvailable ? { filter: 'grayscale(1) blur(1px)' } : {}}>
           {this.state.loading ?
             <p style={{ textAlign: 'center', fontSize: '100px', margin: '110px 0', paddingBottom: '400px' }} />

@@ -38,21 +38,15 @@ export const StickyFooter = () => {
   const list = ['NEWSLETTER', 'COLLECTIONS', 'CONTACTS'];
 
   return (
-    <div className="stickyFooter">
-      <ul>
-        {
-          list.map(item => {
-            return <Link to={`/${item.toLowerCase()}`}
-              key={item} style={{ flexBasis: '33.333333%' }}
-            >
-              <li className="clickable">
-                {item}
-              </li>
-            </Link>
-          })
-        }
-      </ul>
-    </div >
+    <ul id="sticky-footer">
+      {
+        list.map((item, index) => {
+          return <Link to={`/${item.toLowerCase()}`} key={item + index}>
+            <li> {item} </li>
+          </Link>
+        })
+      }
+    </ul>
   );
 }
 

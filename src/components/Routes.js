@@ -5,10 +5,10 @@ import React, { useEffect } from "react";
 
 import ProductPage from "./ProductPage";
 import ProductList from "./ProductList";
+import Contacts from "./Contacts";
 
 const Routes = (props) => {
     const location = useLocation();
-
 
     useEffect(() => {
         const el = document.getElementsByClassName("container");
@@ -47,9 +47,170 @@ const Routes = (props) => {
 
 
             <Route exact path="/collections">
-                <div className="under-construction-container">
-                    <p>This will be a page for the <strong>collections</strong>.</p>
-                </div>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>      <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>          <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+                <p>This will be a page for the <strong>collections</strong>.</p>
+
             </Route>
 
             <Route exact path="/collections/:collectionName">
@@ -59,9 +220,7 @@ const Routes = (props) => {
             </Route>
 
             <Route path="/contacts">
-                <div className="under-construction-container">
-                    <p>This will be a page for the <strong>contacts</strong>.</p>
-                </div>
+                <Contacts />
             </Route>
 
             <Route exact path="/tac">

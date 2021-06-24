@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import priceFormatting from '../modules/priceFormatting';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 // demo for performance. might try a PureComponent
@@ -9,74 +10,54 @@ class CartProductPhoto extends Component {
     super();
   }
 
-  shouldComponentUpdate() {
-    return false;
-  }
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('Image updated')
-  }
-
   render() {
     return <img src={this.props.src} alt={this.props.altText} />;
   }
 
 }
 
-class DropdownCart extends Component {
-  constructor(props) {
-    super(props);
-    this.listRef = React.createRef();
-  }
+const useStyles = makeStyles({
+  font: {
+    fontFamily: "Open Sans Condensed"
+  },
+});
 
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    // Are we adding new items to the list?
-    // Capture the scroll position so we can adjust scroll later.
-    const list = this.listRef.current;
-    console.log(list)
-    console.log(list.scrollHeight - list.scrollTop)
-    return list.scrollHeight - list.scrollTop;
-  }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log('updating dd cart')
-    const list = this.listRef.current;
-    list.scrollTop = list.scrollHeight - snapshot;
-  }
+// transform dcart to smaller components
+const DropdownCart = (props) => {
+  // for better readability as it is used in a lot of places and would take too much space
+  const d = props.datas;
+  let sum = 0;
 
-  render() {
-    // for better readability as it is used in a lot of places and would take too much space
-    const d = this.props.datas;
-    let sum = 0;
+  Object.keys(d).map(key =>
+    sum += d[key].price * d[key].count
+  )
 
-    Object.keys(d).map(key =>
-      sum += d[key].price * d[key].count
-    )
-
-    return (
-      <ul className='dropdown' id='cartDropdown'>
-        <div className='dropdownChild'>
-          {d[0] === undefined ? <li style={{ textAlign: 'center', padding: '2rem 0' }}>no products.</li> :
+  return (
+    <ul className='dropdown' id='cartDropdown'>
+      <div className='cart-dropdown-item-list'>
+        {
+          !d[0] ? <li>no products.</li> :
             Object.keys(d).map(key =>
-              <div key={key} value={key} className='cart-item' style={{ height: 'max-content', display: 'block', padding: '1.5rem 0', background: 'whitesmoke' }}>
+              <div key={key} className='cart-item' style={{ height: 'max-content', display: 'block', padding: '1.5rem 0', background: 'whitesmoke' }}>
                 <li className='cartPreviewItem'>
-
                   {/* image of the product */}
                   <Link to={`/products/${d[key].type}/${d[key].productCode}/${d[key].color}/${d[key]._id}/`} >
-                    <CartProductPhoto src={require(`../../src/images/${d[key].season}/designs/${d[key].type}s/${d[key].name}/${d[key].name}-${d[key].color}-small.png`)}
+                    <CartProductPhoto key={key + 'photo'} src={require(`../../src/images/${d[key].season}/designs/${d[key].type}s/${d[key].name}/${d[key].name}-${d[key].color}-small.png`)}
                       altText={`${d[key].name}-${d[key].color}-photo`} />
                   </Link>
 
 
                   <div className='cartPreviewItemTextGrid'>
                     <Link to={`/products/${d[key].type}/${d[key].productCode}/${d[key].color}/${d[key]._id}/`}
-                      style={{ fontSize: '1.2rem', textTransform: 'uppercase' }}
+                      style={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase' }}
                     >
                       {d[key].name + ' ' + d[key].type}
                     </Link>
 
 
 
-                    <p style={{ cursor: 'default', margin: '0 auto', fontSize: '1.2rem' }}>
+                    <p style={{ cursor: 'default', margin: '0 auto', marginTop: '0.35rem', fontSize: '1.2rem' }}>
                       {priceFormatting(d[key].price.toFixed(2)) + '€'}
                     </p>
 
@@ -86,17 +67,17 @@ class DropdownCart extends Component {
                       {d[key].season + "'" + d[key].productCode[4] + d[key].productCode[5]}
                     </Link>
 
+                    {/* TODO: grid */}
                     <div style={{ marginTop: '-0.75rem', cursor: 'pointer', textAlign: 'center' }}>
-
-                      <span id='modify-amount' onClick={() => (this.props.modifyCount(-1, key))} >
+                      <span id='modify-amount' onClick={() => (props.modifyCount(-1, key))} >
                         -
                        </span>
 
-                      <span style={{ width: '10rem', margin: '0 1rem' }}>
+                      <span style={{ fontSize: '1.1rem' }}>
                         {d[key].count}
                       </span>
 
-                      <span id='modify-amount' onClick={() => (this.props.modifyCount(1, key))}  >
+                      <span id='modify-amount' onClick={() => (props.modifyCount(1, key))}  >
                         +
                     </span>
 
@@ -109,25 +90,22 @@ class DropdownCart extends Component {
                 </li>
               </div>
             )
-          }
-        </div>
-
-        <div id='grid-for-total-cost'>
-          <p style={{ textAlign: 'left' }}>TOTAL COST:</p>
-          <p style={{ textAlign: 'right', fontWeight: '550' }}>{priceFormatting(sum)} €</p>
-        </div>
-
-        {/* if the cart isnt empty, show the checkout button */}
-        {
-          d[0] !== undefined &&
-          <p className='checkout-text' onClick={() => {
-          }}>CHECKOUT</p>
         }
-      </ul>
-    );
-  }
+      </div>
+
+      <div id='grid-for-total-cost'>
+        <p style={{ textAlign: 'left' }}>TOTAL COST:</p>
+        <p style={{ textAlign: 'right', fontWeight: '550' }}>{priceFormatting(sum)} €</p>
+      </div>
+
+      {/* if the cart isnt empty, show the checkout button */}
+      {
+        d[0] !== undefined &&
+        <p className='checkout-text'>CHECKOUT</p>
+      }
+    </ul>
+  );
 }
-// transform dcart to smaller components
 
 
 const itemCount = (datas) => {
@@ -155,7 +133,7 @@ const Navbar = (props) => {
 
     const handleKeyPress = e => e.key === 'Escape' && hideDropdowns();
 
-    const handleMouseClick = (e) => {
+    const handleMouseClick = e => {
       // hide dropdowns only if the click was on an element that does is not interactive in any way (e.g. not a purchase button, not a threelines button)
       if (e.target.id !== 'icon-btn-container' && e.target.id !== 'three-lines-icon' && e.target.id !== 'cart-icon' && e.target.id !== 'buyBtn' && e.target.id !== 'modify-amount')
         hideDropdowns();
@@ -216,7 +194,7 @@ const Navbar = (props) => {
 
   const Cart = () => {
     // if the user clicks on the dropdown (for example he clicks + or -), the cart doesn't hide 
-    const handleClick = (e) => e.target.id === 'cart-icon' && props.setOpenCartDropdown(!props.openCartDropdown);
+    const handleClick = (e) => (e.target.id === 'cart-icon' || e.target.id === 'icon-btn-container') && props.setOpenCartDropdown(!props.openCartDropdown);
 
     return (
       <div onClick={handleClick} id='icon-btn-container'>
@@ -232,31 +210,18 @@ const Navbar = (props) => {
     );
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const classes = useStyles();
 
   return (
-    <nav>
-      {console.log('Navbar rendered')}
+    <header>
       <LeftContainer />
 
-
-      <Link to='/' className='no-select-bg'>PLASTIC FUTURE</Link>
+      {/* add class no-select-bg */}
+      <Link to='/' className={classes.font}>PLASTIC FUTURE</Link>
 
 
       <Cart datas={props.datas} openCartPreview={props.openCartDropdown} />
-    </nav>
+    </header>
   );
 }
 

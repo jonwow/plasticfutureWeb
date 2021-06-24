@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routes from './components/Routes';
 import Breadcrumbs from './components/Breadcrumbs';
@@ -9,9 +9,9 @@ import Navbar from "./components/Navbar";
 
 
 
-const App = () => {
-  // if there is something in the 'cartItems', set 'datas' to it. otherwise - empty array (empty cart)
-  const [datas, setDatas] = useState(JSON.parse(localStorage.getItem('cartItems')) ? JSON.parse(localStorage.getItem('cartItems')) : []);
+
+export default function App () {
+  const [datas, setDatas] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
   const [openCartDropdown, setOpenCartDropdown] = useState(false);
 
   // let timerID;
@@ -40,33 +40,31 @@ const App = () => {
 
 
 
-  // whenever 'datas' changes
-  React.useEffect(() => {
-    // updates localStorage cartItems if 'datas' isn't empty
+  useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(datas));
   }, [datas]);
 
 
 
-
+ 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       {
         // localStorage.getItem("firstVisit") !== "false" ?
-        //     <FirstVisit />
         //     :
-        <div className="container" id="top">
+        // <FirstVisit />
+        <>
           <Navbar datas={datas} modifyCount={modifyCount} openCartDropdown={openCartDropdown} setOpenCartDropdown={setOpenCartDropdown} />
-          <Breadcrumbs />
+          <div className="container">
+            <Breadcrumbs />
 
-          <Routes datas={datas} openCartDropdown={openCartDropdown} setDatas={setDatas} setOpenCartDropdown={setOpenCartDropdown} />
+            <Routes datas={datas} openCartDropdown={openCartDropdown} setDatas={setDatas} setOpenCartDropdown={setOpenCartDropdown} />
 
+          </div>
           <StickyFooter />
           <Footer />
-        </div>
+        </>
       }
     </BrowserRouter>
   );
 };
-
-export default App;

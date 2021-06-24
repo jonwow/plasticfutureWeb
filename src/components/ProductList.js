@@ -32,7 +32,7 @@ export default class ProductList extends Component {
     state = { fetchedProducts: [], loading: true };
 
 
-    componentWillMount() {
+    componentDidMount() {
         axios.get("http://plasticfuture.net:5000/DBproducts/")
             .then(response => {
                 this.setState({ fetchedProducts: response.data, loading: false });
@@ -143,10 +143,8 @@ export default class ProductList extends Component {
 
 
         return (
-            <div className="centeredContainer" id="topElement" >
-                <div className="box">
-                    {this.state.loading ? <div style={{ height: '100vh' }} /> : this.productList(productType, collection, currency)}
-                </div >
+            <div className="products-container">
+                {this.state.loading ? <div style={{ height: '100vh' }} /> : this.productList(productType, collection, currency)}
             </div >
         )
     }
